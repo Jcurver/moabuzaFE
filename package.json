@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "check": "prettier --check src/**/*.jsx src/**/*.js",
+    "check": "prettier --check src/**/*.js",
     "json-server": "json-server --watch db.json --port 4000"
   },
   "lint-staged": {
