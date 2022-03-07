@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
-
 import { ReactQueryDevtools } from 'react-query/devtools'
+import Navbar from '../components/Navbar/Navbar'
+
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/detail" element={<Detail />} />
         </Routes>
+        <Navbar />
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </Suspense>
     </ErrorBoundary>
