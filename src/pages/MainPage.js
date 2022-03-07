@@ -15,7 +15,7 @@ function MainPage() {
             setButtonSelect(false)
           }}
         >
-          첼린지
+          Test 첼린지
         </SelectButton>
         <SelectButton
           onClick={() => {
