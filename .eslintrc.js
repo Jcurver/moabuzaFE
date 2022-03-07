@@ -38,4 +38,7 @@ module.exports = {
     'no-param-reassign-allow-reduce/allow-reduce': 2,
     'no-param-reassign-allow-reduce/no-reduce-identifiers': 2,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
 }
