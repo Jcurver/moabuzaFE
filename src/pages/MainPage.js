@@ -2,15 +2,16 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { setFlexStyles } from '../styles/Mixin'
 
-function MainPage() {
+function MainPage(props) {
   const [buttonSelect, setButtonSelect] = React.useState(false)
   console.log(buttonSelect)
-
+  console.log(props)
   return (
     <Wrapper>
       <ButtonWrapper>
         <div id="btn" />
         <SelectButton
+          isOn={!buttonSelect}
           onClick={() => {
             setButtonSelect(false)
           }}
@@ -18,6 +19,8 @@ function MainPage() {
           Test 첼린지
         </SelectButton>
         <SelectButton
+          isOn={buttonSelect}
+          zindex="true"
           onClick={() => {
             setButtonSelect(true)
           }}
@@ -51,24 +54,28 @@ const Wrapper = styled.div`
   }
 `
 const ButtonWrapper = styled.div`
-  width: 300px;
+  width: 217px;
+  padding: 0;
   margin: 35px auto;
   position: relative;
   border-radius: 30px;
   background: #fff;
+  border: 1px solid black;
 `
 
 const SelectButton = styled.button`
   /* width: 20%;
   max-width: 414px; */
-  padding: 10px 40px;
-  margin: 5% auto;
-  height: 30px;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 0px 5px;
+  /* height: 30px; */
   /* background: var(--bg-active); */
-  background-color:${(props) => (props.isOn === true ? 'green' : 'black')}
+  background-color: ${(props) => (props.isOn ? 'green' : 'black')};
+  z-index: ${(props) => (props.zindex ? 99 : 999)};
   /* border: none; */
   border-radius: 30px;
-  position: relateive;
-  text-align: cnter;
+  position: relative;
+  text-align: center;
 `
 export default MainPage
