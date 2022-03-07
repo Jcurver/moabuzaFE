@@ -1,9 +1,8 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
-
 import { ReactQueryDevtools } from 'react-query/devtools'
-import Loading from './Loading'
+
 import ErrorLog from './ErrorLog'
 import MainPage from './MainPage'
 import Login from './Login'
