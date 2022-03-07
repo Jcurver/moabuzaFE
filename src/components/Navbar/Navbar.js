@@ -18,7 +18,7 @@ function Navbar({ marginBottom }) {
 const Wrapper = styled.div`
   max-width: 414px;
   width: 100%;
-  margin-top: 24px;
+  margin-top: 1px;
   margin-bottom: ${({ marginBottom }) => marginBottom || '12px'};
   height: 44px;
   justify-content: space-around;
