@@ -19,7 +19,6 @@ ReactDOM.render(
         </Router>
       </React.StrictMode>
     </RecoilRoot>
-    
   </QueryClientProvider>,
   document.getElementById('root'),
 )
