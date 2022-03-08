@@ -41,7 +41,7 @@ function MainPage() {
   )
 }
 const Wrapper = styled.div`
-  position:relative;
+  position: relative;
   width: 100%;
   height: 100%;
 `
@@ -72,9 +72,8 @@ const Toggle = styled.div`
   top: 56px;
   background-color: #e5eaf2;
   padding: 2px 2.55px;
-display: flex;
-justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 `
 
 const RightBtn = styled.button`
@@ -133,7 +132,7 @@ const MakeChallenge = styled.button`
   justify-content: center;
   align-items: center;
   padding: 16px 20px;
-  border:none;
+  border: none;
   position: absolute;
   width: 171px;
   height: 48px;
@@ -161,6 +160,8 @@ const BottomLine = styled.div`
   })}
   width: 91.1%;
   height: 6.7vh;
+  background: #f5f5f7;
+  margin: 8px;
 `
 const MyWallet = styled.span`
   font-family: Roboto;
@@ -172,9 +173,9 @@ const MyWallet = styled.span`
   margin-right: 1%;
 `
 const Won = styled.span`
-  font-family: Roboto;
+  font-family: Roboto-Medium;
   font-style: normal;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 18px;
   line-height: 21px;
 `

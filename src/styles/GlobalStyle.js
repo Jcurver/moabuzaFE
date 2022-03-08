@@ -82,10 +82,11 @@ const GlobalStyle = createGlobalStyle`
       min-height: 100vh;
       height: -webkit-fill-available;
       min-height: -webkit-fill-available;
+      margin: 0px;
+      padding: 0px;
+      font-family: 'Nato-Sans KR','Roboto', sans-serif;
     }
-    body {
-      font-family: 'Nato-Sans KR', sans-serif;
-    }
+
 `
 
 export default GlobalStyle
