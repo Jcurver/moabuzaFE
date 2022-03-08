@@ -22,9 +22,7 @@ function MainPage() {
           </RightBtn>
         </Toggle>
         <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-        {/* <CharactorDiv>
-          <Charactor>캐릭터</Charactor>
-        </CharactorDiv> */}
+
         <MakeChallenge>자산을 설정해주세요</MakeChallenge>
       </TopDiv>
       <BottomDiv>
@@ -45,7 +43,7 @@ function MainPage() {
 const Wrapper = styled.div`
   position:relative;
   width: 100%;
-  height: calc(100% - 0px);
+  height: 100%;
 `
 const TopDiv = styled.div`
   ${setFlexStyles({
@@ -53,7 +51,7 @@ const TopDiv = styled.div`
     flexDirection: 'column',
     alignItems: 'center',
   })}
-
+  background: #F6F9FE;  
   width: 100%;
   height: 67.4%;
 `
@@ -62,24 +60,29 @@ const Toggle = styled.div`
   /* width: 182px;
   height: 34px;
   margin-top: 7.8%;
-  background-color: #e5eaf2;
-  border-radius: 20px;
+  
   display: flex;
   align-items: center;
   justify-content: center; */
+  border-radius: 20px;
   position: absolute;
   width: 182px;
   height: 34px;
   left: 89px;
   top: 56px;
+  background-color: #e5eaf2;
+  padding: 2px 2.55px;
+display: flex;
+justify-content: space-between;
+
 `
 
 const RightBtn = styled.button`
-  width: 84px;
+  width: 86px;
   height: 30px;
-  background-color: ${(props) => (props.bgcolor ? '#FFB000' : 'none')};
+  background-color: ${(props) => (props.bgcolor ? '#FFB000' : '#e5eaf2;')};
   font-weight: ${(props) => (props.bgcolor ? 'bold' : '400')};
-  color: ${(props) => (props.bgcolor ? 'white' : 'gray')};
+  color: ${(props) => (props.bgcolor ? 'white' : '#B9BFC8')};
   font-size: 14px;
   border-radius: 20px;
   border: none;
@@ -87,12 +90,12 @@ const RightBtn = styled.button`
 `
 
 const LeftBtn = styled.button`
-  width: 84px;
+  width: 86px;
   height: 30px;
   font-size: 14px;
-  background-color: ${(props) => (props.bgcolor ? 'none' : '#FFB000')};
+  background-color: ${(props) => (props.bgcolor ? ' #e5eaf2;' : '#FFB000')};
   font-weight: ${(props) => (props.bgcolor ? '400' : 'bold')};
-  color: ${(props) => (props.bgcolor ? 'gray' : 'white')};
+  color: ${(props) => (props.bgcolor ? '#B9BFC8' : 'white')};
   border-radius: 20px;
   border: none;
 `
@@ -119,30 +122,7 @@ const ContentDiv = styled.div`
 
   color: #333333;
 `
-const Content = styled.span`
-  font-size: 22px;
-  font-weight: 700;
-`
-const CharactorDiv = styled.div`
 
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  height: 44%;
-`
-const Charactor = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  background-color: orange;
-`
 const MakeChallenge = styled.button`
   /* home_입력전_자산설정Btn */
 
