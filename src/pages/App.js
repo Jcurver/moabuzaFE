@@ -35,8 +35,8 @@ const MainDiv = styled.div`
   height: 100%;
   position: fixed;
   margin: 0 auto;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   max-width: 360px;
 `
