@@ -84,7 +84,7 @@ const GlobalStyle = createGlobalStyle`
       min-height: -webkit-fill-available;
     }
     body {
-      font-family: 'Apple SD Gothic Neo', sans-serif;
+      font-family: 'Nato-Sans KR', sans-serif;
     }
 `
 
