@@ -36,10 +36,11 @@ function App() {
 }
 
 const MainDiv = styled.div`
-
   height: 100%;
   position: fixed;
+  left: 50%;
   margin: 0 auto;
+  padding: 0px;
   left: 0;
   right: 0;
   overflow: hidden;
