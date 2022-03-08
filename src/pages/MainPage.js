@@ -10,7 +10,7 @@ function MainPage() {
   }
 
   return (
-    <div style={{ minWidth: '360px' }}>
+    <div>
       <TopDiv>
         <Toggle>
           <LeftBtn bgcolor={bgcolor} onClick={toggleBtn}>
@@ -164,14 +164,14 @@ const ChartBtn = styled.button`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-  padding: 6px 9px;
+  padding: 9px 12px;
   display: flex;
   align-items: center;
   text-align: center;
   color: white;
   background: #4675f0;
   border-radius: 14px;
-  margin-left: 65%;
+  margin-left: 250px;
 `
 
 export default MainPage
