@@ -8,6 +8,7 @@ import MainPage from './MainPage'
 import Login from './Login'
 import Register from './Register'
 import Detail from './Detail'
+import Calendar from './Calendar'
 
 // const MainPage = lazy(() => import('./MainPage'))
 // const Login = lazy(() => import('./Login'))
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/detail" element={<Detail />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </MainDiv>
@@ -35,8 +37,8 @@ const MainDiv = styled.div`
   height: 100%;
   position: fixed;
   margin: 0 auto;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   max-width: 360px;
 `

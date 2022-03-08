@@ -124,13 +124,12 @@ const MakeChallenge = styled.button`
   border-radius: 24px;
 `
 const BottomDiv = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 21.2vh;
-
 `
 const BottomLine = styled.div`
   display: flex;
@@ -139,7 +138,6 @@ const BottomLine = styled.div`
 
   width: 91.1%;
   height: 6.7vh;
-
 `
 const MyWallet = styled.span`
   font-family: Roboto;
@@ -147,7 +145,7 @@ const MyWallet = styled.span`
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
-  margin-left:5%;
+  margin-left: 5%;
   margin-right: 1%;
 `
 const Won = styled.span`
@@ -158,8 +156,8 @@ const Won = styled.span`
   line-height: 21px;
 `
 const ChartBtn = styled.button`
-  border:none;
-  position:fixed;
+  border: none;
+  position: fixed;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: normal;
@@ -170,7 +168,7 @@ const ChartBtn = styled.button`
   display: flex;
   align-items: center;
   text-align: center;
-  color:white;
+  color: white;
   background: #4675f0;
   border-radius: 14px;
   margin-left: 250px;
