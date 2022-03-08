@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { setFlexStyles } from '../styles/Mixin'
 
 function NavBar() {
   return (
@@ -24,23 +25,25 @@ function NavBar() {
         <MenuIcon>z</MenuIcon>
         <MenuText>도전해부자</MenuText>
       </Component>
-
     </NavBars>
   )
 }
 const NavBars = styled.div`
+  position:fixed;
+  bottom:0px;
   width: 100%;
+  max-width: 360px;
   height: 11.4vh;
   display: grid;
-  grid-template-columns: repeat(5,1fr);
-  
+  grid-template-columns: repeat(5, 1fr);
 `
 const Component = styled.div`
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-
+  ${setFlexStyles({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
 `
 const MenuIcon = styled.div`
   background-color: gray;
