@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import ReactDOM from 'react-dom'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter as Router } from 'react-router-dom'
-import App from '../pages/App'
+import App from './pages/App'
 import reportWebVitals from './reportWebVitals'
 import GlobalStyle from './styles/GlobalStyle'
 
