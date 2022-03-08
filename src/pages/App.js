@@ -41,6 +41,7 @@ const MainDiv = styled.div`
   right: 0;
   overflow: hidden;
   max-width: 360px;
+
 `
 // appmodify
 export default App
