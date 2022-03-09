@@ -71,13 +71,14 @@ const Toggle = styled.div`
   left: 89px;
   top: 56px;
   background-color: #e5eaf2;
+
   padding: 2px 2.55px;
   display: flex;
   justify-content: space-between;
 `
 
 const RightBtn = styled.button`
-  width: 86px;
+  width: 92px;
   height: 30px;
   background-color: ${(props) => (props.bgcolor ? '#FFB000' : '#e5eaf2;')};
   font-weight: ${(props) => (props.bgcolor ? 'bold' : '400')};
@@ -85,11 +86,11 @@ const RightBtn = styled.button`
   font-size: 14px;
   border-radius: 20px;
   border: none;
-  margin-left: 5px;
+
 `
 
 const LeftBtn = styled.button`
-  width: 86px;
+  width: 92px;
   height: 30px;
   font-size: 14px;
   background-color: ${(props) => (props.bgcolor ? ' #e5eaf2;' : '#FFB000')};
@@ -161,6 +162,8 @@ const BottomLine = styled.div`
   width: 91.1%;
   height: 6.7vh;
   background: #f5f5f7;
+
+  border-radius: 40px;
   margin: 8px;
 `
 const MyWallet = styled.span`
@@ -195,7 +198,7 @@ const ChartBtn = styled.button`
   color: white;
   background: #4675f0;
   border-radius: 14px;
-  margin-left: 250px;
+  margin-left: 235px;
 `
 
 export default MainPage
