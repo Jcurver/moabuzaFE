@@ -12,14 +12,17 @@ import ErrorLog from './ErrorLog'
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   // const { isLoading, data, isError, error } = useHomeData(toggle)
-  const toggleBtn = () => {
-    if (toggle === 'group') {
-      setToggle('challenge')
-    }
+  const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
     }
   }
+  const rightToggleBtn = () => {
+    if (toggle === 'group') {
+      setToggle('challenge')
+    }
+  }
+
   // if (isLoading) {
   //   return <Loading />
   // }
@@ -32,10 +35,10 @@ function MainPage() {
     <Wrapper>
       <TopDiv>
         <Toggle>
-          <LeftBtn toggle={toggle} onClick={toggleBtn}>
+          <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
             같이해부자
           </LeftBtn>
-          <RightBtn toggle={toggle} onClick={toggleBtn}>
+          <RightBtn toggle={toggle} onClick={rightToggleBtn}>
             도전해부자
           </RightBtn>
         </Toggle>
@@ -175,6 +178,11 @@ const ProgressDiv = styled.div`
   height: 60px;
   left: 16px;
   top: 56.8%;
+  position: absolute;
+  width: 328px;
+  height: 60px;
+  left: 16px;
+  top: 409/720px;
 `
 const ProgressBar = styled.div`
   position: absolute;
@@ -200,6 +208,11 @@ const ProgressBarCharge = styled.div`
   height: 22px;
   left: 16px;
   top: 62.1%;
+
+  /* color / Accent */
+
+  background: #ffb000;
+  border-radius: 11px;
 
   /* color / Accent */
 
