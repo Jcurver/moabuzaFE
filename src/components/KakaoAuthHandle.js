@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { apis } from '../axios/axios'
-import { KAKAO_ADD_PROPERTIES } from '../shared/kakaoAuth'
-import { setCookie } from '../shared/cookie'
+import { apis } from '../utils/axios'
+
+import { setCookie } from '../utils/cookie'
 
 import bg from '../assets/login.png'
 
