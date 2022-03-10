@@ -10,7 +10,7 @@ const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
-const CalendarMain = lazy(() => import('../components/Calendar/CalendarMain'))
+const CalendarMain = lazy(() => import('./CalendarMain'))
 const NavBar = lazy(() => import('../components/navBar'))
 
 function App() {
