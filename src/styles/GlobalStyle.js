@@ -77,15 +77,19 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
       height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
+      /* height: calc(var(--vh, 1vh) * 100); */
       overflow: hidden;
       min-height: 100vh;
       height: -webkit-fill-available;
       min-height: -webkit-fill-available;
-    }
-    body {
+      margin: 0px;
+      padding: 0px;
       font-family: 'Nato-Sans KR', sans-serif;
     }
+    li {
+    list-style: none;
+  }
+
 `
 
 export default GlobalStyle
