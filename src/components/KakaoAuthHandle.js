@@ -28,5 +28,5 @@ export default KakaoAuthHandle
 
 const Container = styled.img`
   width: 100%;
-  min-height: calc(100vh - 55px);
+  min-height: calc(100vh - 55px)
 `
