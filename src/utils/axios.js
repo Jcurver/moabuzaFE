@@ -8,7 +8,7 @@ const client = axios.create({
   },
 })
 
-client.interceptors.request.use(function (config) {
+client.interceptors.request.use((config)=> {
   const accessToken = document.cookie.split('=')[1]
   config.headers.common.Authorization = `${accessToken}`
   return config
