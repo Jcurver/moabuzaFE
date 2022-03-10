@@ -15,7 +15,7 @@ function KakaoAuthHandle(props) {
         setCookie('token', res.headers.authorization)
         localStorage.setItem('userId', res.data)
         // window.location.href = KAKAO_ADD_PROPERTIES
-        window.location.href = "/"
+        window.location.href = 'http://localhost:8080/home'
       })
     }
     kakaoLogin()
