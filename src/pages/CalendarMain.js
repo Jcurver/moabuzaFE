@@ -48,7 +48,7 @@ function CalendarMain() {
     setTotalDate(changeDate(7))
     setTotalDate(changeDate(month))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [month])
 
   const [today, setToday] = useState(0)
 
