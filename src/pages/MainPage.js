@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import NavBar from '../components/navBar'
+import { setFlexStyles, disappearScrollbar } from '../styles/Mixin'
 
 function MainPage() {
   const [bgcolor, setColor] = useState(true)
@@ -10,7 +11,7 @@ function MainPage() {
   }
 
   return (
-    <div style={{ minWidth: '360px' }}>
+    <Wrapper>
       <TopDiv>
         <Toggle>
           <LeftBtn bgcolor={bgcolor} onClick={toggleBtn}>
@@ -20,12 +21,8 @@ function MainPage() {
             도전해부자
           </RightBtn>
         </Toggle>
-        <ContentDiv>
-          <Content>😂 아직 목표가 없어요!</Content>
-        </ContentDiv>
-        <CharactorDiv>
-          <Charactor>캐릭터</Charactor>
-        </CharactorDiv>
+        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+
         <MakeChallenge>자산을 설정해주세요</MakeChallenge>
       </TopDiv>
       <BottomDiv>
@@ -40,104 +37,134 @@ function MainPage() {
           <ChartBtn>분석해부자</ChartBtn>
         </BottomLine>
       </BottomDiv>
-      <NavBar />
-    </div>
+    </Wrapper>
   )
 }
-
-const TopDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
+const Wrapper = styled.div`
+  position: relative;
   width: 100%;
-  height: 67.4vh;
+  height: 100%;
+`
+const TopDiv = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  })}
+  background: #F6F9FE;  
+  width: 100%;
+  height: 67.4%;
 `
 
 const Toggle = styled.div`
-  width: 182px;
+  /* width: 182px;
   height: 34px;
   margin-top: 7.8%;
-  background-color: #e5eaf2;
-  border-radius: 20px;
+  
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  border-radius: 20px;
+  position: absolute;
+  width: 182px;
+  height: 34px;
+  left: 89px;
+  top: 56px;
+  background-color: #e5eaf2;
+
+  padding: 2px 2.55px;
+  display: flex;
+  justify-content: space-between;
 `
 
 const RightBtn = styled.button`
-  width: 84px;
+  width: 92px;
   height: 30px;
-  background-color: ${(props) => (props.bgcolor ? '#FFB000' : 'none')};
+  background-color: ${(props) => (props.bgcolor ? '#FFB000' : '#e5eaf2;')};
   font-weight: ${(props) => (props.bgcolor ? 'bold' : '400')};
-  color: ${(props) => (props.bgcolor ? 'white' : 'gray')};
+  color: ${(props) => (props.bgcolor ? 'white' : '#B9BFC8')};
   font-size: 14px;
   border-radius: 20px;
   border: none;
-  margin-left: 5px;
+
 `
 
 const LeftBtn = styled.button`
-  width: 84px;
+  width: 92px;
   height: 30px;
   font-size: 14px;
-
-  background-color: ${(props) => (props.bgcolor ? 'none' : '#FFB000')};
+  background-color: ${(props) => (props.bgcolor ? ' #e5eaf2;' : '#FFB000')};
   font-weight: ${(props) => (props.bgcolor ? '400' : 'bold')};
-  color: ${(props) => (props.bgcolor ? 'gray' : 'white')};
-
+  color: ${(props) => (props.bgcolor ? '#B9BFC8' : 'white')};
   border-radius: 20px;
   border: none;
 `
 const ContentDiv = styled.div`
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-const Content = styled.span`
+  position: absolute;
+  width: 197px;
+  height: 31px;
+  left: 85px;
+  top: 130px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
   font-size: 22px;
-  font-weight: 700;
-`
-const CharactorDiv = styled.div`
-  height: 27vh;
+  line-height: 140%;
+  /* identical to box height, or 31px */
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color / gray / Gray80 */
+
+  color: #333333;
 `
-const Charactor = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  background-color: orange;
-`
+
 const MakeChallenge = styled.button`
-  border: none;
-  width: 47.5%;
-  height: 6.7vh;
+  /* home_입력전_자산설정Btn */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 16px 20px;
+  border: none;
+  position: absolute;
+  width: 171px;
+  height: 48px;
+  left: 95px;
+
+  top: 56.25%;
+  background: #ffffff;
   box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
   border-radius: 24px;
 `
 const BottomDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   width: 100%;
-  height: 21.2vh;
+  height: 21.2%;
 `
 const BottomLine = styled.div`
-  display: flex;
-
-  align-items: center;
-
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   width: 91.1%;
   height: 6.7vh;
+  background: #f5f5f7;
+
+  border-radius: 40px;
+  margin: 8px;
 `
 const MyWallet = styled.span`
   font-family: Roboto;
@@ -149,9 +176,9 @@ const MyWallet = styled.span`
   margin-right: 1%;
 `
 const Won = styled.span`
-  font-family: Roboto;
+  font-family: Roboto-Medium;
   font-style: normal;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 18px;
   line-height: 21px;
 `
@@ -164,14 +191,14 @@ const ChartBtn = styled.button`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-  padding: 6px 9px;
+  padding: 9px 12px;
   display: flex;
   align-items: center;
   text-align: center;
   color: white;
   background: #4675f0;
   border-radius: 14px;
-  margin-left: 65%;
+  margin-left: 235px;
 `
 
 export default MainPage
