@@ -23,8 +23,8 @@ function KakaoAuthHandle(props) {
         // window.location.href = KAKAO_ADD_PROPERTIES
         // navigate("/home")
         window.location.href =
-          'http://moabuza.s3-website.ap-northeast-2.amazonaws.com/home/'
-      })
+          'http://moabuza.s3-website.ap-northeast-2.amazonaws.com/home'
+      }).catch((error)=>console.error(error))
     }
     kakaoLogin()
   }, [])
