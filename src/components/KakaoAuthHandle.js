@@ -12,8 +12,9 @@ function KakaoAuthHandle(props) {
     const code = new URL(window.location.href).searchParams.get('code')
     const kakaoLogin = async () => {
       await apis.kakaoLogin1(code).then((res) => {
+        console.log("성공",res)
         setCookie('token', res.headers.authorization)
-        localStorage.setItem('userId', res.data)
+        // localStorage.setItem('userId', res.data)
         // window.location.href = KAKAO_ADD_PROPERTIES
         window.location.href =
           'http://moabuza.s3-website.ap-northeast-2.amazonaws.com/home/'
