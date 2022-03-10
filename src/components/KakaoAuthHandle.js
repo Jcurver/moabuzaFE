@@ -9,13 +9,14 @@ import bg from '../assets/login.png'
 // 닉네임
 function KakaoAuthHandle(props) {
   useEffect(() => {
-    const code = (new URL(window.location.href)).searchParams.get('code')
+    const code = new URL(window.location.href).searchParams.get('code')
     const kakaoLogin = async () => {
       await apis.kakaoLogin1(code).then((res) => {
         setCookie('token', res.headers.authorization)
         localStorage.setItem('userId', res.data)
         // window.location.href = KAKAO_ADD_PROPERTIES
-        window.location.href = 'http://localhost:8080/home'
+        window.location.href =
+          'http://moabuza.s3-website.ap-northeast-2.amazonaws.com/home/'
       })
     }
     kakaoLogin()
@@ -28,5 +29,5 @@ export default KakaoAuthHandle
 
 const Container = styled.img`
   width: 100%;
-  min-height: calc(100vh - 55px)
+  min-height: calc(100vh - 55px);
 `
