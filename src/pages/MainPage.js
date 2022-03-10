@@ -1,29 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import NavBar from '../components/navBar'
-import { setFlexStyles, disappearScrollbar } from '../styles/Mixin'
+import { useRecoilState, atom } from 'recoil'
+import { setFlexStyles } from '../styles/Mixin'
+import { toggleGroupChallenge } from '../recoil/homeToggle'
+import { useHomeData } from '../hooks/useUserData'
+import Loading from './Loading'
+import ErrorLog from './ErrorLog'
+
+// 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
-  const [bgcolor, setColor] = useState(true)
-
+  const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
+  // const { isLoading, data, isError, error } = useHomeData(toggle)
   const toggleBtn = () => {
-    return setColor(!bgcolor)
+    if (toggle === 'group') {
+      setToggle('challenge')
+    }
+    if (toggle === 'challenge') {
+      setToggle('group')
+    }
   }
+  // if (isLoading) {
+  //   return <Loading />
+  // }
+  // if (isError) {
+  //   console.log("error : ",error)
+  //   return <ErrorLog error={error} />
+  // }
 
   return (
     <Wrapper>
       <TopDiv>
         <Toggle>
-          <LeftBtn bgcolor={bgcolor} onClick={toggleBtn}>
+          <LeftBtn toggle={toggle} onClick={toggleBtn}>
             같이해부자
           </LeftBtn>
-          <RightBtn bgcolor={bgcolor} onClick={toggleBtn}>
+          <RightBtn toggle={toggle} onClick={toggleBtn}>
             도전해부자
           </RightBtn>
         </Toggle>
+        {/* {(toggle === 'group' && data?.isGroupGoal) ||
+        (toggle === 'challenge' && data?.isChallengeGoal) ? (
+          <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+        ) : (
+          ''
+        )} */}
+
         <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
 
-        <MakeChallenge>자산을 설정해주세요</MakeChallenge>
+        {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
+        <ProgressDiv />
+        <ProgressBar />
+        <ProgressBarCharge>30%</ProgressBarCharge>
       </TopDiv>
       <BottomDiv>
         <BottomLine>
@@ -51,19 +79,12 @@ const TopDiv = styled.div`
     flexDirection: 'column',
     alignItems: 'center',
   })}
-  background: #F6F9FE;  
+  background: #F6F9FE;
   width: 100%;
   height: 67.4%;
 `
 
 const Toggle = styled.div`
-  /* width: 182px;
-  height: 34px;
-  margin-top: 7.8%;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center; */
   border-radius: 20px;
   position: absolute;
   width: 182px;
@@ -77,25 +98,28 @@ const Toggle = styled.div`
   justify-content: space-between;
 `
 
-const RightBtn = styled.button`
-  width: 92px;
-  height: 30px;
-  background-color: ${(props) => (props.bgcolor ? '#FFB000' : '#e5eaf2;')};
-  font-weight: ${(props) => (props.bgcolor ? 'bold' : '400')};
-  color: ${(props) => (props.bgcolor ? 'white' : '#B9BFC8')};
-  font-size: 14px;
-  border-radius: 20px;
-  border: none;
-
-`
-
 const LeftBtn = styled.button`
   width: 92px;
   height: 30px;
+  background-color: ${(props) =>
+    props.toggle === 'challenge' ? ' #e5eaf2' : '#FFB000'};
+  font-weight: ${(props) => (props.toggle === 'challenge' ? '400' : 'bold')};
+  color: ${(props) => (props.toggle === 'challenge' ? '#B9BFC8' : 'white')};
   font-size: 14px;
-  background-color: ${(props) => (props.bgcolor ? ' #e5eaf2;' : '#FFB000')};
-  font-weight: ${(props) => (props.bgcolor ? '400' : 'bold')};
-  color: ${(props) => (props.bgcolor ? '#B9BFC8' : 'white')};
+  white-space: nowrap;
+  border-radius: 20px;
+  border: none;
+`
+
+const RightBtn = styled.button`
+  width: 92px;
+  height: 30px;
+  background-color: ${(props) =>
+    props.toggle === 'group' ? ' #e5eaf2' : '#FFB000'};
+  font-weight: ${(props) => (props.toggle === 'group' ? '400' : 'bold')};
+  color: ${(props) => (props.toggle === 'group' ? '#B9BFC8' : 'white')};
+  white-space: nowrap;
+  font-size: 14px;
   border-radius: 20px;
   border: none;
 `
@@ -144,6 +168,56 @@ const MakeChallenge = styled.button`
   box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
   border-radius: 24px;
 `
+
+const ProgressDiv = styled.div`
+  position: absolute;
+  width: 328px;
+  height: 60px;
+  left: 16px;
+  top: 56.8%;
+`
+const ProgressBar = styled.div`
+  position: absolute;
+  width: 328px;
+  height: 22px;
+  left: 16px;
+  top: 62.1%;
+
+  /* color/Btn-basic1 */
+
+  background: #e5eaf2;
+  background: yellow;
+  border-radius: 11px;
+`
+const ProgressBarCharge = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+  position: absolute;
+  width: 110.77px;
+  height: 22px;
+  left: 16px;
+  top: 62.1%;
+
+  /* color / Accent */
+
+  background: #ffb000;
+  border-radius: 11px;
+  font-family: Roboto-Medium;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+
+  /* color/gray/White */
+
+  color: #ffffff;
+`
+
 const BottomDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
@@ -163,11 +237,12 @@ const BottomLine = styled.div`
   height: 6.7vh;
   background: #f5f5f7;
 
-  border-radius: 40px;
+  border-radius: 8px;
   margin: 8px;
 `
+
 const MyWallet = styled.span`
-  font-family: Roboto;
+  font-family: Roboto-Medium;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -175,6 +250,7 @@ const MyWallet = styled.span`
   margin-left: 5%;
   margin-right: 1%;
 `
+
 const Won = styled.span`
   font-family: Roboto-Medium;
   font-style: normal;
@@ -182,6 +258,7 @@ const Won = styled.span`
   font-size: 18px;
   line-height: 21px;
 `
+
 const ChartBtn = styled.button`
   border: none;
   position: fixed;
@@ -198,7 +275,7 @@ const ChartBtn = styled.button`
   color: white;
   background: #4675f0;
   border-radius: 14px;
-  margin-left: 235px;
+  margin-left: 243.5px;
 `
 
 export default MainPage
