@@ -22,7 +22,7 @@ function App() {
           <Routes>
             <Route path="/home" element={<MainPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/user/kakao/callback" element={<KakaoAuthHandle />} />
+            <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
             <Route path="/calendar" element={<CalendarMain />} />
