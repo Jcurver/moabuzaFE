@@ -5,9 +5,9 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
+import MainPage from './MainPage'
 
-
-const MainPage = lazy(() => import('./MainPage'))
+// const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
