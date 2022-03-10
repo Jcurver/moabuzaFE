@@ -10,16 +10,16 @@ import GlobalStyle from './styles/GlobalStyle'
 const queryClient = new QueryClient()
 
 ReactDOM.render(
-  <QueryClientProvider client={queryClient}>
-    <RecoilRoot>
+  <RecoilRoot>
+    <QueryClientProvider client={queryClient}>
       <React.StrictMode>
         <Router>
           <GlobalStyle />
           <App />
         </Router>
       </React.StrictMode>
-    </RecoilRoot>
-  </QueryClientProvider>,
+    </QueryClientProvider>
+  </RecoilRoot>,
   document.getElementById('root'),
 )
 
