@@ -6,8 +6,10 @@ import { setCookie } from '../utils/cookie'
 
 import bg from '../assets/login.png'
 
+
 // 닉네임
 function KakaoAuthHandle(props) {
+
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get('code')
     const kakaoLogin = async () => {
