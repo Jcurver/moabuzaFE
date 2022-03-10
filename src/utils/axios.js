@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://localhost:8080',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
   },
 })
 
-client.interceptors.request.use((config)=> {
+client.interceptors.request.use((config) => {
   const accessToken = document.cookie.split('=')[1]
   config.headers.common.Authorization = `${accessToken}`
   return config
@@ -26,7 +26,5 @@ export const request = ({ ...options }) => {
 
 export const apis = {
   // 카카오 소셜로그인
-  kakaoLogin1: (
-    code, // 닉네임
-  ) => apis.get(`/user/kakao/callback?code=${code}`),
+  kakaoLogin1: (code) => client.get(`/user/kakao/callback?code=${code}`),
 }
