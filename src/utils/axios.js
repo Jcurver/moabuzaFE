@@ -8,11 +8,11 @@ const client = axios.create({
   },
 })
 
-// client.interceptors.request.use((config) => {
-//   const accessToken = document.cookie.split('=')[1]
-//   config.headers.common.Authorization = `${accessToken}`
-//   return config
-// })
+client.interceptors.request.use((config) => {
+  const accessToken = document.cookie?.split('=')[1]
+  config.headers.common.Authorization = `${accessToken}`
+  return config
+})
 
 export const request = ({ ...options }) => {
   console.log(client)
@@ -28,5 +28,5 @@ export const request = ({ ...options }) => {
  
 export const apis = {
   // 카카오 소셜로그인
-  kakaoLogin1: (code) => client.get(`/user/kakao/callback?code=${code}`),
+  kakaoLogin1: (code) => client.post(`/user/kakao/callback?code=${code}`),
 }
