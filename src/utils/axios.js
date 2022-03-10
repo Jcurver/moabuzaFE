@@ -21,6 +21,7 @@ export const request = ({ ...options }) => {
     // optionaly catch errors and add additional logging here
     return error
   }
+  
   return client(options).then(onSuccess).catch(onError)
 }
 
