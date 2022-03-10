@@ -8,11 +8,11 @@ const client = axios.create({
   },
 })
 
-client.interceptors.request.use((config) => {
-  const accessToken = document.cookie.split('=')[1]
-  config.headers.common.Authorization = `${accessToken}`
-  return config
-})
+// client.interceptors.request.use((config) => {
+//   const accessToken = document.cookie.split('=')[1]
+//   config.headers.common.Authorization = `${accessToken}`
+//   return config
+// })
 
 export const request = ({ ...options }) => {
   console.log(client)
@@ -21,7 +21,7 @@ export const request = ({ ...options }) => {
     // optionaly catch errors and add additional logging here
     return error
   }
-  
+
   return client(options).then(onSuccess).catch(onError)
 }
 
