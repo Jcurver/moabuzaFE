@@ -26,5 +26,5 @@ export const request = ({ ...options }) => {
 
 export const apis = {
   // 카카오 소셜로그인
-  kakaoLogin1: (code) => client.post(`/user/kakao/callback?code=${code}`),
+  kakaoLogin1: (code) => client.get(`/user/kakao/callback?code=${code}`),
 }
