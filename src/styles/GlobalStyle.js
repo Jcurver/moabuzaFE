@@ -86,6 +86,9 @@ const GlobalStyle = createGlobalStyle`
       padding: 0px;
       font-family: 'Nato-Sans KR', sans-serif;
     }
+    li {
+    list-style: none;
+  }
 
 `
 
