@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getCookie } from './cookie.js'
 
 const client = axios.create({
   baseURL: 'http://localhost:8080',
@@ -8,11 +9,11 @@ const client = axios.create({
   },
 })
 
-// client.interceptors.request.use(async (config) => {
-//   const accessToken = document.cookie.split('=')[1]
-//   config.headers.common.Authorization = `Bearer ${accessToken}`
-//   return config
-// })
+client.interceptors.request.use(async (config) => {
+  const accessToken = getCookie('token')
+  config.headers.common.authorization = `Bearer ${accessToken}`
+  return config
+})
 
 export const request = ({ ...options }) => {
   console.log(client)
