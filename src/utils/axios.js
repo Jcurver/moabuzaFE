@@ -25,6 +25,7 @@ export const request = ({ ...options }) => {
   return client(options).then(onSuccess).catch(onError)
 }
 
+ 
 export const apis = {
   // 카카오 소셜로그인
   kakaoLogin1: (code) => client.get(`/user/kakao/callback?code=${code}`),
