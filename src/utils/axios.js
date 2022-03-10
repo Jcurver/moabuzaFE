@@ -8,11 +8,11 @@ const client = axios.create({
   },
 })
 
-client.interceptors.request.use((config) => {
-  const accessToken = document.cookie?.split('=')[1]
-  config.headers.common.Authorization = `${accessToken}`
-  return config
-})
+// client.interceptors.request.use(async (config) => {
+//   const accessToken = document.cookie.split('=')[1]
+//   config.headers.common.Authorization = `bearer ${accessToken}`
+//   return config
+// })
 
 export const request = ({ ...options }) => {
   console.log(client)
@@ -21,11 +21,9 @@ export const request = ({ ...options }) => {
     // optionaly catch errors and add additional logging here
     return error
   }
-
   return client(options).then(onSuccess).catch(onError)
 }
 
- 
 export const apis = {
   // 카카오 소셜로그인
   kakaoLogin1: (code) => client.post(`/user/kakao/callback?code=${code}`),
