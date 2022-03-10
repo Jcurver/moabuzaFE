@@ -11,7 +11,7 @@ const client = axios.create({
 
 client.interceptors.request.use(async (config) => {
   const accessToken = getCookie('token')
-  config.headers.common.authorization = `Bearer ${accessToken}`
+  config.headers.authorization = `Bearer ${accessToken}`
   return config
 })
 

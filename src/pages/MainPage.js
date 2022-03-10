@@ -11,7 +11,8 @@ import ErrorLog from './ErrorLog'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  // const { isLoading, data, isError, error } = useHomeData(toggle)
+  const { isLoading, data, isError, error } = useHomeData(toggle)
+  console.log("홈 데이터 : ",data)
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -23,13 +24,13 @@ function MainPage() {
     }
   }
 
-  // if (isLoading) {
-  //   return <Loading />
-  // }
-  // if (isError) {
-  //   console.log("error : ",error)
-  //   return <ErrorLog error={error} />
-  // }
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError) {
+    console.log("error : ",error)
+    return <ErrorLog error={error} />
+  }
 
   return (
     <Wrapper>
