@@ -20,7 +20,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/home" element={<MainPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/user/kakao/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
