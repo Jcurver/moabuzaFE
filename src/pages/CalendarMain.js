@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Head from '../components/Calendar/Head'
 import Body from '../components/Calendar/Body'
+import Button from '../components/Button'
 
 function CalendarMain() {
   const DATE = new Date()
@@ -63,6 +64,7 @@ function CalendarMain() {
     <Wrapper>
       <Head year={year} month={month} setMonth={setMonth} goToday={goToday} />
       <Body totalDate={totalDate} today={today} month={month} year={year} />
+      <Button>button</Button>
     </Wrapper>
   )
 }
