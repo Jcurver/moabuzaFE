@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import { setFlexStyles } from '../styles/Mixin'
 
 function NavBar() {
-  return (
+  if (window.location.pathname === '/login')
+    return null
+
+ return (
     <NavBars>
       <Component>
         <MenuIcon>z</MenuIcon>
