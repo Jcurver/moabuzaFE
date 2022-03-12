@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Button({ children }) {
+function Button({ children, ...rest }) {
   return (
     <Wrapper>
-      <MainButton>{children}</MainButton>
+      <MainButton {...rest}>{children}</MainButton>
     </Wrapper>
   )
 }
@@ -19,15 +19,16 @@ const MainButton = styled.button`
   border: none;
   border-radius: 4px;
   color: white;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
 
   /* 크기 */
-  width: 90%;
-  height: 2.25rem;
-  font-size: 1rem;
+  width: ${(props) => props.width || '100%'};
+
+  height: ${(props) => props.height || '2.25rem'};
+  font-size: ${(props) => props.fontSize || '1rem'};
 
   /* 색상 */
   background: #5f5f77;
@@ -37,10 +38,5 @@ const MainButton = styled.button`
   &:active {
     background: #1c7ed6;
   }
-
-  /* 기타 */
-  /* & + & {
-    margin-left: 1rem;
-  } */
 `
 export default Button
