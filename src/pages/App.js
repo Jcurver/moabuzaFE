@@ -11,7 +11,7 @@ const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
 const CalendarMain = lazy(() => import('./CalendarMain'))
-const NavBar = lazy(() => import('../components/navBar'))
+const NavBar = lazy(() => import('../components/NavBar'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
-            <Route path="/home" element={<MainPage />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
