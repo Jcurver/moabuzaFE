@@ -5,14 +5,25 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
+import Settings from './Settings'
+import Menu from './Menu'
+
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
+const Oneday = lazy(() => import('./Oneday'))
+const Group = lazy(() => import('./Group'))
+const Challenge = lazy(() => import('./Challenge'))
+
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
+const Friends = lazy(() => import('./Friends'))
+const AddFriends = lazy(() => import('./AddFriends.js'))
+
+
 
 function App() {
   return (
@@ -21,13 +32,19 @@ function App() {
         <MainDiv>
           <Routes>
             <Route path="/" element={<MainPage />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/oneday" element={<Oneday />} />
+            <Route path="/group" element={<Group />} />
+            <Route path="/challenge" element={<Challenge />} />
             <Route path="/login" element={<Login />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
             <Route path="/calendar" element={<CalendarMain />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/friends/add" element={<AddFriends />} />
           </Routes>
-          <Nav />
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </MainDiv>
