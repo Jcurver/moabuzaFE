@@ -34,7 +34,7 @@ function NavBar() {
         </Component>
       </NavLink>
       <NavLink
-        to="/oneday"
+        to="/onedaybuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
           color: 'black',
@@ -61,7 +61,7 @@ function NavBar() {
       </NavLink>
 
       <NavLink
-        to="/group"
+        to="/groupbuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
           color: 'black',

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Nav from '../components/Nav'
 
-function Oneday() {
+function OnedayBuza() {
   return (
     <div>
 
@@ -10,4 +10,4 @@ function Oneday() {
   )
 }
 
-export default Oneday
+export default OnedayBuza
