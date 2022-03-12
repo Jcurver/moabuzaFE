@@ -3,10 +3,9 @@ import styled from 'styled-components'
 import { setFlexStyles } from '../styles/Mixin'
 
 function NavBar() {
-  if (window.location.pathname === '/login')
-    return null
+  if (window.location.pathname === '/login') return null
 
- return (
+  return (
     <NavBars>
       <Component>
         <MenuIcon>z</MenuIcon>
@@ -32,8 +31,8 @@ function NavBar() {
   )
 }
 const NavBars = styled.div`
-  position:fixed;
-  bottom:0px;
+  position: fixed;
+  bottom: 0px;
   width: 100%;
   max-width: 360px;
   height: 11.4vh;
