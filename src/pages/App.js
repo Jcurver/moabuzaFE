@@ -5,13 +5,13 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
+import NavBar from '../components/NavBar'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
 const CalendarMain = lazy(() => import('./CalendarMain'))
-const NavBar = lazy(() => import('../components/NavBar'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
