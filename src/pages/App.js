@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
-import NavBar from '../components/NavBar'
+import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
@@ -27,7 +27,7 @@ function App() {
             <Route path="/detail" element={<Detail />} />
             <Route path="/calendar" element={<CalendarMain />} />
           </Routes>
-          <NavBar />
+          <Nav />
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </MainDiv>
