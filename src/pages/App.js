@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
-import NavBar from '../components/NavBar'
+import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Login = lazy(() => import('./Login'))
@@ -31,7 +31,7 @@ function App() {
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
           </Routes>
-          <NavBar />
+          <Nav />
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </MainDiv>
