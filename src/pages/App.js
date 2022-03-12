@@ -24,6 +24,8 @@ const Friends = lazy(() => import('./Friends'))
 const AddFriends = lazy(() => import('./AddFriends.js'))
 
 
+const GroupBuza = lazy(() => import('./GroupBuza'))
+const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/friends/add" element={<AddFriends />} />
+            <Route path="/groupbuza" element={<GroupBuza />} />
+            <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
