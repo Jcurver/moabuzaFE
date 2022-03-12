@@ -2,51 +2,32 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-function Menu() {
+function S() {
   return (
     <Wrapper>
       <TopDiv>
-        <NavLink to="/">
+        <NavLink to="/menu">
           <ButtonDiv />
           <Button />
         </NavLink>
-        <Title>메뉴</Title>
+        <Title>설정</Title>
         <TopLine />
       </TopDiv>
       <TodayDiv style={{ top: '11.94%' }}>
         <TodayLogoDiv />
         <TodayLogo />
-        <TodayText>하루부자</TodayText>
+        <TodayText>캐릭터/닉네임 수정</TodayText>
       </TodayDiv>
       <TodayDiv style={{ top: '20.27%' }}>
         <TodayLogoDiv />
         <TodayLogo />
-        <TodayText>같이해부자</TodayText>
+        <TodayText>리뷰</TodayText>
       </TodayDiv>
-      <TodayDiv style={{ top: '28.61%' }}>
+      <TodayDiv style={{ top: '35.97%' }}>
         <TodayLogoDiv />
         <TodayLogo />
-        <TodayText>도전해부자</TodayText>
+        <TodayText>로그아웃</TodayText>
       </TodayDiv>
-      <NavLink to="/friends">
-        <TodayDiv style={{ top: '41.53%' }}>
-          <TodayLogoDiv />
-          <TodayLogo />
-          <TodayText>친구</TodayText>
-        </TodayDiv>
-      </NavLink>
-      <TodayDiv style={{ top: '49.86%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>뱃지</TodayText>
-      </TodayDiv>
-      <NavLink to="/settings">
-        <TodayDiv style={{ top: '58.19%' }}>
-          <TodayLogoDiv />
-          <TodayLogo />
-          <TodayText>설정</TodayText>
-        </TodayDiv>
-      </NavLink>
     </Wrapper>
   )
 }
@@ -162,4 +143,4 @@ const TodayText = styled.div`
   color: #000000;
 `
 
-export default Menu
+export default S
