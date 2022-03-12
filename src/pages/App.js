@@ -13,6 +13,8 @@ const Detail = lazy(() => import('./Detail'))
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const NavBar = lazy(() => import('../components/navBar'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
+const GroupBuza = lazy(() => import('./GroupBuza'))
+const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
             <Route path="/calendar" element={<CalendarMain />} />
+            <Route path="/groupbuza" element={<GroupBuza />} />
+            <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
           </Routes>
           <NavBar />
 
