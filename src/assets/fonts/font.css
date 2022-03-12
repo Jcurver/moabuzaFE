@@ -22,7 +22,7 @@
   font-weight: 400;
   font-display: swap;
 }@font-face {
-  font-family: 'NotoSansKR-Medium';
+  font-family: 'Noto Sans KR';
   src: url('./NotoSansKR-Medium.woff') format('woff');
   font-weight: 400;
   font-display: swap;
@@ -92,7 +92,7 @@
 }
 
 @font-face {
-  font-family: 'Roboto-Regular';
+  font-family: 'Roboto';
   src: url('./Roboto-Regular.woff') format('woff');
   font-weight: 400;
   font-display: swap;
