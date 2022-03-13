@@ -89,6 +89,10 @@ const GlobalStyle = createGlobalStyle`
     li {
     list-style: none;
   }
+  button {
+    border:none;
+    cursor:pointer;
+  }
 
 `
 
