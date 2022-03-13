@@ -6,6 +6,7 @@ import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useHomeData } from '../hooks/useUserData'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
+import Nav from '../components/Nav'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -69,6 +70,7 @@ function MainPage() {
           <ChartBtn>분석해부자</ChartBtn>
         </BottomLine>
       </BottomDiv>
+      <Nav />
     </Wrapper>
   )
 }
