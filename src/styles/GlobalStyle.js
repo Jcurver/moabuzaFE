@@ -85,13 +85,20 @@ const GlobalStyle = createGlobalStyle`
       margin: 0px;
       padding: 0px;
       font-family: 'Nato-Sans KR', sans-serif;
-    }
-    li {
-    list-style: none;
-  }
+
+
+      li {
+      list-style: none;
+      }
+      body::-webkit-scrollbar {
+	display:none /* Chrome , Safari , Opera */
+}
   button {
     border:none;
     cursor:pointer;
+  }
+  input {
+    border:none;
   }
   input:focus {
     outline:none;
@@ -99,7 +106,8 @@ const GlobalStyle = createGlobalStyle`
   div {
     white-space: nowrap;
   }
+}
 
 `
-
+    
 export default GlobalStyle

@@ -14,8 +14,8 @@ function AddFriends() {
         <AddFriend />
         <TopLine />
       </TopDiv>
-      <NickName>닉네임</NickName>
-      <FriendInput placeholder="닉네임을 입력해주세요." />
+      <NicknameText>닉네임</NicknameText>
+      <NicknameInput placeholder="닉네임을 입력해주세요" />
       <FriendLine>
         <FriendInfo>
           <FriendCharactor />
@@ -105,11 +105,12 @@ const TopLine = styled.div`
 
   background: #f5f5f7;
 `
-const NickName = styled.p`
+
+const NicknameText = styled.div`
   position: absolute;
   width: 38px;
   height: 14px;
-  left: 17px;
+  left: 16px;
   top: 15.28%;
 
   /* Heading/Noto Sans KR/H6 */
@@ -120,19 +121,21 @@ const NickName = styled.p`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
+
   letter-spacing: -0.04em;
+
   color: #000000;
 `
-const FriendInput = styled.input`
+const NicknameInput = styled.input`
   position: absolute;
   width: 328px;
-  height: 18.33%;
+  height: 52px;
   left: 16px;
-  top: 102px;
-  padding-left: 16px;
-  border: none;
+  top: 18.33%;
+
   background: #f5f5f7;
   border-radius: 8px;
+  padding-left: 16px;
   ::placeholder,
   ::-webkit-input-placeholder {
     font-family: 'Noto Sans KR';
