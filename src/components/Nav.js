@@ -74,7 +74,7 @@ function NavBar() {
         </Component>
       </NavLink>
       <NavLink
-        to="/challenge"
+        to="/challengebuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
           color: 'black',
