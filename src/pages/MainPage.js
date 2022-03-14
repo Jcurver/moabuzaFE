@@ -96,7 +96,7 @@ const Toggle = styled.div`
   width: 182px;
   height: 34px;
   left: 89px;
-  top: 56px;
+  top: 7.78%;
   background-color: #e5eaf2;
 
   padding: 2px 2.55px;
