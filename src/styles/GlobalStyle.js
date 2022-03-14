@@ -93,6 +93,9 @@ const GlobalStyle = createGlobalStyle`
     border:none;
     cursor:pointer;
   }
+  input:focus {
+    outline:none;
+  }
 
 `
 
