@@ -85,9 +85,10 @@ const Wrapper = styled.div`
 const RightButtonDiv = styled.div`
   position: absolute;
   left: 85.56%;
-  right: 1.11%;
-  top: 33.72%;
-  bottom: 10.47%;
+
+  top: 4.03%;
+  width:48px;
+  height:48px;
 
   background: rgba(196, 196, 196, 0.3);
 `
