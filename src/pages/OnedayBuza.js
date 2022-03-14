@@ -67,11 +67,11 @@ function OnedayBuza() {
     <Wrapper>
       <TopDiv>
         <Title>하루부자</Title>
+      </TopDiv>
         <NavLink to="/onedaypost">
           <RightButtonDiv />
           <RightButton />
         </NavLink>
-      </TopDiv>
       <NavLink to="/">
         <LeftButtonDiv />
         <LeftButton />
@@ -172,16 +172,18 @@ const TopDiv = styled.div`
 const LeftButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
-  right: 85.56%;
   top: 3.75%;
-  bottom: 90.05%;
+  width: 48px;
+  height: 48px;
+  background: rgba(196, 196, 196, 0.3);
 `
 const LeftButton = styled.div`
   position: absolute;
   left: 4.44%;
-  right: 88.89%;
+
   top: 5.3%;
-  bottom: 91.6%;
+  width:24px;
+  height:24px;
 
   background: #c4c4c4;
 `
@@ -198,9 +200,10 @@ const RightButtonDiv = styled.div`
 const RightButton = styled.div`
   position: absolute;
   left: 88.89%;
-  right: 4.44%;
-  top: 47.67%;
-  bottom: 24.42%;
+
+  top: 5.69%;
+  width:24px;
+  height:24px;
 
   background: #c4c4c4;
 `
@@ -349,7 +352,7 @@ const TodayListTitle = styled.div`
   width: 53px;
   height: 14px;
   left: 16px;
-  top: 406px;
+  top: 56.39%;
 
   /* Heading/Noto Sans KR/H6(B) */
 
@@ -372,7 +375,7 @@ const TodayListDiv = styled.div`
   position: relative;
   width: 100%;
   height: 28%;
-  top: 436px;
+  top: 60.56%;
   padding: 0 16px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
@@ -388,7 +391,7 @@ const TodayListLine = styled.div`
   padding: 0 12px;
   position: relative;
   width: 328px;
-  height: 64px;
+  height: 31.75%;
 
   /* color/Btn-basic1 */
 
