@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, atom } from 'recoil'
+import { NavLink } from 'react-router-dom'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useHomeData } from '../hooks/useUserData'
@@ -35,41 +36,43 @@ function MainPage() {
 
   return (
     <Wrapper>
-      <TopDiv>
-        <Toggle>
-          <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
-            같이해부자
-          </LeftBtn>
-          <RightBtn toggle={toggle} onClick={rightToggleBtn}>
-            도전해부자
-          </RightBtn>
-        </Toggle>
-        {/* {(toggle === 'group' && data?.isGroupGoal) ||
+      <NavLink to="/alerts">
+        <RightButtonDiv />
+        <RightButton />
+      </NavLink>
+      <Toggle>
+        <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
+          같이해부자
+        </LeftBtn>
+        <RightBtn toggle={toggle} onClick={rightToggleBtn}>
+          도전해부자
+        </RightBtn>
+      </Toggle>
+      {/* {(toggle === 'group' && data?.isGroupGoal) ||
         (toggle === 'challenge' && data?.isChallengeGoal) ? (
           <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-        ) : (
-          ''
-        )} */}
+          ) : (
+            ''
+          )} */}
 
-        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+      <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
 
-        {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
-        <ProgressDiv />
-        <ProgressBar />
-        <ProgressBarCharge>30%</ProgressBarCharge>
-      </TopDiv>
-      <BottomDiv>
-        <BottomLine>
-          <MyWallet>나의 지갑은</MyWallet>
-          <Won>82,900원</Won>
-          <ChartBtn>분석해부자</ChartBtn>
-        </BottomLine>
-        <BottomLine>
-          <MyWallet>나의 자산은</MyWallet>
-          <Won>82,900원</Won>
-          <ChartBtn>분석해부자</ChartBtn>
-        </BottomLine>
-      </BottomDiv>
+      {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
+      <ProgressDiv />
+      <ProgressBar />
+      <ProgressBarCharge>30%</ProgressBarCharge>
+
+      <BottomLine style={{ top: '69.58%' }}>
+        <MyWallet>나의 지갑은</MyWallet>
+        <Won>82,900원</Won>
+        <ChartBtn>분석해부자</ChartBtn>
+      </BottomLine>
+      <BottomLine style={{ top: '79.03%' }}>
+        <MyWallet>나의 자산은</MyWallet>
+        <Won>82,900원</Won>
+        <ChartBtn>분석해부자</ChartBtn>
+      </BottomLine>
+
       <Nav />
     </Wrapper>
   )
@@ -79,14 +82,40 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
+const RightButtonDiv = styled.div`
+  position: absolute;
+  left: 85.56%;
+  right: 1.11%;
+  top: 33.72%;
+  bottom: 10.47%;
+
+  background: rgba(196, 196, 196, 0.3);
+`
+
+const RightButton = styled.div`
+  position: absolute;
+  left: 88.89%;
+
+  top: 5.69%;
+  width: 24px;
+  height: 24px;
+
+  background: #c4c4c4;
+`
 const TopDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   })}
-  background: #F6F9FE;
-  width: 100%;
+  position: absolute;
+  width: 360px;
+
+  left: 0px;
+  top: 0px;
+
+  background: #f6f9fe;
+
   height: 67.4%;
 `
 
@@ -133,13 +162,12 @@ const ContentDiv = styled.div`
   position: absolute;
   width: 197px;
   height: 31px;
-  left: 85px;
-
+  left: 81px;
   top: 18.06%;
-  white-space: nowrap;
-  font-family: Noto Sans KR;
+
+  font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 22px;
   line-height: 140%;
   /* identical to box height, or 31px */
@@ -235,25 +263,17 @@ const ProgressBarCharge = styled.div`
   color: #ffffff;
 `
 
-const BottomDiv = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  width: 100%;
-  height: 21.2%;
-`
+
 const BottomLine = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
   })}
-  width: 91.1%;
-  height: 6.7vh;
-  background: #f5f5f7;
+  position: absolute;
 
+  width: 91.1%;
+  height: 6.7%;
+  background: #f5f5f7;
   border-radius: 8px;
   margin: 8px;
 `

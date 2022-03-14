@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-function S() {
+function Settings() {
   return (
     <Wrapper>
       <TopDiv>
@@ -13,11 +13,13 @@ function S() {
         <Title>설정</Title>
         <TopLine />
       </TopDiv>
-      <TodayDiv style={{ top: '11.94%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>캐릭터/닉네임 수정</TodayText>
-      </TodayDiv>
+      <NavLink to="/modified">
+        <TodayDiv style={{ top: '11.94%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>캐릭터/닉네임 수정</TodayText>
+        </TodayDiv>
+      </NavLink>
       <TodayDiv style={{ top: '20.27%' }}>
         <TodayLogoDiv />
         <TodayLogo />
@@ -48,9 +50,9 @@ const TopDiv = styled.div`
 const ButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
-  right: 85.56%;
   top: 33.72%;
-  bottom: 10.47%;
+  width: 48px;
+  height: 48px;
 
   background: rgba(196, 196, 196, 0.3);
 `
@@ -58,13 +60,12 @@ const ButtonDiv = styled.div`
 const Button = styled.div`
   position: absolute;
   left: 4.44%;
-  right: 88.89%;
   top: 47.67%;
-  bottom: 24.42%;
+  width: 24px;
+  height: 24px;
 
   background: #c4c4c4;
 `
-
 const Title = styled.div`
   position: absolute;
   left: 46.11%;
@@ -102,6 +103,8 @@ const TodayDiv = styled.div`
   height: 60px;
   left: 0px;
 `
+
+
 const TodayLogoDiv = styled.div`
   position: absolute;
   width: 48px;
@@ -143,4 +146,4 @@ const TodayText = styled.div`
   color: #000000;
 `
 
-export default S
+export default Settings
