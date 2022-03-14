@@ -29,7 +29,11 @@ const MainButton = styled.button`
 
   height: ${(props) => props.height || '2.25rem'};
   font-size: ${(props) => props.fontSize || '1rem'};
-
+  position: ${(props) => props.position || 'static'};
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  right: ${(props) => props.right};
+  bottom: ${(props) => props.bottom};
   /* 색상 */
   background: #5f5f77;
   &:hover {
