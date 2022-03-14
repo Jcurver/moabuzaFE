@@ -70,7 +70,7 @@ export default function OnedayPost() {
       <select
         style={{
           position: 'absolute',
-          top: '155px',
+          top: '21.53%',
           left: '16px',
         }}
       >
@@ -178,18 +178,18 @@ const OptionRightButton = styled.div`
 const LeftButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
-  right: 85.56%;
-  top: 4.03%;
-  bottom: 89.31%;
-
+  top: 3.75%;
+  width: 48px;
+  height: 48px;
   background: rgba(196, 196, 196, 0.3);
 `
 const LeftButton = styled.div`
   position: absolute;
   left: 4.44%;
-  right: 88.89%;
-  top: 5.69%;
-  bottom: 90.97%;
+
+  top: 5.3%;
+  width: 24px;
+  height: 24px;
 
   background: #c4c4c4;
 `

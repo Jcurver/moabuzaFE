@@ -17,7 +17,7 @@ const Detail = lazy(() => import('./Detail'))
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
-const Challenge = lazy(() => import('./Challenge'))
+const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
@@ -39,7 +39,7 @@ function App() {
             <Route path="/onedaybuza" element={<OnedayBuza />} />
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
-            <Route path="/challenge" element={<Challenge />} />
+            <Route path="/challengebuza" element={<ChallengeBuza />} />
             <Route path="/login" element={<Login />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
