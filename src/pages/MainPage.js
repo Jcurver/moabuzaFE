@@ -6,13 +6,14 @@ import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useHomeData } from '../hooks/useUserData'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
+import Nav from '../components/Nav'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  const { isLoading, data, isError, error } = useHomeData(toggle)
-  console.log("홈 데이터 : ",data)
+  // const { isLoading, data, isError, error } = useHomeData(toggle)
+  // console.log('홈 데이터 : ', data)
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -24,13 +25,13 @@ function MainPage() {
     }
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError) {
-    console.log("error : ",error)
-    return <ErrorLog error={error} />
-  }
+  // if (isLoading) {
+  //   return <Loading />
+  // }
+  // if (isError) {
+  //   console.log('error : ', error)
+  //   return <ErrorLog error={error} />
+  // }
 
   return (
     <Wrapper>
@@ -69,6 +70,7 @@ function MainPage() {
           <ChartBtn>분석해부자</ChartBtn>
         </BottomLine>
       </BottomDiv>
+      <Nav />
     </Wrapper>
   )
 }
@@ -132,8 +134,9 @@ const ContentDiv = styled.div`
   width: 197px;
   height: 31px;
   left: 85px;
-  top: 130px;
 
+  top: 18.06%;
+  white-space: nowrap;
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
@@ -194,8 +197,8 @@ const ProgressBar = styled.div`
 
   /* color/Btn-basic1 */
 
+  /* background: yellow; */
   background: #e5eaf2;
-  background: yellow;
   border-radius: 11px;
 `
 const ProgressBarCharge = styled.div`

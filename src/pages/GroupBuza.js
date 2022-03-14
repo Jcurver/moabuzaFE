@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
+import Nav from '../components/Nav'
 
 function GroupBuza() {
   const [pending, setPending] = useState(true)
@@ -40,6 +41,7 @@ function GroupBuza() {
           </Button>
         </GoalWrapper>
       )} */}
+      <Nav />
     </Wrapper>
   )
 }
