@@ -15,6 +15,7 @@ const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
+const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
 const Challenge = lazy(() => import('./Challenge'))
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/onedaybuza" element={<OnedayBuza />} />
+            <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challenge" element={<Challenge />} />
             <Route path="/login" element={<Login />} />
