@@ -96,6 +96,9 @@ const GlobalStyle = createGlobalStyle`
   input:focus {
     outline:none;
   }
+  div {
+    white-space: nowrap;
+  }
 
 `
 
