@@ -19,30 +19,36 @@ function ExampleCustomInput({ value, onClick }) {
   )
 }
 function OnedayBuza() {
- const data = [
-   {
-     id: 1,
-     recordType: '수입',
-     recordDate: '1',
-     memos: '수입을 적었당',
-     recordAmount: 100000
-   },
-   {
-     id: 2,
-     title: '지출',
-     src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-   },
-   {
-     id: 3,
-     title: '👬같이해부자',
-     src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-   },
-   {
-     id: 4,
-     title: '👬도전해부자',
-     src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-   },
- ]
+  const data = [
+    {
+      id: 1,
+      recordType: '수입',
+      recordDate: '1',
+      memos: '수입을 적었당',
+      recordAmount: 10000,
+    },
+    {
+      id: 2,
+      recordType: '같이해부자',
+      recordDate: '1',
+      memos: '같이 성공해보자',
+      recordAmount: 30000,
+    },
+    {
+      id: 3,
+      recordType: '지출',
+      recordDate: '1',
+      memos: '돈쓰는건 재밌어',
+      recordAmount: 100000,
+    },
+    {
+      id: 4,
+      recordType: '도전해부자',
+      recordDate: '1',
+      memos: '도즈으으으언',
+      recordAmount: 16000,
+    },
+  ]
 
   const [startDate, setStartDate] = useState(new Date())
   // 월/일
@@ -68,10 +74,10 @@ function OnedayBuza() {
       <TopDiv>
         <Title>하루부자</Title>
       </TopDiv>
-        <NavLink to="/onedaypost">
-          <RightButtonDiv />
-          <RightButton />
-        </NavLink>
+      <NavLink to="/onedaypost">
+        <RightButtonDiv />
+        <RightButton />
+      </NavLink>
       <NavLink to="/">
         <LeftButtonDiv />
         <LeftButton />
@@ -123,34 +129,18 @@ function OnedayBuza() {
       <BottomLine />
       <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
-        <TodayListLine>
-          <TodayListLineLeft>
-            <TodayListLineTitle>지출</TodayListLineTitle>
-            <TodayListLineMemo>오늘도 힘내부자</TodayListLineMemo>
-          </TodayListLineLeft>
-          <TodayListLineRight>- 10,000 원</TodayListLineRight>
-        </TodayListLine>
-        <TodayListLine>
-          <TodayListLineLeft>
-            <TodayListLineTitle>같이해부자</TodayListLineTitle>
-            <TodayListLineMemo>오늘도 힘내부자 오늘도 힘내</TodayListLineMemo>
-          </TodayListLineLeft>
-          <TodayListLineRight>👬10,000 원</TodayListLineRight>
-        </TodayListLine>
-        <TodayListLine>
-          <TodayListLineLeft>
-            <TodayListLineTitle>지출</TodayListLineTitle>
-            <TodayListLineMemo>오늘도 힘내부자</TodayListLineMemo>
-          </TodayListLineLeft>
-          <TodayListLineRight>- 10,000 원</TodayListLineRight>
-        </TodayListLine>
-        <TodayListLine>
-          <TodayListLineLeft>
-            <TodayListLineTitle>지출</TodayListLineTitle>
-            <TodayListLineMemo>오늘도 힘내부자</TodayListLineMemo>
-          </TodayListLineLeft>
-          <TodayListLineRight>- 10,000 원</TodayListLineRight>
-        </TodayListLine>
+        {data.map((d) => {
+          return (
+            <TodayListLine>
+              <TodayListLineLeft>
+                <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
+                <TodayListLineMemo>{d.memos}</TodayListLineMemo>
+              </TodayListLineLeft>
+              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount} 원</TodayListLineRight>
+            </TodayListLine>
+          )
+        })}
+
       </TodayListDiv>
       <Nav />
     </Wrapper>
@@ -182,8 +172,8 @@ const LeftButton = styled.div`
   left: 4.44%;
 
   top: 5.3%;
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
 
   background: #c4c4c4;
 `
@@ -202,8 +192,8 @@ const RightButton = styled.div`
   left: 88.89%;
 
   top: 5.69%;
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
 
   background: #c4c4c4;
 `
@@ -304,14 +294,12 @@ const CalendarLine = styled.hr`
   box-sizing: border-box;
 `
 const TotalLine = styled.div`
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   position: absolute;
   width: 324px;
   height: 14px;
   left: 18px;
-  
-  
 `
 const TotalLeft = styled.div`
   font-family: 'Noto Sans KR';
@@ -330,9 +318,6 @@ const TotalLeft = styled.div`
   color: #555555;
 `
 const TotalRight = styled.div`
-
-
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
@@ -443,7 +428,7 @@ const TodayListLineTitle = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-  padding-bottom:4px;
+  padding-bottom: 4px;
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;

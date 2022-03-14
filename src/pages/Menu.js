@@ -41,11 +41,13 @@ function Menu() {
           <TodayText>친구</TodayText>
         </TodayDiv>
       </NavLink>
-      <TodayDiv style={{ top: '49.86%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>뱃지</TodayText>
-      </TodayDiv>
+      <NavLink to="/bedge">
+        <TodayDiv style={{ top: '49.86%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>뱃지</TodayText>
+        </TodayDiv>
+      </NavLink>
       <NavLink to="/settings">
         <TodayDiv style={{ top: '58.19%' }}>
           <TodayLogoDiv />
