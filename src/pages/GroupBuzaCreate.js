@@ -65,7 +65,6 @@ function GroupBuzaCreate() {
   ]
   const [selectFriends, setSelectFriends] = useState([])
   console.log(selectFriends)
-  
 
   const [datalist, setDatalist] = useState(data)
   console.log(datalist)
@@ -151,18 +150,23 @@ function GroupBuzaCreate() {
                   console.log(selectFriends.length)
                 }}
               >
-                            <CircleImg src={da.src} />
+                <CircleImg src={da.src} />
                 <FriendsText>{da.title}</FriendsText>
-                </Friends>
+              </Friends>
             )
           })}
-
-      
         </FriendsList>
       </FriendWrapper>
 
       <CreateButtonWrapper>
-        <CreateButton width="328px">만들기</CreateButton>
+        <CreateButton
+          width="328px"
+          onClick={() => {
+            navigate('/groupbuzacomplete')
+          }}
+        >
+          만들기
+        </CreateButton>
       </CreateButtonWrapper>
     </Wrapper>
   )
