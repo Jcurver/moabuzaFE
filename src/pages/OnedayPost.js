@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import '../styles/CalendarStyle.css'
 import '../styles/Dropdown.css'
 import ko from 'date-fns/locale/ko'
+import '../styles/SelectStyle.css'
 import Nav from '../components/Nav'
 
 registerLocale('ko', ko)
@@ -66,11 +67,22 @@ export default function OnedayPost() {
           <li>도전해부자</li>
         </ul>
       </details> */}
+      <select
+        style={{
+          position: 'absolute',
+          top: '155px',
+          left: '16px',
+        }}
+      >
+        <option selected>-- 항목을 골라부자 --</option>
+        <option>수입</option>
+        <option>지출</option>
+        <option>같이해부자</option>
+        <option>도전해부자</option>
+      </select>
 
-      <OptionRightButton style={{ top: '23.47%', bottom: '73.19%' }} />
       <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
-      <OptionDiv />
-      <CalDiv>
+      <OptionDiv>
         <DatePicker
           dateFormat="yyyy.MM.dd"
           locale="ko"
@@ -90,8 +102,7 @@ export default function OnedayPost() {
             return null
           }}
         />
-      </CalDiv>
-
+      </OptionDiv>
       <OptionTitle style={{ top: '45.97%' }}>💰금액</OptionTitle>
       <Input style={{ top: '50.14%' }} placeholder="금액을 입력해주세요" />
       <OptionTitle style={{ top: '59.58%' }}>✏️메모</OptionTitle>
@@ -107,14 +118,12 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const CalDiv = styled.div`
-  position: absolute;
   width: 328px;
   height: 87px;
   left: 16px;
-  top: 277px;
 `
 const CalDate = styled.div`
-margin-left:16px;
+  margin-left: 16px;
 `
 const CalBtn = styled.button`
   position: absolute;
@@ -146,10 +155,13 @@ const OptionTitle = styled.div`
   color: #000000;
 `
 const OptionDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   width: 328px;
   height: 52px;
-  left: 0px;
+  left: 16px;
   top: 35.83%;
 
   background: #f5f5f7;
