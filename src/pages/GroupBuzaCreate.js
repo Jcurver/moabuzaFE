@@ -64,9 +64,14 @@ function GroupBuzaCreate() {
     },
   ]
   const [selectFriends, setSelectFriends] = useState([])
+  console.log(selectFriends)
+  
 
+  const [datalist, setDatalist] = useState(data)
+  console.log(datalist)
   const listfreind = () => {}
   console.log('selectFriends', selectFriends)
+
   // useEffect(() => {
   //   console.log(selectFriends)
   // }, [selectFriends])
@@ -113,6 +118,7 @@ function GroupBuzaCreate() {
                           setSelectFriends(
                             selectFriends.filter((flist) => flist.id !== da.id),
                           )
+                          setDatalist([da, ...datalist])
                         }}
                       >
                         X
@@ -122,8 +128,8 @@ function GroupBuzaCreate() {
                 )
               })}
         </SelectedFriendWrapper>
-        <FriendsList>
-          {data.map((da, idx) => {
+        <FriendsList friendslength={selectFriends.length}>
+          {datalist.map((da, idx) => {
             return (
               <Friends
                 key={da.id}
@@ -133,19 +139,25 @@ function GroupBuzaCreate() {
                     alert('4명까지 선택가능합니다.')
                     return
                   }
-                  if (selectFriends[idx] === undefined) {
-                    setSelectFriends((prevList) => [...prevList, da])
-                  } else if (selectFriends[idx].id !== da.id) {
-                    setSelectFriends((prevList) => [...prevList, da])
-                  }
+
+                  setSelectFriends((prevList) => [...prevList, da])
+                  const targetIndex = datalist.findIndex(
+                    (d) => d.title === da.title,
+                  )
+                  setDatalist([
+                    ...datalist.slice(0, targetIndex),
+                    ...datalist.slice(targetIndex + 1),
+                  ])
                   console.log(selectFriends.length)
                 }}
               >
-                <CircleImg src={da.src} />
+                            <CircleImg src={da.src} />
                 <FriendsText>{da.title}</FriendsText>
-              </Friends>
+                </Friends>
             )
           })}
+
+      
         </FriendsList>
       </FriendWrapper>
 
@@ -270,10 +282,10 @@ const FriendsList = styled.div`
   align-items: flex-start;
   padding: 0px;
   overflow: scroll;
-  /* position: absolute; */
+  position: absolute;
   left: 1px;
   right: 0%;
-  top: 7.94%;
+  top: ${(props) => (props.friendslength === 0 ? '7.94%' : '28%')};
   bottom: 0%;
 `
 
