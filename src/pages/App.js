@@ -15,6 +15,7 @@ const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
+const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
 const Challenge = lazy(() => import('./Challenge'))
 
@@ -23,9 +24,9 @@ const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
 const Friends = lazy(() => import('./Friends'))
 const AddFriends = lazy(() => import('./AddFriends.js'))
 
-
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
+const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/onedaybuza" element={<OnedayBuza />} />
+            <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challenge" element={<Challenge />} />
             <Route path="/login" element={<Login />} />
@@ -48,6 +50,7 @@ function App() {
             <Route path="/friends/add" element={<AddFriends />} />
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
+            <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
