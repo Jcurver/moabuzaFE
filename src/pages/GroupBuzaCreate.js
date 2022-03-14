@@ -105,7 +105,7 @@ function GroupBuzaCreate() {
             ? null
             : selectFriends.map((da, idx) => {
                 return (
-                  <div>
+                  <div key={da.id}>
                     <SelectedFriendContent>
                       {selectFriends[idx].title}
                       <DeleteFriendContent
@@ -129,6 +129,7 @@ function GroupBuzaCreate() {
                 key={da.id}
                 onClick={() => {
                   if (selectFriends.length > 3) {
+                    // eslint-disable-next-line no-alert
                     alert('4명까지 선택가능합니다.')
                     return
                   }
