@@ -24,9 +24,9 @@ const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
 const Friends = lazy(() => import('./Friends'))
 const AddFriends = lazy(() => import('./AddFriends.js'))
 
-
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
+const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 
 function App() {
   return (
@@ -50,6 +50,7 @@ function App() {
             <Route path="/friends/add" element={<AddFriends />} />
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
+            <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
