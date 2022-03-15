@@ -85,13 +85,14 @@ const GlobalStyle = createGlobalStyle`
       margin: 0px;
       padding: 0px;
       font-family: 'Nato-Sans KR', sans-serif;
-
+      -ms-overflow-style: none;
 
       li {
       list-style: none;
       }
       body::-webkit-scrollbar {
-	display:none /* Chrome , Safari , Opera */
+	display:none; /* Chrome , Safari , Opera */
+  width: 0 !important;
 }
   button {
     border:none;
@@ -109,5 +110,5 @@ const GlobalStyle = createGlobalStyle`
 }
 
 `
-    
+
 export default GlobalStyle

@@ -1,8 +1,18 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function Modified() {
+  function changeSubmit() {
+     console.log('gkgk')
+    Swal.fire({
+      title: '수정 완료!',
+      text: '더 열심히 모아부자!',
+      icon: 'success',
+    }) 
+
+  }
   return (
     <Wrapper>
       <NavLink to="/settings">
@@ -12,7 +22,7 @@ function Modified() {
       <TopLine />
 
       <Title>캐릭터/닉네임 수정</Title>
-      <ButtonSubmit>확인</ButtonSubmit>
+      <ButtonSubmit onClick={()=>changeSubmit()}>확인</ButtonSubmit>
       <CharacterDiv>
         <CharacterOne style={{ left: '0px' }}>
           <Character />

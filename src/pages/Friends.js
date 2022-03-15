@@ -18,6 +18,32 @@ function Friends() {
         <TopLine />
       </TopDiv>
       <FriendInput placeholder="닉네임을 입력해주세요." />
+      <FriendsDiv>
+        <FriendsLine>
+          <FriendProfile>
+            <FriendIcon />
+            <FriendText>홍길동</FriendText>
+          </FriendProfile>
+          <AddButton>수락대기</AddButton>
+        </FriendsLine>
+        <FriendsLine>
+          <FriendProfile>
+            <FriendIcon />
+            <FriendText>홍길동</FriendText>
+          </FriendProfile>
+          <AddButton>수락대기</AddButton>
+        </FriendsLine>
+        <FriendsLine>
+          <FriendProfile>
+            <FriendIcon />
+            <FriendText>홍길동</FriendText>
+          </FriendProfile>
+          <AddButton>수락대기</AddButton>
+        </FriendsLine>
+
+
+
+      </FriendsDiv>
     </Wrapper>
   )
 }
@@ -139,7 +165,7 @@ const FriendInput = styled.input`
     letter-spacing: -0.04em;
     color: #cccccc;
   }
-  :-ms-input-placeholder {
+  :-ms-input-placeholder {              
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 400;
@@ -149,4 +175,73 @@ const FriendInput = styled.input`
     color: #cccccc;
   }
 `
+
+const FriendsDiv = styled.div`
+position:absolute;
+width: 100%;
+top: 21.4%;
+padding:16px 16px 0px 16px;
+overflow: scroll;
+bottom: 0px;
+
+
+`
+const FriendsLine = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+  width: 328px;
+  height: 48px;
+  margin-bottom: 1.11%;
+`
+const FriendProfile = styled.div`
+  display: flex;
+  align-items: center;
+
+  width:100px;
+`
+const FriendIcon = styled.div`
+  width: 38px;
+  height: 38px;
+  border-radius:20px;
+  background: #f5f5f7;
+  margin-right:8px;
+`
+const FriendText = styled.div`
+
+`
+const AddButton = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 7px 13px;
+
+  width: 69px;
+  height: 26px;
+  left: 259px;
+  top: 11px;
+
+  /* color / gray / Gray30 */
+
+  background: #cccccc;
+  border-radius: 13px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  /* identical to box height, or 12px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* Rectangle 173 */
+
+  color: #ffffff;
+`
+
 export default Friends
