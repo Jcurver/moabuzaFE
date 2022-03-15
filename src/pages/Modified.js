@@ -7,23 +7,21 @@ import { useForm } from 'react-hook-form'
 function Modified() {
   const navigate = useNavigate()
   const [hero, setHero] = useState(1)
-  useEffect(() => {
-    setValue('character', hero)
-  }, [hero])
+  function setHeroValue(i) {
+    setHero(i)
+    setValue('character', i)
+  }
 
+  console.log('hero:', hero)
   const onValid = async (data) => {
-
-      Swal.fire(
-        {
-          title: '수정 완료!',
-          text: '더 열심히 모아부자!',
-          icon: 'success',
-        },
-        )
-        .then((result) => {
-          console.log(result);
-          navigate('/settings')
-        })
+    Swal.fire({
+      title: '수정 완료!',
+      text: '더 열심히 모아부자!',
+      icon: 'success',
+    }).then((result) => {
+      console.log(result)
+      navigate('/settings')
+    })
     // if (data.password !== data.password1) {
     //     setError(
     //       'password1',
@@ -59,19 +57,25 @@ function Modified() {
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne style={{ left: '0px' }} onClick={() => setHero(1)}>
+          <CharacterOne style={{ left: '0px' }} onClick={() => setHeroValue(1)}>
             <Character />
             <CharacterName style={{ fontWeight: hero === 1 ? '800' : '400' }}>
               캐릭터A
             </CharacterName>
           </CharacterOne>
-          <CharacterOne style={{ left: '104px' }} onClick={() => setHero(2)}>
+          <CharacterOne
+            style={{ left: '104px' }}
+            onClick={() => setHeroValue(2)}
+          >
             <Character />
             <CharacterName style={{ fontWeight: hero === 2 ? '800' : '400' }}>
               캐릭터B
             </CharacterName>
           </CharacterOne>
-          <CharacterOne style={{ left: '208px' }} onClick={() => setHero(3)}>
+          <CharacterOne
+            style={{ left: '208px' }}
+            onClick={() => setHeroValue(3)}
+          >
             <Character />
             <CharacterName style={{ fontWeight: hero === 3 ? '800' : '400' }}>
               캐릭터C
