@@ -19,6 +19,37 @@ function ExampleCustomInput({ value, onClick }) {
   )
 }
 function OnedayBuza() {
+  const data = [
+    {
+      id: 1,
+      recordType: '수입',
+      recordDate: '1',
+      memos: '수입을 적었당',
+      recordAmount: 10000,
+    },
+    {
+      id: 2,
+      recordType: '같이해부자',
+      recordDate: '1',
+      memos: '같이 성공해보자',
+      recordAmount: 30000,
+    },
+    {
+      id: 3,
+      recordType: '지출',
+      recordDate: '1',
+      memos: '돈쓰는건 재밌어',
+      recordAmount: 100000,
+    },
+    {
+      id: 4,
+      recordType: '도전해부자',
+      recordDate: '1',
+      memos: '도즈으으으언',
+      recordAmount: 16000,
+    },
+  ]
+
   const [startDate, setStartDate] = useState(new Date())
   // 월/일
   const getFormattedDate = (date) => {
@@ -42,11 +73,11 @@ function OnedayBuza() {
     <Wrapper>
       <TopDiv>
         <Title>하루부자</Title>
-        <NavLink to="/onedaypost">
-          <RightButtonDiv />
-          <RightButton />
-        </NavLink>
       </TopDiv>
+      <NavLink to="/onedaypost">
+        <RightButtonDiv />
+        <RightButton />
+      </NavLink>
       <NavLink to="/">
         <LeftButtonDiv />
         <LeftButton />
@@ -78,14 +109,38 @@ function OnedayBuza() {
         />
       </CalDiv>
       <CalendarLine />
-      <TodayListTitle>내역</TodayListTitle>
+      <TotalLine style={{ top: '23.89%' }}>
+        <TotalLeft>수입</TotalLeft>
+        <TotalRight>+ 50,000 원</TotalRight>
+      </TotalLine>
+      <TotalLine style={{ top: '28.61%' }}>
+        <TotalLeft>지출</TotalLeft>
+        <TotalRight>- 5,000 원</TotalRight>
+      </TotalLine>
+      <MidLine />
+      <TotalLine style={{ top: '36.25%' }}>
+        <TotalLeft>같이해부자</TotalLeft>
+        <TotalRight>+ 3,000 원</TotalRight>
+      </TotalLine>
+      <TotalLine style={{ top: '40.97%' }}>
+        <TotalLeft>도전해부자</TotalLeft>
+        <TotalRight>+ 66,000 원</TotalRight>
+      </TotalLine>
+      <BottomLine />
+      <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
-        <TodayListLine>
-          <TodayListLineTitle>지출</TodayListLineTitle>
-          <TodayListLineMemo>오늘도 힘내부자</TodayListLineMemo>
+        {data.map((d) => {
+          return (
+            <TodayListLine>
+              <TodayListLineLeft>
+                <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
+                <TodayListLineMemo>{d.memos}</TodayListLineMemo>
+              </TodayListLineLeft>
+              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount} 원</TodayListLineRight>
+            </TodayListLine>
+          )
+        })}
 
-          <TodayListLineRight>-10,000원</TodayListLineRight>
-        </TodayListLine>
       </TodayListDiv>
       <Nav />
     </Wrapper>
@@ -107,24 +162,28 @@ const TopDiv = styled.div`
 const LeftButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
-  right: 85.56%;
   top: 3.75%;
-  bottom: 90.05%;
+  width: 48px;
+  height: 48px;
+  background: rgba(196, 196, 196, 0.3);
 `
 const LeftButton = styled.div`
   position: absolute;
   left: 4.44%;
-  right: 88.89%;
+
   top: 5.3%;
-  bottom: 91.6%;
+  width: 24px;
+  height: 24px;
+
   background: #c4c4c4;
 `
 const RightButtonDiv = styled.div`
   position: absolute;
   left: 85.56%;
-  right: 1.11%;
-  top: 33.72%;
-  bottom: 10.47%;
+
+  top: 4.03%;
+  width: 48px;
+  height: 48px;
 
   background: rgba(196, 196, 196, 0.3);
 `
@@ -132,9 +191,11 @@ const RightButtonDiv = styled.div`
 const RightButton = styled.div`
   position: absolute;
   left: 88.89%;
-  right: 4.44%;
-  top: 47.67%;
-  bottom: 24.42%;
+
+  top: 5.69%;
+  width: 24px;
+  height: 24px;
+
   background: #c4c4c4;
 `
 
@@ -168,11 +229,37 @@ const TopLine = styled.div`
 
   background: #f5f5f7;
 `
+const MidLine = styled.hr`
+  position: absolute;
+  width: 325px;
+  height: 1px;
+  left: 19px;
+  top: 33.33%;
+
+  /* color / gray / Gray50 */
+
+  border: 0.5px solid #999999;
+  box-sizing: border-box;
+`
+const BottomLine = styled.hr`
+  position: absolute;
+  width: 325px;
+  height: 1px;
+  left: 19px;
+  top: 45.69%;
+
+  /* color / gray / Gray50 */
+
+  border: 0.5px dashed #999999;
+  box-sizing: border-box;
+`
 const CalDiv = styled.div`
+  display: flex;
+
   position: absolute;
   width: 97px;
   height: 23px;
-  left: 132px;
+  left: 125px;
   top: 15.7%;
 `
 const CalBtn = styled.button`
@@ -191,7 +278,7 @@ const CalBtn = styled.button`
   line-height: 23px;
   text-align: center;
   letter-spacing: -0.04em;
-
+  margin: 0 auto;
   color: #000000;
 `
 const CalendarLine = styled.hr`
@@ -207,12 +294,51 @@ const CalendarLine = styled.hr`
   border: 1px solid #999999;
   box-sizing: border-box;
 `
+const TotalLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 324px;
+  height: 14px;
+  left: 18px;
+`
+const TotalLeft = styled.div`
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+
+  /* color / gray / Gray70 */
+
+  color: #555555;
+`
+const TotalRight = styled.div`
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: right;
+  letter-spacing: -0.04em;
+
+  /* color / text / Color-text-Black */
+
+  color: #000000;
+`
 const TodayListTitle = styled.div`
   position: absolute;
-  width: 26px;
+  width: 53px;
   height: 14px;
   left: 16px;
-  top: 468px;
+  top: 56.39%;
 
   /* Heading/Noto Sans KR/H6(B) */
 
@@ -232,32 +358,69 @@ const TodayListTitle = styled.div`
   color: #000000;
 `
 const TodayListDiv = styled.div`
-position:relative;
-width: 100%;
-top:490px;
-
+  position: relative;
+  width: 100%;
+  height: 28%;
+  top: 60.56%;
+  padding: 0 16px;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `
 const TodayListLine = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
   position: relative;
   width: 328px;
-  height: 64px;
-  left: 16px;
-  top: 8px;
+  height: 31.75%;
 
   /* color/Btn-basic1 */
 
   background: #e5eaf2;
   border-radius: 8px;
+  margin-bottom: 8px;
 `
 const TodayListLineLeft = styled.div``
-const TodayListLineRight = styled.div``
-const TodayListLineTitle = styled.div`
-  position: absolute;
-  width: 26px;
-  height: 14px;
-  left: 28px;
-  top: 514px;
+const TodayListLineRight = styled.div`
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  padding: 6px 12px;
+  white-space: nowrap;
+  /* position: absolute; */
+  width: 92px;
+  height: 28px;
 
+  /* color / text / Color-text-Gray3 */
+
+  background: #60666f;
+  border-radius: 25px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* Rectangle 173 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+`
+const TodayListLineTitle = styled.div`
   /* Heading/Noto Sans KR/H6(B) */
 
   font-family: 'Noto Sans KR';
@@ -266,7 +429,7 @@ const TodayListLineTitle = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
+  padding-bottom: 4px;
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
@@ -275,6 +438,19 @@ const TodayListLineTitle = styled.div`
 
   color: #000000;
 `
-const TodayListLineMemo = styled.div``
+const TodayListLineMemo = styled.div`
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+
+  /* color / gray / Gray70 */
+
+  color: #555555;
+`
 
 export default OnedayBuza

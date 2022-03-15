@@ -7,17 +7,19 @@ import ErrorLog from './ErrorLog'
 import Loading from './Loading'
 import Settings from './Settings'
 import Menu from './Menu'
+import Modified from './Modified'
 
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
+const Alerts = lazy(() => import('./Alerts'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
-const Challenge = lazy(() => import('./Challenge'))
+const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
@@ -27,6 +29,7 @@ const AddFriends = lazy(() => import('./AddFriends.js'))
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
+const Bedge = lazy(() => import('./Bedge'))
 
 function App() {
   return (
@@ -36,21 +39,24 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
+            <Route path="/alerts" element={<Alerts />} />
             <Route path="/onedaybuza" element={<OnedayBuza />} />
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
-            <Route path="/challenge" element={<Challenge />} />
+            <Route path="/challengebuza" element={<ChallengeBuza />} />
             <Route path="/login" element={<Login />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
             <Route path="/calendar" element={<CalendarMain />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/modified" element={<Modified />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/friends/add" element={<AddFriends />} />
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
+            <Route path="/bedge" element={<Bedge />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
