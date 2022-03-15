@@ -106,21 +106,24 @@ function OnedayPost() {
       <form onSubmit={handleSubmit(onValid)}>
         <RightButton>저장</RightButton>
         <OptionTitle style={{ top: '17.36%' }}>항목 선택</OptionTitle>
-        <select
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...register('option')}
-          style={{
-            position: 'absolute',
-            top: '21.53%',
-            left: '16px',
-          }}
-        >
-          <option value="0">-- 항목을 골라부자 --</option>
-          <option value="1">수입</option>
-          <option value="2">지출</option>
-          <option value="3">같이해부자</option>
-          <option value="4">도전해부자</option>
-        </select>
+        <SelectDiv>
+          <select
+            value="0"
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...register('option')}
+            style={{
+              position: 'absolute',
+              top: '21.53%',
+              left: '4px',
+            }}
+          >
+            <option value="0">-- 항목을 골라부자 --</option>
+            <option value="1">수입</option>
+            <option value="2">지출</option>
+            <option value="3">같이해부자</option>
+            <option value="4">도전해부자</option>
+          </select>
+        </SelectDiv>
         <ErrorSpan style={{ top: '28%' }}>{errors?.option?.message}</ErrorSpan>
 
         <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
@@ -204,6 +207,17 @@ const CalBtn = styled.button`
 
   background: #c4c4c4;
 `
+const SelectDiv = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 328px;
+  height: 52px;
+  left: 16px;
+  top: 21.53%;
+  background: #f5f5f7;
+  border-radius: 8px;
+`
 const OptionTitle = styled.div`
   position: absolute;
   width: 53px;
@@ -276,7 +290,7 @@ const RightButton = styled.button`
   top: 5.69%;
   width: 24px;
   height: 24px;
-  
+
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
