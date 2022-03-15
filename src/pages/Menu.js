@@ -13,21 +13,27 @@ function Menu() {
         <Title>메뉴</Title>
         <TopLine />
       </TopDiv>
-      <TodayDiv style={{ top: '11.94%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>하루부자</TodayText>
-      </TodayDiv>
-      <TodayDiv style={{ top: '20.27%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>같이해부자</TodayText>
-      </TodayDiv>
-      <TodayDiv style={{ top: '28.61%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>도전해부자</TodayText>
-      </TodayDiv>
+      <NavLink to="/onedaybuza">
+        <TodayDiv style={{ top: '11.94%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>하루부자</TodayText>
+        </TodayDiv>
+      </NavLink>
+      <NavLink to="/groupbuza">
+        <TodayDiv style={{ top: '20.27%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>같이해부자</TodayText>
+        </TodayDiv>
+      </NavLink>
+      <NavLink to="/challengebuza">
+        <TodayDiv style={{ top: '28.61%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>도전해부자</TodayText>
+        </TodayDiv>
+      </NavLink>
       <NavLink to="/friends">
         <TodayDiv style={{ top: '41.53%' }}>
           <TodayLogoDiv />
@@ -35,11 +41,13 @@ function Menu() {
           <TodayText>친구</TodayText>
         </TodayDiv>
       </NavLink>
-      <TodayDiv style={{ top: '49.86%' }}>
-        <TodayLogoDiv />
-        <TodayLogo />
-        <TodayText>뱃지</TodayText>
-      </TodayDiv>
+      <NavLink to="/bedge">
+        <TodayDiv style={{ top: '49.86%' }}>
+          <TodayLogoDiv />
+          <TodayLogo />
+          <TodayText>뱃지</TodayText>
+        </TodayDiv>
+      </NavLink>
       <NavLink to="/settings">
         <TodayDiv style={{ top: '58.19%' }}>
           <TodayLogoDiv />

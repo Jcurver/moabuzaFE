@@ -157,17 +157,6 @@ function GroupBuzaCreate() {
           })}
         </FriendsList>
       </FriendWrapper>
-
-      <CreateButtonWrapper>
-        <CreateButton
-          width="328px"
-          onClick={() => {
-            navigate('/groupbuzacomplete')
-          }}
-        >
-          만들기
-        </CreateButton>
-      </CreateButtonWrapper>
     </Wrapper>
   )
 }
@@ -291,6 +280,11 @@ const FriendsList = styled.div`
   right: 0%;
   top: ${(props) => (props.friendslength === 0 ? '7.94%' : '28%')};
   bottom: 0%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 
 const Friends = styled.div`
@@ -431,6 +425,11 @@ const SelectedFriendWrapper = styled.div`
   left: 0px;
   top: 30px; */
   margin: 10px 0px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 
 const SelectedFriendContent = styled.div`
