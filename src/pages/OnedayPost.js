@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
@@ -30,11 +30,17 @@ function ExampleCustomInput({ value, onClick }) {
 }
 
 function OnedayPost() {
+  const textInput = useRef()
   const navigate = useNavigate()
   const [selectDate, setSelectDate] = useState(new Date())
-  useEffect(() => {
-    setValue('date',selectDate)
-  },[selectDate])
+  useEffect(()=>{},[selectDate])
+  // useEffect(() => {
+  //   setValue('date',selectDate)
+  // },[selectDate])
+  function setSelectDateValue(date) {
+    setSelectDate(date)
+    setValue('date', textInput.current.state.preSelection)
+  }
 
   const {
     register,
@@ -44,7 +50,9 @@ function OnedayPost() {
     setValue,
     setError,
   } = useForm()
+
   console.log(watch())
+
   // 월/일
   const getFormattedDate = (date) => {
     const month = date.toLocaleDateString('ko-KR', { month: 'long' })
@@ -64,26 +72,26 @@ function OnedayPost() {
   }
 
   const onValid = (data) => {
-          Swal.fire({
-            title: '입력 완료!',
-            text: '더 열심히 모아부자!',
-            icon: 'success',
-          }).then((result) => {
-            console.log(result)
-            navigate('/onedaybuza')
-          })
-    console.log('옵션', data.option)
     // setError("memo", { message: "Server offline." });
+
     if (data.option === '-- 항목을 골라부자 --') {
       setError(
         'option',
         { message: '항목을 안 골랐나부자' },
         { shouldFocus: true },
       )
+    } else {
+      Swal.fire({
+        title: '입력 완료!',
+        text: '더 힘차게 모아부자!',
+        icon: 'success',
+      }).then((result) => {
+        console.log(result)
+        navigate('/onedaybuza')
+      })
     }
     // setError("extraError", { message: "Server offline." });
   }
-
 
   return (
     <Wrapper>
@@ -114,23 +122,26 @@ function OnedayPost() {
             left: '16px',
           }}
         >
-          <option selected>-- 항목을 골라부자 --</option>
-          <option>수입</option>
-          <option>지출</option>
-          <option>같이해부자</option>
-          <option>도전해부자</option>
+          <option value='0'>-- 항목을 골라부자 --</option>
+          <option value="1">수입</option>
+          <option value="2">지출</option>
+          <option value="3">같이해부자</option>
+          <option value="4">도전해부자</option>
         </select>
         <ErrorSpan style={{ top: '28%' }}>{errors?.option?.message}</ErrorSpan>
 
         <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
         <OptionDiv>
           <DatePicker
+            ref={textInput}
+            name="dp"
             dateFormat="yyyy.MM.dd"
             locale="ko"
             selected={selectDate}
-            onChange={(date) => setSelectDate(date)}
+            onChange={(date) => setSelectDateValue(date)}
             customInput={<ExampleCustomInput />}
             // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
+
             popperModifiers={{ preventOverflow: { enabled: true } }}
             popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
             dayClassName={(date) => {
