@@ -1,8 +1,30 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function Settings() {
+  function logout() {
+    console.log('gkgk')
+    Swal.fire({
+      title: '로그아웃할 거지?',
+      text: '꼭 다시 돌아와부자!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '나가부자',
+      cancelButtonText: '있어부자',
+    })
+      .then((result) => {
+        if (result.value) {
+        console.log(result)
+        // this.props.submitUser(this.state)
+      }
+    })
+
+  }
+
   return (
     <Wrapper>
       <TopDiv>
@@ -25,7 +47,7 @@ function Settings() {
         <TodayLogo />
         <TodayText>리뷰</TodayText>
       </TodayDiv>
-      <TodayDiv style={{ top: '35.97%' }}>
+      <TodayDiv onClick={()=>logout()} style={{ top: '35.97%' }}>
         <TodayLogoDiv />
         <TodayLogo />
         <TodayText>로그아웃</TodayText>
@@ -103,7 +125,6 @@ const TodayDiv = styled.div`
   height: 60px;
   left: 0px;
 `
-
 
 const TodayLogoDiv = styled.div`
   position: absolute;
