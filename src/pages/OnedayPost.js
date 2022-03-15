@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
@@ -33,7 +33,7 @@ function OnedayPost() {
   const textInput = useRef()
   const navigate = useNavigate()
   const [selectDate, setSelectDate] = useState(new Date())
-  useEffect(()=>{},[selectDate])
+  useEffect(() => {}, [selectDate])
   // useEffect(() => {
   //   setValue('date',selectDate)
   // },[selectDate])
@@ -103,17 +103,9 @@ function OnedayPost() {
         <LeftButton />
         <LeftButtonDiv />
       </NavLink>
-      <OptionTitle style={{ top: '17.36%' }}>항목 선택</OptionTitle>
-      {/* <details style={{ top: '155px', left: '12px' }}>
-        <summary>-- 항목을 선택해부자 --</summary>
-        <ul>
-          <li>수입</li>
-          <li>지출</li>
-          <li>같이해부자</li>
-          <li>도전해부자</li>
-        </ul>
-      </details> */}
       <form onSubmit={handleSubmit(onValid)}>
+        <RightButton>저장</RightButton>
+        <OptionTitle style={{ top: '17.36%' }}>항목 선택</OptionTitle>
         <select
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...register('option')}
@@ -123,7 +115,7 @@ function OnedayPost() {
             left: '16px',
           }}
         >
-          <option value='0'>-- 항목을 골라부자 --</option>
+          <option value="0">-- 항목을 골라부자 --</option>
           <option value="1">수입</option>
           <option value="2">지출</option>
           <option value="3">같이해부자</option>
@@ -158,7 +150,7 @@ function OnedayPost() {
         </OptionDiv>
         <OptionTitle style={{ top: '45.97%' }}>💰 금액</OptionTitle>
         <Input
-          style={{ top: '49%' }}
+          style={{ top: '51%' }}
           placeholder="금액을 입력해주세요"
           {...register('amount', {
             required: '금액을 적어부자',
@@ -169,10 +161,10 @@ function OnedayPost() {
             },
           })}
         />
-        <ErrorSpan style={{ top: '56%' }}>{errors?.amount?.message}</ErrorSpan>
-        <OptionTitle style={{ top: '61.58%' }}>✏️ 메모</OptionTitle>
+        <ErrorSpan style={{ top: '59%' }}>{errors?.amount?.message}</ErrorSpan>
+        <OptionTitle style={{ top: '62%' }}>✏️ 메모</OptionTitle>
         <Input
-          style={{ top: '63.79%' }}
+          style={{ top: '67%' }}
           placeholder="메모를 입력해주세요"
           {...register('memo', {
             required: '메모를 적어부자',
@@ -183,8 +175,7 @@ function OnedayPost() {
             },
           })}
         />
-        <ErrorSpan style={{ top: '71%' }}>{errors?.memo?.message}</ErrorSpan>
-        <RightButton>저장</RightButton>
+        <ErrorSpan style={{ top: '75.1%' }}>{errors?.memo?.message}</ErrorSpan>
       </form>
     </Wrapper>
   )
@@ -281,27 +272,17 @@ const TopDiv = styled.div`
 
 const RightButton = styled.button`
   position: absolute;
-  width: 26px;
-  height: 14px;
-  left: 319px;
-  top: 46px;
-
-  /* Heading/Noto Sans KR/H6 */
-
+  left: 88.89%;
+  top: 5.69%;
+  width: 24px;
+  height: 24px;
+  
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
-  /* identical to box height, or 14px */
-
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.04em;
-
-  /* color / gray / Gray70 */
-
-  color: #555555;
+  background: #c4c4c4;
 `
 
 const Title = styled.div`
@@ -337,7 +318,6 @@ const Input = styled.input`
   width: 328px;
   height: 52px;
   left: 16px;
-
   border: none;
   background: #f5f5f7;
   border-radius: 8px;
