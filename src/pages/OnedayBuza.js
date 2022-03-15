@@ -7,7 +7,12 @@ import 'react-datepicker/dist/react-datepicker.css'
 // import Moment from 'react-moment'
 import '../styles/CalendarStyle.css'
 import ko from 'date-fns/locale/ko'
+import {
+  SwipeableList,
+  SwipeableListItem,
+} from '@sandstreamdev/react-swipeable-list'
 import Nav from '../components/Nav'
+import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 
 registerLocale('ko', ko)
 
@@ -60,6 +65,7 @@ function OnedayBuza() {
       day.length - 1,
     )}`
   }
+  const removeTodayList = (id) => {console.log('remove',id)}
   const getDayName = (date) => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1)
   }
@@ -129,18 +135,30 @@ function OnedayBuza() {
       <BottomLine />
       <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
-        {data.map((d) => {
-          return (
-            <TodayListLine key={d.id}>
-              <TodayListLineLeft>
-                <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
-                <TodayListLineMemo>{d.memos}</TodayListLineMemo>
-              </TodayListLineLeft>
-              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount.toLocaleString()} 원</TodayListLineRight>
-            </TodayListLine>
-          )
-        })}
-
+        <SwipeableList threshold={0.7}>
+          {data.map((d) => (
+            <SwipeableListItem
+              key={d.id}
+              swipeRight={{
+                content: <div style={{marginLeft:"10px",marginBottom:"10px"}}>밀어서 삭제</div>,
+                action: () => {
+                  removeTodayList(d.id)
+                },
+              }}
+            >
+              <TodayListLine key={d.id}>
+                <TodayListLineLeft>
+                  <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
+                  <TodayListLineMemo>{d.memos}</TodayListLineMemo>
+                </TodayListLineLeft>
+                <TodayListLineRight>
+                  {d.recordType === '지출' ? '-' : '+'}{' '}
+                  {d.recordAmount.toLocaleString()} 원
+                </TodayListLineRight>
+              </TodayListLine>
+            </SwipeableListItem>
+          ))}
+        </SwipeableList>
       </TodayListDiv>
       <Nav />
     </Wrapper>
@@ -258,7 +276,7 @@ const CalDiv = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  width:120px;
+  width: 120px;
   height: 23px;
   left: 120px;
   top: 15.7%;
