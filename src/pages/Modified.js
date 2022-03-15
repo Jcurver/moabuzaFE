@@ -39,11 +39,7 @@ function Modified() {
     formState: { errors },
     setValue,
     setError,
-  } = useForm({
-    defaultValues: {
-      character: hero,
-    },
-  })
+  } = useForm()
   console.log(watch())
   return (
     <Wrapper>
