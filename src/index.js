@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import ReactDOM from 'react-dom'
 import { RecoilRoot } from 'recoil'
@@ -9,14 +9,18 @@ import GlobalStyle from './styles/GlobalStyle'
 
 const queryClient = new QueryClient()
 
+
+
 ReactDOM.render(
   <RecoilRoot>
     <QueryClientProvider client={queryClient}>
       <React.StrictMode>
-        <Router>
-          <GlobalStyle />
-          <App />
-        </Router>
+
+          <Router>
+            <GlobalStyle />
+            <App />
+          </Router>
+
       </React.StrictMode>
     </QueryClientProvider>
   </RecoilRoot>,

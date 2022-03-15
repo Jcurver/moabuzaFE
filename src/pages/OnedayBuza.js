@@ -131,12 +131,12 @@ function OnedayBuza() {
       <TodayListDiv>
         {data.map((d) => {
           return (
-            <TodayListLine>
+            <TodayListLine key={d.id}>
               <TodayListLineLeft>
                 <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
                 <TodayListLineMemo>{d.memos}</TodayListLineMemo>
               </TodayListLineLeft>
-              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount} 원</TodayListLineRight>
+              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount.toLocaleString()} 원</TodayListLineRight>
             </TodayListLine>
           )
         })}
@@ -255,11 +255,12 @@ const BottomLine = styled.hr`
 `
 const CalDiv = styled.div`
   display: flex;
-
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  width: 97px;
+  width:120px;
   height: 23px;
-  left: 125px;
+  left: 120px;
   top: 15.7%;
 `
 const CalBtn = styled.button`
