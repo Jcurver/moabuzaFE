@@ -9,6 +9,7 @@ import Settings from './Settings'
 import Menu from './Menu'
 import Modified from './Modified'
 
+
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
@@ -32,10 +33,12 @@ const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
 
 function App() {
+
   return (
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>
         <MainDiv>
+          
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />

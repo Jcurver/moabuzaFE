@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-calendar/dist/Calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -9,6 +9,9 @@ import '../styles/CalendarStyle.css'
 import '../styles/Dropdown.css'
 import ko from 'date-fns/locale/ko'
 import '../styles/SelectStyle.css'
+import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2'
+
 import Nav from '../components/Nav'
 
 registerLocale('ko', ko)
@@ -26,9 +29,22 @@ function ExampleCustomInput({ value, onClick }) {
   )
 }
 
-export default function OnedayPost() {
-  const [startDate, setStartDate] = useState(new Date())
+function OnedayPost() {
+  const navigate = useNavigate()
+  const [selectDate, setSelectDate] = useState(new Date())
+  useEffect(() => {
+    setValue('date',selectDate)
+  },[selectDate])
 
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    setValue,
+    setError,
+  } = useForm()
+  console.log(watch())
   // 월/일
   const getFormattedDate = (date) => {
     const month = date.toLocaleDateString('ko-KR', { month: 'long' })
@@ -46,6 +62,28 @@ export default function OnedayPost() {
       new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0),
     )
   }
+
+  const onValid = (data) => {
+          Swal.fire({
+            title: '입력 완료!',
+            text: '더 열심히 모아부자!',
+            icon: 'success',
+          }).then((result) => {
+            console.log(result)
+            navigate('/onedaybuza')
+          })
+    console.log('옵션', data.option)
+    // setError("memo", { message: "Server offline." });
+    if (data.option === '-- 항목을 골라부자 --') {
+      setError(
+        'option',
+        { message: '항목을 안 골랐나부자' },
+        { shouldFocus: true },
+      )
+    }
+    // setError("extraError", { message: "Server offline." });
+  }
+
 
   return (
     <Wrapper>
@@ -67,47 +105,75 @@ export default function OnedayPost() {
           <li>도전해부자</li>
         </ul>
       </details> */}
-      <select
-        style={{
-          position: 'absolute',
-          top: '21.53%',
-          left: '16px',
-        }}
-      >
-        <option selected>-- 항목을 골라부자 --</option>
-        <option>수입</option>
-        <option>지출</option>
-        <option>같이해부자</option>
-        <option>도전해부자</option>
-      </select>
-
-      <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
-      <OptionDiv>
-        <DatePicker
-          dateFormat="yyyy.MM.dd"
-          locale="ko"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          customInput={<ExampleCustomInput />}
-          // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
-          popperModifiers={{ preventOverflow: { enabled: true } }}
-          popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
-          dayClassName={(date) => {
-            if (getDayName(createDate(date)) === '토') {
-              return 'saturday'
-            }
-            if (getDayName(createDate(date)) === '일') {
-              return 'sunday'
-            }
-            return null
+      <form onSubmit={handleSubmit(onValid)}>
+        <select
+          {...register('option')}
+          style={{
+            position: 'absolute',
+            top: '21.53%',
+            left: '16px',
           }}
+        >
+          <option selected>-- 항목을 골라부자 --</option>
+          <option>수입</option>
+          <option>지출</option>
+          <option>같이해부자</option>
+          <option>도전해부자</option>
+        </select>
+        <ErrorSpan style={{ top: '28%' }}>{errors?.option?.message}</ErrorSpan>
+
+        <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
+        <OptionDiv>
+          <DatePicker
+            dateFormat="yyyy.MM.dd"
+            locale="ko"
+            selected={selectDate}
+            onChange={(date) => setSelectDate(date)}
+            customInput={<ExampleCustomInput />}
+            // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
+            popperModifiers={{ preventOverflow: { enabled: true } }}
+            popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
+            dayClassName={(date) => {
+              if (getDayName(createDate(date)) === '토') {
+                return 'saturday'
+              }
+              if (getDayName(createDate(date)) === '일') {
+                return 'sunday'
+              }
+              return null
+            }}
+          />
+        </OptionDiv>
+        <OptionTitle style={{ top: '45.97%' }}>💰 금액</OptionTitle>
+        <Input
+          style={{ top: '49%' }}
+          placeholder="금액을 입력해주세요"
+          {...register('amount', {
+            required: '금액을 적어부자',
+            pattern: {
+              value: /^[0-9]+$/,
+              message: '숫자만 써부자',
+              shouldFocus: true,
+            },
+          })}
         />
-      </OptionDiv>
-      <OptionTitle style={{ top: '45.97%' }}>💰금액</OptionTitle>
-      <Input style={{ top: '50.14%' }} placeholder="금액을 입력해주세요" />
-      <OptionTitle style={{ top: '59.58%' }}>✏️메모</OptionTitle>
-      <Input style={{ top: '66.39%' }} placeholder="메모를 입력해주세요" />
-      <RightButton>저장</RightButton>
+        <ErrorSpan style={{ top: '56%' }}>{errors?.amount?.message}</ErrorSpan>
+        <OptionTitle style={{ top: '61.58%' }}>✏️ 메모</OptionTitle>
+        <Input
+          style={{ top: '63.79%' }}
+          placeholder="메모를 입력해주세요"
+          {...register('memo', {
+            required: '메모를 적어부자',
+            maxLength: {
+              value: 12,
+              message: '12자 이내로 입력해부자',
+              shouldFocus: true,
+            },
+          })}
+        />
+        <ErrorSpan style={{ top: '71%' }}>{errors?.memo?.message}</ErrorSpan>
+        <RightButton>저장</RightButton>
+      </form>
     </Wrapper>
   )
 }
@@ -201,7 +267,7 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
-const RightButton = styled.div`
+const RightButton = styled.button`
   position: absolute;
   width: 26px;
   height: 14px;
@@ -284,27 +350,24 @@ const Input = styled.input`
     color: #cccccc;
   }
 `
-// const OptionSelectDiv = styled.details`
-//   position: absolute;
-//   width: 328px;
-//   height: 52px;
-//   left: 0px;
-//   top: 174px;
-//   details[open] {
-//     z-index: 1;
-//   }
-// `
-// const Summary = styled.summary`
-//   padding: 1rem;
-//   cursor: pointer;
-//   border-radius: 5px;
-//   background-color: #ddd;
-//   list-style: none;
-//   ::-webkit-details-marker {
-// 	display: none;}
-// `
+const ErrorSpan = styled.span`
+  position: absolute;
+  width: 104px;
+  height: 11px;
+  left: 32px;
 
-// const UL = styled.ul``
-// const LI = styled.li``
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 100%;
+  /* identical to box height, or 11px */
 
-// export default OnedayPost
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+
+  color: #ff3d00;
+`
+
+export default OnedayPost
