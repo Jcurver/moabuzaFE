@@ -115,6 +115,7 @@ function OnedayPost() {
       </details> */}
       <form onSubmit={handleSubmit(onValid)}>
         <select
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...register('option')}
           style={{
             position: 'absolute',
