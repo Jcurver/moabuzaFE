@@ -107,6 +107,8 @@ const GlobalStyle = createGlobalStyle`
   div {
     white-space: nowrap;
   }
+    
+
 }
 
 `
