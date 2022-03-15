@@ -157,17 +157,6 @@ function GroupBuzaCreate() {
           })}
         </FriendsList>
       </FriendWrapper>
-
-      <CreateButtonWrapper>
-        <CreateButton
-          width="328px"
-          onClick={() => {
-            navigate('/groupbuzacomplete')
-          }}
-        >
-          만들기
-        </CreateButton>
-      </CreateButtonWrapper>
     </Wrapper>
   )
 }
