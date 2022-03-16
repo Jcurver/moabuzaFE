@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { apis } from '../utils/axios'
 
-import { setCookie } from '../utils/cookie'
+import { setCookie,getCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function UserInfo() {
@@ -35,9 +35,9 @@ function UserInfo() {
 
   console.log('ddd')
   async function manse() {
-    await axios
-      .get(`https://panghoon.shop/health`)
-      .then((res) => console.log('백에서 보낸 요청 응답 : ', res))
+    const { data } = await apis.getPostButton()
+    console.log("넘어온 데이터 : ",data)
+    
   }
 
   return (
