@@ -32,9 +32,9 @@ export const apis = {
   getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`),
 
 }
-export const api = {
-  getPostButton: instance.post('/member/info', {
-    nickname: 'pangpang',
-    hero: 'hero1',
-  }),
-}
+// export const api = {
+//   getPostButton: instance.post('/member/info', {
+//     nickname: 'pangpang',
+//     hero: 'hero1',
+//   }),
+// }
