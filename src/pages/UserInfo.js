@@ -36,7 +36,7 @@ function UserInfo() {
       // } catch (err) {
       //   console.log('에러가 났네요 ㅠㅠ')
       //   console.error(err.response)
-      // }
+      // 
       navigate("/")
     }
     getTokenWithKakao()
