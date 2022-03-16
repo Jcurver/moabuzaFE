@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCookie } from './cookie.js'
 
-const client = axios.create({
+const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -9,7 +9,7 @@ const client = axios.create({
   },
 })
 
-// client.interceptors.request.use(async (config) => {
+// instance.interceptors.request.use(async (config) => {
 //   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
 //   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
 //   config.headers['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
@@ -18,16 +18,16 @@ const client = axios.create({
 // })
 
 export const request = ({ ...options }) => {
-  console.log(client)
+  console.log(instance)
   const onSuccess = (response) => response
   const onError = (error) => {
     // optionaly catch errors and add additional logging here
     return error
   }
-  return client(options).then(onSuccess).catch(onError)
+  return instance(options).then(onSuccess).catch(onError)
 }
 
 export const apis = {
   // 카카오 소셜로그인
-  kakaoLogin1: (code) => client.get(`/user/kakao/callback?code=${code}`),
+  getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`),
 }
