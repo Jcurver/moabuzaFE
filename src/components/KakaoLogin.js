@@ -75,11 +75,11 @@ function KakaoLogin() {
         setCookie('A-AUTH-TOKEN', data.access)
         setCookie('R-AUTH-TOKEN', data.refresh)
         // refresher()
-        if (data.statusCode === 200) {
-          console.log('200받았을때 data : ', data)
-          navigate('/callback')
-        }
+
+        console.log('200받았을때 data : ', data)
+        navigate('/userinfo')
       } catch (err) {
+        console.log('에러가 났네요 ㅠㅠ')
         console.error(err.response)
       }
     }
