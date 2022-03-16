@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+// import { useCookies } from 'react-cookie'
 import { apis } from '../utils/axios'
-
 import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
+
 
 function UserInfo() {
   useEffect(() => {
@@ -19,11 +20,11 @@ function UserInfo() {
       // try {
       const { data } = await apis.getKakaoLogin(kakaoAuthCode)
       console.log('200이든 400대 에러이든 일단 받은 data : ', data)
-      console.log("data.data : ",data.data)
+      console.log('data.data : ', data.data)
       console.log('data.data.access : ', data.data.access)
       console.log('data.access : ', data.access)
-      setCookie('A-AUTH-TOKEN', data.access)
-      setCookie('R-AUTH-TOKEN', data.refresh)
+      setCookie('A-AUTH-TOKEN', data.data.access)
+      setCookie('R-AUTH-TOKEN', data.data.refresh)
       // refresher()
       console.log('200받았을때 data : ', data)
 
