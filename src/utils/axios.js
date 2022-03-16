@@ -23,20 +23,21 @@ const instance = axios.create({
     accept: 'application/json,',
   },
 })
-
-instance.interceptors.request.use(async (config) => {
-  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
-  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-  console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
-  if (A_AUTH_TOKEN) {
-    config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-    config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-  }
-  // config.headers['Access-Control-Allow-Origin'] = '*'
-  // config.headers['Access-Control-Allow-Credentials'] = true
-  // config.headers.withCredentials = true
-  return config
-})
+const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+// instance.interceptors.request.use(async (config) => {
+//   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
+//   if (A_AUTH_TOKEN) {
+//     config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+//     config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+//   }
+//   // config.headers['Access-Control-Allow-Origin'] = '*'
+//   // config.headers['Access-Control-Allow-Credentials'] = true
+//   // config.headers.withCredentials = true
+//   return config
+// })
 
 export const request = ({ ...options }) => {
   console.log(instance)
