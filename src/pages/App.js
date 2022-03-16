@@ -10,7 +10,6 @@ import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
 
-
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
@@ -35,13 +34,12 @@ const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
-
   return (
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
-            <Route path="/userinfo" element={<UserInfo />} />
+            {/* <Route path="/userinfo" element={<UserInfo />} /> */}
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
@@ -62,6 +60,8 @@ function App() {
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
             <Route path="/bedge" element={<Bedge />} />
+            {/* <Route path="/login" element={<Login />} /> */}
+            <Route path="/user/kakao/callback/*" element={<UserInfo />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
