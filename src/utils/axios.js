@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getCookie } from './cookie.js'
+import { getCookie } from './cookie'
 
 const instance = axios.create({
   baseURL: 'https://panghoon.shop',
@@ -9,13 +9,13 @@ const instance = axios.create({
   },
 })
 
-// instance.interceptors.request.use(async (config) => {
-//   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
-//   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-//   config.headers['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-//   config.headers['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-//   return config
-// })
+instance.interceptors.request.use(async (config) => {
+  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+  config.headers['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+  config.headers['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  return config
+})
 
 export const request = ({ ...options }) => {
   console.log(instance)

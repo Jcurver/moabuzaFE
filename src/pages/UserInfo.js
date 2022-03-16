@@ -7,10 +7,9 @@ import { apis } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
-
 function UserInfo() {
   // const cookie = new Cookies()
-// const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+  // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
   useEffect(() => {
     if (!window.location.search) {
       return
@@ -42,8 +41,12 @@ function UserInfo() {
   console.log('ddd')
   async function manse() {
     await axios
-      .get(`https://panghoon.shop/health`)
+      .post(`https://panghoon.shop/member/info`, {
+        nickname: 'pangpang',
+        hero: 'hero1',
+      })
       .then((res) => console.log('백에서 보낸 요청 응답 : ', res))
+    .catch((err)=> console.error(err))
   }
 
   return (
