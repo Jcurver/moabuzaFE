@@ -17,13 +17,14 @@ function KakaoAuthHandle(props) {
     console.log(code)
     const kakaoLogin = async () => {
       await apis.kakaoLogin1(code).then((res) => {
-        console.log("성공",res)
-        setCookie('token', res.data.authorization)
+        console.log("성공 response : ",res)
+        setCookie('A-AUTH-TOKEN', res.data.access)
+        setCookie('R-AUTH-TOKEN', res.data.refresh)
         // localStorage.setItem('userId', res.data)
         // window.location.href = KAKAO_ADD_PROPERTIES
         // navigate("/home")
         window.location.href =
-          'http://moabuza.s3-website.ap-northeast-2.amazonaws.com/home'
+          'https://moabuza.com/callback'
       }).catch((error)=>console.error(error))
     }
     kakaoLogin()
