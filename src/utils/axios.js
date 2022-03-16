@@ -16,32 +16,29 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
+
+
 const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
 const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-const access = 'A-AUTH-TOKEN'
 
 const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
-    common: {
-      'A-AUTH-TOKEN': `Bearer ${A_AUTH_TOKEN}`,
-      'R-AUTH-TOKEN': `Bearer ${R_AUTH_TOKEN}`,
-    },
   },
 })
-// instance.interceptors.request.use(async (config) => {
-//   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
-//   if (A_AUTH_TOKEN) {
-//     config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-//     config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-//   }
-//   // config.headers['Access-Control-Allow-Origin'] = '*'
-//   // config.headers['Access-Control-Allow-Credentials'] = true
-//   // config.headers.withCredentials = true
-//   return config
-// })
+instance.interceptors.request.use(async (config) => {
+  console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
+  if (A_AUTH_TOKEN) {
+    config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+    config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  }
+  // config.headers['Access-Control-Allow-Origin'] = '*'
+  // config.headers['Access-Control-Allow-Credentials'] = true
+  // config.headers.withCredentials = true
+  return config
+})
 
 export const request = ({ ...options }) => {
   console.log(instance)
