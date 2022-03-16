@@ -30,9 +30,6 @@ function UserInfo() {
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
       // refresher()
       console.log('200받았을때 data : ', data)
-      window.location.href(
-        'https://moabuza.com/user/kakao/callback?code=5HA6qFsVrdWveUYEUu-XwWaaM9HodsXpotbP3esbplCtyx64Vymehsg-AvzoSdB-jv819Qo9dNsAAAF_k2DkHA',
-      )
       // } catch (err) {
       //   console.log('에러가 났네요 ㅠㅠ')
       //   console.error(err.response)
