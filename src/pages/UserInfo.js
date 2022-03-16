@@ -39,7 +39,7 @@ function UserInfo() {
       navigate("/")
     }
     getTokenWithKakao()
-  }, [])
+  }, [navigate])
 
   console.log('ddd')
   async function manse() {
