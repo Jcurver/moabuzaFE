@@ -19,8 +19,8 @@ function UserInfo() {
       // try {
       const { data } = await apis.getKakaoLogin(kakaoAuthCode)
       console.log('200이든 400대 에러이든 일단 받은 data : ', data)
-      setCookie('A-AUTH-TOKEN', data.access)
-      setCookie('R-AUTH-TOKEN', data.refresh)
+      setCookie('A-AUTH-TOKEN', data.data.access)
+      setCookie('R-AUTH-TOKEN', data.data.refresh)
       // refresher()
 
       console.log('200받았을때 data : ', data)
