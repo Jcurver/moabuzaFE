@@ -27,6 +27,7 @@ const instance = axios.create({
 instance.interceptors.request.use(async (config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+  console.log("A_AUTH_TOKEN : ",A_AUTH_TOKEN)
   if (A_AUTH_TOKEN) {
     config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
     config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
@@ -50,6 +51,7 @@ export const request = ({ ...options }) => {
 export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`)
+    .then((res)=>console.log(res))
     .catch((error) => {
     if (error.response) {
       // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
