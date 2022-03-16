@@ -18,8 +18,6 @@ import {
 
 
 
-const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
-const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
 
 const instance = axios.create({
   baseURL: 'https://panghoon.shop',
@@ -29,10 +27,12 @@ const instance = axios.create({
   },
 })
 instance.interceptors.request.use(async (config) => {
+  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
   if (A_AUTH_TOKEN) {
-    config.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-    config.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+    config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+    config.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
   }
   // config.headers['Access-Control-Allow-Origin'] = '*'
   // config.headers['Access-Control-Allow-Credentials'] = true
