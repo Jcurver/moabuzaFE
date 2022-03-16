@@ -31,9 +31,9 @@ export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`),
 }
-// export const api = {
-//   getPostButton: instance.post('/member/info', {
-//     nickname: 'pangpang',
-//     hero: 'hero1',
-//   }),
-// }
+export const api = {
+  getPostButton: ()=> instance.post('/member/info', {
+    nickname: 'pangpang',
+    hero: 'hero1',
+  }),
+}
