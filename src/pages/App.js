@@ -8,6 +8,7 @@ import Loading from './Loading'
 import Settings from './Settings'
 import Menu from './Menu'
 import Modified from './Modified'
+import KakaoLogin from '../components/KakaoLogin'
 
 
 import Nav from '../components/Nav'
@@ -23,7 +24,7 @@ const Group = lazy(() => import('./Group'))
 const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 
 const CalendarMain = lazy(() => import('./CalendarMain'))
-const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
+const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
 const Friends = lazy(() => import('./Friends'))
 const AddFriends = lazy(() => import('./AddFriends.js'))
 
@@ -31,6 +32,7 @@ const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
+const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
 
@@ -38,8 +40,8 @@ function App() {
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>
         <MainDiv>
-          
           <Routes>
+            <Route path="/callback" element={<UserInfo />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
@@ -47,7 +49,7 @@ function App() {
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challengebuza" element={<ChallengeBuza />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/kakaoLogin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
