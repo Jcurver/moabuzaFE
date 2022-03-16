@@ -2,12 +2,14 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 // import { useCookies,Cookies } from 'react-cookie'
+import {useNavigate} from 'react-router-dom'
 import { getCookie, setCookie } from '../utils/cookie'
 import { apis, api } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function UserInfo() {
+  const navigate = useNavigate()
   // const cookie = new Cookies()
   // const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
   useEffect(() => {
@@ -34,6 +36,7 @@ function UserInfo() {
       //   console.log('에러가 났네요 ㅠㅠ')
       //   console.error(err.response)
       // }
+      navigate("/")
     }
     getTokenWithKakao()
   }, [])
