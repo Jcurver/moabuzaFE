@@ -31,6 +31,7 @@ const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
+const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
 
@@ -38,8 +39,8 @@ function App() {
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>
         <MainDiv>
-          
           <Routes>
+            <Route path="/callback" element={<UserInfo />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
