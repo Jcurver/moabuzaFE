@@ -37,7 +37,7 @@ function UserInfo() {
       //   console.log('에러가 났네요 ㅠㅠ')
       //   console.error(err.response)
       // 
-      navigate("/")
+      // navigate("/")
     }
     getTokenWithKakao()
   }, [navigate])
