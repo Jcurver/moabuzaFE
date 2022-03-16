@@ -10,7 +10,6 @@ import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
 
-
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
@@ -35,7 +34,6 @@ const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
-
   return (
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>
