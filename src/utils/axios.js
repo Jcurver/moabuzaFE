@@ -30,5 +30,9 @@ export const request = ({ ...options }) => {
 export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`),
-  getPostButton: instance.post('/memberinfo')
+  getPostButton: instance.post('/member/info', {
+    nickname: 'pangpang',
+    hero:'hero1'
+
+  })
 }
