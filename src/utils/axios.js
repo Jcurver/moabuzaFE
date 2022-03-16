@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getCookie } from './cookie.js'
 
 const client = axios.create({
-  baseURL: 'https://panghoon.shop:443',
+  baseURL: 'https://panghoon.shop',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
