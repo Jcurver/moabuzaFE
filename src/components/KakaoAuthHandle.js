@@ -17,7 +17,7 @@ function KakaoAuthHandle(props) {
     console.log(code)
     const kakaoLogin = async () => {
       await apis.kakaoLogin1(code).then((res) => {
-        console.log("성공 response : ",res)
+        console.log("성공 response :",res)
         setCookie('A-AUTH-TOKEN', res.data.access)
         setCookie('R-AUTH-TOKEN', res.data.refresh)
         // localStorage.setItem('userId', res.data)
