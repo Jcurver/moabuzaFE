@@ -62,7 +62,7 @@ function App() {
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
             <Route path="/bedge" element={<Bedge />} />
             {/* <Route path="/login" element={<Login />} /> */}
-            <Route path="/user/kakao/callback/*" element={<UserInfo />} />
+            {/* <Route path="/user/kakao/callback/*" element={<UserInfo />} /> */}
             <Route path="/manse" element={<Manse />} />
           </Routes>
 
