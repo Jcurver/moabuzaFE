@@ -41,7 +41,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
-            <Route path="/callback" element={<UserInfo />} />
+            <Route path="/userinfo" element={<UserInfo />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
