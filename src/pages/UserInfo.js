@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-// import { useCookies } from 'react-cookie'
-import { apis } from '../utils/axios'
+// import { useCookies,Cookies } from 'react-cookie'
 import { setCookie } from '../utils/cookie'
+import { apis } from '../utils/axios'
+// import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 
 function UserInfo() {
+  // const cookie = new Cookies()
+// const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
   useEffect(() => {
     if (!window.location.search) {
       return
