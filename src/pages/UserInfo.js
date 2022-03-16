@@ -7,6 +7,7 @@ import { setCookie,getCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function UserInfo() {
+
   useEffect(() => {
     if (!window.location.search) {
       return
@@ -19,12 +20,13 @@ function UserInfo() {
       // try {
       const { data } = await apis.getKakaoLogin(kakaoAuthCode)
       console.log('200이든 400대 에러이든 일단 받은 data : ', data)
+      console.log("data.data.access : ", data.data.access)
+      console.log('data.data : ', data.data)
       setCookie('A-AUTH-TOKEN', data.data.access)
       setCookie('R-AUTH-TOKEN', data.data.refresh)
       // refresher()
 
-      console.log('200받았을때 data : ', data)
-
+      window.location.href("https://moabuza.com/manse")
       // } catch (err) {
       //   console.log('에러가 났네요 ㅠㅠ')
       //   console.error(err.response)
@@ -34,16 +36,13 @@ function UserInfo() {
   }, [])
 
   console.log('ddd')
-  async function manse() {
-    const { data } = await apis.getPostButton()
-    console.log("넘어온 데이터 : ",data)
-    
-  }
+
 
   return (
-    <button type="button" onClick={() => manse()}>
-      광훈님민우님만세
-    </button>
+    // <button type="button" onClick={() => manse()}>
+    //   광훈님민우님만세
+    // </button>
+    null
   )
 }
 
