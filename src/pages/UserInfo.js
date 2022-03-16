@@ -23,6 +23,7 @@ function UserInfo() {
       console.log('kakao code : ', kakaoAuthCode)
       // try {
       const { data } = await apis.getKakaoLogin(kakaoAuthCode)
+    
       console.log('200이든 400대 에러이든 일단 받은 data : ', data)
       console.log('data.data : ', data.data)
       console.log('data.data.access : ', data.data.access)
