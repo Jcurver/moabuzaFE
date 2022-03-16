@@ -51,7 +51,7 @@ export const apis = {
 }
 export const api = {
   getPostButton: () =>
-    instance.post('/member/info', {
+    instance.put('/member/info', {
       nickname: 'pangpang',
       hero: 'hero1',
     }),
