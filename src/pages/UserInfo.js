@@ -22,7 +22,6 @@ function UserInfo() {
       setCookie('A-AUTH-TOKEN', data.data.access)
       setCookie('R-AUTH-TOKEN', data.data.refresh)
       // refresher()
-
       console.log('200받았을때 data : ', data)
 
       // } catch (err) {
