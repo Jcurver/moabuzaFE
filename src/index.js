@@ -14,12 +14,12 @@ ReactDOM.render(
   <RecoilRoot>
     <QueryClientProvider client={queryClient}>
       <CookiesProvider>
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
           <Router>
             <GlobalStyle />
             <App />
           </Router>
-        </React.StrictMode>
+        {/* </React.StrictMode> */}
       </CookiesProvider>
     </QueryClientProvider>
   </RecoilRoot>,
