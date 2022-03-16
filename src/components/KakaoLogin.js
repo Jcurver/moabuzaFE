@@ -51,10 +51,10 @@ import styled from 'styled-components'
 // import { useRefreshUser } from '../../hooks'
 
 // import { loginBtnStyle } from '../../styles'
-import { apis } from '../utils/axios';
+import { apis } from '../utils/axios'
 
 import { setCookie } from '../utils/cookie'
-import {KAKAO_AUTH_URL} from '../utils/OAuth'
+import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function KakaoLogin() {
   const navigate = useNavigate()
@@ -68,19 +68,18 @@ function KakaoLogin() {
     const kakaoAuthCode = window.location.search.split('=')[1]
 
     async function getTokenWithKakao() {
-      console.log("kakao code : ",kakaoAuthCode)
+      console.log('kakao code : ', kakaoAuthCode)
       try {
         const { data } = await apis.getKakaoLogin(kakaoAuthCode)
-        console.log("200이든 400대 에러이든 일단 받은 data : ", data)
+        console.log('200이든 400대 에러이든 일단 받은 data : ', data)
         setCookie('A-AUTH-TOKEN', data.access)
         setCookie('R-AUTH-TOKEN', data.refresh)
         // refresher()
-        if (data.code === 'OK') {
-          console.log("200받았을때 data : ", data)
-          navigate('/userinfo')
-        }
+
+        console.log('200받았을때 data : ', data)
+        navigate('/userinfo')
       } catch (err) {
-        console.log("에러가 났네요 ㅠㅠ")
+        console.log('에러가 났네요 ㅠㅠ')
         console.error(err.response)
       }
     }
@@ -110,8 +109,5 @@ const Wrapper = styled.div`
 const KakaoLogins = styled.div`
   margin-top: 160%;
 `
-
-
-
 
 export default KakaoLogin
