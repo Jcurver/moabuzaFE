@@ -27,7 +27,7 @@ function UserInfo() {
       console.log('200이든 400대 에러이든 일단 받은 data : ', data)
       console.log('data.data : ', data.data)
       console.log('data.data.access : ', data.data.access)
-      console.log('data.access : ', data.access)
+  
       setCookie('A-AUTH-TOKEN', data.data.access)
       setCookie('R-AUTH-TOKEN', data.data.refresh)
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
