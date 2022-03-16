@@ -9,13 +9,13 @@ const instance = axios.create({
   },
 })
 
-// instance.interceptors.request.use(async (config) => {
-//   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
-//   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-//   config.headers['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-//   config.headers['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-//   return config
-// })
+instance.interceptors.request.use(async (config) => {
+  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+  config.headers['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+  config.headers['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  return config
+})
 
 export const request = ({ ...options }) => {
   console.log(instance)
@@ -30,4 +30,5 @@ export const request = ({ ...options }) => {
 export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) => instance.get(`/user/kakao/callback?code=${code}`),
+  getPostButton: instance.post('/memberinfo')
 }
