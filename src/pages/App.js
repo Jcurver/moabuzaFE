@@ -39,7 +39,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
-            <Route path="/userinfo" element={<UserInfo />} />
+            {/* <Route path="/userinfo" element={<UserInfo />} /> */}
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
@@ -60,6 +60,8 @@ function App() {
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
             <Route path="/bedge" element={<Bedge />} />
+            {/* <Route path="/login" element={<Login />} /> */}
+            <Route path="/user/kakao/callback/*" element={<UserInfo />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
