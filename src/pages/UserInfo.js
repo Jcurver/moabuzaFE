@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 // import { useCookies,Cookies } from 'react-cookie'
 import { setCookie } from '../utils/cookie'
-import { apis } from '../utils/axios'
+import { apis, api } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
@@ -40,13 +40,8 @@ function UserInfo() {
 
   console.log('ddd')
   async function manse() {
-    await axios
-      .post(`https://panghoon.shop/member/info`, {
-        nickname: 'pangpang',
-        hero: 'hero1',
-      })
-      .then((res) => console.log('백에서 보낸 요청 응답 : ', res))
-    .catch((err)=> console.error(err))
+    const { data }= await api.getPostButton()
+    console.log("data : ", data)
   }
 
   return (
