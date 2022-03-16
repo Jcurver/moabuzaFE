@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getCookie } from './cookie.js'
 
 const instance = axios.create({
-  baseURL: 'https://moabuza.com',
+  baseURL: 'https://panghoon.shop',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
