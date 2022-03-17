@@ -20,6 +20,9 @@ import {
 } from '../constants/statusMessage'
 
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const navigate = useNavigate()
+
 export const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   headers: {
@@ -67,6 +70,7 @@ export const apis = {
 
 export const api = {
 
+
   getUserInfo: (data, hero) =>
   instance
   .put('/member/info', {
@@ -81,7 +85,8 @@ export const api = {
     })
     .then((result) => {
       console.log(result)
-      window.location.href('/')
+
+      navigate('/')
     })
     .catch((err) => console.log(err))
   })
