@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
 import { getCookie, setCookie } from '../utils/cookie'
-import { apis, api } from '../utils/axios'
+import { api } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
@@ -19,7 +19,7 @@ function UserInfo() {
     const kakaoAuthCode = window.location.search.split('=')[1]
 
     async function getTokenWithKakao() {
-      const { data } = await apis.getKakaoLogin(kakaoAuthCode)
+      const { data } = await api.getKakaoLogin(kakaoAuthCode)
 
       setCookie('A-AUTH-TOKEN', data.data.access)
       setCookie('R-AUTH-TOKEN', data.data.refresh)
@@ -39,24 +39,8 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-    // await instance
-    //   .post('/member/info', {
-    //     nickname: data.nickname,
-    //     hero,
-    //   })
-    //   .then(() => {
-    //     Swal.fire({
-    //       title: '환영합니다!',
-    //       text: '이제부터 열심히 모아부자!',
-    //       icon: 'success',
-    //     })
-    //       .then((result) => {
-    //         console.log(result)
-    //         navigate('/')
-    //       })
-    //       .catch((err) => console.log(err))
-    //   })
     await api.getUserInfo(data, hero)
+    navigate('/')
   }
   const {
     register,
