@@ -114,8 +114,8 @@ const Text = styled.span`
   font-style: normal;
   font-weight: ${(props) => props.fontWeight || 500};
   font-size: ${(props) => props.fontSize || '16px'};
-  margin-top : ${(props) => props.marginTop}
-  line-height: 140%;
+  margin-top : ${(props) => props.marginTop};
+  line-height : 140%  ; 
 `
 
 const CancleMoveButton = styled.button`

@@ -1,18 +1,46 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useForm } from 'react-hook-form'
 
 function Modified() {
-  function changeSubmit() {
-     console.log('gkgk')
+  const navigate = useNavigate()
+  const [hero, setHero] = useState(1)
+  function setHeroValue(i) {
+    setHero(i)
+    setValue('character', i)
+  }
+
+  console.log('hero:', hero)
+  const onValid = async (data) => {
     Swal.fire({
       title: '수정 완료!',
       text: '더 열심히 모아부자!',
       icon: 'success',
-    }) 
-
+    }).then((result) => {
+      console.log(result)
+      navigate('/settings')
+    })
+    // if (data.password !== data.password1) {
+    //     setError(
+    //       'password1',
+    //       { message: 'Password are not the same' },
+    //       { shouldFocus: true },
+    //     )
+    //   }
+    //   setError("extraError", { message: "Server offline." });
+    // }
   }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    setValue,
+    setError,
+  } = useForm()
+  console.log(watch())
   return (
     <Wrapper>
       <NavLink to="/settings">
@@ -22,24 +50,55 @@ function Modified() {
       <TopLine />
 
       <Title>캐릭터/닉네임 수정</Title>
-      <ButtonSubmit onClick={()=>changeSubmit()}>확인</ButtonSubmit>
-      <CharacterDiv>
-        <CharacterOne style={{ left: '0px' }}>
-          <Character />
-          <CharacterName>캐릭터A</CharacterName>
-        </CharacterOne>
-        <CharacterOne style={{ left: '104px' }}>
-          <Character />
-          <CharacterName>캐릭터B</CharacterName>
-        </CharacterOne>
-        <CharacterOne style={{ left: '208px' }}>
-          <Character />
-          <CharacterName>캐릭터C</CharacterName>
-        </CharacterOne>
-      </CharacterDiv>
-      <NicknameText>닉네임</NicknameText>
-      <NicknameInput placeholder="닉네임을 입력해주세요" />
-      <NicknameAlert>8자 이내로 입력해주세요</NicknameAlert>
+      <form onSubmit={handleSubmit(onValid)}>
+        <ButtonSubmit>확인</ButtonSubmit>
+        <CharacterDiv>
+          <CharacterOne style={{ left: '0px' }} onClick={() => setHeroValue(1)}>
+            <Character />
+            <CharacterName style={{ fontWeight: hero === 1 ? '800' : '400' }}>
+              캐릭터A
+            </CharacterName>
+          </CharacterOne>
+          <CharacterOne
+            style={{ left: '104px' }}
+            onClick={() => setHeroValue(2)}
+          >
+            <Character />
+            <CharacterName style={{ fontWeight: hero === 2 ? '800' : '400' }}>
+              캐릭터B
+            </CharacterName>
+          </CharacterOne>
+          <CharacterOne
+            style={{ left: '208px' }}
+            onClick={() => setHeroValue(3)}
+          >
+            <Character />
+            <CharacterName style={{ fontWeight: hero === 3 ? '800' : '400' }}>
+              캐릭터C
+            </CharacterName>
+          </CharacterOne>
+        </CharacterDiv>
+        <NicknameText>닉네임</NicknameText>
+        <NicknameInput
+          placeholder="닉네임을 입력해주세요"
+          {...register('nickname', {
+            required: '닉네임 수정을 깜빡했어요',
+            minLength: { value: 2, message: '한글자는 너무 짧아요' },
+            maxLength: { value: 8, message: '8자를 초과했어요!' },
+            pattern: {
+              value: /^[A-Za-z0-9]*$/,
+              message: '숫자와 문자만 입력해부자!',
+            },
+          })}
+        />
+        {errors?.nickname ? (
+          <NicknameAlert style={{ color: 'red' }}>
+            {errors?.nickname?.message}
+          </NicknameAlert>
+        ) : (
+          <NicknameAlert>8자 이내로 입력해주세요</NicknameAlert>
+        )}
+      </form>
     </Wrapper>
   )
 }
@@ -78,7 +137,7 @@ const Button = styled.div`
 
   background: #c4c4c4;
 `
-const ButtonSubmit = styled.div`
+const ButtonSubmit = styled.button`
   position: absolute;
   width: 26px;
   height: 14px;
@@ -239,7 +298,7 @@ const NicknameAlert = styled.div`
   position: absolute;
   width: 110px;
   height: 11px;
-  left: 16px;
+  left: 31px;
   top: 48.89%;
 
   font-family: 'Noto Sans KR';

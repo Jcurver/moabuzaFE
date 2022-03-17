@@ -7,7 +7,12 @@ import 'react-datepicker/dist/react-datepicker.css'
 // import Moment from 'react-moment'
 import '../styles/CalendarStyle.css'
 import ko from 'date-fns/locale/ko'
+import {
+  SwipeableList,
+  SwipeableListItem,
+} from '@sandstreamdev/react-swipeable-list'
 import Nav from '../components/Nav'
+import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 
 registerLocale('ko', ko)
 
@@ -60,6 +65,7 @@ function OnedayBuza() {
       day.length - 1,
     )}`
   }
+  const removeTodayList = (id) => {console.log('remove',id)}
   const getDayName = (date) => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1)
   }
@@ -129,18 +135,30 @@ function OnedayBuza() {
       <BottomLine />
       <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
-        {data.map((d) => {
-          return (
-            <TodayListLine key={d.id}>
-              <TodayListLineLeft>
-                <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
-                <TodayListLineMemo>{d.memos}</TodayListLineMemo>
-              </TodayListLineLeft>
-              <TodayListLineRight>{d.recordType === "지출" ? "-" : "+"} {d.recordAmount.toLocaleString()} 원</TodayListLineRight>
-            </TodayListLine>
-          )
-        })}
-
+        <SwipeableList threshold={0.7}>
+          {data.map((d) => (
+            <SwipeableListItem
+              key={d.id}
+              swipeRight={{
+                content: <div style={{marginLeft:"10px",marginBottom:"10px"}}>밀어서 삭제</div>,
+                action: () => {
+                  removeTodayList(d.id)
+                },
+              }}
+            >
+              <TodayListLine key={d.id}>
+                <TodayListLineLeft>
+                  <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
+                  <TodayListLineMemo>{d.memos}</TodayListLineMemo>
+                </TodayListLineLeft>
+                <TodayListLineRight>
+                  {d.recordType === '지출' ? '-' : '+'}{' '}
+                  {d.recordAmount.toLocaleString()} 원
+                </TodayListLineRight>
+              </TodayListLine>
+            </SwipeableListItem>
+          ))}
+        </SwipeableList>
       </TodayListDiv>
       <Nav />
     </Wrapper>
@@ -258,7 +276,7 @@ const CalDiv = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  width:120px;
+  width: 120px;
   height: 23px;
   left: 120px;
   top: 15.7%;
@@ -269,9 +287,7 @@ const CalBtn = styled.button`
   height: 23px;
   left: 132px;
   top: 113px; */
-
   /* Heading / Roboto / H3(B) */
-
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
@@ -289,9 +305,7 @@ const CalendarLine = styled.hr`
   left: 19px;
   top: 20.97%;
   background-color: #999999;
-
   /* color / gray / Gray50 */
-
   border: 1px solid #999999;
   box-sizing: border-box;
 `
@@ -310,13 +324,10 @@ const TotalLeft = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
-
   /* color / gray / Gray70 */
-
   color: #555555;
 `
 const TotalRight = styled.div`
@@ -326,12 +337,9 @@ const TotalRight = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   text-align: right;
   letter-spacing: -0.04em;
-
   /* color / text / Color-text-Black */
-
   color: #000000;
 `
 const TodayListTitle = styled.div`
@@ -340,22 +348,18 @@ const TodayListTitle = styled.div`
   height: 14px;
   left: 16px;
   top: 56.39%;
-
   /* Heading/Noto Sans KR/H6(B) */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
 
   /* color / text / Color-text-Black */
-
   color: #000000;
 `
 const TodayListDiv = styled.div`
@@ -381,7 +385,6 @@ const TodayListLine = styled.div`
   height: 31.75%;
 
   /* color/Btn-basic1 */
-
   background: #e5eaf2;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -399,7 +402,6 @@ const TodayListLineRight = styled.div`
   height: 28px;
 
   /* color / text / Color-text-Gray3 */
-
   background: #60666f;
   border-radius: 25px;
   font-family: 'Roboto';
@@ -411,11 +413,9 @@ const TodayListLineRight = styled.div`
   letter-spacing: -0.04em;
 
   /* Rectangle 173 */
-
   color: #ffffff;
 
   /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -423,7 +423,6 @@ const TodayListLineRight = styled.div`
 `
 const TodayListLineTitle = styled.div`
   /* Heading/Noto Sans KR/H6(B) */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
@@ -434,9 +433,7 @@ const TodayListLineTitle = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
-
   /* color / text / Color-text-Black */
-
   color: #000000;
 `
 const TodayListLineMemo = styled.div`
@@ -448,9 +445,7 @@ const TodayListLineMemo = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
-
   /* color / gray / Gray70 */
-
   color: #555555;
 `
 

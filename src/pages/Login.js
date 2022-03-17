@@ -6,7 +6,7 @@ function Login() {
   return (
     <Wrapper>
 
-      <KakaoLogin href={KAKAO_AUTH_URL}>
+      <KakaoLogin onClick={()=> window.location.href(KAKAO_AUTH_URL)}>
         <img src="img/kakao_login_medium_wide.png" alt="카카오계정 로그인" />
       </KakaoLogin>
     </Wrapper>
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const KakaoLogin = styled.a`
+const KakaoLogin = styled.button`
   margin-top: 160%;
 `
 

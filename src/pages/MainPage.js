@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, atom } from 'recoil'
 import { NavLink } from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import axios from 'axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useHomeData } from '../hooks/useUserData'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
+import '../styles/MenuTransition.css'
+import { apis, api } from '../utils/axios'
+
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -33,7 +38,10 @@ function MainPage() {
   //   console.log('error : ', error)
   //   return <ErrorLog error={error} />
   // }
-
+  async function jebal() {
+    const { data } = await api.getPostButton()
+    console.log('data : ', data)
+  }
   return (
     <Wrapper>
       <NavLink to="/alerts">
@@ -70,7 +78,7 @@ function MainPage() {
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
         <Won>82,900원</Won>
-        <ChartBtn>분석해부자</ChartBtn>
+        <ChartBtn onClick={()=>jebal()}>분석해부자</ChartBtn>
       </BottomLine>
 
       <Nav />
@@ -87,8 +95,8 @@ const RightButtonDiv = styled.div`
   left: 85.56%;
 
   top: 4.03%;
-  width:48px;
-  height:48px;
+  width: 48px;
+  height: 48px;
 
   background: rgba(196, 196, 196, 0.3);
 `
@@ -263,7 +271,6 @@ const ProgressBarCharge = styled.div`
 
   color: #ffffff;
 `
-
 
 const BottomLine = styled.div`
   ${setFlexStyles({
