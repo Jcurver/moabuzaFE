@@ -1,5 +1,8 @@
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { getCookie, setCookie } from './cookie'
+
 import {
   BAD_REQUEST,
   OK,
@@ -16,10 +19,7 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
-
-
-
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -40,9 +40,23 @@ instance.interceptors.request.use(async (config) => {
   return config
 })
 
-export const request = ({ ...options }) => {
-  console.log(instance)
-  const onSuccess = (response) => response
+export const request = async ({ ...options }) => {
+  // console.log('request 안에 있는 인스턴스:', instance)
+  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+  console.log('req A_AUTH_TOKEN : ', A_AUTH_TOKEN)
+
+  instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+  instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  console.log(
+    'req instance headers: ',
+    instance.headers,
+    instance.defaults.headers,
+  )
+
+  const onSuccess = (response) => {
+    return response
+  }
   const onError = (error) => {
     // optionaly catch errors and add additional logging here
     return error
@@ -50,8 +64,27 @@ export const request = ({ ...options }) => {
   return instance(options).then(onSuccess).catch(onError)
 }
 
-export const apis = {
-  // 카카오 소셜로그인
+export const api = {
+  getUserInfo: (data, hero) =>
+    instance
+      .put('/member/info', {
+        nickname: data.nickname,
+        hero,
+      })
+      .then(() => {
+        Swal.fire({
+          title: '환영합니다!',
+          text: '이제부터 열심히 모아부자!',
+          icon: 'success',
+        })
+          .then((result) => {
+            console.log(result)
+          })
+          .catch((err) => console.log(err))
+      })
+      .catch((error) => {
+        console.log(error)
+      }),
   getKakaoLogin: (code) =>
     instance
       .get(`/user/kakao/callback?code=${code}`)
@@ -60,54 +93,18 @@ export const apis = {
         return res
       })
       .catch((error) => {
-        if (error.response) {
-          // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          // 요청이 이루어 졌으나 응답을 받지 못했습니다.
-          // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-          // Node.js의 http.ClientRequest 인스턴스입니다.
-          console.log(error.request)
-        } else {
-          // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-          console.log('Error', error.message)
-        }
-        console.log(error.config)
+        console.log(error)
       }),
-}
-
-export const api = {
-  getPostButton: () =>
+  getHomeData: () =>
     instance
-      .put('/member/info', {
-        nickname: 'pangpang',
-        hero: 'hero1',
-      })
+      .get(`/home`)
       .then((res) => {
-        console.log('res : ', res)
+        console.log('홈 res : ', res)
         return res
       })
       .catch((error) => {
-        // if (error.response) {
-        //   // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-        //   console.log(error.response.data);
-        //   console.log(error.response.status);
-        //   console.log(error.response.headers);
-        // }
-        // else if (error.request) {
-        //   // 요청이 이루어 졌으나 응답을 받지 못했습니다.
-        //   // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-        //   // Node.js의 http.ClientRequest 인스턴스입니다.
-        //   console.log(error.request);
-        // }
-        // else {
-        //   // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-        //   console.log('Error', error.message);
-        // }
-        // console.log(error.config);
         console.log(error)
+        return error
       }),
 }
 // instance.interceptors.response.use(
