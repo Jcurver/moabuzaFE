@@ -18,10 +18,10 @@ import { api } from '../utils/axios'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  // const { isLoading, data, isError, error } = useHomeData(toggle)
-  // console.log("데이터확인 : ",isLoading, data, isError, error)
-  const { data } = api.getHomeData()
-  console.log('홈 데이터 : ', data)
+  const { isLoading, data, isError, error } = useHomeData(toggle)
+  console.log("데이터확인 : ",isLoading, data, isError, error)
+  // const { data } = api.getHomeData()
+  // console.log('홈 데이터 : ', data)
 
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
@@ -42,7 +42,7 @@ function MainPage() {
   //   console.log('error : ', error)
   //   return <ErrorLog error={error} />
   // }
-  
+
   async function jebal() {
     const { data } = await api.getPostButton()
     console.log('data : ', data)
