@@ -4,7 +4,7 @@ import { request } from '../utils/axios'
 export const useHomeData = (toggle, onSuccess, onError) => {
   return useQuery(
     ['home-data', toggle],
-    request({ url: '/home' }),
+    () => { return request({ url: '/home', method: 'get' }); },
     onSuccess,
     onError,
   )
