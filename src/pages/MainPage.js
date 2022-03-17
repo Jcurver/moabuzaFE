@@ -42,10 +42,12 @@ function MainPage() {
   //   console.log('error : ', error)
   //   return <ErrorLog error={error} />
   // }
+  
   async function jebal() {
     const { data } = await api.getPostButton()
     console.log('data : ', data)
   }
+
   return (
     <Wrapper>
       <NavLink to="/alerts">

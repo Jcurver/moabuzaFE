@@ -85,6 +85,7 @@ export const api = {
     instance
       .get(`/home`)
       .then((res) => {
+        console.log("홈 res : ",res)
         return res
       })
       .catch((error) => {
