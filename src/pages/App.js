@@ -8,6 +8,7 @@ import Loading from './Loading'
 import Settings from './Settings'
 import Menu from './Menu'
 import Modified from './Modified'
+import KakaoLogin from '../components/KakaoLogin'
 
 import Nav from '../components/Nav'
 
@@ -22,7 +23,7 @@ const Group = lazy(() => import('./Group'))
 const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 
 const CalendarMain = lazy(() => import('./CalendarMain'))
-const KakaoAuthHandle = lazy(() => import('../components/KakaoAuthHandle'))
+const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
 const Friends = lazy(() => import('./Friends'))
 const AddFriends = lazy(() => import('./AddFriends.js'))
 
@@ -30,6 +31,8 @@ const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
+const UserInfo = lazy(() => import('./UserInfo'))
+const Manse = lazy(() => import('./Manse'))
 
 function App() {
   return (
@@ -37,6 +40,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
+            {/* <Route path="/userinfo" element={<UserInfo />} /> */}
             <Route path="/" element={<MainPage />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
@@ -44,7 +48,7 @@ function App() {
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challengebuza" element={<ChallengeBuza />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/kakaoLogin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
@@ -57,6 +61,9 @@ function App() {
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
             <Route path="/bedge" element={<Bedge />} />
+            {/* <Route path="/login" element={<Login />} /> */}
+            <Route path="/user/kakao/callback/*" element={<UserInfo />} />
+            <Route path="/manse" element={<Manse />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
