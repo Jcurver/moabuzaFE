@@ -52,16 +52,7 @@ export const request = ({ ...options }) => {
 
 export const apis = {
   // 카카오 소셜로그인
-  getKakaoLogin: (code) =>
-    instance
-      .get(`/user/kakao/callback?code=${code}`)
-      .then((res) => {
-        console.log(res)
-        return res
-      })
-      .catch((error) => {
-        console.log(error)
-      }),
+
 }
 
 export const api = {
@@ -76,14 +67,24 @@ export const api = {
           title: '환영합니다!',
           text: '이제부터 열심히 모아부자!',
           icon: 'success',
-      })
-      .then((result) => {
-        const navigate = useNavigate()
-        console.log(result)
+        })
+          .then((result) => {
 
-        navigate('/')
+            console.log(result)
+
+
+          })
+          .catch((err) => console.log(err))
       })
-      .catch((err) => console.log(err))
+      .catch((error) => {
+        console.log(error)
+      }),
+  getKakaoLogin: (code) =>
+    instance
+      .get(`/user/kakao/callback?code=${code}`)
+      .then((res) => {
+        console.log(res)
+        return res
       })
       .catch((error) => {
         console.log(error)
