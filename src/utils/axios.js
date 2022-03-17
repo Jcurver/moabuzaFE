@@ -41,7 +41,19 @@ instance.interceptors.request.use(async (config) => {
 })
 
 export const request = async ({ ...options }) => {
-  console.log('request 안에 있는 인스턴스:', instance)
+  // console.log('request 안에 있는 인스턴스:', instance)
+  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+  console.log('req A_AUTH_TOKEN : ', A_AUTH_TOKEN)
+  if (A_AUTH_TOKEN) {
+    instance.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+    instance.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+    console.log(
+      'req instance headers: ',
+      instance.headers,
+      instance.defaults.headers,
+    )
+  }
   const onSuccess = (response) => {
     return response
   }
