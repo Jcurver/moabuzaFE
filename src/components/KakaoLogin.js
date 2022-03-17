@@ -51,7 +51,7 @@ import styled from 'styled-components'
 // import { useRefreshUser } from '../../hooks'
 
 // import { loginBtnStyle } from '../../styles'
-import { apis } from '../utils/axios'
+
 
 import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'

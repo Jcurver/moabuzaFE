@@ -11,15 +11,18 @@ import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
-import { apis, api } from '../utils/axios'
+import { api } from '../utils/axios'
 
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  const { isLoading, data, isError, error } = useHomeData(toggle)
+  // const { isLoading, data, isError, error } = useHomeData(toggle)
+  // console.log("데이터확인 : ",isLoading, data, isError, error)
+  const { data } = api.getHomeData()
   console.log('홈 데이터 : ', data)
+
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -31,13 +34,14 @@ function MainPage() {
     }
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError) {
-    console.log('error : ', error)
-    return <ErrorLog error={error} />
-  }
+  // if (isLoading) {
+    
+  //   return <Loading />
+  // }
+  // if (isError) {
+  //   console.log('error : ', error)
+  //   return <ErrorLog error={error} />
+  // }
   async function jebal() {
     const { data } = await api.getPostButton()
     console.log('data : ', data)
