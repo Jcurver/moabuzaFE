@@ -39,20 +39,23 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-    await instance.put('/member/info', {
-      nickname: data.nickname,
-      hero
-    }).then(() => {
-      Swal.fire({
-        title: '환영합니다!',
-        text: '이제부터 열심히 모아부자!',
-        icon: 'success',
-      }).then((result) => {
-        console.log(result)
-        navigate('/settings')
+    await instance
+      .post('/member/info', {
+        nickname: data.nickname,
+        hero,
       })
-    })
-
+      .then(() => {
+        Swal.fire({
+          title: '환영합니다!',
+          text: '이제부터 열심히 모아부자!',
+          icon: 'success',
+        })
+          .then((result) => {
+            console.log(result)
+            navigate('/')
+          })
+          .catch((err) => console.log(err))
+      })
   }
   const {
     register,
@@ -65,16 +68,20 @@ function UserInfo() {
   console.log(watch())
   return (
     <Wrapper>
-
       <TopLine />
 
       <Title>캐릭터/닉네임 설정</Title>
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne style={{ left: '0px' }} onClick={() => setHeroValue('hero1')}>
+          <CharacterOne
+            style={{ left: '0px' }}
+            onClick={() => setHeroValue('hero1')}
+          >
             <Character />
-            <CharacterName style={{ fontWeight: hero === 'hero1' ? '800' : '400' }}>
+            <CharacterName
+              style={{ fontWeight: hero === 'hero1' ? '800' : '400' }}
+            >
               캐릭터A
             </CharacterName>
           </CharacterOne>
@@ -83,7 +90,9 @@ function UserInfo() {
             onClick={() => setHeroValue('hero2')}
           >
             <Character />
-            <CharacterName style={{ fontWeight: hero === 'hero2' ? '800' : '400' }}>
+            <CharacterName
+              style={{ fontWeight: hero === 'hero2' ? '800' : '400' }}
+            >
               캐릭터B
             </CharacterName>
           </CharacterOne>
@@ -92,7 +101,9 @@ function UserInfo() {
             onClick={() => setHeroValue('hero3')}
           >
             <Character />
-            <CharacterName style={{ fontWeight: hero === 'hero3' ? '800' : '400' }}>
+            <CharacterName
+              style={{ fontWeight: hero === 'hero3' ? '800' : '400' }}
+            >
               캐릭터C
             </CharacterName>
           </CharacterOne>
