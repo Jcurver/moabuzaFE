@@ -5,12 +5,24 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
+import { api } from '../utils/axios'
 
 function GroupBuza() {
   const [pending, setPending] = useState(true)
   const [isData, setIsData] = useState(true)
   const navigate = useNavigate()
 
+  // 홈데이터 부르는 부분  ---------
+  const data = api.getHomeData()
+
+  const getData = () => {
+    data.then((appData) => {
+      console.log('appData---------', appData)
+    })
+  }
+
+  getData()
+  //----------------------
   const CompletedData = [
     {
       title: '✈️ 제주도 여행가자!',

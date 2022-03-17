@@ -42,12 +42,9 @@ instance.interceptors.request.use(async (config) => {
 
 export const request = async ({ ...options }) => {
   // console.log('request 안에 있는 인스턴스:', instance)
-  const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
-  const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-  console.log('req A_AUTH_TOKEN : ', A_AUTH_TOKEN)
 
-  instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-  instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  // instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+  // instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
   console.log(
     'req instance headers: ',
     instance.headers,
@@ -100,13 +97,14 @@ export const api = {
       .get(`/home`)
       .then((res) => {
         console.log('홈 res : ', res)
-        return res
+        return res.data
       })
       .catch((error) => {
         console.log(error)
         return error
       }),
 }
+
 // instance.interceptors.response.use(
 //   (response) => {
 //     return response

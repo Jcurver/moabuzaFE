@@ -17,22 +17,24 @@ import { api } from '../utils/axios'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  const onSuccess = (data) => {
-    console.log({ data })
-  }
 
-  const onError = (error) => {
-    console.log({ error })
-  }
+  // const onSuccess = (data) => {
+  //   console.log({ data })
+  // }
 
-  const { isLoading, data, isError, error } = useHomeData(
-    toggle,
-    onSuccess,
-    onError,
-  )
-  console.log('데이터확인 : ', isLoading, data, isError, error)
-  // const { data } = api.getHomeData()
-  // console.log('홈 데이터 : ', data)
+  // const onError = (error) => {
+  //   console.log({ error })
+  // }
+
+  // const { isLoading, data, isError, error } = useHomeData(
+  //   toggle,
+  //   onSuccess,
+  //   onError,
+  // )
+  // console.log('데이터확인 : ', isLoading, data, isError, error)
+
+  const data = api.getHomeData()
+  console.log('홈 데이터d : ', data)
 
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
@@ -54,10 +56,10 @@ function MainPage() {
   //   return <ErrorLog error={error} />
   // }
 
-  async function jebal() {
-    const { data } = await api.getPostButton()
-    console.log('data : ', data)
-  }
+  // async function jebal() {
+  //   const { data } = await api.getPostButton()
+  //   console.log('data : ', data)
+  // }
 
   return (
     <Wrapper>
@@ -89,13 +91,13 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-        <Won>{data.wallet.toLocaleString()}원</Won>
+        <Won>{data ? data.wallet : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-        <Won>{data.totalAmount.toLocaleString()}원</Won>
-        <ChartBtn onClick={() => jebal()}>분석해부자</ChartBtn>
+        <Won>{data ? data.totalAmount : ''}원</Won>
+        <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
 
       <Nav />
