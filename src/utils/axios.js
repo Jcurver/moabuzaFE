@@ -40,7 +40,7 @@ instance.interceptors.request.use(async (config) => {
   return config
 })
 
-export const request = ({ ...options }) => {
+export const request = async ({ ...options }) => {
   console.log(instance)
   const onSuccess = (response) => response
   const onError = (error) => {
@@ -48,11 +48,6 @@ export const request = ({ ...options }) => {
     return error
   }
   return instance(options).then(onSuccess).catch(onError)
-}
-
-export const apis = {
-  // 카카오 소셜로그인
-
 }
 
 export const api = {
@@ -69,10 +64,7 @@ export const api = {
           icon: 'success',
         })
           .then((result) => {
-
             console.log(result)
-
-
           })
           .catch((err) => console.log(err))
       })
@@ -88,6 +80,16 @@ export const api = {
       })
       .catch((error) => {
         console.log(error)
+      }),
+  getHomeData: () =>
+    instance
+      .get(`/home`)
+      .then((res) => {
+        return res
+      })
+      .catch((error) => {
+        console.log(error)
+        return error
       }),
 }
 // instance.interceptors.response.use(
