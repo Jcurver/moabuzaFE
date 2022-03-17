@@ -18,7 +18,15 @@ import { api } from '../utils/axios'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  const { isLoading, data, isError, error } = useHomeData(toggle)
+  const onSuccess = (data) => {
+    console.log({ data })
+  }
+
+  const onError = (error) => {
+    console.log({ error })
+  }
+
+  const { isLoading, data, isError, error } = useHomeData(toggle,onSuccess,onError)
   console.log("데이터확인 : ",isLoading, data, isError, error)
   // const { data } = api.getHomeData()
   // console.log('홈 데이터 : ', data)
