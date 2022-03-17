@@ -32,6 +32,7 @@ const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
+const Manse = lazy(() => import('./Manse'))
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
             <Route path="/bedge" element={<Bedge />} />
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
+            <Route path="/manse" element={<Manse />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
