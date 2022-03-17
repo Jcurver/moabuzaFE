@@ -18,8 +18,8 @@ import { apis, api } from '../utils/axios'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  // const { isLoading, data, isError, error } = useHomeData(toggle)
-  // console.log('홈 데이터 : ', data)
+  const { isLoading, data, isError, error } = useHomeData(toggle)
+  console.log('홈 데이터 : ', data)
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -31,13 +31,13 @@ function MainPage() {
     }
   }
 
-  // if (isLoading) {
-  //   return <Loading />
-  // }
-  // if (isError) {
-  //   console.log('error : ', error)
-  //   return <ErrorLog error={error} />
-  // }
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError) {
+    console.log('error : ', error)
+    return <ErrorLog error={error} />
+  }
   async function jebal() {
     const { data } = await api.getPostButton()
     console.log('data : ', data)
@@ -56,14 +56,14 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {/* {(toggle === 'group' && data?.isGroupGoal) ||
-        (toggle === 'challenge' && data?.isChallengeGoal) ? (
-          <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-          ) : (
-            ''
-          )} */}
+      {(toggle === 'group' && data?.isGroupGoal) ||
+      (toggle === 'challenge' && data?.isChallengeGoal) ? (
+        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+      ) : (
+        ''
+      )}
 
-      <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+      {/* <ContentDiv>😂 아직 목표가 없어요!</ContentDiv> */}
 
       {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
       <ProgressDiv />
@@ -72,13 +72,13 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-        <Won>82,900원</Won>
+        <Won>{data.wallet.toLocaleString()}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-        <Won>82,900원</Won>
-        <ChartBtn onClick={()=>jebal()}>분석해부자</ChartBtn>
+        <Won>{data.totalAmount.toLocaleString()}원</Won>
+        <ChartBtn onClick={() => jebal()}>분석해부자</ChartBtn>
       </BottomLine>
 
       <Nav />
