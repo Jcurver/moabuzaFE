@@ -19,10 +19,6 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const navigate = useNavigate()
-
 export const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   headers: {
@@ -57,49 +53,47 @@ export const request = ({ ...options }) => {
 export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) =>
-  instance
-  .get(`/user/kakao/callback?code=${code}`)
-  .then((res) => {
-    console.log(res)
-    return res
-  })
-  .catch((error) => {
-    console.log(error)
-  }),
+    instance
+      .get(`/user/kakao/callback?code=${code}`)
+      .then((res) => {
+        console.log(res)
+        return res
+      })
+      .catch((error) => {
+        console.log(error)
+      }),
 }
 
 export const api = {
-
-
   getUserInfo: (data, hero) =>
-  instance
-  .put('/member/info', {
-    nickname: data.nickname,
-    hero,
-  })
-  .then(() => {
-    Swal.fire({
-      title: '환영합니다!',
-      text: '이제부터 열심히 모아부자!',
-      icon: 'success',
-    })
-    .then((result) => {
-      console.log(result)
-
-      navigate('/')
-    })
-    .catch((err) => console.log(err))
-  })
-  .catch((error) => {
-    console.log(error)
-  }),
+    instance
+      .put('/member/info', {
+        nickname: data.nickname,
+        hero,
+      })
+      .then(() => {
+        Swal.fire({
+          title: '환영합니다!',
+          text: '이제부터 열심히 모아부자!',
+          icon: 'success',
+        })
+          .then((result) => {
+            const navigate = useNavigate()
+            console.log(result)
+            navigate('/')
+          })
+          .catch((err) => console.log(err))
+      })
+      .catch((error) => {
+        console.log(error)
+      }),
 }
 // instance.interceptors.response.use(
-  //   (response) => {
-    //     return response
-    //   },
-    
-    //   async (error) => {
+//   (response) => {
+//     return response
+//   },
+
+//   async (error) => {
 //     const { data: responseData, config: originalRequest } = error.response
 
 //     if (
