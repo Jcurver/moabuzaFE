@@ -39,23 +39,24 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-    await instance
-      .post('/member/info', {
-        nickname: data.nickname,
-        hero,
-      })
-      .then(() => {
-        Swal.fire({
-          title: '환영합니다!',
-          text: '이제부터 열심히 모아부자!',
-          icon: 'success',
-        })
-          .then((result) => {
-            console.log(result)
-            navigate('/')
-          })
-          .catch((err) => console.log(err))
-      })
+    // await instance
+    //   .post('/member/info', {
+    //     nickname: data.nickname,
+    //     hero,
+    //   })
+    //   .then(() => {
+    //     Swal.fire({
+    //       title: '환영합니다!',
+    //       text: '이제부터 열심히 모아부자!',
+    //       icon: 'success',
+    //     })
+    //       .then((result) => {
+    //         console.log(result)
+    //         navigate('/')
+    //       })
+    //       .catch((err) => console.log(err))
+    //   })
+    await api.getUserInfo(data, hero)
   }
   const {
     register,
