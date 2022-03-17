@@ -45,15 +45,15 @@ export const request = async ({ ...options }) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('req A_AUTH_TOKEN : ', A_AUTH_TOKEN)
-  if (A_AUTH_TOKEN) {
-    instance.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-    instance.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-    console.log(
-      'req instance headers: ',
-      instance.headers,
-      instance.defaults.headers,
-    )
-  }
+
+  instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
+  instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+  console.log(
+    'req instance headers: ',
+    instance.headers,
+    instance.defaults.headers,
+  )
+
   const onSuccess = (response) => {
     return response
   }
