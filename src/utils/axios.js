@@ -1,5 +1,8 @@
 import axios from 'axios'
+import { useNavigate } from 'react-router'
+import Swal from 'sweetalert2'
 import { getCookie, setCookie } from './cookie'
+
 import {
   BAD_REQUEST,
   OK,
@@ -15,8 +18,6 @@ import {
   REFRESH_TOKEN_SIGNATURE_EXCEPTION,
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
-
-
 
 
 export const instance = axios.create({
@@ -53,38 +54,47 @@ export const request = ({ ...options }) => {
 export const apis = {
   // 카카오 소셜로그인
   getKakaoLogin: (code) =>
-    instance
-      .get(`/user/kakao/callback?code=${code}`)
-      .then((res) => {
-        console.log(res)
-        return res
-      })
-      .catch((error) => {
-        console.log(error)
-      }),
+  instance
+  .get(`/user/kakao/callback?code=${code}`)
+  .then((res) => {
+    console.log(res)
+    return res
+  })
+  .catch((error) => {
+    console.log(error)
+  }),
 }
 
 export const api = {
-  getUserInfo: () =>
-    instance
-      .put('/member/info', {
-        nickname: 'pangpang',
-        hero: 'hero1',
-      })
-      .then((res) => {
-        console.log('res : ', res)
-        return res
-      })
-      .catch((error) => {
-        console.log(error)
-      }),
+
+  getUserInfo: (data, hero) =>
+  instance
+  .put('/member/info', {
+    nickname: data.nickname,
+    hero,
+  })
+  .then(() => {
+    Swal.fire({
+      title: '환영합니다!',
+      text: '이제부터 열심히 모아부자!',
+      icon: 'success',
+    })
+    .then((result) => {
+      console.log(result)
+      window.location.href('/')
+    })
+    .catch((err) => console.log(err))
+  })
+  .catch((error) => {
+    console.log(error)
+  }),
 }
 // instance.interceptors.response.use(
-//   (response) => {
-//     return response
-//   },
-
-//   async (error) => {
+  //   (response) => {
+    //     return response
+    //   },
+    
+    //   async (error) => {
 //     const { data: responseData, config: originalRequest } = error.response
 
 //     if (
