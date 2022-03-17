@@ -41,8 +41,10 @@ instance.interceptors.request.use(async (config) => {
 })
 
 export const request = async ({ ...options }) => {
-  console.log(instance)
-  const onSuccess = (response) => response
+  console.log('request 안에 있는 인스턴스:', instance)
+  const onSuccess = (response) => {
+    return response
+  }
   const onError = (error) => {
     // optionaly catch errors and add additional logging here
     return error
@@ -85,7 +87,7 @@ export const api = {
     instance
       .get(`/home`)
       .then((res) => {
-        console.log("홈 res : ",res)
+        console.log('홈 res : ', res)
         return res
       })
       .catch((error) => {
