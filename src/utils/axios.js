@@ -47,7 +47,6 @@ export const request = async ({ ...options }) => {
   // instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
   console.log(
     'req instance headers: ',
-    instance.headers,
     instance.defaults.headers,
   )
 
@@ -96,16 +95,13 @@ export const api = {
     instance
       .get(`/home`)
       .then((res) => {
-
         console.log('홈 res : ', res)
         return res.data
-
       })
       .catch((error) => {
         console.log(error);
         return error;
       }),
-
 }
 
 // instance.interceptors.response.use(
