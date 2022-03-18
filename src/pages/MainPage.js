@@ -205,7 +205,10 @@ const Toggle = styled.div`
   background-color: #e5eaf2;
   padding: 2px 2.55px;
   display: flex;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    justifyContent: 'space-between'
+  })}
 `
 
 const LeftBtn = styled.button`
@@ -235,8 +238,14 @@ const RightBtn = styled.button`
 `
 
 const ContentGoalName = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    justifyContent: 'Center',
+  alignItems: 'center'
+
+  })}
   position: absolute;
-  display: flex;
+
   justify-content: center;
   width: 253px;
   height: 31px;
@@ -248,8 +257,7 @@ const ContentGoalName = styled.div`
   font-size: 22px;
   line-height: 140%;
   /* identical to box height, or 31px */
-  display: flex;
-  align-items: center;
+
   text-align: center;
   letter-spacing: -0.04em;
   /* color / gray / Gray80 */
