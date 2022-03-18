@@ -43,7 +43,7 @@
 //   document.cookie = `${name}=;expires=${date.toUTCString()};path=/`;
 //   // document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 // }
-function setCookie(name, value, days) {
+function setCookie(name, value, days = 1) {
   let expires = ''
   if (days) {
     const date = new Date()
