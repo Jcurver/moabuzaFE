@@ -40,7 +40,7 @@ function OnedayBuza() {
     console.log('newdate:', newdate)
     mutation.mutate(newdate)
   }
-  console.log('data:', data)
+
 
   const mutation = useMutation((date) => {
     return request({
@@ -49,24 +49,12 @@ function OnedayBuza() {
       data: { recordDate: date },
     })
   })
-  console.log('mutation ::', mutation?.data?.data)
-
-  // const fetchDate = async () => {
-  //   const today = getDate()
-  //   const response = await request({
-  //     url: '/money/dayList',
-  //     method: 'post',
-  //     data: { recordDate: today },
-  //   })
-  //   console.log(response)
-  //   setData(response.data.dayRecordList)
-  // }
 
   useEffect(() => {
     const selectDate = getDate(startDate)
-    // fetchDate()
+
     mutation.mutate(selectDate)
-  }, [startDate])
+  }, [startDate,mutation])
 
   const getFormattedDate = (date) => {
     const month = date.toLocaleDateString('ko-KR', { month: 'long' })
@@ -77,7 +65,6 @@ function OnedayBuza() {
     )}`
   }
   const removeTodayList = (id) => {
-    console.log('remove', id)
     return request({
       url: `/money/dayList/delete/${id}`,
       method: 'delete',
@@ -127,10 +114,7 @@ function OnedayBuza() {
             }
             return null
           }}
-          //     : getDayName(createDate(date)) === '일'
-          //     ? 'sunday'
-          //     : undefined
-          // }
+
         />
       </CalDiv>
       <CalendarLine />
