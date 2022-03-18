@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { alertSelect } from '../recoil/alertSelect'
+import { setFlexStyles } from '../styles/Mixin'
+
 
 function Alerts() {
   const [selectAlert, setSelectAlert] = useRecoilState(alertSelect)
@@ -146,8 +148,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -167,9 +171,11 @@ const TopLine = styled.div`
 
 const SelectDiv = styled.div`
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
 
   width: 120px;
   top: 11.94%;
@@ -179,8 +185,6 @@ const SelectDiv = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  display: flex;
-  align-items: center;
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -209,9 +213,11 @@ const AlertListDiv = styled.div`
 `
 
 const AlertList = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
 
   width: 336px;
   height: 48px;
@@ -238,8 +244,10 @@ const AlertTextTop = styled.div`
   line-height: 100%;
   /* or 12px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   /* color / gray / Gray70 */
@@ -254,8 +262,10 @@ const AlertTextBottom = styled.div`
   line-height: 100%;
   /* or 12px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   /* color / gray / Gray70 */
@@ -263,9 +273,11 @@ const AlertTextBottom = styled.div`
   color: #555555;
 `
 const AlertAcceptRefuse = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   width: 52px;
   height: 24px;
 
@@ -279,9 +291,6 @@ const AlertAcceptRefuse = styled.div`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-
-  display: flex;
-  align-items: center;
   text-align: center;
   letter-spacing: -0.04em;
 
