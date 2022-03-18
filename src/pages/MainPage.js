@@ -11,15 +11,31 @@ import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
-import { apis, api } from '../utils/axios'
-
+import { api } from '../utils/axios'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
-  // const { isLoading, data, isError, error } = useHomeData(toggle)
-  // console.log('홈 데이터 : ', data)
+
+  // const onSuccess = (data) => {
+  //   console.log({ data })
+  // }
+
+  // const onError = (error) => {
+  //   console.log({ error })
+  // }
+
+  // const { isLoading, data, isError, error } = useHomeData(
+  //   toggle,
+  //   onSuccess,
+  //   onError,
+  // )
+  // console.log('데이터확인 : ', isLoading, data, isError, error)
+
+  const data = api.getHomeData()
+  console.log('홈 데이터d : ', data)
+
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -32,16 +48,19 @@ function MainPage() {
   }
 
   // if (isLoading) {
+
   //   return <Loading />
   // }
   // if (isError) {
   //   console.log('error : ', error)
   //   return <ErrorLog error={error} />
   // }
-  async function jebal() {
-    const { data } = await api.getPostButton()
-    console.log('data : ', data)
-  }
+
+  // async function jebal() {
+  //   const { data } = await api.getPostButton()
+  //   console.log('data : ', data)
+  // }
+
   return (
     <Wrapper>
       <NavLink to="/alerts">
@@ -56,14 +75,14 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {/* {(toggle === 'group' && data?.isGroupGoal) ||
-        (toggle === 'challenge' && data?.isChallengeGoal) ? (
-          <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-          ) : (
-            ''
-          )} */}
+      {(toggle === 'group' && data?.isGroupGoal) ||
+      (toggle === 'challenge' && data?.isChallengeGoal) ? (
+        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+      ) : (
+        ''
+      )}
 
-      <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+      {/* <ContentDiv>😂 아직 목표가 없어요!</ContentDiv> */}
 
       {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
       <ProgressDiv />
@@ -72,13 +91,13 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-        <Won>82,900원</Won>
+        <Won>{data ? data.wallet : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-        <Won>82,900원</Won>
-        <ChartBtn onClick={()=>jebal()}>분석해부자</ChartBtn>
+        <Won>{data ? data.totalAmount : ''}원</Won>
+        <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
 
       <Nav />
