@@ -14,14 +14,15 @@ function GroupBuza() {
 
   // 홈데이터 부르는 부분 수정사함 ---------
   const data = api.getHomeData()
-
+  console.log("모아부자 데이터",data)
   const getData = () => {
     data.then((appData) => {
       console.log('appData---------', appData)
+      return appData
     })
   }
-
   getData()
+
   //----------------------
   const CompletedData = [
     {
