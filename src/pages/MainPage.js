@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, atom } from 'recoil'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 import { setFlexStyles } from '../styles/Mixin'
@@ -17,24 +17,49 @@ import { api } from '../utils/axios'
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
+  // const data = 13
+  const onSuccess = (data) => {
+    console.log({ data })
+  }
 
-  // const onSuccess = (data) => {
-  //   console.log({ data })
-  // }
+  const onError = (error) => {
+    console.log({ error })
+  }
+  const navigate = useNavigate()
 
-  // const onError = (error) => {
-  //   console.log({ error })
-  // }
+  const { isLoading, data, isError, error } = useHomeData(
+    toggle,
+    navigate,
+    onSuccess,
+    onError,
+  )
+  console.log('데이터확인 : ', isLoading, data, isError, error)
 
-  // const { isLoading, data, isError, error } = useHomeData(
-  //   toggle,
-  //   onSuccess,
-  //   onError,
-  // )
-  // console.log('데이터확인 : ', isLoading, data, isError, error)
+  // dd
 
-  const data = api.getHomeData()
-  console.log('홈 데이터d : ', data)
+  // useEffect(() => {
+  //   // if (!window.location.search) {
+  //   //   return
+  //   // }
+  //   // const kakaoAuthCode = window.location.search.split('=')[1]
+
+  //   async function getTokenWithKakao() {
+  //     // const { data } = await api.getKakaoLogin(kakaoAuthCode)
+  //     const onSuccess = (data) => {
+  //       console.log({ data })
+  //     }
+  //     const onError = (error) => {
+  //       console.log({ error })
+  //     }
+  //     const { isLoading, data, isError, error } = useHomeData(
+  //       toggle,
+  //       onSuccess,
+  //       onError,
+  //     )
+  //     console.log('데이터확인 : ', isLoading, data, isError, error)
+  //   }
+  //   getTokenWithKakao()
+  // }, [navigate])
 
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
@@ -75,11 +100,11 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {(toggle === 'group' && data?.isGroupGoal) ||
-      (toggle === 'challenge' && data?.isChallengeGoal) ? (
-        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-      ) : (
+      {(toggle === 'group' && data?.data?.groupName) ||
+      (toggle === 'challenge' && data?.data?.challengeName) ? 
         ''
+         : (
+        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
       )}
 
       {/* <ContentDiv>😂 아직 목표가 없어요!</ContentDiv> */}
@@ -91,12 +116,12 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-        <Won>{data ? data.wallet : ""}원</Won>
+        <Won>{data ? data.data.wallet : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-        <Won>{data ? data.totalAmount : ""}원</Won>
+        <Won>{data ? data.data.totalAmount : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
 
