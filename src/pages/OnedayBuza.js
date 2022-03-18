@@ -54,7 +54,8 @@ function OnedayBuza() {
     const selectDate = getDate(startDate)
 
     mutation.mutate(selectDate)
-  }, [startDate,mutation])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startDate])
 
   const getFormattedDate = (date) => {
     const month = date.toLocaleDateString('ko-KR', { month: 'long' })
