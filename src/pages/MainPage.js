@@ -35,6 +35,8 @@ function MainPage() {
   )
   console.log('데이터확인 : ', isLoading, data, isError, error)
 
+  // dd
+
   // useEffect(() => {
   //   // if (!window.location.search) {
   //   //   return
