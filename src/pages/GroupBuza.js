@@ -12,7 +12,7 @@ function GroupBuza() {
   const [isData, setIsData] = useState(true)
   const navigate = useNavigate()
 
-  // 홈데이터 부르는 부분  ---------
+  // 홈데이터 부르는 부분 수정사함 ---------
   const data = api.getHomeData()
 
   const getData = () => {
