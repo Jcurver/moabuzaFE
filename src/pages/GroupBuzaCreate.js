@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
-import Input from '../components/Input'
+// import Input from '../components/Input'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
@@ -64,13 +65,22 @@ function GroupBuzaCreate() {
     },
   ]
   const [selectFriends, setSelectFriends] = useState([])
-  console.log(selectFriends)
+  // console.log(selectFriends)
 
   const [datalist, setDatalist] = useState(data)
-  console.log(datalist)
-  const listfreind = () => {}
-  console.log('selectFriends', selectFriends)
+  // console.log(datalist)
+  // const listfreind = () => {}
+  // console.log('selectFriends', selectFriends)
 
+  const { control, handleSubmit, register, watch } = useForm()
+  console.log(watch())
+  const onSubmit = (data) => {
+    console.log(data, ...selectFriends)
+  }
+
+  const onError = (error) => {
+    console.log(error)
+  }
   // useEffect(() => {
   //   console.log(selectFriends)
   // }, [selectFriends])
@@ -88,17 +98,28 @@ function GroupBuzaCreate() {
       <Title>
         <Text>같이해부자</Text>
       </Title>
-      <CreateMoveButton type="button">생성</CreateMoveButton>
-      <GoalInputBox>
-        <IconBox>+ 목표 금액</IconBox>
-        <Input placeholder="목표 금액을 입력해주세요." />
-      </GoalInputBox>
-      <MemoInputBox>
-        <IconBox>
-          <i className="fas fa-smile" />+ 메모
-        </IconBox>
-        <Input placeholder="메모를 입력해주세요." height="80px" />
-      </MemoInputBox>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
+        <CreateMoveButton>생성</CreateMoveButton>
+        <GoalInputBox>
+          <IconBox>+ 목표 금액</IconBox>
+          <Input
+            type="number"
+            height="52px"
+            placeholder="목표 금액을 입력해주세요."
+            {...register('createGroupAmount', { required: true })}
+          />
+        </GoalInputBox>
+        <MemoInputBox>
+          <IconBox>
+            <i className="fas fa-smile" />+ 메모
+          </IconBox>
+          <Input
+            placeholder="메모를 입력해주세요."
+            height="80px"
+            {...register('createGroupName', { required: true })}
+          />
+        </MemoInputBox>
+      </form>
 
       <FriendWrapper>
         <Text fontSize="14px">
@@ -171,6 +192,34 @@ const Title = styled.div`
   height: 23px;
   left: 144px;
   top: 43px;
+`
+const Input = styled.input`
+  width: 100%;
+  height: ${(props) => props.height};
+  background: #f5f5f7;
+  border-radius: 8px;
+  border: none;
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  letter-spacing: -0.04em;
+
+  /* color / gray / Gray30 */
+
+  ::placeholder {
+    color: #cccccc;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+  }
 `
 
 const Text = styled.span`
@@ -426,7 +475,7 @@ const SelectedFriendWrapper = styled.div`
   top: 30px; */
   margin: 10px 0px;
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
   ::-webkit-scrollbar {
     display: none; /* Chrome , Safari , Opera */
   }
