@@ -13,9 +13,12 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
+import { getItem, setItem } from '../utils/sessionStorage'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
+import { nowDate } from '../hooks/nowDate'
+
 
 registerLocale('ko', ko)
 
@@ -35,13 +38,15 @@ function ExampleCustomInput({ value, onClick }) {
 function OnedayPost() {
   const textInput = useRef()
   const navigate = useNavigate()
-  const [selectDate, setSelectDate] = useState(new Date())
+
+  const [selectDate, setSelectDate] = useState(new Date(nowDate()))
   // useEffect(() => {}, [selectDate])
   // useEffect(() => {
   //   setValue('date',selectDate)
   // },[selectDate])
   function setSelectDateValue(date) {
     setSelectDate(date)
+    setItem('nowdate',date)
     setValue('date', textInput.current.state.preSelection)
   }
 
