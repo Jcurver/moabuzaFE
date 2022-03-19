@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-
-// import Input from '../components/Input'
+import Swal from 'sweetalert2'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
@@ -72,7 +71,14 @@ function GroupBuzaCreate() {
   // const listfreind = () => {}
   // console.log('selectFriends', selectFriends)
 
-  const { control, handleSubmit, register, watch } = useForm()
+  const {
+    control,
+    handleSubmit,
+    register,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm()
   console.log(watch())
   const onSubmit = (data) => {
     console.log(data, ...selectFriends)
@@ -81,6 +87,18 @@ function GroupBuzaCreate() {
   const onError = (error) => {
     console.log(error)
   }
+
+  const onValid = (data) => {
+    Swal.fire({
+      title: '입력 완료!',
+      text: '시작이 반!',
+      icon: 'success',
+    }).then((result) => {
+      console.log(result)
+      navigate('/groupbuza')
+    })
+  }
+
   // useEffect(() => {
   //   console.log(selectFriends)
   // }, [selectFriends])
@@ -98,26 +116,41 @@ function GroupBuzaCreate() {
       <Title>
         <Text>같이해부자</Text>
       </Title>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form onSubmit={handleSubmit(onValid, onError)}>
         <CreateMoveButton>생성</CreateMoveButton>
         <GoalInputBox>
-          <IconBox>+ 목표 금액</IconBox>
+          <IconBox>💰 목표 금액</IconBox>
           <Input
             type="number"
             height="52px"
             placeholder="목표 금액을 입력해주세요."
-            {...register('createGroupAmount', { required: true })}
+            {...register('createGroupAmount', {
+              required: '이 부분을 채워부자!',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '숫자만 써부자',
+                shouldFocus: true,
+              },
+            })}
           />
+          <ErrorSpan style={{ top: '91px' }}>
+            {errors?.createGroupAmount?.message}
+          </ErrorSpan>
         </GoalInputBox>
         <MemoInputBox>
           <IconBox>
-            <i className="fas fa-smile" />+ 메모
+            <i className="fas fa-smile" />✏ 메모
           </IconBox>
           <Input
             placeholder="메모를 입력해주세요."
             height="80px"
-            {...register('createGroupName', { required: true })}
+            {...register('createGroupName', {
+              required: '이 부분을 채워부자!',
+            })}
           />
+          <ErrorSpan style={{ top: '120px' }}>
+            {errors?.createGroupName?.message}
+          </ErrorSpan>
         </MemoInputBox>
       </form>
 
@@ -266,10 +299,11 @@ const CreateMoveButton = styled.button`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
+  /* margin: 106px 16px 16px 16px; */
   width: 328px;
   height: 87px;
   left: 16px;
-  top: 14.7%;
+  top: 106px;
 `
 const IconBox = styled.div`
   /* position: absolute; */
@@ -298,7 +332,7 @@ const MemoInputBox = styled.div`
   width: 328px;
   height: 110px;
   left: 16px;
-  top: 29%;
+  top: 209px;
 `
 // const Icon = styled.i``
 
@@ -313,7 +347,7 @@ const FriendWrapper = styled.div`
   width: 328px;
   height: 40%;
   left: 16px;
-  top: 46.5%;
+  top: 340px;
 `
 
 const FriendsList = styled.div`
@@ -327,7 +361,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: ${(props) => (props.friendslength === 0 ? '7.94%' : '28%')};
+  top: ${(props) => (props.friendslength === 0 ? '57px' : '28%')};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -347,8 +381,6 @@ const Friends = styled.div`
   position: static;
   width: 328px;
   height: 36px;
-  left: 0px;
-  top: 0px;
 
   /* Inside auto layout */
 
@@ -507,5 +539,25 @@ const DeleteFriendContent = styled.button`
   /* color / text / Color-text-Gray1 */
 
   background: white;
+`
+
+const ErrorSpan = styled.span`
+  position: absolute;
+  width: 104px;
+  height: 11px;
+  left: 8px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 100%;
+  /* identical to box height, or 11px */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.04em;
+
+  color: #ff3d00;
 `
 export default GroupBuzaCreate

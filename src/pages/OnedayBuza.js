@@ -312,7 +312,7 @@ const CalDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   })}
   position: absolute;
   width: 120px;
