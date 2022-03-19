@@ -21,15 +21,14 @@ function UserInfo() {
     const kakaoAuthCode = window.location.search.split('=')[1]
 
     async function getTokenWithKakao() {
-      const { data } = await api.getKakaoLogin(kakaoAuthCode)
-      console.log("카카오로그인데이터 : ", data)
+      const { data } = await api.getKakaoLogin(kakaoAuthCode)      
       setCookie('A-AUTH-TOKEN', data.data.access)
       setCookie('R-AUTH-TOKEN', data.data.refresh)
       if (data.data.nickname) {
         navigate('/')
       }
+      console.log('200받았을때 data : ', data)
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
-
     }
     getTokenWithKakao()
   }, [navigate])
