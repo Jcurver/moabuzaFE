@@ -26,7 +26,7 @@ export const instance = axios.create({
     accept: 'application/json,',
   },
 })
-instance.interceptors.request.use(async (config) => {
+instance.interceptors.request.use((config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
