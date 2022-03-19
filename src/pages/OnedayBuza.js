@@ -1,18 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
+
 import 'react-calendar/dist/Calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
 // import Moment from 'react-moment'
 import '../styles/CalendarStyle.css'
 import ko from 'date-fns/locale/ko'
+import { useMutation } from 'react-query'
 import {
   SwipeableList,
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
+import useRecoilState from 'recoil'
+import { setFlexStyles } from '../styles/Mixin'
+import { selectDate } from '../recoil/todayState'
+import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
+import { getDate } from '../hooks/getDate'
+// import { setDateInOnedayList } from '../hooks/useUserData';
 
 registerLocale('ko', ko)
 
@@ -23,40 +31,33 @@ function ExampleCustomInput({ value, onClick }) {
     </CalBtn>
   )
 }
-function OnedayBuza() {
-  const data = [
-    {
-      id: 1,
-      recordType: '수입',
-      recordDate: '1',
-      memos: '수입을 적었당',
-      recordAmount: 10000,
-    },
-    {
-      id: 2,
-      recordType: '같이해부자',
-      recordDate: '1',
-      memos: '같이 성공해보자',
-      recordAmount: 30000,
-    },
-    {
-      id: 3,
-      recordType: '지출',
-      recordDate: '1',
-      memos: '돈쓰는건 재밌어',
-      recordAmount: 100000,
-    },
-    {
-      id: 4,
-      recordType: '도전해부자',
-      recordDate: '1',
-      memos: '도즈으으으언',
-      recordAmount: 16000,
-    },
-  ]
 
+function OnedayBuza() {
+  const navigate = useNavigate()
+  const [data, setData] = useState([])
   const [startDate, setStartDate] = useState(new Date())
-  // 월/일
+  function setDateMutate(date) {
+    const newdate = getDate(date)
+    setStartDate(date)
+    console.log('newdate:', newdate)
+    mutation.mutate(newdate)
+  }
+
+  const mutation = useMutation((date) => {
+    return request({
+      url: '/money/dayList',
+      method: 'post',
+      data: { recordDate: date },
+    })
+  })
+
+  useEffect(() => {
+    const selectDate = getDate(startDate)
+
+    mutation.mutate(selectDate)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startDate])
+
   const getFormattedDate = (date) => {
     const month = date.toLocaleDateString('ko-KR', { month: 'long' })
     const day = date.toLocaleDateString('ko-KR', { day: 'numeric' })
@@ -65,7 +66,21 @@ function OnedayBuza() {
       day.length - 1,
     )}`
   }
-  const removeTodayList = (id) => {console.log('remove',id)}
+  const removeTodayList = (id) => {
+
+    const d = mutation.data.data.dayRecordList.findIndex((a)=> a.id === id)
+    console.log("mmm",mutation.data.data.dayRecordList, d)
+    // console.log("idx::",d)
+    mutation.data.data.dayRecordList = [...mutation.data.data.dayRecordList.silce(0,d),...mutation.data.data.dayRecordList.silce(d+1)]
+    
+    return (
+      
+      request({
+      url: `/money/dayList/delete/${id}`,
+      method: 'delete',
+      data: {},
+    }))
+  }
   const getDayName = (date) => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1)
   }
@@ -94,8 +109,9 @@ function OnedayBuza() {
           dateFormat="yyyy.MM.dd"
           locale="ko"
           selected={startDate}
-          onChange={(date) => setStartDate(date)}
+          onChange={(date) => setDateMutate(date)}
           customInput={<ExampleCustomInput />}
+          maxDate={new Date()}
           // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
           popperModifiers={{ preventOverflow: { enabled: true } }}
           popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
@@ -108,56 +124,74 @@ function OnedayBuza() {
             }
             return null
           }}
-          //     : getDayName(createDate(date)) === '일'
-          //     ? 'sunday'
-          //     : undefined
-          // }
         />
       </CalDiv>
       <CalendarLine />
       <TotalLine style={{ top: '23.89%' }}>
         <TotalLeft>수입</TotalLeft>
-        <TotalRight>+ 50,000 원</TotalRight>
+        <TotalRight>
+          + {mutation?.data?.data?.dayIncomeAmount.toLocaleString('en-US')} 원
+        </TotalRight>
       </TotalLine>
       <TotalLine style={{ top: '28.61%' }}>
         <TotalLeft>지출</TotalLeft>
-        <TotalRight>- 5,000 원</TotalRight>
+        <TotalRight>
+          - {mutation?.data?.data?.dayExpenseAmount.toLocaleString('en-US')} 원
+        </TotalRight>
       </TotalLine>
       <MidLine />
       <TotalLine style={{ top: '36.25%' }}>
         <TotalLeft>같이해부자</TotalLeft>
-        <TotalRight>+ 3,000 원</TotalRight>
+        <TotalRight>
+          + {mutation?.data?.data?.dayGroupAmount.toLocaleString('en-US')} 원
+        </TotalRight>
       </TotalLine>
       <TotalLine style={{ top: '40.97%' }}>
         <TotalLeft>도전해부자</TotalLeft>
-        <TotalRight>+ 66,000 원</TotalRight>
+        <TotalRight>
+          + {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')}{' '}
+          원
+        </TotalRight>
       </TotalLine>
       <BottomLine />
       <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
         <SwipeableList threshold={0.7}>
-          {data.map((d) => (
-            <SwipeableListItem
-              key={d.id}
-              swipeRight={{
-                content: <div style={{marginLeft:"10px",marginBottom:"10px"}}>밀어서 삭제</div>,
-                action: () => {
-                  removeTodayList(d.id)
-                },
-              }}
-            >
-              <TodayListLine key={d.id}>
-                <TodayListLineLeft>
-                  <TodayListLineTitle>{d.recordType}</TodayListLineTitle>
-                  <TodayListLineMemo>{d.memos}</TodayListLineMemo>
-                </TodayListLineLeft>
-                <TodayListLineRight>
-                  {d.recordType === '지출' ? '-' : '+'}{' '}
-                  {d.recordAmount.toLocaleString()} 원
-                </TodayListLineRight>
-              </TodayListLine>
-            </SwipeableListItem>
-          ))}
+          {mutation &&
+            mutation?.data?.data?.dayRecordList.map((d) => (
+              <SwipeableListItem
+                key={d.id}
+                swipeLeft={{
+                  content: (
+                    <div style={{ marginLeft: '10px', marginBottom: '10px' }}>
+                      밀어서 삭제
+                    </div>
+                  ),
+                  action: () => {
+                    removeTodayList(d.id)
+                  },
+                }}
+              >
+                <TodayListLine key={d.id}>
+                  <TodayListLineLeft>
+                    <TodayListLineTitle>
+                      {d.recordType === 'income' ? '수입' : ''}
+                      {d.recordType === 'expense' ? '지출' : ''}
+                      {d.recordType === 'group' ? '같이해부자' : ''}
+                      {d.recordType === 'challenge' ? '도전해부자' : ''}
+                    </TodayListLineTitle>
+                    <TodayListLineMemo>{d.memos}</TodayListLineMemo>
+                  </TodayListLineLeft>
+                  <TodayListLineRight>
+                    {d.recordType === 'income' ? '+' : ''}
+                    {d.recordType === 'expense' ? '-' : ''}
+                    {d.recordType === 'group' ? '👬' : ''}
+                    {d.recordType === 'challenge' ? '👬' : ''}{' '}
+                    {d.recordAmount.toLocaleString('en-US')} 원
+                  </TodayListLineRight>
+                </TodayListLine>
+              </SwipeableListItem>
+            ))}
         </SwipeableList>
       </TodayListDiv>
       <Nav />
@@ -229,8 +263,11 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -272,9 +309,11 @@ const BottomLine = styled.hr`
   box-sizing: border-box;
 `
 const CalDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   position: absolute;
   width: 120px;
   height: 23px;
@@ -310,8 +349,10 @@ const CalendarLine = styled.hr`
   box-sizing: border-box;
 `
 const TotalLine = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    justifyContent: 'space-between',
+  })}
   position: absolute;
   width: 324px;
   height: 14px;
@@ -324,8 +365,10 @@ const TotalLeft = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / gray / Gray70 */
   color: #555555;
@@ -355,8 +398,10 @@ const TodayListTitle = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   /* color / text / Color-text-Black */
@@ -376,9 +421,11 @@ const TodayListDiv = styled.div`
   }
 `
 const TodayListLine = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
   padding: 0 12px;
   position: relative;
   width: 328px;
@@ -391,10 +438,11 @@ const TodayListLine = styled.div`
 `
 const TodayListLineLeft = styled.div``
 const TodayListLineRight = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 6px 12px;
   white-space: nowrap;
   /* position: absolute; */
@@ -430,8 +478,10 @@ const TodayListLineTitle = styled.div`
   line-height: 100%;
   /* identical to box height, or 14px */
   padding-bottom: 4px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / text / Color-text-Black */
   color: #000000;
@@ -442,8 +492,10 @@ const TodayListLineMemo = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / gray / Gray70 */
   color: #555555;

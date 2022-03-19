@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { setFlexStyles } from '../styles/Mixin'
 
 function Settings() {
   function logout() {
@@ -15,14 +16,12 @@ function Settings() {
       cancelButtonColor: '#d33',
       confirmButtonText: '나가부자',
       cancelButtonText: '있어부자',
-    })
-      .then((result) => {
-        if (result.value) {
+    }).then((result) => {
+      if (result.value) {
         console.log(result)
         // this.props.submitUser(this.state)
       }
     })
-
   }
 
   return (
@@ -47,7 +46,7 @@ function Settings() {
         <TodayLogo />
         <TodayText>리뷰</TodayText>
       </TodayDiv>
-      <TodayDiv onClick={()=>logout()} style={{ top: '35.97%' }}>
+      <TodayDiv onClick={() => logout()} style={{ top: '35.97%' }}>
         <TodayLogoDiv />
         <TodayLogo />
         <TodayText>로그아웃</TodayText>
@@ -100,8 +99,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -160,8 +161,11 @@ const TodayText = styled.div`
   line-height: 100%;
   /* identical to box height, or 14px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+
+  })}
   letter-spacing: -0.04em;
 
   color: #000000;

@@ -6,12 +6,11 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
-import { useHomeData } from '../hooks/useUserData'
+import { useMainPageData } from '../hooks/useUserData'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
-import { api } from '../utils/axios'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -27,7 +26,7 @@ function MainPage() {
   }
   const navigate = useNavigate()
 
-  const { isLoading, data, isError, error } = useHomeData(
+  const { isLoading, data, isError, error } = useMainPageData(
     toggle,
     navigate,
     onSuccess,
@@ -101,9 +100,9 @@ function MainPage() {
         </RightBtn>
       </Toggle>
       {(toggle === 'group' && data?.data?.groupName) ||
-      (toggle === 'challenge' && data?.data?.challengeName) ? 
+      (toggle === 'challenge' && data?.data?.challengeName) ? (
         ''
-         : (
+      ) : (
         <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
       )}
 
@@ -116,16 +115,12 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-
         <Won>{data ? data.data.wallet : ''}원</Won>
-
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-
         <Won>{data ? data.data.totalAmount : ''}원</Won>
-
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
 
@@ -133,6 +128,8 @@ function MainPage() {
     </Wrapper>
   )
 }
+
+// ddd
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
