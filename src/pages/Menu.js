@@ -1,7 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as togetherSvg } from '../assets/icons/together.svg'
 import { setFlexStyles } from '../styles/Mixin'
+
 
 function Menu() {
   return (
@@ -23,7 +25,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/groupbuza">
         <TodayDiv style={{ top: '20.27%' }}>
-          <TodayLogoDiv />
+          <TodayLogoDiv/>
           <TodayLogo />
           <TodayText>같이해부자</TodayText>
         </TodayDiv>
@@ -141,14 +143,14 @@ const TodayLogoDiv = styled.div`
 
   background: rgba(196, 196, 196, 0.3);
 `
-const TodayLogo = styled.div`
+const TodayLogo = styled(togetherSvg)`
   position: absolute;
   width: 24px;
   height: 24px;
   left: 16px;
   top: 18px;
 
-  background: #c4c4c4;
+  /* background: #c4c4c4; */
 `
 const TodayText = styled.div`
   position: absolute;
