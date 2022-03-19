@@ -11,15 +11,30 @@ import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
-import { api } from '../utils/axios'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
+  // const data = 13
+  const onSuccess = (data) => {
+    console.log({ data })
+  }
+
+  const onError = (error) => {
+    console.log({ error })
+  }
   const navigate = useNavigate()
-  const { isLoading, data, isError, error } = useMainPageData(navigate)
+
+  const { isLoading, data, isError, error } = useMainPageData(
+    toggle,
+    navigate,
+    onSuccess,
+    onError,
+  )
   console.log('데이터확인 : ', isLoading, data, isError, error)
+
+  // dd
 
   // useEffect(() => {
   //   // if (!window.location.search) {
@@ -56,13 +71,19 @@ function MainPage() {
     }
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
-  if (isError) {
-    console.log('error : ', error)
-    return <ErrorLog error={error} />
-  }
+  // if (isLoading) {
+
+  //   return <Loading />
+  // }
+  // if (isError) {
+  //   console.log('error : ', error)
+  //   return <ErrorLog error={error} />
+  // }
+
+  // async function jebal() {
+  //   const { data } = await api.getPostButton()
+  //   console.log('data : ', data)
+  // }
 
   return (
     <Wrapper>
@@ -78,82 +99,31 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {toggle === 'group' && data && data?.data?.groupName ? (
-        <>
-          <ContentGoalName>{data ? data.data.groupName :""}</ContentGoalName>
-          <ContentUnderDiv>
-            <ContentWon>{data?.data?.groupNeedAmount}원</ContentWon>
-            <ContentNeed>남았어요!</ContentNeed>
-          </ContentUnderDiv>
-          <CharacterInfo>
-            <CharacterLevel>Lv.{data?.data?.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data?.data?.hero}</CharacterNickname>
-          </CharacterInfo>
-          <ProgressDiv />
-          <ProgressBar />
-          <ProgressBarCharge percent={data ? data.data.groupPercent : '0'}>
-            {data && parseInt(data.data.groupPercent, 10) > 9
-              ? data.data.groupPercent
-              : '0'}
-            %
-          </ProgressBarCharge>
-        </>
-      ) : (
+      {(toggle === 'group' && data?.data?.groupName) ||
+      (toggle === 'challenge' && data?.data?.challengeName) ? (
         ''
-      )}
-      {toggle === 'group' && !data.data.groupName ? (
+      ) : (
         <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-      ) : (
-        ''
       )}
-      {toggle === 'challenge' && data.data.challengeName ? (
-        <>
-          <ContentGoalName>{data.data.challengeName}</ContentGoalName>
-          <ContentUnderDiv>
-            <ContentWon>
-              {data.data.challengeNeedAmount.toLocaleString('en-US')}원
-            </ContentWon>
-            <ContentNeed>남았어요!</ContentNeed>
-          </ContentUnderDiv>
-          <CharacterInfo>
-            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo>
-          <ProgressDiv />
-          <ProgressBar />
-          <ProgressBarCharge percent={data ? data.data.challengePercent : '0'}>
-            {data ? data.data.challengePercent : '0'}%
-          </ProgressBarCharge>
-        </>
-      ) : (
-        ''
-      )}
-      {toggle === 'challenge' && !data.data.challengeName ? (
-        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-      ) : (
-        ''
-      )}
-      {data &&
-      data.data.totalAmount === 0 &&
-      ((toggle === 'group' && !data.data.groupName) ||
-        (toggle === 'challenge' && !data.data.challengeName)) ? (
-        <SetAmountButton>자산을 설정해주세요</SetAmountButton>
-      ) : (
-        ''
-      )}
+
+      {/* <ContentDiv>😂 아직 목표가 없어요!</ContentDiv> */}
+
+      {/* <MakeChallenge>자산을 설정해주세요</MakeChallenge> */}
+      <ProgressDiv />
+      <ProgressBar />
+      <ProgressBarCharge>30%</ProgressBarCharge>
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
-        <Won>{data ? data.data.wallet.toLocaleString('en-US') : '0'}원</Won>
+        <Won>{data ? data.data.wallet : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
-        <Won>
-          {data ? data.data.totalAmount.toLocaleString('en-US') : '0'}원
-        </Won>
+        <Won>{data ? data.data.totalAmount : ''}원</Won>
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
+
       <Nav />
     </Wrapper>
   )
@@ -168,15 +138,18 @@ const Wrapper = styled.div`
 const RightButtonDiv = styled.div`
   position: absolute;
   left: 85.56%;
+
   top: 4.03%;
   width: 48px;
   height: 48px;
+
   background: rgba(196, 196, 196, 0.3);
 `
 
 const RightButton = styled.div`
   position: absolute;
   left: 88.89%;
+
   top: 5.69%;
   width: 24px;
   height: 24px;
@@ -191,9 +164,12 @@ const TopDiv = styled.div`
   })}
   position: absolute;
   width: 360px;
+
   left: 0px;
   top: 0px;
+
   background: #f6f9fe;
+
   height: 67.4%;
 `
 
@@ -205,12 +181,10 @@ const Toggle = styled.div`
   left: 89px;
   top: 7.78%;
   background-color: #e5eaf2;
-  padding: 2px 2.55px;
 
-  ${setFlexStyles({
-    display: 'flex',
-    justifyContent: 'space-between'
-  })}
+  padding: 2px 2.55px;
+  display: flex;
+  justify-content: space-between;
 `
 
 const LeftBtn = styled.button`
@@ -238,111 +212,39 @@ const RightBtn = styled.button`
   border-radius: 20px;
   border: none;
 `
-
-const ContentGoalName = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    justifyContent: 'center',
-  alignItems: 'center'
-
-  })}
-  position: absolute;
-
-  justify-content: center;
-  width: 253px;
-  height: 31px;
-  left: 57px;
-  top: 18.06%;
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 140%;
-  /* identical to box height, or 31px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-  /* color / gray / Gray80 */
-  color: #333333;
-`
-const ContentUnderDiv = styled.div`
-  position: absolute;
-
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  top: 23.47%;
-  width: 360px;
-  height: 29px;
-`
-const ContentWon = styled.div`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
-  letter-spacing: -0.04em;
-  color: #4675f0;
-  margin-right: 6px;
-`
-const ContentNeed = styled.div`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.04em;
-
-  color: #333333;
-`
 const ContentDiv = styled.div`
   position: absolute;
   width: 197px;
   height: 31px;
   left: 81px;
   top: 18.06%;
+
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
   line-height: 140%;
   /* identical to box height, or 31px */
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
+
+  display: flex;
+  align-items: center;
   text-align: center;
   letter-spacing: -0.04em;
+
   /* color / gray / Gray80 */
+
   color: #333333;
 `
-const SetAmountButton = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  padding: 16px 20px;
-  position: absolute;
-  width: 171px;
-  height: 48px;
-  left: 95px;
-  top: 56.25%;
-  background: #ffffff;
-  box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
-  border-radius: 24px;
-`
+
 const MakeChallenge = styled.button`
   /* home_입력전_자산설정Btn */
 
   /* Auto layout */
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 16px 20px;
   border: none;
   position: absolute;
@@ -355,37 +257,6 @@ const MakeChallenge = styled.button`
   box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
   border-radius: 24px;
 `
-const CharacterInfo = styled.div`
-  position: absolute;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  top: 55.69%;
-  width: 360px;
-  height: 20px;
-`
-const CharacterLevel = styled.div`
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.04em;
-  color: #999999;
-  margin-right: 4px;
-`
-const CharacterNickname = styled.div`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.04em;
-
-  color: #333333;
-`
 
 const ProgressDiv = styled.div`
   position: absolute;
@@ -397,7 +268,7 @@ const ProgressDiv = styled.div`
   width: 328px;
   height: 60px;
   left: 16px;
-  top: 56.8%;
+  top: 409/720px;
 `
 const ProgressBar = styled.div`
   position: absolute;
@@ -418,9 +289,8 @@ const ProgressBarCharge = styled.div`
     alignItems: 'center',
     justifyContent: 'center',
   })}
-
   position: absolute;
-  width: ${(props) => props.percent * 3.28}px;
+  width: 110.77px;
   height: 22px;
   left: 16px;
   top: 62.1%;
@@ -439,7 +309,8 @@ const ProgressBarCharge = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-
+  display: flex;
+  align-items: center;
 
   /* color/gray/White */
 
@@ -488,10 +359,8 @@ const ChartBtn = styled.button`
   line-height: 100%;
   /* identical to box height, or 12px */
   padding: 9px 12px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
+  display: flex;
+  align-items: center;
   text-align: center;
   color: white;
   background: #4675f0;
