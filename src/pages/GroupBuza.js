@@ -14,15 +14,15 @@ function GroupBuza() {
   const navigate = useNavigate()
 
   // 홈데이터 부르는 부분 수정사함 ---------
-  const data = api.getHomeData()
+  const data = useGroupData()
+  console.log('data-------', data)
+  // const getData = () => {
+  //   data.then((appData) => {
+  //     console.log('appData---------', appData)
+  //   })
+  // }
 
-  const getData = () => {
-    data.then((appData) => {
-      console.log('appData---------', appData)
-    })
-  }
-
-  getData()
+  // getData()
   //----------------------
   const CompletedData = [
     {
