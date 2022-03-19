@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { setFlexStyles } from '../styles/Mixin'
+
 
 function AddFriends() {
   return (
@@ -87,8 +89,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -157,9 +161,11 @@ const NicknameInput = styled.input`
   }
 `
 const FriendLine = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  ${setFlexStyles({
+    display: 'flex',
+    flexDirection:'column',
+    alignItems: 'flex-start',
+  })}
   padding: 0px;
 
   position: absolute;
@@ -170,9 +176,10 @@ const FriendLine = styled.div`
 `
 
 const FriendInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   padding: 0px;
 
   position: absolute;
@@ -225,10 +232,11 @@ const FriendNickName = styled.div`
   margin: 0px 8px;
 `
 const FriendAddButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 7px 13px;
 
   position: absolute;
@@ -257,9 +265,10 @@ const FriendAddButtonText = styled.p`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 

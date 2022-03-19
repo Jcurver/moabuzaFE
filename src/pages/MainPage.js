@@ -204,7 +204,7 @@ const Toggle = styled.div`
   top: 7.78%;
   background-color: #e5eaf2;
   padding: 2px 2.55px;
-  display: flex;
+
   ${setFlexStyles({
     display: 'flex',
     justifyContent: 'space-between'
@@ -240,7 +240,7 @@ const RightBtn = styled.button`
 const ContentGoalName = styled.div`
   ${setFlexStyles({
     display: 'flex',
-    justifyContent: 'Center',
+    justifyContent: 'center',
   alignItems: 'center'
 
   })}
@@ -265,9 +265,12 @@ const ContentGoalName = styled.div`
 `
 const ContentUnderDiv = styled.div`
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   top: 23.47%;
   width: 360px;
   height: 29px;
@@ -304,18 +307,21 @@ const ContentDiv = styled.div`
   font-size: 22px;
   line-height: 140%;
   /* identical to box height, or 31px */
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
   /* color / gray / Gray80 */
   color: #333333;
 `
 const SetAmountButton = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 16px 20px;
   position: absolute;
   width: 171px;
@@ -330,11 +336,11 @@ const MakeChallenge = styled.button`
   /* home_입력전_자산설정Btn */
 
   /* Auto layout */
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 16px 20px;
   border: none;
   position: absolute;
@@ -349,9 +355,11 @@ const MakeChallenge = styled.button`
 `
 const CharacterInfo = styled.div`
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   top: 55.69%;
   width: 360px;
   height: 20px;
@@ -429,8 +437,7 @@ const ProgressBarCharge = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  display: flex;
-  align-items: center;
+
 
   /* color/gray/White */
 
@@ -479,8 +486,10 @@ const ChartBtn = styled.button`
   line-height: 100%;
   /* identical to box height, or 12px */
   padding: 9px 12px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   color: white;
   background: #4675f0;

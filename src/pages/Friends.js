@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { setFlexStyles } from '../styles/Mixin'
+
 
 function Friends() {
   return (
@@ -127,8 +129,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -187,17 +191,21 @@ bottom: 0px;
 
 `
 const FriendsLine = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
   padding: 0px;
   width: 328px;
   height: 48px;
   margin-bottom: 1.11%;
 `
 const FriendProfile = styled.div`
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
 
   width:100px;
 `
@@ -212,10 +220,11 @@ const FriendText = styled.div`
 
 `
 const AddButton = styled.div`
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 7px 13px;
 
   width: 69px;
@@ -233,9 +242,10 @@ const AddButton = styled.div`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 

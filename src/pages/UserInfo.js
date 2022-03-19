@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import instance from 'axios'
 import { useForm } from 'react-hook-form'
 import { NavLink, useNavigate } from 'react-router-dom'
+
 // import { useCookies,Cookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
+import { setFlexStyles } from '../styles/Mixin'
 import { getCookie, setCookie } from '../utils/cookie'
 import { api } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
@@ -185,8 +187,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -204,9 +208,10 @@ const TopLine = styled.div`
   background: #f5f5f7;
 `
 const CharacterDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'flex-start',
+  })}
   padding: 0px;
 
   position: absolute;
@@ -323,8 +328,10 @@ const NicknameAlert = styled.div`
   line-height: 100%;
   /* identical to box height, or 11px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   /* color / gray / Gray50 */
