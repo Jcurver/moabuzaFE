@@ -1,11 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import { request } from '../utils/axios'
 
-export const useHomeData = (toggle, navigate, onSuccess, onError) => {
+export const useGroupData = (toggle, navigate, onSuccess, onError) => {
   return useQuery(
-    ['home-data', navigate, toggle],
+    ['group-data', navigate, toggle],
     () => {
-      return request({ url: '/home', method: 'get' })
+      return request({ url: '/money/group', method: 'get' })
     },
     onSuccess,
     onError,

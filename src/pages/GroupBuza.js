@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -6,6 +6,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
 import { api } from '../utils/axios'
+import { useGroupData } from '../hooks/useGroupData'
 
 function GroupBuza() {
   const [pending, setPending] = useState(true)
