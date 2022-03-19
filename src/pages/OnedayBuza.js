@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
+
 import 'react-calendar/dist/Calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
 // import Moment from 'react-moment'
@@ -13,6 +14,7 @@ import {
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
 import useRecoilState from 'recoil'
+import { setFlexStyles } from '../styles/Mixin'
 import { selectDate } from '../recoil/todayState'
 import { request } from '../utils/axios'
 import Nav from '../components/Nav'
@@ -41,7 +43,6 @@ function OnedayBuza() {
     mutation.mutate(newdate)
   }
 
-
   const mutation = useMutation((date) => {
     return request({
       url: '/money/dayList',
@@ -54,7 +55,7 @@ function OnedayBuza() {
     const selectDate = getDate(startDate)
 
     mutation.mutate(selectDate)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate])
 
   const getFormattedDate = (date) => {
@@ -115,7 +116,6 @@ function OnedayBuza() {
             }
             return null
           }}
-
         />
       </CalDiv>
       <CalendarLine />
@@ -255,8 +255,11 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 
@@ -298,9 +301,11 @@ const BottomLine = styled.hr`
   box-sizing: border-box;
 `
 const CalDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  })}
   position: absolute;
   width: 120px;
   height: 23px;
@@ -336,8 +341,10 @@ const CalendarLine = styled.hr`
   box-sizing: border-box;
 `
 const TotalLine = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    justifyContent: 'space-between',
+  })}
   position: absolute;
   width: 324px;
   height: 14px;
@@ -350,8 +357,10 @@ const TotalLeft = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / gray / Gray70 */
   color: #555555;
@@ -381,8 +390,10 @@ const TodayListTitle = styled.div`
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   /* color / text / Color-text-Black */
@@ -402,9 +413,11 @@ const TodayListDiv = styled.div`
   }
 `
 const TodayListLine = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
   padding: 0 12px;
   position: relative;
   width: 328px;
@@ -417,10 +430,11 @@ const TodayListLine = styled.div`
 `
 const TodayListLineLeft = styled.div``
 const TodayListLineRight = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
   padding: 6px 12px;
   white-space: nowrap;
   /* position: absolute; */
@@ -456,8 +470,10 @@ const TodayListLineTitle = styled.div`
   line-height: 100%;
   /* identical to box height, or 14px */
   padding-bottom: 4px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / text / Color-text-Black */
   color: #000000;
@@ -468,8 +484,10 @@ const TodayListLineMemo = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
   /* color / gray / Gray70 */
   color: #555555;

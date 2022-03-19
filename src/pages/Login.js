@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
+import { setFlexStyles } from '../styles/Mixin'
+
 
 function Login() {
   return (
@@ -14,8 +16,10 @@ function Login() {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  ${setFlexStyles({
+    display: 'flex',
+    justifyContent: 'center',
+  })}
   position: relative;
   width: 100%;
   height: 100%;

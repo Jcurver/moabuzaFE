@@ -11,6 +11,7 @@ import ko from 'date-fns/locale/ko'
 import '../styles/SelectStyle.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 
 import Nav from '../components/Nav'
@@ -94,8 +95,7 @@ function OnedayPost() {
           memos: data.memo,
           recordAmount: parseInt(data.amount, 10),
         },
-      })
-        .then(
+      }).then(
         (res) => console.log('resLLLL', res),
         Swal.fire({
           title: '입력 완료!',
@@ -225,8 +225,10 @@ const CalBtn = styled.button`
   background: #c4c4c4;
 `
 const SelectDiv = styled.div`
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   position: absolute;
   width: 328px;
   height: 52px;
@@ -255,9 +257,11 @@ const OptionTitle = styled.div`
   color: #000000;
 `
 const OptionDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
   position: absolute;
   width: 328px;
   height: 52px;
@@ -328,8 +332,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 `
@@ -386,8 +392,10 @@ const ErrorSpan = styled.span`
   line-height: 100%;
   /* identical to box height, or 11px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   color: #ff3d00;
