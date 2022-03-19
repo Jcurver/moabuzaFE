@@ -78,16 +78,16 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {toggle === 'group' && data.data.groupName ? (
+      {toggle === 'group' && data && data?.data?.groupName ? (
         <>
-          <ContentGoalName>{data.data.groupName}</ContentGoalName>
+          <ContentGoalName>{data ? data.data.groupName :""}</ContentGoalName>
           <ContentUnderDiv>
-            <ContentWon>{data.data.groupNeedAmount}원</ContentWon>
+            <ContentWon>{data?.data?.groupNeedAmount}원</ContentWon>
             <ContentNeed>남았어요!</ContentNeed>
           </ContentUnderDiv>
           <CharacterInfo>
-            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data.data.hero}</CharacterNickname>
+            <CharacterLevel>Lv.{data?.data?.heroLevel}</CharacterLevel>
+            <CharacterNickname>{data?.data?.hero}</CharacterNickname>
           </CharacterInfo>
           <ProgressDiv />
           <ProgressBar />
