@@ -26,6 +26,7 @@ export const instance = axios.create({
     accept: 'application/json,',
   },
 })
+
 instance.interceptors.request.use((config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
@@ -45,10 +46,7 @@ export const request = async ({ ...options }) => {
 
   // instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
   // instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-  console.log(
-    'req instance headers: ',
-    instance.defaults.headers,
-  )
+  console.log('req instance headers: ', instance.defaults.headers)
 
   const onSuccess = (response) => {
     return response
