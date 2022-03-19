@@ -128,6 +128,8 @@ function MainPage() {
     </Wrapper>
   )
 }
+
+// ddd
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
