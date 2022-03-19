@@ -8,12 +8,11 @@ export const useMainPageData = (navigate) => {
 }
 
 export const useOnedayPageData = (date) => {
-useMutation(() => {
-  return request({
-    url: '/money/dayList',
-    method: 'post',
-    data: { recordDate: date },
+  useMutation(() => {
+    return request({
+      url: '/money/dayList',
+      method: 'post',
+      data: { recordDate: date },
+    })
   })
-})
-
 }
