@@ -47,7 +47,6 @@ export const request = async ({ ...options }) => {
   // instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
   console.log(
     'req instance headers: ',
-    instance.headers,
     instance.defaults.headers,
   )
 

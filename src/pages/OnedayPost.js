@@ -11,8 +11,11 @@ import ko from 'date-fns/locale/ko'
 import '../styles/SelectStyle.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { setFlexStyles } from '../styles/Mixin'
+import { getDate } from '../hooks/getDate'
 
 import Nav from '../components/Nav'
+import { request } from '../utils/axios'
 
 registerLocale('ko', ko)
 
@@ -33,7 +36,7 @@ function OnedayPost() {
   const textInput = useRef()
   const navigate = useNavigate()
   const [selectDate, setSelectDate] = useState(new Date())
-  useEffect(() => {}, [selectDate])
+  // useEffect(() => {}, [selectDate])
   // useEffect(() => {
   //   setValue('date',selectDate)
   // },[selectDate])
@@ -72,24 +75,39 @@ function OnedayPost() {
   }
 
   const onValid = (data) => {
+    console.log('getDate:::', getDate(selectDate))
+    console.log('parseInt:::', parseInt(data.amount, 10))
     // setError("memo", { message: "Server offline." });
-
-    if (data.option === '-- 항목을 골라부자 --') {
+    console.log('onValiddata:', data)
+    if (data.option === '0') {
       setError(
         'option',
         { message: '항목을 안 골랐나부자' },
         { shouldFocus: true },
       )
     } else {
-      Swal.fire({
-        title: '입력 완료!',
-        text: '더 힘차게 모아부자!',
-        icon: 'success',
-      }).then((result) => {
-        console.log(result)
-        navigate('/onedaybuza')
-      })
+      return request({
+        url: '/money/addRecord/post',
+        method: 'post',
+        data: {
+          recordType: data.option,
+          recordDate: getDate(selectDate),
+          memos: data.memo,
+          recordAmount: parseInt(data.amount, 10),
+        },
+      }).then(
+        (res) => console.log('resLLLL', res),
+        Swal.fire({
+          title: '입력 완료!',
+          text: '더 힘차게 모아부자!',
+          icon: 'success',
+        }).then((result) => {
+          console.log(result)
+          navigate('/onedaybuza')
+        }),
+      )
     }
+    return null
     // setError("extraError", { message: "Server offline." });
   }
 
@@ -108,7 +126,6 @@ function OnedayPost() {
         <OptionTitle style={{ top: '17.36%' }}>항목 선택</OptionTitle>
         <SelectDiv>
           <select
-            value="0"
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('option')}
             style={{
@@ -118,10 +135,10 @@ function OnedayPost() {
             }}
           >
             <option value="0">-- 항목을 골라부자 --</option>
-            <option value="1">수입</option>
-            <option value="2">지출</option>
-            <option value="3">같이해부자</option>
-            <option value="4">도전해부자</option>
+            <option value="income">수입</option>
+            <option value="expense">지출</option>
+            <option value="group">같이해부자</option>
+            <option value="challenge">도전해부자</option>
           </select>
         </SelectDiv>
         <ErrorSpan style={{ top: '28%' }}>{errors?.option?.message}</ErrorSpan>
@@ -208,8 +225,10 @@ const CalBtn = styled.button`
   background: #c4c4c4;
 `
 const SelectDiv = styled.div`
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   position: absolute;
   width: 328px;
   height: 52px;
@@ -238,9 +257,11 @@ const OptionTitle = styled.div`
   color: #000000;
 `
 const OptionDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  })}
   position: absolute;
   width: 328px;
   height: 52px;
@@ -311,8 +332,10 @@ const Title = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   text-align: center;
   letter-spacing: -0.04em;
 `
@@ -369,8 +392,10 @@ const ErrorSpan = styled.span`
   line-height: 100%;
   /* identical to box height, or 11px */
 
-  display: flex;
-  align-items: center;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+  })}
   letter-spacing: -0.04em;
 
   color: #ff3d00;
