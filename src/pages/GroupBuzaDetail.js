@@ -18,6 +18,85 @@ function GroupBuzaDetail() {
       src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
     },
   ]
+
+  const AccountData = [
+    {
+      accountDate: '2022-03-18',
+      account: [
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라1',
+          acconutNumber: 10000,
+          accountText: '오늘도 힘내부자!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라2',
+          acconutNumber: 20000,
+          accountText: '내일도 힘내부자!!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라3',
+          acconutNumber: 30000,
+          accountText: '어제도 힘내부자!!',
+        },
+      ],
+    },
+    {
+      accountDate: '2022-03-19',
+      account: [
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라1',
+          acconutNumber: 10000,
+          accountText: '오늘도 힘내부자!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라2',
+          acconutNumber: 20000,
+          accountText: '내일도 힘내부자!!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라3',
+          acconutNumber: 30000,
+          accountText: '어제도 힘내부자!!',
+        },
+      ],
+    },
+    {
+      accountDate: '2022-03-20',
+      account: [
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라1',
+          acconutNumber: 10000,
+          accountText: '오늘도 힘내부자!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라2',
+          acconutNumber: 20000,
+          accountText: '내일도 힘내부자!!',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
+          accountTitle: '룰루랄라3',
+          acconutNumber: 30000,
+          accountText: '어제도 힘내부자!!',
+        },
+      ],
+    },
+  ]
+
+  // const ampsdnl = AccountData.map((dd, i) => {
+  //   return dd.account.map((ddd, idx) => {
+  //     return ddd.src
+  //   })
+  // })
+  // console.log(ampsdnl)
   return (
     <Wrapper>
       <ColorWrapper>
@@ -41,7 +120,7 @@ function GroupBuzaDetail() {
           <DetailCharacter>sdsd</DetailCharacter>
           <ProgressBar
             completed={60}
-            bgColor="#60666F"
+            bgColor="#FFB000"
             baseBgColor="#ffffff"
             width="328px"
             height="22px"
@@ -69,21 +148,29 @@ function GroupBuzaDetail() {
           </button>
         </DetailWrapper>
       </ColorWrapper>
+      <AccountTitle>내역</AccountTitle>
       <AccountSummaryWrapper>
-        <AccountTitle>내역</AccountTitle>
-        <AccountContent>
-          <AccountDate>2022.03.04</AccountDate>
-          <AccountListsWrapper>
-            <AccountList>
-              <AccountImg>ss</AccountImg>
-              <AccountListCenter>
-                <AccountListTitle>룰루랄라</AccountListTitle>
-                <AccountListText>오늘도 힘내부자!</AccountListText>
-              </AccountListCenter>
-              <AccountNumber>1.0000원</AccountNumber>
-            </AccountList>
-          </AccountListsWrapper>
-        </AccountContent>
+        {AccountData.map((acd, idx) => {
+          return (
+            <AccountContent>
+              <AccountDate>{acd.accountDate}</AccountDate>
+              <AccountListsWrapper>
+                {acd.account.map((acd2, idx) => {
+                  return (
+                    <AccountList>
+                      <AccountImg src={acd2.src} />
+                      <AccountListCenter>
+                        <AccountListTitle>{acd2.accountTitle}</AccountListTitle>
+                        <AccountListText>{acd2.accountText}</AccountListText>
+                      </AccountListCenter>
+                      <AccountNumber>{acd2.acconutNumber}</AccountNumber>
+                    </AccountList>
+                  )
+                })}
+              </AccountListsWrapper>
+            </AccountContent>
+          )
+        })}
       </AccountSummaryWrapper>
     </Wrapper>
   )
@@ -99,7 +186,7 @@ const ColorWrapper = styled.div`
   background: #e5e5e5;
   /* border: 1px solid black; */
   box-sizing: border-box;
-  height: 65%;
+  height: 480px;
 `
 const Title = styled.div`
   position: absolute;
@@ -114,8 +201,8 @@ const Text = styled.span`
   font-style: normal;
   font-weight: ${(props) => props.fontWeight || 500};
   font-size: ${(props) => props.fontSize || '16px'};
-  margin-top : ${(props) => props.marginTop};
-  line-height : 140%  ; 
+  margin-top: ${(props) => props.marginTop};
+  line-height: 140%;
 `
 
 const CancleMoveButton = styled.button`
@@ -201,9 +288,16 @@ const AccountSummaryWrapper = styled.div`
   width: 328px;
   /* border: 1px solid black; */
   margin: 0 auto;
-  position: absolute;
-  top: 65%;
+  /* position: absolute; */
+  height: 400px;
+  top: 483px;
   left: 16px;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 const GroupFriend = styled.div`
   display: flex;
@@ -233,7 +327,7 @@ const GroupFriendIcon = styled.img`
 `
 
 const AccountTitle = styled.div`
-  margin: 24px 0px 8px 0px;
+  margin: 24px 0px 8px 16px;
 `
 const AccountContent = styled.div`
   /* border: 1px solid black; */
@@ -267,6 +361,8 @@ const AccountDate = styled.div`
 
 const AccountListsWrapper = styled.div`
   /* border: 1px solid black; */
+  /* overflow: scroll; */
+  /* height: 1000px; */
 `
 
 const AccountList = styled.div`
@@ -282,7 +378,7 @@ const AccountList = styled.div`
   margin-bottom: 8px;
 `
 
-const AccountImg = styled.div`
+const AccountImg = styled.img`
   width: 48px;
   height: 48px;
   border: 0.3px solid black;
