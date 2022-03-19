@@ -6,7 +6,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
-import { useHomeData } from '../hooks/useUserData'
+import { useMainPageData } from '../hooks/useUserData'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
@@ -26,7 +26,7 @@ function MainPage() {
   }
   const navigate = useNavigate()
 
-  const { isLoading, data, isError, error } = useHomeData(
+  const { isLoading, data, isError, error } = useMainPageData(
     toggle,
     navigate,
     onSuccess,
