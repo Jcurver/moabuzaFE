@@ -100,9 +100,11 @@ function MainPage() {
         </RightBtn>
       </Toggle>
       {(toggle === 'group' && data?.data?.groupName) ||
-      (toggle === 'challenge' && data?.data?.challengeName) ? (
+
+      (toggle === 'challenge' && data?.data?.challengeName) ? 
         ''
-      ) : (
+         : (
+
         <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
       )}
 
@@ -115,12 +117,18 @@ function MainPage() {
 
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
+
         <Won>{data ? data.data.wallet : ''}원</Won>
+
+
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
+
         <Won>{data ? data.data.totalAmount : ''}원</Won>
+
+
         <ChartBtn>분석해부자</ChartBtn>
       </BottomLine>
 
