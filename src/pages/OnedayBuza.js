@@ -67,11 +67,19 @@ function OnedayBuza() {
     )}`
   }
   const removeTodayList = (id) => {
-    return request({
+
+    const d = mutation.data.data.dayRecordList.findIndex((a)=> a.id === id)
+    console.log("mmm",mutation.data.data.dayRecordList, d)
+    // console.log("idx::",d)
+    mutation.data.data.dayRecordList = [...mutation.data.data.dayRecordList.silce(0,d),...mutation.data.data.dayRecordList.silce(d+1)]
+    
+    return (
+      
+      request({
       url: `/money/dayList/delete/${id}`,
       method: 'delete',
       data: {},
-    }).then(navigate(0))
+    }))
   }
   const getDayName = (date) => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1)
