@@ -1,15 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
+import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
+import { api, request } from '../utils/axios'
+import { useChallengeData } from '../hooks/useChallengeData'
 
 function ChallengeBuza() {
   const [pending, setPending] = useState(true)
   const [isData, setIsData] = useState(true)
   const navigate = useNavigate()
+
+  // 홈데이터 부르는 부분 수정사함 -----------
+  const { data } = useChallengeData(navigate)
+  console.log('challenge-------', data)
+  const cancelGroup = (id) => {
+    Swal.fire({
+      title: '도전 포기!',
+      text: '진짜 포기하시겠어요?!!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '넵 포기!',
+      cancelButtonText: '취소!',
+    }).then((result) => {
+      console.log(result)
+      if (result.isConfirmed) {
+        request({
+          url: `/money/group/exitgroup/`,
+          method: 'post',
+          data: {
+            id: data.id,
+          },
+        }).then(
+          (data.data.goalStatus = 'noGoal'),
+          Swal.fire('포기!', '도전을 포기했습니다!', 'success'),
+          navigate('/groupbuza'),
+        )
+      }
+    })
+  }
+  useEffect(() => {}, [navigate])
 
   const CompletedData = [
     {
@@ -42,92 +77,115 @@ function ChallengeBuza() {
 
   return (
     <Wrapper>
+      {data ? data.data.goalStatus : 'asdasd'}
       <button
         type="button"
         onClick={() => {
-          setPending(!pending)
+          request({
+            url: `/money/group`,
+            method: 'get',
+            data: {
+              id: data.id,
+            },
+          }).then(
+            (response) => console.log(response),
+            (data.data.goalStatus = ''),
+            navigate('/groupbuza'),
+          )
         }}
       >
-        수락대기중
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          setIsData(!isData)
-        }}
-      >
-        데이터가 있을때
+        설정변경
       </button>
       <Title>
         {/* <MoveButton type="button">asdasd</MoveButton> */}
-        <Text>같이해부자</Text>
+        <Text>도전해부자</Text>
         {/* <MoveButton type="button">asdasd</MoveButton> */}
       </Title>{' '}
-      {pending && !isData && (
-        <GoalWrapper>
-          <GoalText>원하는 목표를 만들어보세요</GoalText>
-          <GoalDescribe>공동의 목표를 친구와 함께 달성해보세요.</GoalDescribe>
-          <Button
-            width="296px"
-            height="52px"
-            fontSize="14px"
-            onClick={() => {
-              navigate('/groupbuzacreate')
-            }}
-          >
-            + 목표 개설하기
-          </Button>
-        </GoalWrapper>
-      )}
-      {!pending && !isData && (
-        <GoalWrapper>
-          <GoalText>수락대기중</GoalText>
-          <GoalDescribe>모두 수락되면 같이해부자가 생성됩니다.</GoalDescribe>
-          <Button width="296px" height="52px" fontSize="14px">
-            대기취소
-          </Button>
-        </GoalWrapper>
-      )}
-      {isData && (
-        <>
-          <GoalWrapper
-            onClick={() => {
-              navigate('/groupbuzadetail')
-            }}
-          >
-            <GroupFriend>
-              {FriendData.map((data, idx) => {
-                return <GroupFriendIcon src={data.src} />
-              })}
-            </GroupFriend>
-            <GroupFriendTitle>티끌모아 태산 동전 저금하기!</GroupFriendTitle>
-            <GroupFriendGoal>
-              <GroupFriendGoalAmount>9999 </GroupFriendGoalAmount>
-              <span>원 남았습니다.</span>
-            </GroupFriendGoal>
-            <ProgressBar
-              completed={60}
-              bgColor="#60666F"
-              width="304px"
-              height="20px"
-              margin="0 auto"
-              borderRadius="11px"
-              labelAlignment="center"
-              labelSize="14px"
-            />
-          </GoalWrapper>
-          <ConmpletedTitle>완료목록</ConmpletedTitle>
-          <CompletedList>
-            {CompletedData.map((data) => {
-              return (
-                <CompletedContent>
-                  <CompletedText>{data.title}</CompletedText>
-                </CompletedContent>
-              )
-            })}
-          </CompletedList>
-        </>
-      )}
+      {data
+        ? data.data.goalStatus === 'noGoal' && (
+            <GoalWrapper>
+              <GoalText>원하는 목표를 만들어보세요</GoalText>
+              <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
+              <Button
+                width="296px"
+                height="52px"
+                fontSize="14px"
+                background="#4675F0"
+                onClick={() => {
+                  navigate('/groupbuzacreate')
+                }}
+              >
+                + 목표 개설하기
+              </Button>
+            </GoalWrapper>
+          )
+        : null}
+      {data
+        ? data.data.goalStatus === '' && (
+            <>
+              <GoalWrapper
+                onClick={() => {
+                  navigate('/groupbuzadetail')
+                }}
+              >
+                <GroupFriend>
+                  {FriendData.map((data, idx) => {
+                    return <GroupFriendIcon src={data.src} />
+                  })}
+                </GroupFriend>
+                <GroupFriendTitle>
+                  {data.data.groupName}
+                  티끌모아 태산 동전 저금하기!
+                </GroupFriendTitle>
+                <GroupFriendGoal>
+                  <GroupFriendGoalAmount>9999 </GroupFriendGoalAmount>
+                  <span>원 남았습니다.</span>
+                </GroupFriendGoal>
+                <ProgressBar
+                  completed={60}
+                  // completed={data ? data.data.groupNowPercent : 50}
+                  animateOnRender="true"
+                  bgColor="#FFB000"
+                  width="304px"
+                  height="20px"
+                  margin="0 auto"
+                  borderRadius="11px"
+                  labelAlignment="center"
+                  labelSize="14px"
+                />
+              </GoalWrapper>
+              <ConmpletedTitle>완료목록</ConmpletedTitle>
+              <CompletedList>
+                {CompletedData.map((data) => {
+                  return (
+                    <CompletedContent>
+                      <CompletedText>{data.title}</CompletedText>
+                    </CompletedContent>
+                  )
+                })}
+              </CompletedList>
+            </>
+          )
+        : null}
+      {data
+        ? data.data.goalStatus === 'waiting' && (
+            <GoalWrapper>
+              <GoalText>수락대기중</GoalText>
+              <GoalDescribe>
+                모두 수락되면 도전해부자가 생성됩니다.
+              </GoalDescribe>
+
+              <Button
+                width="296px"
+                height="52px"
+                fontSize="14px"
+                onClick={cancelGroup}
+              >
+                대기취소
+              </Button>
+            </GoalWrapper>
+          )
+        : null}
       <Nav />
     </Wrapper>
   )

@@ -2,8 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+import { useGroupData } from '../hooks/useGroupData'
+import { request } from '../utils/axios'
+// import '../styles/SweetAlertButton.css'
 
 function GroupBuzaDetail() {
+  const navigate = useNavigate()
   const FriendData = [
     {
       src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
@@ -90,7 +95,35 @@ function GroupBuzaDetail() {
       ],
     },
   ]
+  const { data } = useGroupData(navigate)
+  const cancelGroup = (id) => {
+    Swal.fire({
+      title: '그룹포기!',
+      text: '진짜 포기하시겠어요?!!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '넵 포기!',
+      cancelButtonText: '취소!',
+    }).then((result) => {
+      console.log(result)
+      if (result.isConfirmed) {
+        request({
+          url: `/money/group/exitgroup/`,
+          method: 'post',
+          data: {
+            id: data.id,
+          },
+        }).then(
+          Swal.fire('포기!', '그룹을 포기했습니다!', 'success'),
+          navigate('/groupbuza'),
+        )
+      }
+    })
+  }
 
+  console.log('detail------', data)
   // const ampsdnl = AccountData.map((dd, i) => {
   //   return dd.account.map((ddd, idx) => {
   //     return ddd.src
@@ -100,16 +133,26 @@ function GroupBuzaDetail() {
   return (
     <Wrapper>
       <ColorWrapper>
-        <CancleMoveButton>취소</CancleMoveButton>
+        <CancleMoveButton
+          onClick={() => {
+            navigate('/groupbuza')
+          }}
+        >
+          취소
+        </CancleMoveButton>
         <Title>
           <Text>같이해부자</Text>
         </Title>
-        <ForgiveMoveButton>포기</ForgiveMoveButton>
+        <ForgiveMoveButton onClick={cancelGroup}>포기</ForgiveMoveButton>
 
         <DetailWrapper>
-          <DetailTitle>티끌모아 태산 동전 저금하기!</DetailTitle>
+          <DetailTitle>
+            {data ? data.data.groupName : '그룹이름이 없습니다'}
+          </DetailTitle>
           <DetailTextWrapper>
-            <DetailAmount>40,000</DetailAmount>
+            <DetailAmount>
+              {data ? data.data.groupLeftAmount : '남은게 없네유'}
+            </DetailAmount>
             <DetaileText>원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
@@ -119,7 +162,9 @@ function GroupBuzaDetail() {
           </GroupFriend>
           <DetailCharacter>sdsd</DetailCharacter>
           <ProgressBar
-            completed={60}
+            // completed={data ? data.data.groupNowPercent : 0}
+            completed={70}
+            animateOnRender="true"
             bgColor="#FFB000"
             baseBgColor="#ffffff"
             width="328px"
@@ -129,7 +174,6 @@ function GroupBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-
           <button
             type="button"
             onClick={() => {
@@ -137,7 +181,7 @@ function GroupBuzaDetail() {
                 icon: 'success',
                 title: '목표달성!',
                 text: '이미 프로 도전러! ',
-                imageUrl: 'https://unsplash.it/400/200',
+                // imageUrl: 'https://unsplash.it/400/200',
                 imageWidth: 400,
                 imageHeight: 200,
                 imageAlt: 'Custom image',
@@ -146,6 +190,26 @@ function GroupBuzaDetail() {
           >
             완료버튼
           </button>
+          {data
+            ? data.data.groupNowPercent === 100 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    Swal.fire({
+                      icon: 'success',
+                      title: '목표달성!',
+                      text: '이미 프로 도전러! ',
+                      imageUrl: 'https://unsplash.it/400/200',
+                      imageWidth: 400,
+                      imageHeight: 200,
+                      imageAlt: 'Custom image',
+                    })
+                  }}
+                >
+                  완료버튼
+                </button>
+              )
+            : null}
         </DetailWrapper>
       </ColorWrapper>
       <AccountTitle>내역</AccountTitle>
@@ -163,7 +227,7 @@ function GroupBuzaDetail() {
                         <AccountListTitle>{acd2.accountTitle}</AccountListTitle>
                         <AccountListText>{acd2.accountText}</AccountListText>
                       </AccountListCenter>
-                      <AccountNumber>{acd2.acconutNumber}</AccountNumber>
+                      <AccountNumber>{acd2.acconutNumber} 원</AccountNumber>
                     </AccountList>
                   )
                 })}
@@ -368,11 +432,9 @@ const AccountListsWrapper = styled.div`
 const AccountList = styled.div`
   position: relative;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   background: #f5f5f7;
   border-radius: 8px;
-  /* border: 1px solid black; */
   width: 328px;
   height: 64px;
   margin-bottom: 8px;
@@ -381,8 +443,8 @@ const AccountList = styled.div`
 const AccountImg = styled.img`
   width: 48px;
   height: 48px;
-  border: 0.3px solid black;
   margin-right: 12px;
+  /* margin-left: 3px; */
 `
 
 const AccountListCenter = styled.div``
@@ -429,14 +491,14 @@ const AccountNumber = styled.div`
   right: 12px;
   height: 28px;
   /* margin: 18px 12px 18px 0px; */
-  border: 0.1px solid black;
+  /* border: 0.1px solid black; */
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
   padding: 6px 12px;
-  background: #60666f;
+  background: #4675f0;
   color: white;
   /* Heading / Roboto / H6(B) */
 
