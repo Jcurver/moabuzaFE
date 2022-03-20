@@ -20,7 +20,9 @@ import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
+import { getItem, setItem } from '../utils/sessionStorage';
 // import { setDateInOnedayList } from '../hooks/useUserData';
+import { nowDate } from '../hooks/nowDate'
 
 registerLocale('ko', ko)
 
@@ -34,14 +36,20 @@ function ExampleCustomInput({ value, onClick }) {
 
 function OnedayBuza() {
   const navigate = useNavigate()
-  const [data, setData] = useState([])
-  const [startDate, setStartDate] = useState(new Date())
+
+
+  
+  const [startDate, setStartDate] = useState(new Date(nowDate()))
   function setDateMutate(date) {
+
     const newdate = getDate(date)
+    setItem('nowdate', date)
+    // console.log("date",date)
     setStartDate(date)
-    console.log('newdate:', newdate)
+    // console.log('newdate:', newdate)
     mutation.mutate(newdate)
   }
+  
 
   const mutation = useMutation((date) => {
     return request({
@@ -50,9 +58,10 @@ function OnedayBuza() {
       data: { recordDate: date },
     })
   })
-
+  
   useEffect(() => {
     const selectDate = getDate(startDate)
+    // setDaylist(mutation?.data?.data?.dayRecordList)
 
     mutation.mutate(selectDate)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,19 +76,19 @@ function OnedayBuza() {
     )}`
   }
   const removeTodayList = (id) => {
+    // const d = mutation.data.data.dayRecordList.findIndex((a) => a.id === id)
+    // console.log('mmm', mutation.data.data.dayRecordList, d)
+    // // console.log("idx::",d)
+    // setDaylist([
+    //   ...mutation.data.data.dayRecordList.silce(0, d),
+    //   ...mutation.data.data.dayRecordList.silce(d + 1),
+    // ])
 
-    const d = mutation.data.data.dayRecordList.findIndex((a)=> a.id === id)
-    console.log("mmm",mutation.data.data.dayRecordList, d)
-    // console.log("idx::",d)
-    mutation.data.data.dayRecordList = [...mutation.data.data.dayRecordList.silce(0,d),...mutation.data.data.dayRecordList.silce(d+1)]
-    
-    return (
-      
-      request({
+    return request({
       url: `/money/dayList/delete/${id}`,
       method: 'delete',
       data: {},
-    }))
+    }).then(navigate(0))
   }
   const getDayName = (date) => {
     return date.toLocaleDateString('ko-KR', { weekday: 'long' }).substr(0, 1)

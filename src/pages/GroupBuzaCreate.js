@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { request } from '../utils/axios'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
+
   const data = [
     {
       id: 1,
@@ -87,16 +89,44 @@ function GroupBuzaCreate() {
   const onError = (error) => {
     console.log(error)
   }
-
-  const onValid = (data) => {
-    Swal.fire({
-      title: '입력 완료!',
-      text: '시작이 반!',
-      icon: 'success',
-    }).then((result) => {
-      console.log(result)
-      navigate('/groupbuza')
+  const selectFriends2 = (friends) => {
+    return request({
+      url: '/money/group/creategroup',
+      method: 'get',
+    }).then((res) => {
+      console.log(res)
     })
+  }
+  selectFriends2()
+  // console.log('selectFriends2----', selectFriends2)
+
+  const onValid = (groupData) => {
+    if (selectFriends.length < 2) {
+      return Swal.fire({
+        title: '2명 이상 선택!',
+        text: '2명 이상 선택해주세요!!',
+        icon: 'error',
+      })
+    }
+    return request({
+      url: '/money/group/creategroup',
+      method: 'post',
+      data: {
+        createGroupName: groupData.createGroupName,
+        createGroupAmount: parseInt(groupData.createGroupAmount, 10),
+        groupFriends: selectFriends,
+      },
+    }).then(
+      (res) => console.log('groupCreate', res),
+      Swal.fire({
+        title: '입력 완료!',
+        text: '시작이 반!!',
+        icon: 'success',
+      }).then((result) => {
+        console.log(result)
+        navigate('/groupbuza')
+      }),
+    )
   }
 
   // useEffect(() => {
