@@ -1,35 +1,42 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { ReactComponent as Menu } from '../assets/icons/navbar/menu.svg'
+import { ReactComponent as Dmenu } from '../assets/icons/navbar/dmenu.svg'
+import { ReactComponent as Pay } from '../assets/icons/navbar/pay.svg'
+import { ReactComponent as Dpay } from '../assets/icons/navbar/dpay.svg'
+import { ReactComponent as Home } from '../assets/icons/navbar/home.svg'
+import { ReactComponent as Dhome } from '../assets/icons/navbar/dhome.svg'
+import { ReactComponent as Together } from '../assets/icons/navbar/together.svg'
+import { ReactComponent as Dtogether } from '../assets/icons/navbar/dtogether.svg'
+import { ReactComponent as Challenge } from '../assets/icons/navbar/challenge.svg'
+import { ReactComponent as Dchallenge } from '../assets/icons/navbar/dchallenge.svg'
+
 import { setFlexStyles } from '../styles/Mixin'
 
 function NavBar() {
-  if (
-    window.location.pathname === '/login' 
+  const location = useLocation()
+  console.log("로케이션", location)
+  
+  if (window.location.pathname === '/login') return null
 
-  )
-    return null
+  if (window.location.pathname === '/menu') return null
 
-    if (
-      window.location.pathname === '/menu'
-    )
-      return null
-
-  const navStyle = (isActive) => {
-
-  }
+  const navStyle = (isActive) => {}
   return (
     <NavBars>
       <NavLink
         to="/menu"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: 'black',
+          color: isActive ? '#4675F0' : '#D1D5DA',
           fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
-          <MenuIcon>z</MenuIcon>
+          <Dmenu style={{ width: '24px', height: '24px' }} />
+          {/* <MenuIcon>z</MenuIcon> */}
           <MenuText>메뉴</MenuText>
         </Component>
       </NavLink>
@@ -37,12 +44,18 @@ function NavBar() {
         to="/onedaybuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: 'black',
+          color: isActive ? '#4675F0' : '#D1D5DA',
           fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
-          <MenuIcon>z</MenuIcon>
+          {location.pathname === '/onedaybuza' ? (
+            <Pay style={{ width: '24px', height: '24px' }} />
+          ) : (
+            <Dpay style={{ width: '24px', height: '24px' }} />
+          )}
+          {/* <Pay style={{ width: '24px', height: '24px' }} /> */}
+
           <MenuText>하루부자</MenuText>
         </Component>
       </NavLink>
@@ -50,12 +63,17 @@ function NavBar() {
         to="/"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: 'black',
+          color: isActive ? '#4675F0' : '#D1D5DA',
           fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
-          <MenuIcon>z</MenuIcon>
+          {location.pathname === '/' ? (
+            <Home style={{ width: '24px', height: '24px' }} />
+          ) : (
+            <Dhome style={{ width: '24px', height: '24px' }} />
+          )}
+
           <MenuText>홈</MenuText>
         </Component>
       </NavLink>
@@ -64,12 +82,17 @@ function NavBar() {
         to="/groupbuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: 'black',
+          color: isActive ? '#4675F0' : '#D1D5DA',
           fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
-          <MenuIcon>z</MenuIcon>
+          {location.pathname === '/groupbuza' ? (
+            <Together style={{ width: '24px', height: '24px' }} />
+          ) : (
+            <Dtogether style={{ width: '24px', height: '24px' }} />
+          )}
+
           <MenuText>같이해부자</MenuText>
         </Component>
       </NavLink>
@@ -77,12 +100,17 @@ function NavBar() {
         to="/challengebuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: 'black',
+          color: isActive ? '#4675F0' : '#D1D5DA',
           fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
-          <MenuIcon>z</MenuIcon>
+          {location.pathname === '/challengebuza' ? (
+            <Challenge style={{ width: '24px', height: '24px' }} />
+          ) : (
+            <Dchallenge style={{ width: '24px', height: '24px' }} />
+          )}
+
           <MenuText>도전해부자</MenuText>
         </Component>
       </NavLink>
