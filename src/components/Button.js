@@ -35,7 +35,8 @@ const MainButton = styled.button`
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
   /* 색상 */
-  background: #5f5f77;
+
+  background: ${(props) => props.background || '#5f5f77'};
   &:hover {
     background: #339af0;
   }
