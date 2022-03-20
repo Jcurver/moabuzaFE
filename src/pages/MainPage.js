@@ -3,10 +3,13 @@ import styled from 'styled-components'
 import { useRecoilState, atom } from 'recoil'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import ProgressBar from '@ramonak/react-progress-bar'
 import axios from 'axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../hooks/useUserData'
+import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
+
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
@@ -68,7 +71,16 @@ function MainPage() {
     <Wrapper>
       <NavLink to="/alerts">
         <RightButtonDiv />
-        <RightButton />
+        <Alert
+          style={{
+            width: '24px',
+            height: '24px',
+            left: '88.89%',
+            top: '5.69%',
+            position: 'absolute',
+          }}
+        />
+
       </NavLink>
       <Toggle>
         <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
@@ -120,10 +132,33 @@ function MainPage() {
             <CharacterNickname>{data.data.hero}</CharacterNickname>
           </CharacterInfo>
           <ProgressDiv />
-          <ProgressBar />
-          <ProgressBarCharge percent={data ? data.data.challengePercent : '0'}>
-            {data ? data.data.challengePercent : '0'}%
-          </ProgressBarCharge>
+          <div
+            style={{
+              width: '100%',
+              height: '20px',
+              position: 'absolute',
+              marginTop: '130%',
+            }}
+          >
+            <ProgressBar
+              completed={data ? data.data.challengePercent : ''}
+              // completed={data ? data.data.groupNowPercent : 50}
+              animateOnRender="true"
+              bgColor="#FFB000"
+              width="328px"
+              height="20px"
+              margin="0 auto"
+              borderRadius="11px"
+              labelAlignment="center"
+              labelSize="14px"
+            />
+            <ProgressBarCharge
+              percent={data ? data.data.challengePercent : '0'}
+            >
+              {data ? data.data.challengePercent : '0'}%
+              {/* {data && data.data.challengePercent > 5 ? "%":''} */}
+            </ProgressBarCharge>
+          </div>
         </>
       ) : (
         ''
@@ -375,25 +410,21 @@ const ProgressDiv = styled.div`
   height: 60px;
   left: 16px;
   top: 56.8%;
-  position: absolute;
-  width: 328px;
-  height: 60px;
-  left: 16px;
-  top: 56.8%;
 `
-const ProgressBar = styled.div`
-  position: absolute;
-  width: 328px;
-  height: 22px;
-  left: 16px;
-  top: 62.1%;
+// const ProgressBar = styled.div`
+//   position: absolute;
+//   width: 328px;
+//   height: 22px;
+//   left: 16px;
+//   top: 62.1%;
 
-  /* color/Btn-basic1 */
+//   /* color/Btn-basic1 */
 
-  /* background: yellow; */
-  background: #e5eaf2;
-  border-radius: 11px;
-`
+//   /* background: yellow; */
+//   background: #e5eaf2;
+//   border-radius: 11px;
+// `
+
 const ProgressBarCharge = styled.div`
   ${setFlexStyles({
     display: 'flex',
@@ -403,9 +434,10 @@ const ProgressBarCharge = styled.div`
 
   position: absolute;
   width: ${(props) => props.percent * 3.28}px;
-  height: 22px;
+  height: 20px;
   left: 16px;
-  top: 62.1%;
+  top:0px;
+  /* top: 62.1%; */
 
   /* color / Accent */
 
