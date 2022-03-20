@@ -7,31 +7,16 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
 import { setFlexStyles } from '../styles/Mixin'
+import { request, api } from '../utils/axios'
+
 import { getCookie, setCookie } from '../utils/cookie'
-import { api } from '../utils/axios'
 // import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function UserInfo() {
   const navigate = useNavigate()
-  useEffect(() => {
-    if (!window.location.search) {
-      return
-    }
-    const kakaoAuthCode = window.location.search.split('=')[1]
+  const [nickNameDup, setNickNameDup] = useState(false)
 
-    async function getTokenWithKakao() {
-      const { data } = await api.getKakaoLogin(kakaoAuthCode)      
-      setCookie('A-AUTH-TOKEN', data.data.access)
-      setCookie('R-AUTH-TOKEN', data.data.refresh)
-      if (data.data.nickname) {
-        navigate('/')
-      }
-      console.log('200받았을때 data : ', data)
-      console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
-    }
-    getTokenWithKakao()
-  }, [navigate])
 
   const [hero, setHero] = useState('hero0')
   function setHeroValue(i) {
@@ -43,9 +28,74 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
+
+    if (!nickNameDup) {
+       Swal.fire({
+         title: '닉네임 중복확인해부자',
+        //  text: '열심히 모아부자!',
+         // icon: 'success',
+       }).then((result) => {
+         console.log(result)
+       })
+      return
+    }
+    // if (!nickNameDup) {
+    //   Swal.fire({
+    //     title: '사용중인 닉네임',
+    //     text: '다른거로 골라부자',
+    //     // icon: 'success',
+    //   }).then((result) => {
+    //     console.log(result)
+    //   })
+    //   return
+    // }
+
     await api.getUserInfo(data, hero)
     navigate('/')
   }
+  const nicknameDup = () => {
+    console.log('닉네임::', watch().nickname)
+    if (watch().nickname === '') {
+      return null
+    }
+    return request({
+      url: '/nickname/validation',
+      method: 'post',
+      data: { nickname: watch().nickname },
+    })
+      .then((res) => {
+        console.log('중복확인::', res)
+        if (res.status === 200) {
+          if (res.data === '닉네임 사용 가능') {
+            setNickNameDup(true)
+            if (!nickNameDup) {
+              Swal.fire({
+                title: '사용가능한 닉네임',
+                text: '열심히 모아부자!',
+                // icon: 'success',
+              }).then((result) => {
+                console.log(result)
+              })
+
+            }
+          } else {
+            setNickNameDup(false)
+            if (!nickNameDup) {
+              Swal.fire({
+                title: '사용중인 닉네임',
+                text: '다른거로 골라부자',
+                // icon: 'success',
+              }).then((result) => {
+                console.log(result)
+              })
+
+            }
+          }
+        }
+      })
+      .catch((error) => console.log(error))
+  }
+
   const {
     register,
     handleSubmit,
@@ -55,6 +105,30 @@ function UserInfo() {
     setError,
   } = useForm()
   console.log(watch())
+
+  useEffect(() => {
+
+    setNickNameDup(false)
+    console.log(nickNameDup)
+    if (!window.location.search) {
+      return
+    }
+    const kakaoAuthCode = window.location.search.split('=')[1]
+
+    async function getTokenWithKakao() {
+      const { data } = await api.getKakaoLogin(kakaoAuthCode)
+      setCookie('A-AUTH-TOKEN', data.data.access)
+      setCookie('R-AUTH-TOKEN', data.data.refresh)
+      if (data.data.nickname) {
+        navigate('/')
+      }
+      console.log('200받았을때 data : ', data)
+      console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
+    }
+    getTokenWithKakao()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate,watch().nickname])
+
   return (
     <Wrapper>
       <TopLine />
@@ -110,6 +184,8 @@ function UserInfo() {
             },
           })}
         />
+        <NicknameSubmit onClick={() => nicknameDup()}>중복확인</NicknameSubmit>
+
         {errors?.nickname ? (
           <NicknameAlert style={{ color: 'red' }}>
             {errors?.nickname?.message}
@@ -288,7 +364,7 @@ const NicknameText = styled.div`
 `
 const NicknameInput = styled.input`
   position: absolute;
-  width: 328px;
+  width: 216px;
   height: 52px;
   left: 16px;
   top: 40.83%;
@@ -315,6 +391,40 @@ const NicknameInput = styled.input`
     letter-spacing: -0.04em;
     color: #cccccc;
   }
+`
+const NicknameSubmit = styled.div`
+  position: absolute;
+  width: 104px;
+  height: 52px;
+  left: 240px;
+  top: 40.83%;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+
+  /* color/Btn-basic1 */
+
+  border: 1px solid #e5eaf2;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: right;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
+  color: #4675f0;
 `
 const NicknameAlert = styled.div`
   position: absolute;
