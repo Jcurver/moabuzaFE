@@ -101,6 +101,7 @@ function ChallengeBuzaCreate() {
   // console.log('selectFriends2----', selectFriends2)
 
   const onValid = (challengeData) => {
+    console.log('challengeData', challengeData)
     return request({
       url: '/money/challenge/createChallenge',
       method: 'post',

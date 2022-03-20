@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import { useGroupData } from '../hooks/useGroupData'
+import { useChallengeData } from '../hooks/useChallengeData'
 import { request } from '../utils/axios'
 // import '../styles/SweetAlertButton.css'
 
@@ -95,10 +95,10 @@ function ChallengeBuzaDetail() {
       ],
     },
   ]
-  const { data } = useGroupData(navigate)
+  const { data } = useChallengeData(navigate)
   const cancelGroup = (id) => {
     Swal.fire({
-      title: '그룹포기!',
+      title: '도전포기!',
       text: '진짜 포기하시겠어요?!!',
       icon: 'warning',
       showCancelButton: true,
@@ -110,11 +110,11 @@ function ChallengeBuzaDetail() {
       console.log(result)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/${data.data.id}`,
+          url: `/money/challenge/exitchallenge/${data.data.id}`,
           method: 'get',
         }).then(
-          Swal.fire('포기!', '그룹을 포기했습니다!', 'success'),
-          navigate('/groupbuza'),
+          Swal.fire('포기!', '도전을 포기했습니다!', 'success'),
+          navigate('/challengebuza'),
         )
       }
     })
@@ -138,13 +138,13 @@ function ChallengeBuzaDetail() {
           취소
         </CancleMoveButton>
         <Title>
-          <Text>같이해부자</Text>
+          <Text>도전해부자</Text>
         </Title>
         <ForgiveMoveButton onClick={cancelGroup}>포기</ForgiveMoveButton>
 
         <DetailWrapper>
           <DetailTitle>
-            {data ? data.data.groupName : '그룹이름이 없습니다'}
+            {data ? data.data.groupName : '도전이름이 없습니다'}
           </DetailTitle>
           <DetailTextWrapper>
             <DetailAmount>

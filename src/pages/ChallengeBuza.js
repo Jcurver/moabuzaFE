@@ -28,19 +28,12 @@ function ChallengeBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(result)
+      console.log(data.data.id)
       if (result.isConfirmed) {
         request({
-          url: `/money/challenge/exitchallenge/`,
-          method: 'post',
-          data: {
-            id: data.id,
-          },
-        }).then(
-          (data.data.goalStatus = 'noGoal'),
-          Swal.fire('포기!', '도전을 포기했습니다!', 'success'),
-          navigate('/challengebuza'),
-        )
+          url: `/money/challenge/exitchallenge/${data.data.id}`,
+          method: 'delete',
+        }).then(window.location.reload('/challengebuza'))
       }
     })
   }
@@ -134,7 +127,7 @@ function ChallengeBuza() {
                   })}
                 </GroupFriend>
                 <GroupFriendTitle>
-                  {data.data.groupName}
+                  {data.data.challengeName}
                   티끌모아 태산 동전 저금하기!
                 </GroupFriendTitle>
                 <GroupFriendGoal>
