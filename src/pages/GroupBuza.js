@@ -31,13 +31,13 @@ function GroupBuza() {
       console.log(result)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/`,
-          method: 'post',
+          url: `/money/group/exitgroup/13`,
+          method: 'get',
           data: {
             id: data.id,
           },
         }).then(
-          (data.data.goalStatus = 'noGoal'),
+          // (data.data.goalStatus = 'noGoal'),
           Swal.fire('포기!', '그룹을 포기했습니다!', 'success'),
           navigate('/groupbuza'),
         )
