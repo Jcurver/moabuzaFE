@@ -17,7 +17,7 @@ function ChallengeBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data } = useChallengeData(navigate)
   console.log('challenge-------', data)
-  const cancelGroup = (id) => {
+  const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전 포기!',
       text: '진짜 포기하시겠어요?!!',
@@ -28,19 +28,12 @@ function ChallengeBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(result)
+      console.log(data.data.id)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/`,
-          method: 'post',
-          data: {
-            id: data.id,
-          },
-        }).then(
-          (data.data.goalStatus = 'noGoal'),
-          Swal.fire('포기!', '도전을 포기했습니다!', 'success'),
-          navigate('/groupbuza'),
-        )
+          url: `/money/challenge/exitchallenge/${data.data.id}`,
+          method: 'delete',
+        }).then(window.location.reload('/challengebuza'))
       }
     })
   }
@@ -90,7 +83,7 @@ function ChallengeBuza() {
           }).then(
             (response) => console.log(response),
             (data.data.goalStatus = ''),
-            navigate('/groupbuza'),
+            navigate('/challengebuza'),
           )
         }}
       >
@@ -112,7 +105,7 @@ function ChallengeBuza() {
                 fontSize="14px"
                 background="#4675F0"
                 onClick={() => {
-                  navigate('/groupbuzacreate')
+                  navigate('/challengebuzacreate')
                 }}
               >
                 + 목표 개설하기
@@ -125,7 +118,7 @@ function ChallengeBuza() {
             <>
               <GoalWrapper
                 onClick={() => {
-                  navigate('/groupbuzadetail')
+                  navigate('/challengebuzadetail')
                 }}
               >
                 <GroupFriend>
@@ -134,7 +127,7 @@ function ChallengeBuza() {
                   })}
                 </GroupFriend>
                 <GroupFriendTitle>
-                  {data.data.groupName}
+                  {data.data.challengeName}
                   티끌모아 태산 동전 저금하기!
                 </GroupFriendTitle>
                 <GroupFriendGoal>
@@ -179,7 +172,7 @@ function ChallengeBuza() {
                 width="296px"
                 height="52px"
                 fontSize="14px"
-                onClick={cancelGroup}
+                onClick={cancelChallenge}
               >
                 대기취소
               </Button>
