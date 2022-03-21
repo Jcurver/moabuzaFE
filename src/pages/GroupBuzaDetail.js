@@ -107,11 +107,11 @@ function GroupBuzaDetail() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(result)
+      console.log(data.data.id)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/`,
-          method: 'post',
+          url: `/money/group/exitgroup/${data.data.id}`,
+          method: 'delete',
           data: {
             id: data.id,
           },

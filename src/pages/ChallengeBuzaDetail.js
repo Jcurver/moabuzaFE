@@ -111,7 +111,7 @@ function ChallengeBuzaDetail() {
       if (result.isConfirmed) {
         request({
           url: `/money/challenge/exitchallenge/${data.data.id}`,
-          method: 'get',
+          method: 'delete',
         }).then(
           Swal.fire('포기!', '도전을 포기했습니다!', 'success'),
           navigate('/challengebuza'),
