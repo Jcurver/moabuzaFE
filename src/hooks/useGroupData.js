@@ -6,3 +6,19 @@ export const useGroupData = (navigate) => {
     return request({ url: '/money/group', method: 'get' })
   })
 }
+
+export const useGroupDataPost = (date) => {
+  useMutation(() => {
+    return request({
+      url: '/money/group/creategroup',
+      method: 'post',
+      data: { recordDate: date },
+    })
+  })
+}
+
+export const useFriendData = (navigate) => {
+  return useQuery(['friend-data', navigate], () => {
+    return request({ url: '/money/group/creategroup', method: 'get' })
+  })
+}
