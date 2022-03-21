@@ -24,8 +24,7 @@ const messaging = getMessaging()
 
 // 토큰값 얻기
 getToken(messaging, {
-  vapidKey:
-    'BMWIeLOBT4DtCrAoEBnEq1wE-c7fD77JOcb81JXLDQ_ciZjO2hETemNw7yaQJO9Ta_nW6542oEgJd16Xdf_Ssuw',
+  vapidKey:process.env.REACT_APP_VAPID_KEY,
 })
   .then((currentToken) => {
     if (currentToken) {
