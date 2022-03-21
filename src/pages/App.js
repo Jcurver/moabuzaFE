@@ -1,15 +1,17 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy,useState,useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { getToken, onMessage } from 'firebase/messaging'
 import styled from 'styled-components'
+import { messaging } from './firebase'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
 import Settings from './Settings'
 import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
-
+import './fcm'
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
@@ -36,6 +38,29 @@ const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
+  // let swRegist = null
+
+  // const [Token, setToken] = useState(null)
+
+  // getToken(messaging, {
+  //   vapidKey: process.env.REACT_APP_VAPID_KEY,
+   
+  // }).then((token) => {
+  //   console.log('token', token)
+  //   setToken(token)
+  //   swRegist = messaging.swRegistration
+  // })
+
+  // // async 를 사용학 위해 메서드로 따로 분리함
+  // const firebaseMessageToken = async () => {
+  //   const token = await getToken()
+  //   console.log('token === ', token)
+  // }
+  // // 추후 서버에 토큰을 저장하는 기능을 여기에 추가
+  // useEffect(() => {
+  //   firebaseMessageToken()
+  // }, [])
+
   return (
     <ErrorBoundary FallbackComponent={ErrorLog}>
       <Suspense fallback={<Loading />}>

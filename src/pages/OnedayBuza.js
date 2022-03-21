@@ -435,7 +435,7 @@ const TodayListLine = styled.div`
     alignItems: 'center',
     justifyContent: 'space-between',
   })}
-  padding: 0 12px;
+  padding: 12px;
   position: relative;
   width: 328px;
   height: 31.75%;
