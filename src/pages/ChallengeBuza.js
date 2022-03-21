@@ -33,7 +33,8 @@ function ChallengeBuza() {
         request({
           url: `/money/challenge/exitchallenge/${data.data.id}`,
           method: 'delete',
-        }).then(window.location.reload('/challengebuza'))
+        })
+        navigate('/challengebuza')
       }
     })
   }

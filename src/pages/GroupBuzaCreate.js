@@ -4,11 +4,27 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
+import { useFriendData } from '../hooks/useGroupData'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
+  useEffect(() => {
+    friendData()
+  }, [])
+  const {
+    control,
+    handleSubmit,
+    register,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm()
+  console.log(watch())
+  const onSubmit = (data) => {
+    console.log(data, ...selectFriends)
+  }
 
-  const data = [
+  const data2 = [
     {
       id: 1,
       title: 'nickname1',
@@ -65,41 +81,35 @@ function GroupBuzaCreate() {
       src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
     },
   ]
-  const [selectFriends, setSelectFriends] = useState([])
 
-  const Friendlist = selectFriends.map((data) => data.title)
-
-
-  const [datalist, setDatalist] = useState(data)
-  // console.log(datalist)
-  // const listfreind = () => {}
-  // console.log('selectFriends', selectFriends)
-
-  const {
-    control,
-    handleSubmit,
-    register,
-    watch,
-    setError,
-    formState: { errors },
-  } = useForm()
-  console.log(watch())
-  const onSubmit = (data) => {
-    console.log(data, ...selectFriends)
+  const friendData = () => {
+    return request({ url: '/money/group/creategroup', method: 'get' }).then(
+      (res) => {
+        console.log(res.data.groupMembers)
+        setDatalist([...res.data.groupMembers])
+      },
+    )
   }
 
+  const [datalist, setDatalist] = useState([])
+  const [selectFriends, setSelectFriends] = useState([])
+
+  const selentFriendNickName = selectFriends.map(
+    (data) => data.groupMemberNickname,
+  )
+  // console.log('selectFriends', selentFriendNickName)
   const onError = (error) => {
     console.log(error)
   }
-  const selectFriends2 = (friends) => {
-    return request({
-      url: '/money/group/creategroup',
-      method: 'get',
-    }).then((res) => {
-      console.log(res)
-    })
-  }
-  selectFriends2()
+  // const selectFriends2 = (friends) => {
+  //   return request({
+  //     url: '/money/group/creategroup',
+  //     method: 'get',
+  //   }).then((res) => {
+  //     console.log(res)
+  //   })
+  // }
+  // selectFriends2()
   // console.log('selectFriends2----', selectFriends2)
 
   const onValid = (groupData) => {
@@ -116,7 +126,7 @@ function GroupBuzaCreate() {
       data: {
         createGroupName: groupData.createGroupName,
         createGroupAmount: parseInt(groupData.createGroupAmount, 10),
-        groupFriends: Friendlist,
+        groupFriends: selentFriendNickName,
       },
     }).then(
       (res) => console.log('groupCreate', res),
@@ -197,7 +207,7 @@ function GroupBuzaCreate() {
                 return (
                   <div key={da.id}>
                     <SelectedFriendContent>
-                      {selectFriends[idx].title}
+                      {selectFriends[idx].groupMemberNickname}
                       <DeleteFriendContent
                         onClick={() => {
                           setSelectFriends(
@@ -227,7 +237,7 @@ function GroupBuzaCreate() {
 
                   setSelectFriends((prevList) => [...prevList, da])
                   const targetIndex = datalist.findIndex(
-                    (d) => d.title === da.title,
+                    (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
                   setDatalist([
                     ...datalist.slice(0, targetIndex),
@@ -237,7 +247,7 @@ function GroupBuzaCreate() {
                 }}
               >
                 <CircleImg src={da.src} />
-                <FriendsText>{da.title}</FriendsText>
+                <FriendsText>{da.groupMemberNickname}</FriendsText>
               </Friends>
             )
           })}
