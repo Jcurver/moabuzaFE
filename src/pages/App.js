@@ -21,6 +21,8 @@ const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
 const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
+const ChallengeBuzaCreate = lazy(() => import('./ChallengeBuzaCreate'))
+const ChallengeBuzaDetail = lazy(() => import('./ChallengeBuzaDetail'))
 
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
@@ -32,7 +34,6 @@ const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
-
 
 function App() {
   return (
@@ -48,6 +49,15 @@ function App() {
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challengebuza" element={<ChallengeBuza />} />
+
+            <Route
+              path="/challengebuzacreate"
+              element={<ChallengeBuzaCreate />}
+            />
+            <Route
+              path="/challengebuzadetail"
+              element={<ChallengeBuzaDetail />}
+            />
             <Route path="/kakaoLogin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
