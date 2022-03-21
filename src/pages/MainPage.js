@@ -5,11 +5,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ProgressBar from '@ramonak/react-progress-bar'
 import axios from 'axios'
+import { getToken, onMessage } from 'firebase/messaging'
+import { messaging } from './firebase'
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../hooks/useUserData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
-
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
@@ -21,8 +22,7 @@ import { api } from '../utils/axios'
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
-  const { isLoading, data, isError, error } = useMainPageData(navigate)
-  console.log('데이터확인 : ', isLoading, data, isError, error)
+
 
   // useEffect(() => {
   //   // if (!window.location.search) {
@@ -48,6 +48,8 @@ function MainPage() {
   //   getTokenWithKakao()
   // }, [navigate])
 
+  const { isLoading, data, isError, error } = useMainPageData(navigate)
+  console.log('데이터확인 : ', isLoading, data, isError, error)
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -80,7 +82,6 @@ function MainPage() {
             position: 'absolute',
           }}
         />
-
       </NavLink>
       <Toggle>
         <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
@@ -436,7 +437,7 @@ const ProgressBarCharge = styled.div`
   width: ${(props) => props.percent * 3.28}px;
   height: 20px;
   left: 16px;
-  top:0px;
+  top: 0px;
   /* top: 62.1%; */
 
   /* color / Accent */
