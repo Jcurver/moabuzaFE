@@ -89,17 +89,17 @@ function ChallengeBuzaCreate() {
   const onError = (error) => {
     console.log(error)
   }
-  const selectFriends2 = (friends) => {
-    return request({
-      url: '/money/challenge/createChallenge',
-      method: 'get',
-    }).then((res) => {
-      console.log(res)
-    })
-  }
-  selectFriends2()
+  // const selectFriends2 = (friends) => {
+  //   return request({
+  //     url: '/money/challenge/createChallenge',
+  //     method: 'get',
+  //   }).then((res) => {
+  //     console.log(res)
+  //   })
+  // }
+  // selectFriends2('selectFriends', selectFriends)
   // console.log('selectFriends2----', selectFriends2)
-
+  console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
     console.log('challengeData', challengeData)
     return request({
@@ -111,7 +111,7 @@ function ChallengeBuzaCreate() {
           challengeData.createChallengeAmount,
           10,
         ),
-        challengeFriends: selectFriends,
+        challengeFriends: [...selectFriends],
       },
     }).then(
       (res) => console.log('challengeCreate', res),

@@ -15,7 +15,7 @@ function GroupBuza() {
   const navigate = useNavigate()
 
   // 홈데이터 부르는 부분 수정사함 -----------
-  const { data } = useGroupData(navigate)
+  const { isLoading, isError, data, error } = useGroupData(navigate)
   console.log('groupData-------', data)
   const cancelGroup = (id) => {
     Swal.fire({
@@ -28,19 +28,17 @@ function GroupBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(result)
+      console.log('result------', result)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/13`,
-          method: 'get',
+          url: `/money/group/exitgroup/${data.data.id}`,
+          method: 'delete',
           data: {
             id: data.id,
           },
-        }).then(
-          // (data.data.goalStatus = 'noGoal'),
-          Swal.fire('포기!', '그룹을 포기했습니다!', 'success'),
-          navigate('/groupbuza'),
-        )
+        }).then((res) => {
+          navigate(0)
+        })
       }
     })
   }
