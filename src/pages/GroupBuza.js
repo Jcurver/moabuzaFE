@@ -156,10 +156,10 @@ function GroupBuza() {
               </GoalWrapper>
               <ConmpletedTitle>완료목록</ConmpletedTitle>
               <CompletedList>
-                {CompletedData.map((data) => {
+                {data.data.groupDoneGoals.map((data) => {
                   return (
                     <CompletedContent>
-                      <CompletedText>{data.title}</CompletedText>
+                      <CompletedText>{data}</CompletedText>
                     </CompletedContent>
                   )
                 })}

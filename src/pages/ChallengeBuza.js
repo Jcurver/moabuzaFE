@@ -33,8 +33,10 @@ function ChallengeBuza() {
         request({
           url: `/money/challenge/exitchallenge/${data.data.id}`,
           method: 'delete',
+        }).then(() => {
+          // window.location.replace('/challengebuza')
+          navigate(0)
         })
-        navigate('/challengebuza')
       }
     })
   }
@@ -150,10 +152,10 @@ function ChallengeBuza() {
               </GoalWrapper>
               <ConmpletedTitle>완료목록</ConmpletedTitle>
               <CompletedList>
-                {CompletedData.map((data) => {
+                {data.data.challengeDoneGoals.map((data, idx) => {
                   return (
                     <CompletedContent>
-                      <CompletedText>{data.title}</CompletedText>
+                      <CompletedText>{data}</CompletedText>
                     </CompletedContent>
                   )
                 })}

@@ -89,16 +89,7 @@ function ChallengeBuzaCreate() {
   const onError = (error) => {
     console.log(error)
   }
-  // const selectFriends2 = (friends) => {
-  //   return request({
-  //     url: '/money/challenge/createChallenge',
-  //     method: 'get',
-  //   }).then((res) => {
-  //     console.log(res)
-  //   })
-  // }
-  // selectFriends2('selectFriends', selectFriends)
-  // console.log('selectFriends2----', selectFriends2)
+
   console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
     console.log('challengeData', challengeData)
@@ -186,29 +177,27 @@ function ChallengeBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0 ? (
-            <span>친구가 없네요ㅜㅜ</span>
-          ) : (
-            selectFriends.map((da, idx) => {
-              return (
-                <div key={da.id}>
-                  <SelectedFriendContent>
-                    {selectFriends[idx].title}
-                    <DeleteFriendContent
-                      onClick={() => {
-                        setSelectFriends(
-                          selectFriends.filter((flist) => flist.id !== da.id),
-                        )
-                        setDatalist([da, ...datalist])
-                      }}
-                    >
-                      X
-                    </DeleteFriendContent>
-                  </SelectedFriendContent>
-                </div>
-              )
-            })
-          )}
+          {selectFriends.length === 0
+            ? null
+            : selectFriends.map((da, idx) => {
+                return (
+                  <div key={da.id}>
+                    <SelectedFriendContent>
+                      {selectFriends[idx].title}
+                      <DeleteFriendContent
+                        onClick={() => {
+                          setSelectFriends(
+                            selectFriends.filter((flist) => flist.id !== da.id),
+                          )
+                          setDatalist([da, ...datalist])
+                        }}
+                      >
+                        X
+                      </DeleteFriendContent>
+                    </SelectedFriendContent>
+                  </div>
+                )
+              })}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -216,9 +205,13 @@ function ChallengeBuzaCreate() {
               <Friends
                 key={da.id}
                 onClick={() => {
-                  if (selectFriends.length > 3) {
+                  if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
-                    alert('4명까지 선택가능합니다.')
+                    Swal.fire({
+                      icon: 'error',
+                      title: '인원초과!',
+                      text: '3명까지 선택가능해요!',
+                    })
                     return
                   }
 
