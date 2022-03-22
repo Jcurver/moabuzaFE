@@ -142,8 +142,8 @@ function GroupBuza() {
                   <span>원 남았습니다.</span>
                 </GroupFriendGoal>
                 <ProgressBar
-                  completed={60}
-                  // completed={data ? data.data.groupNowPercent : 50}
+                  // completed={60}
+                  completed={data ? data.data.groupNowPercent : 50}
                   animateOnRender="true"
                   bgColor="#FFB000"
                   width="304px"

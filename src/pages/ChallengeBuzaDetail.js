@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import { useChallengeData } from '../hooks/useChallengeData'
+import {
+  useChallengeData,
+  useChallengeMainPageData,
+} from '../hooks/useChallengeData'
 import { request } from '../utils/axios'
+import Loading from './Loading'
+import coin from '../assets/icons/coin/ico_coin1.png'
 // import '../styles/SweetAlertButton.css'
 
 function ChallengeBuzaDetail() {
   const navigate = useNavigate()
+  const [acountData, setaCountData] = useState([])
   const FriendData = [
     {
       src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
@@ -95,7 +101,9 @@ function ChallengeBuzaDetail() {
       ],
     },
   ]
-  const { data } = useChallengeData(navigate)
+  const { data, isLoading } = useChallengeData(navigate)
+  const homeData = useChallengeMainPageData(navigate)
+  console.log(isLoading)
   const cancelGroup = (id) => {
     Swal.fire({
       title: '도전포기!',
@@ -118,8 +126,21 @@ function ChallengeBuzaDetail() {
       }
     })
   }
-
-  console.log('detail------', data)
+  const dateDescending = (a, b) => {
+    const dateA = new Date(a.challengeRecordDate).getTime()
+    const dateB = new Date(b.challengeRecordDate).getTime()
+    return dateA < dateB ? 1 : -1
+  }
+  useEffect(() => {}, [navigate])
+  if (isLoading) {
+    return <Loading />
+  }
+  if (homeData.isLoading) {
+    return <Loading />
+  }
+  console.log('homeData', homeData)
+  console.log(data.data)
+  // console.log('detail------', data.data)
   // const ampsdnl = AccountData.map((dd, i) => {
   //   return dd.account.map((ddd, idx) => {
   //     return ddd.src
@@ -143,23 +164,25 @@ function ChallengeBuzaDetail() {
 
         <DetailWrapper>
           <DetailTitle>
-            {data ? data.data.groupName : '도전이름이 없습니다'}
+            {data ? data.data.challengeName : '도전이름이 없습니다'}
           </DetailTitle>
           <DetailTextWrapper>
             <DetailAmount>
-              {data ? data.data.groupLeftAmount : '남은게 없네유'}
+              {homeData
+                ? homeData.data.data.challengeNeedAmount
+                : '남은게 없네유'}
             </DetailAmount>
-            <DetaileText>원 남았어요!</DetaileText>
+            <DetaileText> 원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
-            {FriendData.map((data, idx) => {
-              return <GroupFriendIcon src={data.src} />
+            {data.data.challengeMembers.map((member, idx) => {
+              return <GroupFriendIcon src={member.challengeMemberHero} />
             })}
           </GroupFriend>
           <DetailCharacter>sdsd</DetailCharacter>
           <ProgressBar
-            // completed={data ? data.data.groupNowPercent : 0}
-            completed={70}
+            completed={homeData ? homeData.data.data.challengePercent : 0}
+            // completed={70}
             animateOnRender="true"
             bgColor="#FFB000"
             baseBgColor="#ffffff"
@@ -208,29 +231,59 @@ function ChallengeBuzaDetail() {
             : null}
         </DetailWrapper>
       </ColorWrapper>
+      <ChallengeFriendWrapper>
+        {data
+          ? data.data.challengeMembers.map((member, idx) => {
+              return (
+                <ChallengeFriendList>
+                  <ChallengeFriendContents>
+                    <ChallengeFriendIcon src={member.challengeMemberHero} />
+                    <ChallengeFriendNickName>
+                      {member.challengeMemberNickname}
+                    </ChallengeFriendNickName>
+                    <ChallengeFriendAmount>
+                      {member.challengeMemberLeftAmount} 원 남았어요!
+                    </ChallengeFriendAmount>
+                  </ChallengeFriendContents>
+                  <ProgressBar
+                    completed={member.challengeMemberNowPercent}
+                    // completed={70}
+                    animateOnRender="true"
+                    bgColor="#60666F"
+                    baseBgColor="#ffffff"
+                    width="304px"
+                    height="20px"
+                    margin="0 auto"
+                    borderRadius="11px"
+                    labelAlignment="center"
+                    labelSize="14px"
+                  />
+                </ChallengeFriendList>
+              )
+            })
+          : null}
+      </ChallengeFriendWrapper>
       <AccountTitle>내역</AccountTitle>
       <AccountSummaryWrapper>
-        {AccountData.map((acd, idx) => {
-          return (
-            <AccountContent>
-              <AccountDate>{acd.accountDate}</AccountDate>
-              <AccountListsWrapper>
-                {acd.account.map((acd2, idx) => {
-                  return (
+        {data
+          ? data.data.challengeLists.sort(dateDescending).map((acd, idx) => {
+              return (
+                <AccountContent>
+                  <AccountDate>{acd.challengeRecordDate}</AccountDate>
+                  <AccountListsWrapper>
                     <AccountList>
-                      <AccountImg src={acd2.src} />
+                      <AccountImg src={coin} />
                       <AccountListCenter>
-                        <AccountListTitle>{acd2.accountTitle}</AccountListTitle>
-                        <AccountListText>{acd2.accountText}</AccountListText>
+                        <AccountListTitle>{acd.challengeMemo}</AccountListTitle>
+                        <AccountListText>{acd.accountText}</AccountListText>
                       </AccountListCenter>
-                      <AccountNumber>{acd2.acconutNumber} 원</AccountNumber>
+                      <AccountNumber>{acd.challengeAmount} 원</AccountNumber>
                     </AccountList>
-                  )
-                })}
-              </AccountListsWrapper>
-            </AccountContent>
-          )
-        })}
+                  </AccountListsWrapper>
+                </AccountContent>
+              )
+            })
+          : null}
       </AccountSummaryWrapper>
     </Wrapper>
   )
@@ -286,7 +339,7 @@ const DetailWrapper = styled.div`
   height: 23px;
 
   position: absolute;
-  top: 103px;
+  top: 79px;
   left: 15px;
 `
 
@@ -344,6 +397,65 @@ const DetailCharacter = styled.div`
   border: 1px solid black;
 `
 
+// ChallengeFriend
+const ChallengeFriendWrapper = styled.div`
+  width: 328px;
+  margin: 16px auto;
+`
+
+const ChallengeFriendList = styled.div`
+  width: 328px;
+  height: 92px;
+  margin-bottom: 8px;
+
+  /* color / gray / Gray10 */
+
+  background: #f2f2f2;
+  border-radius: 8px;
+`
+const ChallengeFriendContents = styled.div`
+  display: flex;
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+`
+const ChallengeFriendIcon = styled.img`
+  width: 36px;
+  height: 36px;
+  margin: 12px 8px 12px 12px;
+`
+
+const ChallengeFriendNickName = styled.span`
+  height: 14px;
+`
+
+const ChallengeFriendAmount = styled.span`
+  position: absolute;
+  right: 12px;
+  height: 16px;
+  /* margin-right: 12px; */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+  letter-spacing: -0.04em;
+
+  /* color / text / Color-text-Black */
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 2px;
+`
+// Account Summary
 const AccountSummaryWrapper = styled.div`
   width: 328px;
   /* border: 1px solid black; */
@@ -437,10 +549,10 @@ const AccountList = styled.div`
 `
 
 const AccountImg = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   margin-right: 12px;
-  /* margin-left: 3px; */
+  margin-left: 12px;
 `
 
 const AccountListCenter = styled.div``

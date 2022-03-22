@@ -7,16 +7,22 @@ import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
 import { api, request } from '../utils/axios'
-import { useChallengeData } from '../hooks/useChallengeData'
+import {
+  useChallengeData,
+  useChallengeMainPageData,
+} from '../hooks/useChallengeData'
+import Loading from './Loading'
 
 function ChallengeBuza() {
   const [pending, setPending] = useState(true)
-  const [isData, setIsData] = useState(true)
+  const [isData, setIsData] = useState([])
   const navigate = useNavigate()
 
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data } = useChallengeData(navigate)
-  console.log('challenge-------', data)
+  const homeData = useChallengeMainPageData(navigate)
+
+  // console.log(isData[0].challengeCurrentAmount)
   const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전 포기!',
@@ -41,7 +47,17 @@ function ChallengeBuza() {
     })
   }
   useEffect(() => {}, [navigate])
-
+  if (homeData.isLoading) {
+    return <Loading />
+  }
+  if (data.isLoading) {
+    return <Loading />
+  }
+  // console.log(
+  //   'challenge-------',
+  //   data.data.challengeMembers.challengeMemberHero,
+  // )
+  // console.log('homeData', homeData.data.data)
   const CompletedData = [
     {
       title: '✈️ 제주도 여행가자!',
@@ -117,7 +133,7 @@ function ChallengeBuza() {
           )
         : null}
       {data
-        ? data.data.goalStatus === '' && (
+        ? data.data.goalStatus === 'goal' && (
             <>
               <GoalWrapper
                 onClick={() => {
@@ -125,21 +141,28 @@ function ChallengeBuza() {
                 }}
               >
                 <GroupFriend>
-                  {FriendData.map((data, idx) => {
-                    return <GroupFriendIcon src={data.src} />
-                  })}
+                  {data
+                    ? data.data.challengeMembers.map((member) => {
+                        return (
+                          <GroupFriendIcon src={member.challengeMemberHero} />
+                        )
+                      })
+                    : null}
                 </GroupFriend>
                 <GroupFriendTitle>
-                  {data.data.challengeName}
-                  티끌모아 태산 동전 저금하기!
+                  {data ? data.data.challengeName : null}
                 </GroupFriendTitle>
                 <GroupFriendGoal>
-                  <GroupFriendGoalAmount>9999 </GroupFriendGoalAmount>
-                  <span>원 남았습니다.</span>
+                  <GroupFriendGoalAmount>
+                    {homeData ? homeData.data.data.challengeNeedAmount : null}
+                  </GroupFriendGoalAmount>
+                  <span> 원 남았습니다.</span>
                 </GroupFriendGoal>
                 <ProgressBar
-                  completed={60}
-                  // completed={data ? data.data.groupNowPercent : 50}
+                  // completed={60}
+                  completed={
+                    homeData ? homeData.data.data.challengePercent : 50
+                  }
                   animateOnRender="true"
                   bgColor="#FFB000"
                   width="304px"
