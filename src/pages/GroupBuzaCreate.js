@@ -229,9 +229,13 @@ function GroupBuzaCreate() {
               <Friends
                 key={da.id}
                 onClick={() => {
-                  if (selectFriends.length > 3) {
+                  if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
-                    alert('4명까지 선택가능합니다.')
+                    Swal.fire({
+                      icon: 'error',
+                      title: '인원초과!',
+                      text: '3명까지 선택가능해요!',
+                    })
                     return
                   }
 
