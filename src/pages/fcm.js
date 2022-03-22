@@ -23,7 +23,7 @@ if (!firebase.apps.length) {
 const messaging = getMessaging()
 
 // 토큰값 얻기
-export const fbToken = getToken(messaging, {
+export const fcmToken = getToken(messaging, {
   vapidKey:process.env.REACT_APP_VAPID_KEY,
 })
   .then((currentToken) => {
