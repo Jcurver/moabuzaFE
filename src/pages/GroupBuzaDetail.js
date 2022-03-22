@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { useGroupData } from '../hooks/useGroupData'
 import { request } from '../utils/axios'
+import coin from '../assets/icons/coin/ico_coin1.png'
 // import '../styles/SweetAlertButton.css'
 
 function GroupBuzaDetail() {
@@ -95,6 +96,7 @@ function GroupBuzaDetail() {
       ],
     },
   ]
+  const [sortedData, setsortedData] = useState([])
   const { data } = useGroupData(navigate)
   const cancelGroup = (id) => {
     Swal.fire({
@@ -122,7 +124,48 @@ function GroupBuzaDetail() {
     })
   }
 
-  console.log('detail------', data)
+  console.log(
+    // sortedData.map((res) => {
+    //   return res.groupDate
+    // }),
+    sortedData.map((dat, idx) => {
+      return dat
+    }),
+  )
+
+  // const sortdd = sortedData.map((ss, idx) => {
+  //   if (ss[idx].groupDate === ss[idx + 1].groupDate) {
+  //     return sortdd.push.apply(ss[idx], ss[idx + 1])
+  //   }
+  // })
+  // for (let i = 0; i < sortedData.length; i += 1) {
+  // if (sortedData[i].groupDate === sortedData[i + 1].groupDate) {
+  //   sortdd.push.apply(sortedData[i], sortedData[i + 1])
+  // }
+  //   console.log(sortedData[i].groupDate)
+  // }
+  // console.log(sortedData[0])
+  // console.log(sortdd)
+  console.log(data)
+  const dateDescending = (a, b) => {
+    const dateA = new Date(a.groupDate).getTime()
+    const dateB = new Date(b.groupDate).getTime()
+    return dateA < dateB ? 1 : -1
+  }
+
+  useEffect(() => {
+    const sortDate = () => {
+      return request({
+        url: `/money/group`,
+        method: 'get',
+      }).then((res) => {
+        setsortedData([...res.data.groupLists])
+      })
+    }
+    sortDate()
+  }, [])
+
+  // console.log('detail------', data.data.groupLists)
   // const ampsdnl = AccountData.map((dd, i) => {
   //   return dd.account.map((ddd, idx) => {
   //     return ddd.src
@@ -155,14 +198,16 @@ function GroupBuzaDetail() {
             <DetaileText>원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
-            {FriendData.map((data, idx) => {
-              return <GroupFriendIcon src={data.src} />
-            })}
+            {data
+              ? data.data.groupMembers.map((data, idx) => {
+                  return <GroupFriendIcon src={data.hero} />
+                })
+              : null}
           </GroupFriend>
           <DetailCharacter>sdsd</DetailCharacter>
           <ProgressBar
-            // completed={data ? data.data.groupNowPercent : 0}
-            completed={70}
+            completed={data ? data.data.groupNowPercent : 0}
+            // completed={70}
             animateOnRender="true"
             bgColor="#FFB000"
             baseBgColor="#ffffff"
@@ -213,27 +258,25 @@ function GroupBuzaDetail() {
       </ColorWrapper>
       <AccountTitle>내역</AccountTitle>
       <AccountSummaryWrapper>
-        {AccountData.map((acd, idx) => {
-          return (
-            <AccountContent>
-              <AccountDate>{acd.accountDate}</AccountDate>
-              <AccountListsWrapper>
-                {acd.account.map((acd2, idx) => {
-                  return (
+        {data
+          ? sortedData.sort(dateDescending).map((acd, idx) => {
+              return (
+                <AccountContent>
+                  <AccountDate>{acd.groupDate.slice(0, 10)}</AccountDate>
+                  <AccountListsWrapper>
                     <AccountList>
-                      <AccountImg src={acd2.src} />
+                      <AccountImg src={coin} />
                       <AccountListCenter>
-                        <AccountListTitle>{acd2.accountTitle}</AccountListTitle>
-                        <AccountListText>{acd2.accountText}</AccountListText>
+                        <AccountListTitle>{acd.nickname}</AccountListTitle>
+                        <AccountListText>{acd.groupMemo}</AccountListText>
                       </AccountListCenter>
-                      <AccountNumber>{acd2.acconutNumber} 원</AccountNumber>
+                      <AccountNumber>{acd.groupAmount} 원</AccountNumber>
                     </AccountList>
-                  )
-                })}
-              </AccountListsWrapper>
-            </AccountContent>
-          )
-        })}
+                  </AccountListsWrapper>
+                </AccountContent>
+              )
+            })
+          : null}
       </AccountSummaryWrapper>
     </Wrapper>
   )
@@ -348,7 +391,7 @@ const DetailCharacter = styled.div`
 const AccountSummaryWrapper = styled.div`
   width: 328px;
   margin: 0 auto;
-  height: 400px;
+  height: 250px;
   top: 483px;
   left: 16px;
   overflow: scroll;
@@ -429,9 +472,10 @@ const AccountList = styled.div`
 `
 
 const AccountImg = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   margin-right: 12px;
+  margin-left: 12px;
 `
 
 const AccountListCenter = styled.div``
