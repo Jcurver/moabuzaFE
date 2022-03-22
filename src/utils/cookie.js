@@ -68,3 +68,4 @@ function deleteCookie(name) {
 }
 
 export { getCookie, setCookie, deleteCookie }
+
