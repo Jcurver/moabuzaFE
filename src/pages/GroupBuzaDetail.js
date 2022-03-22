@@ -115,10 +115,9 @@ function GroupBuzaDetail() {
           data: {
             id: data.id,
           },
-        }).then(
-          Swal.fire('포기!', '그룹을 포기했습니다!', 'success'),
-          navigate('/groupbuza'),
-        )
+        }).then(() => {
+          navigate('/groupbuza')
+        })
       }
     })
   }
@@ -244,11 +243,9 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  /* background: #f5f5f7; */
 `
 const ColorWrapper = styled.div`
   background: #e5e5e5;
-  /* border: 1px solid black; */
   box-sizing: border-box;
   height: 480px;
 `
@@ -350,9 +347,7 @@ const DetailCharacter = styled.div`
 
 const AccountSummaryWrapper = styled.div`
   width: 328px;
-  /* border: 1px solid black; */
   margin: 0 auto;
-  /* position: absolute; */
   height: 400px;
   top: 483px;
   left: 16px;
@@ -374,7 +369,6 @@ const GroupFriend = styled.div`
   height: 24px;
 `
 const GroupFriendIcon = styled.img`
-  /* position: static; */
   width: 24px;
   height: 24px;
 
@@ -394,12 +388,10 @@ const AccountTitle = styled.div`
   margin: 24px 0px 8px 16px;
 `
 const AccountContent = styled.div`
-  /* border: 1px solid black; */
   width: 328px;
 `
 
 const AccountDate = styled.div`
-  /* border: 1px solid black; */
   /* Body / Noto Sans KR / P12 */
 
   font-family: 'Noto Sans KR';
@@ -423,11 +415,7 @@ const AccountDate = styled.div`
   margin: 8px 0px;
 `
 
-const AccountListsWrapper = styled.div`
-  /* border: 1px solid black; */
-  /* overflow: scroll; */
-  /* height: 1000px; */
-`
+const AccountListsWrapper = styled.div``
 
 const AccountList = styled.div`
   position: relative;
@@ -444,7 +432,6 @@ const AccountImg = styled.img`
   width: 48px;
   height: 48px;
   margin-right: 12px;
-  /* margin-left: 3px; */
 `
 
 const AccountListCenter = styled.div``
@@ -486,12 +473,9 @@ const AccountListText = styled.div`
 `
 
 const AccountNumber = styled.div`
-  /* width: 78px; */
   position: absolute;
   right: 12px;
   height: 28px;
-  /* margin: 18px 12px 18px 0px; */
-  /* border: 0.1px solid black; */
   border-radius: 25px;
   display: flex;
   flex-direction: column;
