@@ -77,7 +77,6 @@ function App() {
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
             <Route path="/challengebuza" element={<ChallengeBuza />} />
-
             <Route
               path="/challengebuzacreate"
               element={<ChallengeBuzaCreate />}
@@ -86,7 +85,7 @@ function App() {
               path="/challengebuzadetail"
               element={<ChallengeBuzaDetail />}
             />
-            <Route path="/kakaoLogin" element={<KakaoLogin />} />
+            <Route path="/kakaologin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
             <Route path="/detail" element={<Detail />} />
