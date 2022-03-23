@@ -2,8 +2,8 @@
 const _version = 'v3'
 const cacheName = 'v1'
 const IMMUTABLE_INFO = [
-  '/',
-  '/onedaybuza',
+  '/public/logo192.png',
+  
   // '../src/assets/icons/alram-1.svg',
   // '../src/pages/OnedayBuza.js',
   // '/logo192.png',
