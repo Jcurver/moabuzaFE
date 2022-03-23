@@ -169,7 +169,7 @@ function ChallengeBuzaDetail() {
           <DetailTextWrapper>
             <DetailAmount>
               {homeData
-                ? homeData.data.data.challengeNeedAmount
+                ? homeData.data.data.challengeNeedAmount.toLocaleString('ko-KR')
                 : '남은게 없네유'}
             </DetailAmount>
             <DetaileText> 원 남았어요!</DetaileText>
@@ -231,60 +231,71 @@ function ChallengeBuzaDetail() {
             : null}
         </DetailWrapper>
       </ColorWrapper>
-      <ChallengeFriendWrapper>
-        {data
-          ? data.data.challengeMembers.map((member, idx) => {
-              return (
-                <ChallengeFriendList>
-                  <ChallengeFriendContents>
-                    <ChallengeFriendIcon src={member.challengeMemberHero} />
-                    <ChallengeFriendNickName>
-                      {member.challengeMemberNickname}
-                    </ChallengeFriendNickName>
-                    <ChallengeFriendAmount>
-                      {member.challengeMemberLeftAmount} 원 남았어요!
-                    </ChallengeFriendAmount>
-                  </ChallengeFriendContents>
-                  <ProgressBar
-                    completed={member.challengeMemberNowPercent}
-                    // completed={70}
-                    animateOnRender="true"
-                    bgColor="#60666F"
-                    baseBgColor="#ffffff"
-                    width="304px"
-                    height="20px"
-                    margin="0 auto"
-                    borderRadius="11px"
-                    labelAlignment="center"
-                    labelSize="14px"
-                  />
-                </ChallengeFriendList>
-              )
-            })
-          : null}
-      </ChallengeFriendWrapper>
-      <AccountTitle>내역</AccountTitle>
-      <AccountSummaryWrapper>
-        {data
-          ? data.data.challengeLists.sort(dateDescending).map((acd, idx) => {
-              return (
-                <AccountContent>
-                  <AccountDate>{acd.challengeRecordDate}</AccountDate>
-                  <AccountListsWrapper>
-                    <AccountList>
-                      <AccountImg src={coin} />
-                      <AccountListCenter>
-                        <AccountListTitle>{acd.challengeMemo}</AccountListTitle>
-                        <AccountListText>{acd.accountText}</AccountListText>
-                      </AccountListCenter>
-                      <AccountNumber>{acd.challengeAmount} 원</AccountNumber>
-                    </AccountList>
-                  </AccountListsWrapper>
-                </AccountContent>
-              )
-            })
-          : null}
-      </AccountSummaryWrapper>
+      <ScrollWrapper>
+        <ChallengeFriendWrapper>
+          {data
+            ? data.data.challengeMembers.map((member, idx) => {
+                return (
+                  <ChallengeFriendList>
+                    <ChallengeFriendContents>
+                      <ChallengeFriendIcon src={member.challengeMemberHero} />
+                      <ChallengeFriendNickName>
+                        {member.challengeMemberNickname}
+                      </ChallengeFriendNickName>
+                      <ChallengeFriendAmount>
+                        {member.challengeMemberLeftAmount.toLocaleString(
+                          'ko-KR',
+                        )}
+                        <span> 원 남았어요!</span>
+                      </ChallengeFriendAmount>
+                    </ChallengeFriendContents>
+                    <ProgressBar
+                      completed={member.challengeMemberNowPercent}
+                      // completed={70}
+                      animateOnRender="true"
+                      bgColor="#4675F0"
+                      baseBgColor="#ffffff"
+                      width="304px"
+                      height="20px"
+                      margin="0 auto"
+                      borderRadius="11px"
+                      labelAlignment="center"
+                      labelSize="14px"
+                    />
+                  </ChallengeFriendList>
+                )
+              })
+            : null}
+        </ChallengeFriendWrapper>
+        <AccountTitle>내역</AccountTitle>
+        <AccountSummaryWrapper>
+          {data
+            ? data.data.challengeLists.sort(dateDescending).map((acd, idx) => {
+                return (
+                  <AccountContent>
+                    <AccountDate>
+                      {acd.challengeRecordDate.slice(0, 10)}
+                    </AccountDate>
+                    <AccountListsWrapper>
+                      <AccountList>
+                        <AccountImg src={coin} />
+                        <AccountListCenter>
+                          <AccountListTitle>
+                            {acd.challengeMemo}
+                          </AccountListTitle>
+                          <AccountListText>{acd.accountText}</AccountListText>
+                        </AccountListCenter>
+                        <AccountNumber>
+                          {acd.challengeAmount.toLocaleString('ko-KR')} 원
+                        </AccountNumber>
+                      </AccountList>
+                    </AccountListsWrapper>
+                  </AccountContent>
+                )
+              })
+            : null}
+        </AccountSummaryWrapper>
+      </ScrollWrapper>
     </Wrapper>
   )
 }
@@ -371,6 +382,16 @@ const DetailTextWrapper = styled.div`
 const DetailAmount = styled.span`
   height: 23px;
   text-align: center;
+  color: #4675f0;
+
+  /* Heading / Roboto / H3(B) */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.04em;
 `
 
 const DetaileText = styled.span`
@@ -395,6 +416,16 @@ const DetailCharacter = styled.div`
   width: 329px;
   height: 185px;
   border: 1px solid black;
+`
+// Scroll
+const ScrollWrapper = styled.div`
+  height: 250px;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 
 // ChallengeFriend
@@ -464,12 +495,6 @@ const AccountSummaryWrapper = styled.div`
   height: 400px;
   top: 483px;
   left: 16px;
-  overflow: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  ::-webkit-scrollbar {
-    display: none; /* Chrome , Safari , Opera */
-  }
 `
 const GroupFriend = styled.div`
   display: flex;
