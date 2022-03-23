@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import firebase from 'firebase/compat/app'
+import { useEffect } from 'react'
+import { setItem } from '../utils/sessionStorage'
 
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
@@ -18,19 +20,19 @@ if (!firebase.apps.length) {
   firebase.app()
 }
 
-
 // const app = initializeApp(config)
 const messaging = getMessaging()
 
 // 토큰값 얻기
 export const fcmToken = getToken(messaging, {
-  vapidKey:process.env.REACT_APP_VAPID_KEY,
+  vapidKey: process.env.REACT_APP_VAPID_KEY,
 })
   .then((currentToken) => {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
       console.log('currentToken:::', currentToken)
+      // setItem("fcmToken",currentToken)
     } else {
       // Show permission request UI
       console.log(
@@ -43,6 +45,8 @@ export const fcmToken = getToken(messaging, {
     console.log('An error occurred while retrieving token. ', err)
     // ...
   })
+
+
 
 // 포그라운드 메시지 수신
 onMessage(messaging, (payload) => {
