@@ -446,8 +446,6 @@ const ChallengeFriendList = styled.div`
 `
 const ChallengeFriendContents = styled.div`
   display: flex;
-  /* flex-direction: row; */
-  /* justify-content: center; */
   align-items: center;
   position: relative;
 `
