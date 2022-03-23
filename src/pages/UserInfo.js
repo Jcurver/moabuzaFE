@@ -9,12 +9,11 @@ import { setFlexStyles } from '../styles/Mixin'
 import { request, api } from '../utils/axios'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { fcmToken } from './fcm';
+import { fcmToken } from './fcm'
 
 function UserInfo() {
   const navigate = useNavigate()
   const [nickNameDup, setNickNameDup] = useState(false)
-
 
   const [hero, setHero] = useState('hero0')
   function setHeroValue(i) {
@@ -26,15 +25,15 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-    console.log("fcmToken:::",fcmToken)
+    console.log('fcmToken:::', fcmToken)
     if (!nickNameDup) {
-       Swal.fire({
-         title: '닉네임 중복확인해부자',
+      Swal.fire({
+        title: '닉네임 중복확인해부자',
         //  text: '열심히 모아부자!',
-         // icon: 'success',
-       }).then((result) => {
-         console.log(result)
-       })
+        // icon: 'success',
+      }).then((result) => {
+        console.log(result)
+      })
       return
     }
 
@@ -56,7 +55,6 @@ function UserInfo() {
         if (res.status === 200) {
           if (res.data === '닉네임 사용 가능') {
             setNickNameDup(true)
-            if (!nickNameDup) {
               Swal.fire({
                 title: '사용가능한 닉네임',
                 text: '열심히 모아부자!',
@@ -64,24 +62,22 @@ function UserInfo() {
               }).then((result) => {
                 console.log(result)
               })
-
-            }
-          } else {
-            setNickNameDup(false)
-            if (!nickNameDup) {
-              Swal.fire({
-                title: '사용중인 닉네임',
-                text: '다른거로 골라부자',
-                // icon: 'success',
-              }).then((result) => {
-                console.log(result)
-              })
-
-            }
+           
+            
           }
         }
       })
-      .catch((error) => console.log(error))
+      .catch(
+        () => {
+          Swal.fire({
+            title: '이미 사용중인 닉네임',
+            text: '다른걸로 해부자 ㅜㅜ',
+            // icon: 'success',
+          }).then((result) => {
+            console.log(result);
+          });
+        }
+      )
   }
 
   const {
@@ -95,7 +91,6 @@ function UserInfo() {
   console.log(watch())
 
   useEffect(() => {
-
     setNickNameDup(false)
     console.log(nickNameDup)
     if (!window.location.search) {
@@ -115,7 +110,7 @@ function UserInfo() {
     }
     getTokenWithKakao()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate,watch().nickname])
+  }, [navigate, watch().nickname])
 
   return (
     <Wrapper>
