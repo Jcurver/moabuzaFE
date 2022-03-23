@@ -1,17 +1,23 @@
+// eslint-disable-next-line no-underscore-dangle
+const _version = 'v3'
+const cacheName = 'v1'
 const IMMUTABLE_INFO = [
   '../src/assets/icons/alram.svg',
   '../src/assets/icons/alram-1.svg',
   '../src/pages/OnedayBuza.js',
   './logo192.png',
-  './index.html'
+  './index.html',
 ]
-
 
 self.addEventListener('install', (e) => {
   console.log('서비스워커 install함!', e)
-  e.waitUntil(self.cashes.open('MY_CACHE').then(cache => {
-    return cache.addAll(IMMUTABLE_INFO)
-  }))
+  self.skipWaiting()
+  e.waitUntil(
+    self.cashes.open('MY_CACHE').then((cache) => {
+      console.log('chaching shell')
+      return cache.addAll(IMMUTABLE_INFO)
+    }),
+  )
 })
 
 self.addEventListener('activate', (e) => {
