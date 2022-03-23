@@ -162,7 +162,7 @@ function UserInfo() {
             minLength: { value: 2, message: '한글자는 너무 짧아요' },
             maxLength: { value: 8, message: '8자를 초과했어요!' },
             pattern: {
-              value: /^[A-Za-z0-9]*$/,
+              value: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣A-Za-z0-9]*$/,
               message: '숫자와 문자만 입력해부자!',
             },
           })}

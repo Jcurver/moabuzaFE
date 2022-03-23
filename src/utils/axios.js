@@ -48,10 +48,7 @@ instance.interceptors.request.use((config) => {
 })
 
 export const request = async ({ ...options }) => {
-  // console.log('request 안에 있는 인스턴스:', instance)
 
-  // instance.defaults.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
-  // instance.defaults.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
   console.log('req instance headers: ', instance.defaults.headers)
 
   const onSuccess = (response) => {
