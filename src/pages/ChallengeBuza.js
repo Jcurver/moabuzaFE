@@ -46,6 +46,7 @@ function ChallengeBuza() {
       }
     })
   }
+
   useEffect(() => {}, [navigate])
   if (homeData.isLoading) {
     return <Loading />
@@ -53,39 +54,6 @@ function ChallengeBuza() {
   if (data.isLoading) {
     return <Loading />
   }
-  // console.log(
-  //   'challenge-------',
-  //   data.data.challengeMembers.challengeMemberHero,
-  // )
-  // console.log('homeData', homeData.data.data)
-  const CompletedData = [
-    {
-      title: '✈️ 제주도 여행가자!',
-    },
-    {
-      title: '매일 2,000원씩 저금하기!',
-    },
-    {
-      title: '🍫 초코에몽 대신 저금하기!',
-    },
-    {
-      title: '💵  50,000원 모으기!',
-    },
-  ]
-  const FriendData = [
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-  ]
 
   return (
     <Wrapper>
@@ -154,7 +122,11 @@ function ChallengeBuza() {
                 </GroupFriendTitle>
                 <GroupFriendGoal>
                   <GroupFriendGoalAmount>
-                    {homeData ? homeData.data.data.challengeNeedAmount : null}
+                    {homeData
+                      ? homeData.data.data.challengeNeedAmount.toLocaleString(
+                          'ko-KR',
+                        )
+                      : null}
                   </GroupFriendGoalAmount>
                   <span> 원 남았습니다.</span>
                 </GroupFriendGoal>
@@ -164,7 +136,7 @@ function ChallengeBuza() {
                     homeData ? homeData.data.data.challengePercent : 50
                   }
                   animateOnRender="true"
-                  bgColor="#FFB000"
+                  bgColor="#4675F0"
                   width="304px"
                   height="20px"
                   margin="0 auto"
@@ -198,6 +170,7 @@ function ChallengeBuza() {
                 width="296px"
                 height="52px"
                 fontSize="14px"
+                background="#4675F0"
                 onClick={cancelChallenge}
               >
                 대기취소
@@ -327,9 +300,9 @@ const CompletedContent = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 8px 0px;
-
+  padding: 16px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 `
 
@@ -430,7 +403,7 @@ const GroupFriendGoalAmount = styled.span`
 
   /* color / text / Color-text-Black */
 
-  color: #000000;
+  color: #4675f0;
 `
 
 export default ChallengeBuza
