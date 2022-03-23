@@ -1,10 +1,18 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "모아부자에 오신것을 환영하부자!",
+  "short_name": "모아부자",
+  "discription": "pwa by moabuza",
+  "scope":".",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation":"portrait",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64",
       "type": "image/x-icon"
     },
     {
@@ -18,8 +26,20 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "shortcuts": [
+    {
+      "name": "새 창 열어부자",
+      "short_name": "열어부자",
+      "description": "새창을 열어보세보세보세",
+      "url": "./",
+      "icons": [{ "src": "./logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "새창",
+      "short_name": "새",
+      "description": "열어부자",
+      "url": "./",
+      "icons": [{ "src": "./logo512.png", "sizes": "512x512" }]
+    }
+  ]
 }

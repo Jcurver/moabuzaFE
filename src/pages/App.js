@@ -1,4 +1,4 @@
-import React, { Suspense, lazy,useState,useEffect } from 'react'
+import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -7,11 +7,12 @@ import styled from 'styled-components'
 import { messaging } from './firebase'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
+import Fcmprac from './Fcmprac'
 import Settings from './Settings'
 import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
-import './fcm'
+
 import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
@@ -38,13 +39,14 @@ const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
 
 function App() {
+
   // let swRegist = null
 
   // const [Token, setToken] = useState(null)
 
   // getToken(messaging, {
   //   vapidKey: process.env.REACT_APP_VAPID_KEY,
-   
+
   // }).then((token) => {
   //   console.log('token', token)
   //   setToken(token)
@@ -68,6 +70,7 @@ function App() {
           <Routes>
             {/* <Route path="/userinfo" element={<UserInfo />} /> */}
             <Route path="/" element={<MainPage />} />
+            <Route path="/fcmprac" element={<Fcmprac />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
             <Route path="/onedaybuza" element={<OnedayBuza />} />

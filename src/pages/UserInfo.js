@@ -3,15 +3,13 @@ import instance from 'axios'
 import { useForm } from 'react-hook-form'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-// import { useCookies,Cookies } from 'react-cookie'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
 import { setFlexStyles } from '../styles/Mixin'
 import { request, api } from '../utils/axios'
-
 import { getCookie, setCookie } from '../utils/cookie'
-// import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
+import { fcmToken } from './fcm';
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -28,7 +26,7 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-
+    console.log("fcmToken:::",fcmToken)
     if (!nickNameDup) {
        Swal.fire({
          title: '닉네임 중복확인해부자',
