@@ -11,6 +11,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../hooks/useUserData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
+import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
@@ -22,7 +23,6 @@ import { api } from '../utils/axios'
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
-
 
   // useEffect(() => {
   //   // if (!window.location.search) {
@@ -73,15 +73,27 @@ function MainPage() {
     <Wrapper>
       <NavLink to="/alerts">
         <RightButtonDiv />
-        <Alert
-          style={{
-            width: '24px',
-            height: '24px',
-            left: '88.89%',
-            top: '5.69%',
-            position: 'absolute',
-          }}
-        />
+        {data && data.data.alarmCount > 0 ? (
+          <AlertOn
+            style={{
+              width: '24px',
+              height: '24px',
+              left: '88.89%',
+              top: '5.69%',
+              position: 'absolute',
+            }}
+          />
+        ) : (
+          <Alert
+            style={{
+              width: '24px',
+              height: '24px',
+              left: '88.89%',
+              top: '5.69%',
+              position: 'absolute',
+            }}
+          />
+        )}
       </NavLink>
       <Toggle>
         <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
@@ -95,21 +107,30 @@ function MainPage() {
         <>
           <ContentGoalName>{data.data.groupName}</ContentGoalName>
           <ContentUnderDiv>
-            <ContentWon>{data.data.groupNeedAmount}원</ContentWon>
+            <ContentWon>
+              {data.data.groupNeedAmount.toLocaleString('en-US')}원
+            </ContentWon>
             <ContentNeed>남았어요!</ContentNeed>
           </ContentUnderDiv>
-          <CharacterInfo>
+          {/* <CharacterInfo>
             <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
             <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo>
-          <ProgressDiv />
-          <ProgressBar />
-          <ProgressBarCharge percent={data ? data.data.groupPercent : '0'}>
-            {data && parseInt(data.data.groupPercent, 10) > 9
-              ? data.data.groupPercent
-              : '0'}
-            %
-          </ProgressBarCharge>
+          </CharacterInfo> */}
+          <ProgressDiv>
+            <ProgressBar
+              // completed={60}
+              completed={data.data.groupPercent}
+              animateOnRender="true"
+              bgColor="#4675F0"
+              baseBgColor="E5EAF2"
+              width="328px"
+              height="20px"
+              margin="0 auto"
+              borderRadius="11px"
+              labelAlignment="center"
+              labelSize="14px"
+            />
+          </ProgressDiv>
         </>
       ) : (
         ''
@@ -120,7 +141,7 @@ function MainPage() {
         ''
       )}
       {toggle === 'challenge' && data.data.challengeName ? (
-        <>
+        <div>
           <ContentGoalName>{data.data.challengeName}</ContentGoalName>
           <ContentUnderDiv>
             <ContentWon>
@@ -128,11 +149,11 @@ function MainPage() {
             </ContentWon>
             <ContentNeed>남았어요!</ContentNeed>
           </ContentUnderDiv>
-          <CharacterInfo>
+          {/* <CharacterInfo>
             <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
             <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo>
-          <ProgressDiv />
+          </CharacterInfo> */}
+          {/* <ProgressDiv />
           <div
             style={{
               width: '100%',
@@ -157,10 +178,24 @@ function MainPage() {
               percent={data ? data.data.challengePercent : '0'}
             >
               {data ? data.data.challengePercent : '0'}%
-              {/* {data && data.data.challengePercent > 5 ? "%":''} */}
+              {data && data.data.challengePercent > 5 ? "%":''}
             </ProgressBarCharge>
-          </div>
-        </>
+          </div> */}
+          <ProgressDiv>
+            <ProgressBar
+              completed={data.data.challengePercent}
+              animateOnRender="true"
+              bgColor="#4675F0"
+              baseBgColor="E5EAF2"
+              width="328px"
+              height="20px"
+              margin="0 auto"
+              borderRadius="11px"
+              labelAlignment="center"
+              labelSize="14px"
+            />
+          </ProgressDiv>
+        </div>
       ) : (
         ''
       )}
@@ -250,7 +285,7 @@ const LeftBtn = styled.button`
   background-color: ${(props) =>
     props.toggle === 'challenge' ? ' #e5eaf2' : '#FFB000'};
   font-weight: ${(props) => (props.toggle === 'challenge' ? '400' : 'bold')};
-  color: ${(props) => (props.toggle === 'challenge' ? '#B9BFC8' : 'white')};
+  color: ${(props) => (props.toggle === 'challenge' ? '#8c939d' : 'white')};
   font-size: 14px;
   white-space: nowrap;
   border-radius: 20px;
@@ -263,7 +298,7 @@ const RightBtn = styled.button`
   background-color: ${(props) =>
     props.toggle === 'group' ? ' #e5eaf2' : '#FFB000'};
   font-weight: ${(props) => (props.toggle === 'group' ? '400' : 'bold')};
-  color: ${(props) => (props.toggle === 'group' ? '#B9BFC8' : 'white')};
+  color: ${(props) => (props.toggle === 'group' ? '#8c939d' : 'white')};
   white-space: nowrap;
   font-size: 14px;
   border-radius: 20px;
@@ -410,7 +445,7 @@ const ProgressDiv = styled.div`
   width: 328px;
   height: 60px;
   left: 16px;
-  top: 56.8%;
+  top: 62.08%;
 `
 // const ProgressBar = styled.div`
 //   position: absolute;

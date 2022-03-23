@@ -30,8 +30,8 @@ function NavBar() {
         to="/menu"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#D1D5DA',
-          fontWeight: isActive ? '800' : '400',
+          color: isActive ? '#4675F0' : '#999999',
+          // fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
@@ -44,8 +44,8 @@ function NavBar() {
         to="/onedaybuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#D1D5DA',
-          fontWeight: isActive ? '800' : '400',
+          color: isActive ? '#4675F0' : '#999999',
+          // fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
@@ -63,8 +63,8 @@ function NavBar() {
         to="/"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#D1D5DA',
-          fontWeight: isActive ? '800' : '400',
+          color: isActive ? '#4675F0' : '#999999',
+          // fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
@@ -82,8 +82,8 @@ function NavBar() {
         to="/groupbuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#D1D5DA',
-          fontWeight: isActive ? '800' : '400',
+          color: isActive ? '#4675F0' : '#999999',
+          // fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
@@ -100,8 +100,8 @@ function NavBar() {
         to="/challengebuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#D1D5DA',
-          fontWeight: isActive ? '800' : '400',
+          color: isActive ? '#4675F0' : '#999999',
+          // fontWeight: isActive ? '800' : '400',
         })}
       >
         <Component>
