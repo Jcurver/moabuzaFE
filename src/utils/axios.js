@@ -115,10 +115,10 @@ instance.interceptors.response.use(
   async (error) => {
     const { data: responseData, config: originalRequest } = error.response
     console.log('ERR RESPONSE', responseData, originalRequest)
-    if (responseData.status === INTERNAL_SERVER_ERROR) {
+    if (responseData.message === 'Move to Login Page') {
       console.log('dddd')
-      // await console.error('MEMEMEME', error)
-      // setMoveToLoginPage()
+
+      setMoveToLoginPage()
       return Promise.reject(error)
     }
 

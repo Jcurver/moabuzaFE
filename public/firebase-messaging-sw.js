@@ -14,7 +14,7 @@ self.addEventListener('install', (event) => {
   console.log('서비스워커 install함!', event)
   // self.skipWaiting()
   event.waitUntil(
-    cashes
+    self.cashes
       .open('MY_CACHE')
       .then((cache) => {
         console.log('chaching shell')
