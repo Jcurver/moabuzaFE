@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGroupData } from '../hooks/useGroupData'
 import { request } from '../utils/axios'
 import coin from '../assets/icons/coin/ico_coin1.png'
+
 // import '../styles/SweetAlertButton.css'
 
 function GroupBuzaDetail() {
@@ -193,9 +194,11 @@ function GroupBuzaDetail() {
           </DetailTitle>
           <DetailTextWrapper>
             <DetailAmount>
-              {data ? data.data.groupLeftAmount : '남은게 없네유'}
+              {data
+                ? data.data.groupLeftAmount.toLocaleString('ko-KR')
+                : '남은게 없네유'}
             </DetailAmount>
-            <DetaileText>원 남았어요!</DetaileText>
+            <DetaileText> 원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
             {data
@@ -209,7 +212,7 @@ function GroupBuzaDetail() {
             completed={data ? data.data.groupNowPercent : 0}
             // completed={70}
             animateOnRender="true"
-            bgColor="#FFB000"
+            bgColor="#4675F0"
             baseBgColor="#ffffff"
             width="328px"
             height="22px"
@@ -218,22 +221,7 @@ function GroupBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-          <button
-            type="button"
-            onClick={() => {
-              Swal.fire({
-                icon: 'success',
-                title: '목표달성!',
-                text: '이미 프로 도전러! ',
-                // imageUrl: 'https://unsplash.it/400/200',
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-              })
-            }}
-          >
-            완료버튼
-          </button>
+
           {data
             ? data.data.groupNowPercent === 100 && (
                 <button
@@ -270,7 +258,9 @@ function GroupBuzaDetail() {
                         <AccountListTitle>{acd.nickname}</AccountListTitle>
                         <AccountListText>{acd.groupMemo}</AccountListText>
                       </AccountListCenter>
-                      <AccountNumber>{acd.groupAmount} 원</AccountNumber>
+                      <AccountNumber>
+                        {acd.groupAmount.toLocaleString('ko-KR')} 원
+                      </AccountNumber>
                     </AccountList>
                   </AccountListsWrapper>
                 </AccountContent>
@@ -288,7 +278,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const ColorWrapper = styled.div`
-  background: #e5e5e5;
+  background: #f6f9fe;
   box-sizing: border-box;
   height: 480px;
 `
@@ -315,6 +305,8 @@ const CancleMoveButton = styled.button`
   height: 48px;
   left: 4px;
   top: 31px;
+  background-color: #f6f9fe;
+  cursor: pointer;
 `
 
 const ForgiveMoveButton = styled.button`
@@ -323,6 +315,9 @@ const ForgiveMoveButton = styled.button`
   height: 48px;
   left: 308px;
   top: 31px;
+  color: #4675f0;
+  background-color: #f6f9fe;
+  cursor: pointer;
 `
 
 const DetailWrapper = styled.div`
@@ -362,6 +357,15 @@ const DetailTextWrapper = styled.div`
 const DetailAmount = styled.span`
   height: 23px;
   text-align: center;
+  color: #4675f0;
+  /* Heading / Roboto / H3(B) */
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.04em;
 `
 
 const DetaileText = styled.span`
@@ -526,7 +530,7 @@ const AccountNumber = styled.div`
   justify-content: center;
   align-items: flex-end;
   padding: 6px 12px;
-  background: #4675f0;
+  background: #ffb000;
   color: white;
   /* Heading / Roboto / H6(B) */
 
