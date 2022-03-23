@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { setMoveToLoginPage } from './setMoveToLoginPage'
 import { getCookie, setCookie } from './cookie'
-import { fcmToken } from '../pages/fcm'
+import { getItem } from './sessionStorage'
+// import { fcmToken } from './fcm'
 
 import {
   BAD_REQUEST,
@@ -56,6 +58,7 @@ export const request = async ({ ...options }) => {
     return response
   }
   const onError = (error) => {
+    console.log('error:::', error.response)
     // optionaly catch errors and add additional logging here
     return error
   }
@@ -66,7 +69,7 @@ export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
-        fcmToken,
+        fcmToken: getItem('fcmToken'),
         nickname: data.nickname,
         hero,
       })
@@ -96,7 +99,7 @@ export const api = {
       }),
   getHomeData: () =>
     instance
-      .get(`/home`)
+      .get(`/`)
       .then((res) => {
         console.log('홈 res : ', res)
         return res.data
@@ -107,126 +110,124 @@ export const api = {
       }),
 }
 
-// instance.interceptors.response.use(
-//   (response) => {
-//     return response
-//   },
+instance.interceptors.response.use(
+  (response) => {
+    return response
+  },
 
-//   async (error) => {
-//     const { data: responseData, config: originalRequest } = error.response
+  async (error) => {
+    const { data: responseData, config: originalRequest } = error.response
+    console.log('ERR RESPONSE', responseData.status, originalRequest)
+    if (responseData.status === INTERNAL_SERVER_ERROR) {
+      console.log('dddd')
+      // await console.error('MEMEMEME', error)
+      setMoveToLoginPage()
+      return Promise.reject(error)
+    }
 
-//     if (
-//       responseData.responseMessage === null &&
-//       responseData.statusCode === null
-//     ) {
-//       if (process.env.REACT_APP_NODE_ENV === 'development') {
-//         console.error(error.response)
-//       }
 
-//       return Promise.reject(error)
-//     }
+    // if (
+    //   responseData.responseMessage === null &&
+    //   responseData.statusCode === null
+    // ) {
+    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //     console.error(error.response)
+    //   }
 
-//     if (responseData.status === INTERNAL_SERVER_ERROR) {
-//       if (process.env.REACT_APP_NODE_ENV === 'development') {
-//         console.error(error)
-//       }
+    //   return Promise.reject(error)
+    // }
 
-//       return Promise.reject(error)
-//     }
+    // if (responseData.statusCode === UNAUTHORIZED) {
+    //   if (responseData.responseMessage === ACCESS_TOKEN_SIGNATURE_EXCEPTION) {
+    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //       console.error(error)
+    //     }
 
-//     if (responseData.statusCode === UNAUTHORIZED) {
-//       if (responseData.responseMessage === ACCESS_TOKEN_SIGNATURE_EXCEPTION) {
-//         if (process.env.REACT_APP_NODE_ENV === 'development') {
-//           console.error(error)
-//         }
+    //     return Promise.reject(error)
+    //   }
 
-//         return Promise.reject(error)
-//       }
+    //   if (responseData.responseMessage === ACCESS_TOKEN_MALFORMED) {
+    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //       console.error(error)
+    //     }
 
-//       if (responseData.responseMessage === ACCESS_TOKEN_MALFORMED) {
-//         if (process.env.REACT_APP_NODE_ENV === 'development') {
-//           console.error(error)
-//         }
+    //     return Promise.reject(error)
+    //   }
+    // }
 
-//         return Promise.reject(error)
-//       }
-//     }
+    // if (
+    //   responseData.statusCode === BAD_REQUEST &&
+    //   responseData.responseMessage === ACCESS_TOKEN_EXPIRED
+    // ) {
+    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //     console.error(responseData)
+    //   }
 
-//     if (
-//       responseData.statusCode === BAD_REQUEST &&
-//       responseData.responseMessage === ACCESS_TOKEN_EXPIRED
-//     ) {
-//       if (process.env.REACT_APP_NODE_ENV === 'development') {
-//         console.error(responseData)
-//       }
+    //   try {
+    //     const { data } = await axios({
+    //       method: 'GET',
+    //       url: `${process.env.REACT_APP_BASE_URL}/user/loginCheck`,
+    //       headers: {
+    //         'Content-Type': 'application/json;charset=UTF-8',
+    //         'R-AUTH-TOKEN': getCookie('habit-R-Token'),
+    //       },
+    //     })
 
-//       try {
-//         const { data } = await axios({
-//           method: 'GET',
-//           url: `${process.env.REACT_APP_BASE_URL}/user/loginCheck`,
-//           headers: {
-//             'Content-Type': 'application/json;charset=UTF-8',
-//             'R-AUTH-TOKEN': getCookie('habit-R-Token'),
-//           },
-//         })
+    //     if (data.statusCode === OK) {
+    //       setCookie('habit-A-Token', data.accessToken)
+    //       originalRequest.headers['A-AUTH-TOKEN'] = `${data.accessToken}`
+    //       return axios(originalRequest)
+    //     }
+    //   } catch (error) {
+    //     if (
+    //       error?.response?.data?.statusCode === BAD_REQUEST &&
+    //       error?.response?.data?.responseMessage === REFRESH_TOKEN_EXPIRED
+    //     ) {
+    //       if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //         console.error(error)
+    //       }
 
-//         if (data.statusCode === OK) {
-//           setCookie('habit-A-Token', data.accessToken)
-//           originalRequest.headers['A-AUTH-TOKEN'] = `${data.accessToken}`
-//           return axios(originalRequest)
-//         }
-//       } catch (error) {
-//         if (
-//           error?.response?.data?.statusCode === BAD_REQUEST &&
-//           error?.response?.data?.responseMessage === REFRESH_TOKEN_EXPIRED
-//         ) {
-//           if (process.env.REACT_APP_NODE_ENV === 'development') {
-//             console.error(error)
-//           }
+    //       return Promise.reject(error)
+    //     }
+    //     if (error?.response?.data?.statusCode === UNAUTHORIZED) {
+    //       if (
+    //         error?.response?.data?.responseMessage ===
+    //         REFRESH_TOKEN_SIGNATURE_EXCEPTION
+    //       ) {
+    //         return Promise.reject(error)
+    //       }
+    //       if (
+    //         error?.response?.data?.responseMessage === REFRESH_TOKEN_MALFORMED
+    //       ) {
+    //         if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //           console.error(error)
+    //         }
 
-//           return Promise.reject(error)
-//         }
-//         if (error?.response?.data?.statusCode === UNAUTHORIZED) {
-//           if (
-//             error?.response?.data?.responseMessage ===
-//             REFRESH_TOKEN_SIGNATURE_EXCEPTION
-//           ) {
+    //         return Promise.reject(error)
+    //       }
+    //     }
+    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //       console.error(error)
+    //     }
+    //     return Promise.reject(error)
+    //   }
+    // }
 
-//             return Promise.reject(error)
-//           }
-//           if (
-//             error?.response?.data?.responseMessage === REFRESH_TOKEN_MALFORMED
-//           ) {
-//             if (process.env.REACT_APP_NODE_ENV === 'development') {
-//               console.error(error)
-//             }
+    // if (error.response.data.statusCode === NOT_FOUND) {
+    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //     console.error(error)
+    //   }
+    //   return Promise.reject(error)
+    // }
 
-//             return Promise.reject(error)
-//           }
-//         }
-//         if (process.env.REACT_APP_NODE_ENV === 'development') {
-//           console.error(error)
+    // if (error.response.data.statusCode === INTERNAL_SERVER_ERROR) {
+    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
+    //     console.error(error)
+    //   }
 
-//         }
-//         return Promise.reject(error)
-//       }
-//     }
+    //   return Promise.reject(error)
+    // }
 
-//     if (error.response.data.statusCode === NOT_FOUND) {
-//       if (process.env.REACT_APP_NODE_ENV === 'development') {
-//         console.error(error)
-//       }
-//       return Promise.reject(error)
-//     }
-
-//     if (error.response.data.statusCode === INTERNAL_SERVER_ERROR) {
-//       if (process.env.REACT_APP_NODE_ENV === 'development') {
-//         console.error(error)
-//       }
-
-//       return Promise.reject(error)
-//     }
-
-//     return Promise.reject(error)
-//   },
-// )
+    return Promise.reject(error)
+  },
+)

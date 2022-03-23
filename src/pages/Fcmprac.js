@@ -2,28 +2,28 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 
 import './fcm'
 import axios from 'axios'
-import { EC2, fcmToken } from './ec2'
+import { fcmToken } from './ec2'
 // import { instance } from "./axios";
 
 function Fcmprac() {
   const bob = 'bog'
   function memberinfo() {
     axios
-      .post(`${EC2}/member/info`)
+      .post(`https://panghoon.shop/member/info`)
       .then((res) => console.log('memberInfoRes:::', res))
       .catch((err) => console.log('memberInfoErr:::', err))
   }
   function pushnoti() {
     axios
-      .post(`${EC2}/push`, {
-        nickname: 'bog',
+      .post(`https://panghoon.shop/push`, {
+        nickname: 'pangpang',
       })
       .then((res) => console.log('pushNotiRes:::', res))
       .catch((err) => console.log('pushNotiErr:::', err))
   }
   function ho() {
     axios
-      .post(`${EC2}/ho`, {
+      .post(`https://panghoon.shop/ho`, {
         nickname: 'bog',
         token: fcmToken,
       })

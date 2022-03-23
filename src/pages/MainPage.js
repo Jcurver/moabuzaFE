@@ -68,12 +68,13 @@ function MainPage() {
     console.log('error : ', error)
     return <ErrorLog error={error} />
   }
+  // if(data && data.data.nickname )
 
   return (
     <Wrapper>
       <NavLink to="/alerts">
         <RightButtonDiv />
-        {data && data.data.alarmCount > 0 ? (
+        {data && data?.data?.alarmCount > 0 ? (
           <AlertOn
             style={{
               width: '24px',
@@ -103,7 +104,7 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {toggle === 'group' && data.data.groupName ? (
+      {toggle === 'group' && data && data?.data?.groupName ? (
         <>
           <ContentGoalName>{data.data.groupName}</ContentGoalName>
           <ContentUnderDiv>
@@ -142,10 +143,10 @@ function MainPage() {
       )}
       {toggle === 'challenge' && data.data.challengeName ? (
         <div>
-          <ContentGoalName>{data.data.challengeName}</ContentGoalName>
+          <ContentGoalName>{data?.data?.challengeName}</ContentGoalName>
           <ContentUnderDiv>
             <ContentWon>
-              {data.data.challengeNeedAmount.toLocaleString('en-US')}원
+              {data?.data?.challengeNeedAmount.toLocaleString('en-US')}원
             </ContentWon>
             <ContentNeed>남았어요!</ContentNeed>
           </ContentUnderDiv>
