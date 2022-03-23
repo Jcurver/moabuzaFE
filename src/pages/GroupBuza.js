@@ -111,6 +111,7 @@ function GroupBuza() {
                 height="52px"
                 fontSize="14px"
                 background="#4675F0"
+                baseBgColor="E5EAF2"
                 onClick={() => {
                   navigate('/groupbuzacreate')
                 }}

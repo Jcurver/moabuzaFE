@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
+import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as Edit } from '../assets/icons/settings/edit1.svg'
+import { ReactComponent as Logout } from '../assets/icons/settings/logout.svg'
+import { ReactComponent as Review } from '../assets/icons/settings/review.svg'
 
 function Settings() {
   function logout() {
@@ -29,7 +34,15 @@ function Settings() {
       <TopDiv>
         <NavLink to="/menu">
           <ButtonDiv />
-          <Button />
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
         </NavLink>
         <Title>설정</Title>
         <TopLine />
@@ -37,19 +50,70 @@ function Settings() {
       <NavLink to="/modified">
         <TodayDiv style={{ top: '11.94%' }}>
           <TodayLogoDiv />
-          <TodayLogo />
+          <Edit
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '16px',
+              top: '18px',
+            }}
+          />
           <TodayText>캐릭터/닉네임 수정</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <TodayDiv style={{ top: '20.27%' }}>
         <TodayLogoDiv />
-        <TodayLogo />
+        <Review
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '16px',
+            top: '18px',
+          }}
+        />
         <TodayText>리뷰</TodayText>
+        <Rightarr
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '320px',
+            top: '18px',
+          }}
+        />
       </TodayDiv>
       <TodayDiv onClick={() => logout()} style={{ top: '35.97%' }}>
         <TodayLogoDiv />
-        <TodayLogo />
+        <Logout
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '16px',
+            top: '18px',
+          }}
+        />
         <TodayText>로그아웃</TodayText>
+        <Rightarr
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '320px',
+            top: '18px',
+          }}
+        />
       </TodayDiv>
     </Wrapper>
   )
@@ -123,7 +187,7 @@ const TopLine = styled.div`
 const TodayDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 60px;
+  height: 8.333%;
   left: 0px;
 `
 
@@ -164,7 +228,6 @@ const TodayText = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
-
   })}
   letter-spacing: -0.04em;
 

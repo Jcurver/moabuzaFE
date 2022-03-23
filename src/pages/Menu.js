@@ -7,6 +7,9 @@ import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
 import { ReactComponent as Setting } from '../assets/icons/menu/setting.svg'
 import { ReactComponent as Together } from '../assets/icons/menu/together.svg'
 import { ReactComponent as Vector } from '../assets/icons/menu/Vector.svg'
+import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+
 import { setFlexStyles } from '../styles/Mixin'
 
 function Menu() {
@@ -15,7 +18,15 @@ function Menu() {
       <TopDiv>
         <NavLink to="/">
           <ButtonDiv />
-          <Button />
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
         </NavLink>
         <Title>메뉴</Title>
         <TopLine />
@@ -25,14 +36,23 @@ function Menu() {
           <TodayLogoDiv />
           <Vector
             style={{
+              position: 'absolute',
               width: '24px',
               height: '24px',
               left: '16px',
               top: '18px',
-              position: 'absolute',
             }}
           />
           <TodayText>하루부자</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <NavLink to="/groupbuza">
@@ -48,6 +68,15 @@ function Menu() {
             }}
           />
           <TodayText>같이해부자</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <NavLink to="/challengebuza">
@@ -64,6 +93,15 @@ function Menu() {
           />
           {/* <TodayLogo /> */}
           <TodayText>도전해부자</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <NavLink to="/friends">
@@ -80,6 +118,15 @@ function Menu() {
           />
           {/* <TodayLogo /> */}
           <TodayText>친구</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <NavLink to="/bedge">
@@ -95,6 +142,15 @@ function Menu() {
             }}
           />
           <TodayText>뱃지</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
       <NavLink to="/settings">
@@ -110,6 +166,15 @@ function Menu() {
             }}
           />
           <TodayText>설정</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
         </TodayDiv>
       </NavLink>
     </Wrapper>
@@ -137,16 +202,6 @@ const ButtonDiv = styled.div`
   bottom: 10.47%;
 
   background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
 `
 
 const Title = styled.div`
@@ -185,7 +240,7 @@ const TopLine = styled.div`
 const TodayDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 60px;
+  height: 8.333%;
   left: 0px;
 `
 const TodayLogoDiv = styled.div`
