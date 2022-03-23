@@ -1,57 +1,15 @@
-// // import firebase from 'firebase/compat/app'
+const IMMUTABLE_INFO = [
+  '../src/assets/icons/alram.svg',
+  '../src/assets/icons/alram-1.svg',
+  '../src/pages/OnedayBuza.js'
+]
 
-// import firebase from 'firebase/compat/app'
-// import 'firebase/compat/database'
-
-// // 프로젝트 버전 확인
-
-// const self = this
-
-// // eslint-disable-next-line no-undef
-// importScripts('https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js')
-
-// // eslint-disable-next-line no-undef
-// importScripts('https://www.gstatic.com/firebasejs/9.6.9/firebase-messaging.js')
-
-// const config = {
-//   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
-//   authDomain: 'moabuza.firebaseapp.com',
-//   projectId: 'moabuza',
-//   storageBucket: 'moabuza.appspot.com',
-//   messagingSenderId: '702007017171',
-//   appId: '1:702007017171:web:3584da8cde95f03eedde26',
-//   measurementId: 'G-3PZP7TQ54Y',
-// }
-
-// // Initialize Firebase
-// // eslint-disable-next-line no-undef
-
-// firebase.initializeApp(config)
-
-// // eslint-disable-next-line no-undef
-
-// const messaging = firebase.messaging()
-
-// // 백그라운드 서비스워커 설정
-
-// messaging.onBackgroundMessage(messaging, (payload) => {
-//   console.log(
-//     '[firebase-messaging-sw.js] Received background message ',
-//     payload,
-//   )
-
-//   // Customize notification here
-//   const notificationTitle = 'Background Message Title'
-//   const notificationOptions = {
-//     body: payload,
-//     icon: '/firebase-logo.png',
-//   }
-
-//   self.registration.showNotification(notificationTitle, notificationOptions)
-// })
 
 self.addEventListener('install', (e) => {
   console.log('서비스워커 install함!', e)
+  e.waitUntil(self.cashes.open('MY_CACHE').then(cache => {
+    return cache.addAll(IMMUTABLE_INFO)
+  }))
 })
 
 self.addEventListener('activate', (e) => {

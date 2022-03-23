@@ -37,19 +37,9 @@ function UserInfo() {
        })
       return
     }
-    // if (!nickNameDup) {
-    //   Swal.fire({
-    //     title: '사용중인 닉네임',
-    //     text: '다른거로 골라부자',
-    //     // icon: 'success',
-    //   }).then((result) => {
-    //     console.log(result)
-    //   })
-    //   return
-    // }
 
     await api.getUserInfo(data, hero)
-    navigate('/')
+    navigate('/home')
   }
   const nicknameDup = () => {
     console.log('닉네임::', watch().nickname)
