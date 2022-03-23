@@ -117,7 +117,7 @@ instance.interceptors.response.use(
 
   async (error) => {
     const { data: responseData, config: originalRequest } = error.response
-    console.log('ERR RESPONSE', responseData.status, originalRequest)
+    console.log('ERR RESPONSE', responseData, originalRequest)
     if (responseData.status === INTERNAL_SERVER_ERROR) {
       console.log('dddd')
       // await console.error('MEMEMEME', error)
