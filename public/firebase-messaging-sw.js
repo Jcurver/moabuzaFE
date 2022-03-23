@@ -3,21 +3,26 @@ const _version = 'v3'
 const cacheName = 'v1'
 const IMMUTABLE_INFO = [
   '/public/logo192.png',
-  
+
   // '../src/assets/icons/alram-1.svg',
   // '../src/pages/OnedayBuza.js',
   // '/logo192.png',
   // './index.html',
 ]
 
-self.addEventListener('install', (e) => {
-  console.log('서비스워커 install함!', e)
-  self.skipWaiting()
-  e.waitUntil(
-    cashes.open('MY_CACHE').then((cache) => {
-      console.log('chaching shell')
-      return cache.addAll(IMMUTABLE_INFO)
-    }),
+self.addEventListener('install', (event) => {
+  console.log('서비스워커 install함!', event)
+  // self.skipWaiting()
+  event.waitUntil(
+    cashes
+      .open('MY_CACHE')
+      .then((cache) => {
+        console.log('chaching shell')
+        return cache.addAll(IMMUTABLE_INFO)
+      })
+      .then(() => {
+        return self.skipWaiting()
+      }),
   )
 })
 
