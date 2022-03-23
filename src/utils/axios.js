@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { getCookie, setCookie } from './cookie'
+import { fcmToken } from '../pages/fcm'
 
 import {
   BAD_REQUEST,
@@ -31,10 +32,12 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
     config.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+    // config.headers.common['FB-TOKEN'] = `Bearer ${FB_TOKEN}`
   }
   // config.headers['Access-Control-Allow-Origin'] = '*'
   // config.headers['Access-Control-Allow-Credentials'] = true
@@ -63,6 +66,7 @@ export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
+        fcmToken,
         nickname: data.nickname,
         hero,
       })

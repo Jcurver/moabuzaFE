@@ -40,8 +40,9 @@ function OnedayBuza() {
 
   
   const [startDate, setStartDate] = useState(new Date(nowDate()))
-  function setDateMutate(date) {
 
+
+  function setDateMutate(date) {
     const newdate = getDate(date)
     setItem('nowdate', date)
     // console.log("date",date)
