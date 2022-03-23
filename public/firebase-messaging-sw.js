@@ -2,10 +2,10 @@
 const _version = 'v3'
 const cacheName = 'v1'
 const IMMUTABLE_INFO = [
-  // '../src/assets/icons/alram.svg',
+  '../src/assets/icons/alram.svg',
   // '../src/assets/icons/alram-1.svg',
   // '../src/pages/OnedayBuza.js',
-  '/logo192.png',
+  // '/logo192.png',
   // './index.html',
 ]
 
