@@ -65,13 +65,21 @@ function ChallengeBuzaCreate() {
       src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
     },
   ]
+  const [datalist, setDatalist] = useState([])
   const [selectFriends, setSelectFriends] = useState([])
-  // console.log(selectFriends)
 
-  const [datalist, setDatalist] = useState(data)
-  // console.log(datalist)
-  // const listfreind = () => {}
-  // console.log('selectFriends', selectFriends)
+  const friendData = () => {
+    return request({
+      url: '/money/challenge/createChallenge',
+      method: 'get',
+    }).then((res) => {
+      console.log(res.data.challengeMembers)
+      setDatalist([...res.data.challengeMembers])
+    })
+  }
+  const selentFriendNickName = selectFriends.map(
+    (data) => data.challengeMemberNickname,
+  )
 
   const {
     control,
@@ -102,7 +110,7 @@ function ChallengeBuzaCreate() {
           challengeData.createChallengeAmount,
           10,
         ),
-        challengeFriends: [...selectFriends],
+        challengeFriends: selentFriendNickName,
       },
     }).then(
       (res) => console.log('challengeCreate', res),
@@ -116,7 +124,9 @@ function ChallengeBuzaCreate() {
       }),
     )
   }
-
+  useEffect(() => {
+    friendData()
+  }, [])
   // useEffect(() => {
   //   console.log(selectFriends)
   // }, [selectFriends])
@@ -183,7 +193,7 @@ function ChallengeBuzaCreate() {
                 return (
                   <div key={da.id}>
                     <SelectedFriendContent>
-                      {selectFriends[idx].title}
+                      {selectFriends[idx].challengeMemberNickname}
                       <DeleteFriendContent
                         onClick={() => {
                           setSelectFriends(
@@ -227,7 +237,7 @@ function ChallengeBuzaCreate() {
                 }}
               >
                 <CircleImg src={da.src} />
-                <FriendsText>{da.title}</FriendsText>
+                <FriendsText>{da.challengeMemberNickname}</FriendsText>
               </Friends>
             )
           })}
