@@ -133,19 +133,18 @@ function GroupBuza() {
                     return <GroupFriendIcon src={data.src} />
                   })}
                 </GroupFriend>
-                <GroupFriendTitle>
-                  {data.data.groupName}
-                  티끌모아 태산 동전 저금하기!
-                </GroupFriendTitle>
+                <GroupFriendTitle>{data.data.groupName}</GroupFriendTitle>
                 <GroupFriendGoal>
-                  <GroupFriendGoalAmount>9999 </GroupFriendGoalAmount>
-                  <span>원 남았습니다.</span>
+                  <GroupFriendGoalAmount>
+                    {data.data.groupLeftAmount.toLocaleString('ko-KR')}
+                  </GroupFriendGoalAmount>
+                  <span> 원 남았습니다.</span>
                 </GroupFriendGoal>
                 <ProgressBar
                   // completed={60}
                   completed={data ? data.data.groupNowPercent : 50}
                   animateOnRender="true"
-                  bgColor="#FFB000"
+                  bgColor="#4675F0"
                   width="304px"
                   height="20px"
                   margin="0 auto"
@@ -179,6 +178,7 @@ function GroupBuza() {
                 width="296px"
                 height="52px"
                 fontSize="14px"
+                background="#4675F0"
                 onClick={cancelGroup}
               >
                 대기취소
@@ -308,9 +308,11 @@ const CompletedContent = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 8px 0px;
+  padding: 16px;
 
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+
   align-items: center;
 `
 
@@ -411,7 +413,7 @@ const GroupFriendGoalAmount = styled.span`
 
   /* color / text / Color-text-Black */
 
-  color: #000000;
+  color: #4675f0;
 `
 
 export default GroupBuza
