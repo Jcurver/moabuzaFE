@@ -121,7 +121,7 @@ instance.interceptors.response.use(
     if (responseData.status === INTERNAL_SERVER_ERROR) {
       console.log('dddd')
       // await console.error('MEMEMEME', error)
-      setMoveToLoginPage()
+      // setMoveToLoginPage()
       return Promise.reject(error)
     }
 
