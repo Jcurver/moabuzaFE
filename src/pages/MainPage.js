@@ -106,7 +106,7 @@ function MainPage() {
       </Toggle>
       {toggle === 'group' && data && data?.data?.groupName ? (
         <>
-          <ContentGoalName>{data.data.groupName}</ContentGoalName>
+          <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
           <ContentUnderDiv>
             <ContentWon>
               {data.data.groupNeedAmount.toLocaleString('en-US')}원

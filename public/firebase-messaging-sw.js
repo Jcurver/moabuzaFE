@@ -13,7 +13,7 @@ self.addEventListener('install', (e) => {
   console.log('서비스워커 install함!', e)
   self.skipWaiting()
   e.waitUntil(
-    self.cashes.open('MY_CACHE').then((cache) => {
+    cashes.open('MY_CACHE').then((cache) => {
       console.log('chaching shell')
       return cache.addAll(IMMUTABLE_INFO)
     }),
