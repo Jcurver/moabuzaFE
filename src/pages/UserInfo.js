@@ -39,7 +39,7 @@ function UserInfo() {
     }
 
     await api.getUserInfo(data, hero)
-    navigate('/home')
+    navigate('/')
   }
   const nicknameDup = () => {
     console.log('닉네임::', watch().nickname)
