@@ -50,6 +50,18 @@
 //   self.registration.showNotification(notificationTitle, notificationOptions)
 // })
 
+self.addEventListener('install', (e) => {
+  console.log('서비스워커 install함!', e)
+})
+
+self.addEventListener('activate', (e) => {
+  console.log('서비스워커 activate 시작됨!', e)
+})
+
+self.addEventListener('fetch', (e) => {
+  console.log('데이터 요청!(fetch)', e.request)
+})
+
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     console.log('message', event)
@@ -58,12 +70,12 @@ self.addEventListener('message', (event) => {
 })
 
 // Any other custom service worker logic can go here.
-self.addEventListener('push', function (event) {
+self.addEventListener('push', (event) => {
   console.log(event)
   console.log(event.data)
   console.log(event.data.json())
   console.log(event.data.json().notification)
-  const {title} = event.data.json().notification
+  const { title } = event.data.json().notification
   console.log(title)
 
   const options = {
@@ -75,7 +87,7 @@ self.addEventListener('push', function (event) {
   event.waitUntil(self.registration.showNotification(title, options)) // showNotification을 통해 푸시 알림을 생성, Promise가 반환되며 waitUntil을 통해 이벤트를 연장 시켜야함
 })
 
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener('notificationclick', (event) => {
   console.log('notificationclick', event)
 
   event.notification.close()
