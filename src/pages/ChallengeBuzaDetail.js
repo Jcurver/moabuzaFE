@@ -10,100 +10,15 @@ import {
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
-// import '../styles/SweetAlertButton.css'
+
+const shortid = require('shortid')
 
 function ChallengeBuzaDetail() {
   const navigate = useNavigate()
-  const [acountData, setaCountData] = useState([])
-  const FriendData = [
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-  ]
 
-  const AccountData = [
-    {
-      accountDate: '2022-03-18',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-    {
-      accountDate: '2022-03-19',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-    {
-      accountDate: '2022-03-20',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-  ]
   const { data, isLoading } = useChallengeData(navigate)
   const homeData = useChallengeMainPageData(navigate)
-  console.log(isLoading)
+
   const cancelGroup = (id) => {
     Swal.fire({
       title: '도전포기!',
@@ -138,15 +53,10 @@ function ChallengeBuzaDetail() {
   if (homeData.isLoading) {
     return <Loading />
   }
-  console.log('homeData', homeData)
-  console.log(data.data)
-  // console.log('detail------', data.data)
-  // const ampsdnl = AccountData.map((dd, i) => {
-  //   return dd.account.map((ddd, idx) => {
-  //     return ddd.src
-  //   })
-  // })
-  // console.log(ampsdnl)
+
+  const challengeData = data.data
+  console.log(homeData)
+  console.log(challengeData)
   return (
     <Wrapper>
       <ColorWrapper>
@@ -164,7 +74,7 @@ function ChallengeBuzaDetail() {
 
         <DetailWrapper>
           <DetailTitle>
-            {data ? data.data.challengeName : '도전이름이 없습니다'}
+            {data ? challengeData.challengeName : '도전이름이 없습니다'}
           </DetailTitle>
           <DetailTextWrapper>
             <DetailAmount>
@@ -175,15 +85,20 @@ function ChallengeBuzaDetail() {
             <DetaileText> 원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
-            {data.data.challengeMembers.map((member, idx) => {
-              return <GroupFriendIcon src={member.challengeMemberHero} />
+            {challengeData.challengeMembers.map((member, idx) => {
+              return (
+                <GroupFriendIcon
+                  key={shortid.generate()}
+                  src={member.challengeMemberHero}
+                />
+              )
             })}
           </GroupFriend>
           <DetailCharacter>sdsd</DetailCharacter>
           <ProgressBar
             completed={homeData ? homeData.data.data.challengePercent : 0}
             // completed={70}
-            animateOnRender="true"
+            animateOnRender
             bgColor="#FFB000"
             baseBgColor="#ffffff"
             width="328px"
@@ -234,9 +149,9 @@ function ChallengeBuzaDetail() {
       <ScrollWrapper>
         <ChallengeFriendWrapper>
           {data
-            ? data.data.challengeMembers.map((member, idx) => {
+            ? challengeData.challengeMembers.map((member, idx) => {
                 return (
-                  <ChallengeFriendList>
+                  <ChallengeFriendList key={shortid.generate()}>
                     <ChallengeFriendContents>
                       <ChallengeFriendIcon src={member.challengeMemberHero} />
                       <ChallengeFriendNickName>
@@ -251,8 +166,7 @@ function ChallengeBuzaDetail() {
                     </ChallengeFriendContents>
                     <ProgressBar
                       completed={member.challengeMemberNowPercent}
-                      // completed={70}
-                      animateOnRender="true"
+                      animateOnRender
                       bgColor="#4675F0"
                       baseBgColor="#ffffff"
                       width="304px"
@@ -270,29 +184,31 @@ function ChallengeBuzaDetail() {
         <AccountTitle>내역</AccountTitle>
         <AccountSummaryWrapper>
           {data
-            ? data.data.challengeLists.sort(dateDescending).map((acd, idx) => {
-                return (
-                  <AccountContent>
-                    <AccountDate>
-                      {acd.challengeRecordDate.slice(0, 10)}
-                    </AccountDate>
-                    <AccountListsWrapper>
-                      <AccountList>
-                        <AccountImg src={coin} />
-                        <AccountListCenter>
-                          <AccountListTitle>
-                            {acd.challengeMemo}
-                          </AccountListTitle>
-                          <AccountListText>{acd.accountText}</AccountListText>
-                        </AccountListCenter>
-                        <AccountNumber>
-                          {acd.challengeAmount.toLocaleString('ko-KR')} 원
-                        </AccountNumber>
-                      </AccountList>
-                    </AccountListsWrapper>
-                  </AccountContent>
-                )
-              })
+            ? challengeData.challengeLists
+                .sort(dateDescending)
+                .map((acd, idx) => {
+                  return (
+                    <AccountContent key={shortid.generate()}>
+                      <AccountDate>
+                        {acd.challengeRecordDate.slice(0, 10)}
+                      </AccountDate>
+                      <AccountListsWrapper>
+                        <AccountList>
+                          <AccountImg src={coin} />
+                          <AccountListCenter>
+                            <AccountListTitle>
+                              {acd.challengeMemo}
+                            </AccountListTitle>
+                            {/* <AccountListText>{acd.accountText}</AccountListText> */}
+                          </AccountListCenter>
+                          <AccountNumber>
+                            {acd.challengeAmount.toLocaleString('ko-KR')} 원
+                          </AccountNumber>
+                        </AccountList>
+                      </AccountListsWrapper>
+                    </AccountContent>
+                  )
+                })
             : null}
         </AccountSummaryWrapper>
       </ScrollWrapper>
@@ -304,11 +220,9 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  /* background: #f5f5f7; */
 `
 const ColorWrapper = styled.div`
   background: #e5e5e5;
-  /* border: 1px solid black; */
   box-sizing: border-box;
   height: 480px;
 `
@@ -467,7 +381,7 @@ const ChallengeFriendAmount = styled.span`
 
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: right;

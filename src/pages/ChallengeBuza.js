@@ -13,16 +13,15 @@ import {
 } from '../hooks/useChallengeData'
 import Loading from './Loading'
 
+const shortid = require('shortid')
+
 function ChallengeBuza() {
-  const [pending, setPending] = useState(true)
-  const [isData, setIsData] = useState([])
   const navigate = useNavigate()
 
   // 홈데이터 부르는 부분 수정사함 -----------
-  const { data } = useChallengeData(navigate)
+  const { data, isLoading } = useChallengeData(navigate)
   const homeData = useChallengeMainPageData(navigate)
 
-  // console.log(isData[0].challengeCurrentAmount)
   const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전 포기!',
@@ -40,7 +39,6 @@ function ChallengeBuza() {
           url: `/money/challenge/exitchallenge/${data.data.id}`,
           method: 'delete',
         }).then(() => {
-          // window.location.replace('/challengebuza')
           navigate(0)
         })
       }
@@ -51,13 +49,13 @@ function ChallengeBuza() {
   if (homeData.isLoading) {
     return <Loading />
   }
-  if (data.isLoading) {
+  if (isLoading) {
     return <Loading />
   }
 
   return (
     <Wrapper>
-      {data ? data.data.goalStatus : 'asdasd'}
+      {/* {data ? data.data.goalStatus : 'asdasd'}
       <button
         type="button"
         onClick={() => {
@@ -75,11 +73,9 @@ function ChallengeBuza() {
         }}
       >
         설정변경
-      </button>
+      </button> */}
       <Title>
-        {/* <MoveButton type="button">asdasd</MoveButton> */}
         <Text>도전해부자</Text>
-        {/* <MoveButton type="button">asdasd</MoveButton> */}
       </Title>{' '}
       {data
         ? data.data.goalStatus === 'noGoal' && (
@@ -112,7 +108,10 @@ function ChallengeBuza() {
                   {data
                     ? data.data.challengeMembers.map((member) => {
                         return (
-                          <GroupFriendIcon src={member.challengeMemberHero} />
+                          <GroupFriendIcon
+                            key={shortid.generate()}
+                            src={member.challengeMemberHero}
+                          />
                         )
                       })
                     : null}
@@ -135,7 +134,7 @@ function ChallengeBuza() {
                   completed={
                     homeData ? homeData.data.data.challengePercent : 50
                   }
-                  animateOnRender="true"
+                  animateOnRender
                   bgColor="#4675F0"
                   width="304px"
                   height="20px"
@@ -149,7 +148,7 @@ function ChallengeBuza() {
               <CompletedList>
                 {data.data.challengeDoneGoals.map((data, idx) => {
                   return (
-                    <CompletedContent>
+                    <CompletedContent key={shortid.generate()}>
                       <CompletedText>{data}</CompletedText>
                     </CompletedContent>
                   )
