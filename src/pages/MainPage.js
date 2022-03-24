@@ -50,6 +50,16 @@ function MainPage() {
 
   const { isLoading, data, isError, error } = useMainPageData(navigate)
   console.log('데이터확인 : ', isLoading, data, isError, error)
+
+  function makeGoal() {
+    if (toggle === 'group') {
+      navigate('/groupbuzacreate')
+    }
+    if (toggle === 'challenge') {
+      navigate('/challengebuzacreate')
+    }
+  }
+
   const leftToggleBtn = () => {
     if (toggle === 'challenge') {
       setToggle('group')
@@ -209,7 +219,9 @@ function MainPage() {
       data.data.totalAmount === 0 &&
       ((toggle === 'group' && !data.data.groupName) ||
         (toggle === 'challenge' && !data.data.challengeName)) ? (
-        <SetAmountButton>자산을 설정해주세요</SetAmountButton>
+        <SetAmountButton onClick={() => makeGoal()}>
+          목표를 설정해주세요
+        </SetAmountButton>
       ) : (
         ''
       )}
