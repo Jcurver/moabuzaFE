@@ -14,6 +14,7 @@ import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 import { getItem, setItem } from '../utils/sessionStorage'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
@@ -119,16 +120,24 @@ function OnedayPost() {
   return (
     <Wrapper>
       <TopDiv>
-        <Title>입력</Title>
-        <TopLine />
+        <Title>하루부자</Title>
+
+        <NavLink to="/onedaybuza">
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
+        </NavLink>
       </TopDiv>
-      <NavLink to="/onedaybuza">
-        <LeftButton />
-        <LeftButtonDiv />
-      </NavLink>
+
       <form onSubmit={handleSubmit(onValid)}>
         <RightButton>저장</RightButton>
-        <OptionTitle style={{ top: '17.36%' }}>항목 선택</OptionTitle>
+        <OptionTitle style={{ top: '125px' }}>항목 선택</OptionTitle>
         <SelectDiv>
           <select
             // eslint-disable-next-line react/jsx-props-no-spreading
@@ -146,9 +155,11 @@ function OnedayPost() {
             <option value="challenge">도전해부자</option>
           </select>
         </SelectDiv>
-        <ErrorSpan style={{ top: '28%' }}>{errors?.option?.message}</ErrorSpan>
+        <ErrorSpan style={{ top: '201.6px' }}>
+          {errors?.option?.message}
+        </ErrorSpan>
 
-        <OptionTitle style={{ top: '31.67%' }}>날짜 선택</OptionTitle>
+        <OptionTitle style={{ top: '228px' }}>날짜 선택</OptionTitle>
         <OptionDiv>
           <DatePicker
             ref={textInput}
@@ -173,9 +184,9 @@ function OnedayPost() {
             }}
           />
         </OptionDiv>
-        <OptionTitle style={{ top: '45.97%' }}>💰 금액</OptionTitle>
+        <OptionTitle style={{ top: '331px' }}>💰 금액</OptionTitle>
         <Input
-          style={{ top: '51%' }}
+          style={{ top: '367.2px' }}
           placeholder="금액을 입력해주세요"
           {...register('amount', {
             required: '금액을 적어부자',
@@ -186,10 +197,12 @@ function OnedayPost() {
             },
           })}
         />
-        <ErrorSpan style={{ top: '59%' }}>{errors?.amount?.message}</ErrorSpan>
-        <OptionTitle style={{ top: '62%' }}>✏️ 메모</OptionTitle>
+        <ErrorSpan style={{ top: '424.8px' }}>
+          {errors?.amount?.message}
+        </ErrorSpan>
+        <OptionTitle style={{ top: '446.4px' }}>✏️ 메모</OptionTitle>
         <Input
-          style={{ top: '67%' }}
+          style={{ top: '482.4px' }}
           placeholder="메모를 입력해주세요"
           {...register('memo', {
             required: '메모를 적어부자',
@@ -200,16 +213,19 @@ function OnedayPost() {
             },
           })}
         />
-        <ErrorSpan style={{ top: '75.1%' }}>{errors?.memo?.message}</ErrorSpan>
+        <ErrorSpan style={{ top: '540.7px' }}>
+          {errors?.memo?.message}
+        </ErrorSpan>
       </form>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
+  overflow:auto;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 720px;
 `
 const CalDiv = styled.div`
   width: 328px;
@@ -238,7 +254,7 @@ const SelectDiv = styled.div`
   width: 328px;
   height: 52px;
   left: 16px;
-  top: 21.53%;
+  top: 155px;
   background: #f5f5f7;
   border-radius: 8px;
 `
@@ -271,7 +287,7 @@ const OptionDiv = styled.div`
   width: 328px;
   height: 52px;
   left: 16px;
-  top: 35.83%;
+  top: 258px;
 
   background: #f5f5f7;
   border-radius: 8px;
@@ -312,23 +328,32 @@ const TopDiv = styled.div`
 
 const RightButton = styled.button`
   position: absolute;
-  left: 88.89%;
-  top: 5.69%;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 14px;
+  left: 318px;
+  top: 46px;
+
+  /* Heading/Noto Sans KR/H6 */
 
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
-  background: #c4c4c4;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
+  color: #4675f0;
 `
 
 const Title = styled.div`
   position: absolute;
-  left: 46.11%;
-  right: 45.83%;
+  left: 42.22%;
+  right: 41.94%;
   top: 50%;
   bottom: 23.26%;
 

@@ -20,7 +20,9 @@ import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
-import { getItem, setItem } from '../utils/sessionStorage';
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+
+import { getItem, setItem } from '../utils/sessionStorage'
 // import { setDateInOnedayList } from '../hooks/useUserData';
 import { nowDate } from '../hooks/nowDate'
 
@@ -37,10 +39,7 @@ function ExampleCustomInput({ value, onClick }) {
 function OnedayBuza() {
   const navigate = useNavigate()
 
-
-  
   const [startDate, setStartDate] = useState(new Date(nowDate()))
-
 
   function setDateMutate(date) {
     const newdate = getDate(date)
@@ -50,7 +49,6 @@ function OnedayBuza() {
     // console.log('newdate:', newdate)
     mutation.mutate(newdate)
   }
-  
 
   const mutation = useMutation((date) => {
     return request({
@@ -59,7 +57,7 @@ function OnedayBuza() {
       data: { recordDate: date },
     })
   })
-  
+
   useEffect(() => {
     const selectDate = getDate(startDate)
     // setDaylist(mutation?.data?.data?.dayRecordList)
@@ -104,15 +102,21 @@ function OnedayBuza() {
     <Wrapper>
       <TopDiv>
         <Title>하루부자</Title>
+        <NavLink to="/onedaypost">
+          <RightButton>입력</RightButton>
+        </NavLink>
+        <NavLink to="/">
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
+        </NavLink>
       </TopDiv>
-      <NavLink to="/onedaypost">
-        <RightButtonDiv />
-        <RightButton />
-      </NavLink>
-      <NavLink to="/">
-        <LeftButtonDiv />
-        <LeftButton />
-      </NavLink>
       <TopLine />
       <CalDiv>
         <DatePicker
@@ -163,7 +167,24 @@ function OnedayBuza() {
           원
         </TotalRight>
       </TotalLine>
+
       <BottomLine />
+      <TodayListBigDiv />
+      <ZigZagDiv>
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+      </ZigZagDiv>
       <TodayListTitle>전체 내역</TodayListTitle>
       <TodayListDiv>
         <SwipeableList threshold={0.7}>
@@ -204,6 +225,7 @@ function OnedayBuza() {
             ))}
         </SwipeableList>
       </TodayListDiv>
+
       <Nav />
     </Wrapper>
   )
@@ -213,6 +235,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -251,14 +274,27 @@ const RightButtonDiv = styled.div`
 `
 
 const RightButton = styled.div`
-  position: absolute;
-  left: 88.89%;
+position: absolute;
+width: 26px;
+height: 14px;
+left: 318px;
+top: 46px;
 
-  top: 5.69%;
-  width: 24px;
-  height: 24px;
+/* Heading/Noto Sans KR/H6 */
 
-  background: #c4c4c4;
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 100%;
+/* identical to box height, or 14px */
+
+text-align: center;
+letter-spacing: -0.04em;
+
+/* color/Secondary */
+
+color: #4675F0;
 `
 
 const Title = styled.div`
@@ -294,7 +330,7 @@ const TopLine = styled.div`
 
   background: #f5f5f7;
 `
-const MidLine = styled.hr`
+const MidLine = styled.div`
   position: absolute;
   width: 325px;
   height: 1px;
@@ -303,10 +339,10 @@ const MidLine = styled.hr`
 
   /* color / gray / Gray50 */
 
-  border: 0.5px solid #999999;
+  background-color: #f2f2f2;
   box-sizing: border-box;
 `
-const BottomLine = styled.hr`
+const BottomLine = styled.div`
   position: absolute;
   width: 325px;
   height: 1px;
@@ -315,7 +351,7 @@ const BottomLine = styled.hr`
 
   /* color / gray / Gray50 */
 
-  border: 0.5px dashed #999999;
+  background-color: #f2f2f2;
   box-sizing: border-box;
 `
 const CalDiv = styled.div`
@@ -353,9 +389,9 @@ const CalendarLine = styled.hr`
   height: 1px;
   left: 19px;
   top: 20.97%;
-  background-color: #999999;
+  background-color: #cccccc;
   /* color / gray / Gray50 */
-  border: 1px solid #999999;
+  /* border: 0.5px solid #cccccc; */
   box-sizing: border-box;
 `
 const TotalLine = styled.div`
@@ -394,6 +430,16 @@ const TotalRight = styled.div`
   letter-spacing: -0.04em;
   /* color / text / Color-text-Black */
   color: #000000;
+`
+const TodayListBigDiv = styled.div`
+  position: absolute;
+  width: 360px;
+  height: 51%;
+  left: 0px;
+  top: 49%;
+  background: #f6f9fe;
+
+
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -460,7 +506,7 @@ const TodayListLineRight = styled.div`
   height: 28px;
 
   /* color / text / Color-text-Gray3 */
-  background: #60666f;
+  background: #ffb000;
   border-radius: 25px;
   font-family: 'Roboto';
   font-style: normal;
@@ -510,5 +556,22 @@ const TodayListLineMemo = styled.div`
   /* color / gray / Gray70 */
   color: #555555;
 `
+const ZigZagDiv = styled.div`
+position: absolute;
+display: flex;
+top:calc(49% - 10px);
+height: 20px;
+width: 360px;
 
+
+`
+const ZigZag = styled.div`
+
+width: 20px;
+height: 20px;
+background-color: #ffffff;
+transform: rotate(45deg);
+margin-left: 7.3px;
+top:-10px;
+`
 export default OnedayBuza

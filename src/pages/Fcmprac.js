@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useState, useEffect } from 'react'
 
-import './fcm'
+import '../utils/fcm'
 import axios from 'axios'
 import { fcmToken } from './ec2'
 // import { instance } from "./axios";

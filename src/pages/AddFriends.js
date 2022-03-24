@@ -1,16 +1,29 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import { setFlexStyles } from '../styles/Mixin'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+
 
 
 function AddFriends() {
+
+  function findFreind() { }
+  
   return (
     <Wrapper>
       <TopDiv>
         <NavLink to="/friends">
-          <ButtonDiv />
-          <Button />
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
         </NavLink>
         <Title>친구 추가</Title>
         <AddFriend />
@@ -18,6 +31,9 @@ function AddFriends() {
       </TopDiv>
       <NicknameText>닉네임</NicknameText>
       <NicknameInput placeholder="닉네임을 입력해주세요" />
+      <NicknameButton onClick={() => findFreind()}>
+        <Search />
+      </NicknameButton>
       <FriendLine>
         <FriendInfo>
           <FriendCharactor />
@@ -115,7 +131,7 @@ const NicknameText = styled.div`
   width: 38px;
   height: 14px;
   left: 16px;
-  top: 15.28%;
+  top: 110px;
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -135,7 +151,7 @@ const NicknameInput = styled.input`
   width: 328px;
   height: 52px;
   left: 16px;
-  top: 18.33%;
+  top: 132px;
 
   background: #f5f5f7;
   border-radius: 8px;
@@ -159,6 +175,13 @@ const NicknameInput = styled.input`
     letter-spacing: -0.04em;
     color: #cccccc;
   }
+`
+const NicknameButton = styled.div`
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 146px;
+  left: 304px;
 `
 const FriendLine = styled.div`
   ${setFlexStyles({
@@ -247,7 +270,7 @@ const FriendAddButton = styled.button`
 
   /* color / gray / Gray30 */
 
-  background: #cccccc;
+  background: #4675f0;
   border-radius: 13px;
 `
 const FriendAddButtonText = styled.p`

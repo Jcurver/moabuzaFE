@@ -24,29 +24,6 @@ function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   // if (!window.location.search) {
-  //   //   return
-  //   // }
-  //   // const kakaoAuthCode = window.location.search.split('=')[1]
-
-  //   async function getTokenWithKakao() {
-  //     // const { data } = await api.getKakaoLogin(kakaoAuthCode)
-  //     const onSuccess = (data) => {
-  //       console.log({ data })
-  //     }
-  //     const onError = (error) => {
-  //       console.log({ error })
-  //     }
-  //     const { isLoading, data, isError, error } = useHomeData(
-  //       toggle,
-  //       onSuccess,
-  //       onError,
-  //     )
-  //     console.log('데이터확인 : ', isLoading, data, isError, error)
-  //   }
-  //   getTokenWithKakao()
-  // }, [navigate])
 
   const { isLoading, data, isError, error } = useMainPageData(navigate)
   console.log('데이터확인 : ', isLoading, data, isError, error)
@@ -71,6 +48,7 @@ function MainPage() {
     }
   }
 
+  
   if (isLoading) {
     return <Loading />
   }
@@ -215,10 +193,14 @@ function MainPage() {
       ) : (
         ''
       )}
-      {data &&
-      data.data.totalAmount === 0 &&
-      ((toggle === 'group' && !data.data.groupName) ||
-        (toggle === 'challenge' && !data.data.challengeName)) ? (
+      {data && toggle === 'group' && !data.data.groupName ? (
+        <SetAmountButton onClick={() => makeGoal()}>
+          목표를 설정해주세요
+        </SetAmountButton>
+      ) : (
+        ''
+      )}
+      {data && toggle === 'challenge' && !data.data.challengeName ? (
         <SetAmountButton onClick={() => makeGoal()}>
           목표를 설정해주세요
         </SetAmountButton>
@@ -556,7 +538,7 @@ const ChartBtn = styled.button`
   align-items: center;
   text-align: center;
   color: white;
-  background: #4675f0;
+  background: #ffb000;
   border-radius: 14px;
   margin-left: 243.5px;
 `
