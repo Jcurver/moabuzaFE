@@ -9,7 +9,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { request, api } from '../utils/axios'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { fcmToken } from './fcm'
+import { fcmToken } from '../utils/fcm'
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -62,9 +62,18 @@ function UserInfo() {
               }).then((result) => {
                 console.log(result)
               })
-           
-            
           }
+          if (res.data === '사용중인 닉네임') {
+            setNickNameDup(false)
+            Swal.fire({
+              title: '사용중인 닉네임',
+              text: '다른거로 골라부자 ㅠㅠ',
+              // icon: 'success',
+            }).then((result) => {
+              console.log(result)
+            })
+          }
+          
         }
       })
       .catch(

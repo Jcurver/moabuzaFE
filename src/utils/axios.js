@@ -114,7 +114,7 @@ instance.interceptors.response.use(
 
   async (error) => {
     const { data: responseData, config: originalRequest } = error.response
-    console.log('ERR RESPONSE', responseData, originalRequest)
+    console.log('ERR RESPONSED', responseData, responseData.message, originalRequest)
     if (responseData.message === '컨트롤러 Move to Login Page') {
       console.log('dddd')
 
