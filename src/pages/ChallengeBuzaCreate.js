@@ -44,15 +44,13 @@ function ChallengeBuzaCreate() {
   const onValid = (challengeData) => {
     console.log('challengeData', challengeData)
     return request({
-      url: '/money/challenge/createChallenge',
+      url: '/alarm/goal',
       method: 'post',
       data: {
-        createChallengeName: challengeData.createChallengeName,
-        createChallengeAmount: parseInt(
-          challengeData.createChallengeAmount,
-          10,
-        ),
-        challengeFriends: selentFriendNickName,
+        goalType: 'CHALLENGE',
+        goalName: challengeData.createChallengeName,
+        goalAmount: parseInt(challengeData.createChallengeAmount, 10),
+        friendNickname: selentFriendNickName,
       },
     }).then(
       (res) => console.log('challengeCreate', res),
