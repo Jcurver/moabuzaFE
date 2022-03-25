@@ -7,96 +7,12 @@ import { useGroupData } from '../hooks/useGroupData'
 import { request } from '../utils/axios'
 import coin from '../assets/icons/coin/ico_coin1.png'
 
+const shortid = require('shortid')
+
 // import '../styles/SweetAlertButton.css'
 
 function GroupBuzaDetail() {
   const navigate = useNavigate()
-  const FriendData = [
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-  ]
-
-  const AccountData = [
-    {
-      accountDate: '2022-03-18',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-    {
-      accountDate: '2022-03-19',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-    {
-      accountDate: '2022-03-20',
-      account: [
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라1',
-          acconutNumber: 10000,
-          accountText: '오늘도 힘내부자!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라2',
-          acconutNumber: 20000,
-          accountText: '내일도 힘내부자!!',
-        },
-        {
-          src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-          accountTitle: '룰루랄라3',
-          acconutNumber: 30000,
-          accountText: '어제도 힘내부자!!',
-        },
-      ],
-    },
-  ]
   const [sortedData, setsortedData] = useState([])
   const { data } = useGroupData(navigate)
   const cancelGroup = (id) => {
@@ -125,28 +41,6 @@ function GroupBuzaDetail() {
     })
   }
 
-  console.log(
-    // sortedData.map((res) => {
-    //   return res.groupDate
-    // }),
-    sortedData.map((dat, idx) => {
-      return dat
-    }),
-  )
-
-  // const sortdd = sortedData.map((ss, idx) => {
-  //   if (ss[idx].groupDate === ss[idx + 1].groupDate) {
-  //     return sortdd.push.apply(ss[idx], ss[idx + 1])
-  //   }
-  // })
-  // for (let i = 0; i < sortedData.length; i += 1) {
-  // if (sortedData[i].groupDate === sortedData[i + 1].groupDate) {
-  //   sortdd.push.apply(sortedData[i], sortedData[i + 1])
-  // }
-  //   console.log(sortedData[i].groupDate)
-  // }
-  // console.log(sortedData[0])
-  // console.log(sortdd)
   console.log(data)
   const dateDescending = (a, b) => {
     const dateA = new Date(a.groupDate).getTime()
@@ -166,13 +60,6 @@ function GroupBuzaDetail() {
     sortDate()
   }, [])
 
-  // console.log('detail------', data.data.groupLists)
-  // const ampsdnl = AccountData.map((dd, i) => {
-  //   return dd.account.map((ddd, idx) => {
-  //     return ddd.src
-  //   })
-  // })
-  // console.log(ampsdnl)
   return (
     <Wrapper>
       <ColorWrapper>
@@ -203,7 +90,9 @@ function GroupBuzaDetail() {
           <GroupFriend>
             {data
               ? data.data.groupMembers.map((data, idx) => {
-                  return <GroupFriendIcon src={data.hero} />
+                  return (
+                    <GroupFriendIcon key={shortid.generate()} src={data.hero} />
+                  )
                 })
               : null}
           </GroupFriend>
@@ -211,7 +100,7 @@ function GroupBuzaDetail() {
           <ProgressBar
             completed={data ? data.data.groupNowPercent : 0}
             // completed={70}
-            animateOnRender="true"
+            animateOnRender
             bgColor="#4675F0"
             baseBgColor="#ffffff"
             width="328px"
@@ -249,7 +138,7 @@ function GroupBuzaDetail() {
         {data
           ? sortedData.sort(dateDescending).map((acd, idx) => {
               return (
-                <AccountContent>
+                <AccountContent key={shortid.generate()}>
                   <AccountDate>{acd.groupDate.slice(0, 10)}</AccountDate>
                   <AccountListsWrapper>
                     <AccountList>

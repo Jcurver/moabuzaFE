@@ -18,7 +18,7 @@ const MainButton = styled.button`
   outline: none;
   border: none;
   border-radius: 4px;
-  color: white;
+  color: ${(props) => props.color || 'white'};
   font-weight: 400;
   cursor: pointer;
   padding-left: 1rem;

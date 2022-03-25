@@ -24,7 +24,7 @@
 }
 @font-face {
   font-family: 'Noto Sans KR';
-  src: url('./NotoSansKR-Medium.woff') format('woff');
+  src: url('./NotoSansKR-Medium.woff') format('font woff');
   font-weight: 400;
   font-display: swap;
 }

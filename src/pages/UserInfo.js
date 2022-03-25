@@ -9,12 +9,11 @@ import { setFlexStyles } from '../styles/Mixin'
 import { request, api } from '../utils/axios'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { fcmToken } from './fcm';
+import { fcmToken } from '../utils/fcm'
 
 function UserInfo() {
   const navigate = useNavigate()
   const [nickNameDup, setNickNameDup] = useState(false)
-
 
   const [hero, setHero] = useState('hero0')
   function setHeroValue(i) {
@@ -26,27 +25,17 @@ function UserInfo() {
     if (hero === 'hero0') {
       return
     }
-    console.log("fcmToken:::",fcmToken)
+    console.log('fcmToken:::', fcmToken)
     if (!nickNameDup) {
-       Swal.fire({
-         title: '닉네임 중복확인해부자',
+      Swal.fire({
+        title: '닉네임 중복확인해부자',
         //  text: '열심히 모아부자!',
-         // icon: 'success',
-       }).then((result) => {
-         console.log(result)
-       })
+        // icon: 'success',
+      }).then((result) => {
+        console.log(result)
+      })
       return
     }
-    // if (!nickNameDup) {
-    //   Swal.fire({
-    //     title: '사용중인 닉네임',
-    //     text: '다른거로 골라부자',
-    //     // icon: 'success',
-    //   }).then((result) => {
-    //     console.log(result)
-    //   })
-    //   return
-    // }
 
     await api.getUserInfo(data, hero)
     navigate('/')
@@ -66,7 +55,6 @@ function UserInfo() {
         if (res.status === 200) {
           if (res.data === '닉네임 사용 가능') {
             setNickNameDup(true)
-            if (!nickNameDup) {
               Swal.fire({
                 title: '사용가능한 닉네임',
                 text: '열심히 모아부자!',
@@ -74,24 +62,31 @@ function UserInfo() {
               }).then((result) => {
                 console.log(result)
               })
-
-            }
-          } else {
-            setNickNameDup(false)
-            if (!nickNameDup) {
-              Swal.fire({
-                title: '사용중인 닉네임',
-                text: '다른거로 골라부자',
-                // icon: 'success',
-              }).then((result) => {
-                console.log(result)
-              })
-
-            }
           }
+          if (res.data === '사용중인 닉네임') {
+            setNickNameDup(false)
+            Swal.fire({
+              title: '사용중인 닉네임',
+              text: '다른거로 골라부자 ㅠㅠ',
+              // icon: 'success',
+            }).then((result) => {
+              console.log(result)
+            })
+          }
+          
         }
       })
-      .catch((error) => console.log(error))
+      .catch(
+        () => {
+          Swal.fire({
+            title: '이미 사용중인 닉네임',
+            text: '다른걸로 해부자 ㅜㅜ',
+            // icon: 'success',
+          }).then((result) => {
+            console.log(result);
+          });
+        }
+      )
   }
 
   const {
@@ -105,7 +100,6 @@ function UserInfo() {
   console.log(watch())
 
   useEffect(() => {
-
     setNickNameDup(false)
     console.log(nickNameDup)
     if (!window.location.search) {
@@ -125,7 +119,7 @@ function UserInfo() {
     }
     getTokenWithKakao()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate,watch().nickname])
+  }, [navigate, watch().nickname])
 
   return (
     <Wrapper>
@@ -177,7 +171,7 @@ function UserInfo() {
             minLength: { value: 2, message: '한글자는 너무 짧아요' },
             maxLength: { value: 8, message: '8자를 초과했어요!' },
             pattern: {
-              value: /^[A-Za-z0-9]*$/,
+              value: /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣A-Za-z0-9]*$/,
               message: '숫자와 문자만 입력해부자!',
             },
           })}
