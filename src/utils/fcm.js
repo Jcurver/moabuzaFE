@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
-import { setItem } from '../utils/sessionStorage'
+import { setItem } from './sessionStorage'
 
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
@@ -32,7 +32,7 @@ export const fcmToken = getToken(messaging, {
       // Send the token to your server and update the UI if necessary
       // ...
       console.log('currentToken:::', currentToken)
-      // setItem("fcmToken",currentToken)
+      setItem("fcmToken",currentToken)
     } else {
       // Show permission request UI
       console.log(

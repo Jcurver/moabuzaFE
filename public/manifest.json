@@ -4,24 +4,19 @@
   "discription": "pwa by moabuza",
   "scope":".",
   "start_url": "./",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation":"portrait",
   "theme_color": "#000000",
   "background_color": "#ffffff",
 
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "moa192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "moa512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -32,14 +27,14 @@
       "short_name": "열어부자",
       "description": "새창을 열어보세보세보세",
       "url": "./",
-      "icons": [{ "src": "./logo192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "./moa192.png", "sizes": "192x192" }]
     },
     {
       "name": "새창",
       "short_name": "새",
       "description": "열어부자",
       "url": "./",
-      "icons": [{ "src": "./logo512.png", "sizes": "512x512" }]
+      "icons": [{ "src": "./moa512.png", "sizes": "512x512" }]
     }
   ]
 }
