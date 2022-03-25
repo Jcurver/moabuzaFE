@@ -37,9 +37,9 @@ const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const Bedge = lazy(() => import('./Bedge'))
 const UserInfo = lazy(() => import('./UserInfo'))
+const OnBoarding = lazy(() => import('./OnBoarding'))
 
 function App() {
-
   // let swRegist = null
 
   // const [Token, setToken] = useState(null)
@@ -100,6 +100,7 @@ function App() {
             <Route path="/bedge" element={<Bedge />} />
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
+            <Route path="/onboarding" element={<OnBoarding />} />
           </Routes>
 
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

@@ -8,9 +8,10 @@ import { useFriendData } from '../hooks/useGroupData'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
+
   useEffect(() => {
     friendData()
-  }, [])
+  }, [navigate])
   const {
     control,
     handleSubmit,
@@ -20,67 +21,6 @@ function GroupBuzaCreate() {
     formState: { errors },
   } = useForm()
   console.log(watch())
-  const onSubmit = (data) => {
-    console.log(data, ...selectFriends)
-  }
-
-  const data2 = [
-    {
-      id: 1,
-      title: 'nickname1',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 2,
-      title: 'nickname2',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 3,
-      title: 'nickname3',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 4,
-      title: 'nickname4',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 5,
-      title: '모아모아5',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 6,
-      title: '모아모아6',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 7,
-      title: '모아모아7',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 8,
-      title: '모아모아8',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 9,
-      title: '모아모아9',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 10,
-      title: '모아모아10',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 11,
-      title: '모아모아',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-  ]
 
   const friendData = () => {
     return request({ url: '/money/group/creategroup', method: 'get' }).then(
@@ -97,21 +37,10 @@ function GroupBuzaCreate() {
   const selentFriendNickName = selectFriends.map(
     (data) => data.groupMemberNickname,
   )
-  // console.log('selectFriends', selentFriendNickName)
+
   const onError = (error) => {
     console.log(error)
   }
-  // const selectFriends2 = (friends) => {
-  //   return request({
-  //     url: '/money/group/creategroup',
-  //     method: 'get',
-  //   }).then((res) => {
-  //     console.log(res)
-  //   })
-  // }
-  // selectFriends2()
-  // console.log('selectFriends2----', selectFriends2)
-
   const onValid = (groupData) => {
     if (selectFriends.length < 2) {
       return Swal.fire({
@@ -201,27 +130,29 @@ function GroupBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0
-            ? null
-            : selectFriends.map((da, idx) => {
-                return (
-                  <div key={da.id}>
-                    <SelectedFriendContent>
-                      {selectFriends[idx].groupMemberNickname}
-                      <DeleteFriendContent
-                        onClick={() => {
-                          setSelectFriends(
-                            selectFriends.filter((flist) => flist.id !== da.id),
-                          )
-                          setDatalist([da, ...datalist])
-                        }}
-                      >
-                        X
-                      </DeleteFriendContent>
-                    </SelectedFriendContent>
-                  </div>
-                )
-              })}
+          {selectFriends.length === 0 ? (
+            <FriendEmptyBox>+</FriendEmptyBox>
+          ) : (
+            selectFriends.map((da, idx) => {
+              return (
+                <div key={da.id}>
+                  <SelectedFriendContent>
+                    {selectFriends[idx].groupMemberNickname}
+                    <DeleteFriendContent
+                      onClick={() => {
+                        setSelectFriends(
+                          selectFriends.filter((flist) => flist.id !== da.id),
+                        )
+                        setDatalist([da, ...datalist])
+                      }}
+                    >
+                      X
+                    </DeleteFriendContent>
+                  </SelectedFriendContent>
+                </div>
+              )
+            })
+          )}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -434,6 +365,22 @@ const Friends = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 8px 0px;
+`
+
+const FriendEmptyBox = styled.div`
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 156px;
+  color: #cccccc;
+  /* color / gray / Gray30 */
+
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 8px;
 `
 
 const FriendsText = styled.div`

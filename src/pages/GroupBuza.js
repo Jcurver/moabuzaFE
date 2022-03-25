@@ -8,6 +8,9 @@ import Button from '../components/Button'
 import Nav from '../components/Nav'
 import { api, request } from '../utils/axios'
 import { useGroupData } from '../hooks/useGroupData'
+import Loading from './Loading'
+
+const shortid = require('shortid')
 
 function GroupBuza() {
   const [pending, setPending] = useState(true)
@@ -43,39 +46,17 @@ function GroupBuza() {
     })
   }
   useEffect(() => {}, [navigate])
-
-  const CompletedData = [
-    {
-      title: '✈️ 제주도 여행가자!',
-    },
-    {
-      title: '매일 2,000원씩 저금하기!',
-    },
-    {
-      title: '🍫 초코에몽 대신 저금하기!',
-    },
-    {
-      title: '💵  50,000원 모으기!',
-    },
-  ]
-  const FriendData = [
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80',
-    },
-  ]
+  // if (homeData.isLoading) {
+  //   return <Loading />
+  // }
+  if (isLoading) {
+    return <Loading />
+  }
+  const groupData = data.data
 
   return (
     <Wrapper>
-      {data ? data.data.goalStatus : 'asdasd'}
+      {/* {data ? groupData.goalStatus : 'asdasd'}
       <button
         type="button"
         onClick={() => {
@@ -87,20 +68,18 @@ function GroupBuza() {
             },
           }).then(
             (response) => console.log(response),
-            (data.data.goalStatus = 'goal'),
+            (groupData.goalStatus = 'goal'),
             navigate('/groupbuza'),
           )
         }}
       >
         설정변경
-      </button>
+      </button> */}
       <Title>
-        {/* <MoveButton type="button">asdasd</MoveButton> */}
         <Text>같이해부자</Text>
-        {/* <MoveButton type="button">asdasd</MoveButton> */}
       </Title>{' '}
       {data
-        ? data.data.goalStatus === 'noGoal' && (
+        ? groupData.goalStatus === 'noGoal' && (
             <GoalWrapper>
               <GoalText>원하는 목표를 만들어보세요</GoalText>
               <GoalDescribe>
@@ -122,7 +101,7 @@ function GroupBuza() {
           )
         : null}
       {data
-        ? data.data.goalStatus === 'goal' && (
+        ? groupData.goalStatus === 'goal' && (
             <>
               <GoalWrapper
                 onClick={() => {
@@ -130,21 +109,26 @@ function GroupBuza() {
                 }}
               >
                 <GroupFriend>
-                  {FriendData.map((data, idx) => {
-                    return <GroupFriendIcon src={data.src} />
+                  {groupData.groupMembers.map((member) => {
+                    return (
+                      <GroupFriendIcon
+                        key={shortid.generate()}
+                        src={member.groupMemberHero}
+                      />
+                    )
                   })}
                 </GroupFriend>
-                <GroupFriendTitle>{data.data.groupName}</GroupFriendTitle>
+                <GroupFriendTitle>{groupData.groupName}</GroupFriendTitle>
                 <GroupFriendGoal>
                   <GroupFriendGoalAmount>
-                    {data.data.groupLeftAmount.toLocaleString('ko-KR')}
+                    {groupData.groupLeftAmount.toLocaleString('ko-KR')}
                   </GroupFriendGoalAmount>
                   <span> 원 남았습니다.</span>
                 </GroupFriendGoal>
                 <ProgressBar
                   // completed={60}
-                  completed={data ? data.data.groupNowPercent : 50}
-                  animateOnRender="true"
+                  completed={data ? groupData.groupNowPercent : 50}
+                  animateOnRender
                   bgColor="#4675F0"
                   width="304px"
                   height="20px"
@@ -156,9 +140,9 @@ function GroupBuza() {
               </GoalWrapper>
               <ConmpletedTitle>완료목록</ConmpletedTitle>
               <CompletedList>
-                {data.data.groupDoneGoals.map((data) => {
+                {groupData.groupDoneGoals.map((data) => {
                   return (
-                    <CompletedContent>
+                    <CompletedContent key={shortid.generate()}>
                       <CompletedText>{data}</CompletedText>
                     </CompletedContent>
                   )
@@ -168,7 +152,7 @@ function GroupBuza() {
           )
         : null}
       {data
-        ? data.data.goalStatus === 'waiting' && (
+        ? groupData.goalStatus === 'waiting' && (
             <GoalWrapper>
               <GoalText>수락대기중</GoalText>
               <GoalDescribe>
@@ -198,25 +182,11 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const Title = styled.div`
-  /* ${setFlexStyles({
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  })}
-  margin-top: 19px;
-  margin-bottom: 33px; */
-
   position: absolute;
   width: 72px;
   height: 22px;
   left: 144px;
   top: 43px;
-`
-
-const MoveButton = styled.button`
-  width: 48px;
-  height: 48px;
 `
 
 const Text = styled.span`
@@ -343,11 +313,8 @@ const GroupFriend = styled.div`
   padding: 0px;
 
   margin: 20px 0px 16px 12px;
-  /* position: absolute; */
   width: 200px;
   height: 24px;
-  /* left: 28px;
-  top: 16.5%; */
 `
 const GroupFriendIcon = styled.img`
   /* position: static; */
@@ -367,8 +334,6 @@ const GroupFriendIcon = styled.img`
 `
 
 const GroupFriendTitle = styled.div`
-  /* position: absolute;
-   */
   margin: 16px 132px 8px 12px;
   width: 300px;
   height: 16px;
