@@ -11,7 +11,7 @@ import {
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
-import hero2 from '../assets/character/01_character_face/pig.png'
+import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
 
 const shortid = require('shortid')
 
@@ -97,9 +97,17 @@ function ChallengeBuzaDetail() {
               return (
                 <GroupFriendIcon
                   key={shortid.generate()}
-                  // eslint-disable-next-line global-require
-                  src={require(`${'../assets/character/01_character_face/pig.png'}`)}
-                  // src={member.challengeMemberHero}
+                  src={
+                    // eslint-disable-next-line no-nested-ternary
+                    member.challengeMemberHero === 'hero3'
+                      ? TanniFace
+                      : // eslint-disable-next-line no-nested-ternary
+                      member.challengeMemberHero === 'hero2'
+                      ? TonkiFace
+                      : member.challengeMemberHero === 'hero1'
+                      ? BunnyFace
+                      : null
+                  }
                 />
               )
             })}
