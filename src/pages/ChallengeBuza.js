@@ -109,7 +109,8 @@ function ChallengeBuza() {
                 <GroupFriend>
                   {data
                     ? data.data.challengeMembers.map((member) => {
-                        return (
+                      return (
+
                           <GroupFriendIcon
                             key={shortid.generate()}
                             src={member.challengeMemberHero}

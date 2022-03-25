@@ -6,7 +6,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ProgressBar from '@ramonak/react-progress-bar'
 import axios from 'axios'
 import { getToken, onMessage } from 'firebase/messaging'
-import { messaging } from './firebase'
+
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../hooks/useUserData'
