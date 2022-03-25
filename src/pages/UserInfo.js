@@ -135,7 +135,7 @@ function UserInfo() {
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero1' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
             >
             버니
             </CharacterName>
@@ -146,7 +146,7 @@ function UserInfo() {
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero2' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
             >
               통키
             </CharacterName>
@@ -157,7 +157,7 @@ function UserInfo() {
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero3' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
             >
               타니
             </CharacterName>
