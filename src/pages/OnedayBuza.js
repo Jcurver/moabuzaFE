@@ -21,6 +21,8 @@ import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as LeftArrow } from '../assets/icons/arrow/arrowleftgray.svg'
+import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
 
 import { getItem, setItem } from '../utils/sessionStorage'
 // import { setDateInOnedayList } from '../hooks/useUserData';
@@ -97,7 +99,12 @@ function OnedayBuza() {
       new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0),
     )
   }
-
+  function yesterday() {
+    setStartDate(new Date(startDate - 24 * 60 * 60 * 1000))
+  }
+  function nextday() {
+    setStartDate(new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
+  }
   return (
     <Wrapper>
       <TopDiv>
@@ -119,6 +126,9 @@ function OnedayBuza() {
       </TopDiv>
       <TopLine />
       <CalDiv>
+        <LeftArrowDiv onClick={() => yesterday()}>
+          <RightArrow style={{transform:"rotate(180deg)"}}/>
+        </LeftArrowDiv>
         <DatePicker
           dateFormat="yyyy.MM.dd"
           locale="ko"
@@ -139,6 +149,9 @@ function OnedayBuza() {
             return null
           }}
         />
+        <RightArrowDiv onClick={() => nextday()}>
+          <RightArrow />
+        </RightArrowDiv>
       </CalDiv>
       <CalendarLine />
       <TotalLine style={{ top: '23.89%' }}>
@@ -194,7 +207,14 @@ function OnedayBuza() {
                 key={d.id}
                 swipeLeft={{
                   content: (
-                    <div style={{ marginLeft: '10px', marginBottom: '10px' }}>
+                    <div
+                      style={{
+                        padding: '10px',
+                        marginLeft: '10px',
+                        marginBottom: '10px',
+                        background: "red",
+                      }}
+                    >
                       밀어서 삭제
                     </div>
                   ),
@@ -216,8 +236,8 @@ function OnedayBuza() {
                   <TodayListLineRight>
                     {d.recordType === 'income' ? '+' : ''}
                     {d.recordType === 'expense' ? '-' : ''}
-                    {d.recordType === 'group' ? '👬' : ''}
-                    {d.recordType === 'challenge' ? '👬' : ''}{' '}
+                    {d.recordType === 'group' ? '+' : ''}
+                    {d.recordType === 'challenge' ? '+' : ''}
                     {d.recordAmount.toLocaleString('en-US')} 원
                   </TodayListLineRight>
                 </TodayListLine>
@@ -235,7 +255,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -274,27 +293,27 @@ const RightButtonDiv = styled.div`
 `
 
 const RightButton = styled.div`
-position: absolute;
-width: 26px;
-height: 14px;
-left: 318px;
-top: 46px;
+  position: absolute;
+  width: 26px;
+  height: 14px;
+  left: 318px;
+  top: 46px;
 
-/* Heading/Noto Sans KR/H6 */
+  /* Heading/Noto Sans KR/H6 */
 
-font-family: 'Noto Sans KR';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 100%;
-/* identical to box height, or 14px */
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
 
-text-align: center;
-letter-spacing: -0.04em;
+  text-align: center;
+  letter-spacing: -0.04em;
 
-/* color/Secondary */
+  /* color/Secondary */
 
-color: #4675F0;
+  color: #4675f0;
 `
 
 const Title = styled.div`
@@ -361,10 +380,24 @@ const CalDiv = styled.div`
     justifyContent: 'center',
   })}
   position: absolute;
-  width: 120px;
+  width: 110px;
   height: 23px;
   left: 120px;
   top: 15.7%;
+`
+const LeftArrowDiv = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+`
+const RightArrowDiv = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
 `
 const CalBtn = styled.button`
   /* position: absolute;
@@ -388,7 +421,7 @@ const CalendarLine = styled.hr`
   width: 325px;
   height: 1px;
   left: 19px;
-  top: 20.97%;
+  top: 20%;
   background-color: #cccccc;
   /* color / gray / Gray50 */
   /* border: 0.5px solid #cccccc; */
@@ -438,8 +471,6 @@ const TodayListBigDiv = styled.div`
   left: 0px;
   top: 49%;
   background: #f6f9fe;
-
-
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -557,21 +588,19 @@ const TodayListLineMemo = styled.div`
   color: #555555;
 `
 const ZigZagDiv = styled.div`
-position: absolute;
-display: flex;
-top:calc(49% - 10px);
-height: 20px;
-width: 360px;
-
-
+  position: absolute;
+  display: flex;
+  top: calc(49% - 10px);
+  height: 20px;
+  width: 360px;
 `
 const ZigZag = styled.div`
-
-width: 20px;
-height: 20px;
-background-color: #ffffff;
-transform: rotate(45deg);
-margin-left: 7.3px;
-top:-10px;
+  width: 26px;
+  height: 26px;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+  margin-left: 6px;
+  top: -10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.02);
 `
 export default OnedayBuza
