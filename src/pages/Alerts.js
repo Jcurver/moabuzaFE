@@ -1,13 +1,54 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
+import Loading from './Loading'
+import ErrorLog from './ErrorLog'
+import {
+  useAlertsFriendData,
+  alarmFriendAccept,
+  alarmFriendRefuse,
+  alarmDelete,
+} from '../hooks/useAlertsData'
 
-function alertsfriend() {
+function AlertsFriend() {
+  const adata = [
+    {
+      AlarmId: 1,
+      alarmDetailType: 'request',
+      friendNickname: 'bunny',
+    },
+    {
+      AlarmId: 2,
+      alarmDetailType: 'accept',
+      friendNickname: 'bunny2',
+    },
+    {
+      AlarmId: 3,
+      alarmDetailType: 'refuse',
+      friendNickname: 'bunny3',
+    },
+  ]
+
+  const navigate = useNavigate()
+  const {
+    isLoading,
+    data: AlertFriendsList,
+    isError,
+    error,
+  } = useAlertsFriendData(navigate)
+  console.log('알람데이터친구 : ', isLoading, AlertFriendsList, isError, error)
+  if (isLoading) {
+    return <Loading />
+  }
+  if (isError) {
+    console.log('error : ', error)
+    return <ErrorLog error={error} />
+  }
   return (
     <Wrapper>
       <TopDiv>
@@ -23,9 +64,8 @@ function alertsfriend() {
           />
         </NavLink>
         <Title>알림</Title>
-
       </TopDiv>
-        <TopLine />
+      <TopLine />
       <NavLink to="/alerts">
         <SelectDiv
           style={{
@@ -62,7 +102,62 @@ function alertsfriend() {
       <SelectLine style={{ left: '0%' }} />
       <IndexBottom />
       <AlertListDiv>
-        <AlertList>
+        {AlertFriendsList &&
+          AlertFriendsList.data.map((d) => {
+            return (
+              <>
+                {d.alarmDetailType === 'request' && (
+                  <AlertList>
+                    <AlertCharacter />
+                    <AlertTextDiv>
+                      <Flex>
+                        <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                        <AlertTextTopRight>님이</AlertTextTopRight>
+                      </Flex>
+                      <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
+                    </AlertTextDiv>
+                    <AlertAcceptRefuse
+                      onClick={() => alarmFriendAccept(d.friendNickname)}
+                      style={{ left: '232px' }}
+                    >
+                      수락
+                    </AlertAcceptRefuse>
+                    <AlertAcceptRefuse
+                      onClick={() => alarmFriendRefuse(d.friendNickname)}
+                      style={{ left: '312px' }}
+                    >
+                      거절
+                    </AlertAcceptRefuse>
+                  </AlertList>
+                )}
+                {d.alarmDetailType !== 'request' && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                          <AlertTextTopRight>님이</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>
+                          친구요청을{' '}
+                          {d.alarmDetailType === 'accept' ? '수락' : '거절'}
+                          했습니다.
+                        </AlertTextBottom>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDelete()}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
+
+                <AlertHr />
+              </>
+            )
+          })}
+        {/* <AlertList>
           <AlertCharacter />
           <AlertTextDiv>
             <Flex>
@@ -102,9 +197,7 @@ function alertsfriend() {
           </Flex>
           <Close style={{ color: 'red', marginRight: '11px' }} />
         </AlertList>
-        <AlertHr />
-       
-   
+        <AlertHr /> */}
       </AlertListDiv>
     </Wrapper>
   )
@@ -180,10 +273,9 @@ const Title = styled.div`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
-  width:360px;
+  width: 360px;
   height: 1px;
-  top:82px;
-  
+  top: 82px;
 
   /* color/Btn-basic2 */
 
@@ -356,4 +448,4 @@ const AlertHr = styled.div`
 const Flex = styled.div`
   display: flex;
 `
-export default alertsfriend
+export default AlertsFriend
