@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { getToken, onMessage } from 'firebase/messaging'
 import styled from 'styled-components'
-import { messaging } from './firebase'
+
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
 import Fcmprac from './Fcmprac'
@@ -17,6 +17,8 @@ import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Alerts = lazy(() => import('./Alerts'))
+const AlertsGroup = lazy(() => import('./AlertsGroup'))
+const AlertsChallenge = lazy(() => import('./AlertsChallenge'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
 const Detail = lazy(() => import('./Detail'))
@@ -73,6 +75,8 @@ function App() {
             <Route path="/fcmprac" element={<Fcmprac />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/alerts" element={<Alerts />} />
+            <Route path="/alertsgroup" element={<AlertsGroup />} />
+            <Route path="/alertschallenge" element={<AlertsChallenge />} />
             <Route path="/onedaybuza" element={<OnedayBuza />} />
             <Route path="/onedaypost" element={<OnedayPost />} />
             <Route path="/group" element={<Group />} />
