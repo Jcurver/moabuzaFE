@@ -11,6 +11,7 @@ import {
   TanniFace,
   TonkiFace,
   TanniStep02,
+  BunnyStep03,
 } from '../assets/character'
 
 const shortid = require('shortid')
@@ -80,7 +81,8 @@ function GroupBuzaDetail() {
           <Text>같이해부자</Text>
         </Title>
         <ForgiveMoveButton onClick={cancelGroup}>포기</ForgiveMoveButton>
-
+      </ColorWrapper>
+      <ScrollWrapper>
         <DetailWrapper>
           <DetailTitle>
             {data ? data.data.groupName : '그룹이름이 없습니다'}
@@ -97,12 +99,25 @@ function GroupBuzaDetail() {
             {data
               ? data.data.groupMembers.map((data, idx) => {
                   return (
-                    <GroupFriendIcon key={shortid.generate()} src={data.hero} />
+                    <GroupFriendIcon
+                      key={shortid.generate()}
+                      src={
+                        // eslint-disable-next-line no-nested-ternary
+                        data.groupMemberHero === 'tanni'
+                          ? TanniFace
+                          : // eslint-disable-next-line no-nested-ternary
+                          data.groupMemberHero === 'tongki'
+                          ? TonkiFace
+                          : data.groupMemberHero === 'bunny'
+                          ? BunnyFace
+                          : null
+                      }
+                    />
                   )
                 })
               : null}
           </GroupFriend>
-          <DetailCharacter>sdsd</DetailCharacter>
+          <DetailCharacter src={BunnyStep03} />
           <ProgressBar
             completed={data ? data.data.groupNowPercent : 0}
             // completed={70}
@@ -138,31 +153,32 @@ function GroupBuzaDetail() {
               )
             : null}
         </DetailWrapper>
-      </ColorWrapper>
-      <AccountTitle>내역</AccountTitle>
-      <AccountSummaryWrapper>
-        {data
-          ? sortedData.sort(dateDescending).map((acd, idx) => {
-              return (
-                <AccountContent key={shortid.generate()}>
-                  <AccountDate>{acd.groupDate.slice(0, 10)}</AccountDate>
-                  <AccountListsWrapper>
-                    <AccountList>
-                      <AccountImg src={coin} />
-                      <AccountListCenter>
-                        <AccountListTitle>{acd.nickname}</AccountListTitle>
-                        <AccountListText>{acd.groupMemo}</AccountListText>
-                      </AccountListCenter>
-                      <AccountNumber>
-                        {acd.groupAmount.toLocaleString('ko-KR')} 원
-                      </AccountNumber>
-                    </AccountList>
-                  </AccountListsWrapper>
-                </AccountContent>
-              )
-            })
-          : null}
-      </AccountSummaryWrapper>
+
+        <AccountTitle>내역</AccountTitle>
+        <AccountSummaryWrapper>
+          {data
+            ? sortedData.sort(dateDescending).map((acd, idx) => {
+                return (
+                  <AccountContent key={shortid.generate()}>
+                    <AccountDate>{acd.groupDate.slice(0, 10)}</AccountDate>
+                    <AccountListsWrapper>
+                      <AccountList>
+                        <AccountImg src={coin} />
+                        <AccountListCenter>
+                          <AccountListTitle>{acd.nickname}</AccountListTitle>
+                          <AccountListText>{acd.groupMemo}</AccountListText>
+                        </AccountListCenter>
+                        <AccountNumber>
+                          {acd.groupAmount.toLocaleString('ko-KR')} 원
+                        </AccountNumber>
+                      </AccountList>
+                    </AccountListsWrapper>
+                  </AccountContent>
+                )
+              })
+            : null}
+        </AccountSummaryWrapper>
+      </ScrollWrapper>
     </Wrapper>
   )
 }
@@ -172,10 +188,20 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
+
+const ScrollWrapper = styled.div`
+  height: 650px;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
+`
 const ColorWrapper = styled.div`
   background: #f6f9fe;
   box-sizing: border-box;
-  height: 480px;
+  height: 79px;
 `
 const Title = styled.div`
   position: absolute;
@@ -216,12 +242,12 @@ const ForgiveMoveButton = styled.button`
 `
 
 const DetailWrapper = styled.div`
-  width: 328px;
-  height: 23px;
-
-  position: absolute;
-  top: 103px;
-  left: 15px;
+  width: 360px;
+  /* height: 23px; */
+  background-color: #f6f9fe;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 24px;
 `
 
 const DetailTitle = styled.div`
@@ -241,7 +267,7 @@ const DetailTitle = styled.div`
   color: #000000;
 
   text-align: center;
-  margin: 21px 0px 8px 0px;
+  margin: 0px 0px 8px 0px;
 `
 
 const DetailTextWrapper = styled.div`
@@ -281,10 +307,11 @@ const DetaileText = styled.span`
   color: #000000;
 `
 
-const DetailCharacter = styled.div`
+const DetailCharacter = styled.img`
   width: 329px;
   height: 185px;
-  border: 1px solid black;
+  margin: 0px auto 28px auto;
+  /* border: 1px solid black; */
 `
 
 const AccountSummaryWrapper = styled.div`
@@ -293,12 +320,6 @@ const AccountSummaryWrapper = styled.div`
   height: 250px;
   top: 483px;
   left: 16px;
-  overflow: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  ::-webkit-scrollbar {
-    display: none; /* Chrome , Safari , Opera */
-  }
 `
 const GroupFriend = styled.div`
   display: flex;
