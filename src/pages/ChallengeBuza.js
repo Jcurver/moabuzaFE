@@ -48,6 +48,7 @@ function ChallengeBuza() {
 
   useEffect(() => {}, [navigate])
   console.log(homeData)
+  console.log(data)
 
   if (homeData.isLoading) {
     return <Loading />
