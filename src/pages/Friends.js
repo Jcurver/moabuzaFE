@@ -1,16 +1,42 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import { setFlexStyles } from '../styles/Mixin'
-
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 
 function Friends() {
+  function searchFriend() {
+    console.log('cccc')
+  }
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    setValue,
+    setError,
+  } = useForm()
+
+  function onValid() {
+    
+  }
+
   return (
     <Wrapper>
       <TopDiv>
         <NavLink to="/menu">
-          <ButtonDiv />
-          <Button />
+          <Backarr
+            style={{
+              position: 'absolute',
+              left: '4.44%',
+              top: '47.67%',
+              width: '24px',
+              height: '24px',
+            }}
+          />
         </NavLink>
         <Title>친구</Title>
         <AddFriend />
@@ -19,7 +45,12 @@ function Friends() {
         </NavLink>
         <TopLine />
       </TopDiv>
-      <FriendInput placeholder="닉네임을 입력해주세요." />
+      <form onSubmit={handleSubmit(onValid)}>
+        <FriendInput placeholder="닉네임을 입력해주세요." />
+        <FriendSearch style={{ color: '#999999' }}>
+          <Search />
+        </FriendSearch>
+      </form>
       <FriendsDiv>
         <FriendsLine>
           <FriendProfile>
@@ -42,9 +73,6 @@ function Friends() {
           </FriendProfile>
           <AddButton>수락대기</AddButton>
         </FriendsLine>
-
-
-
       </FriendsDiv>
     </Wrapper>
   )
@@ -114,7 +142,7 @@ const AddFriendText = styled.div`
   text-align: center;
   letter-spacing: -0.04em;
 
-  color: #000000;
+  color: #4675f0;
 `
 
 const Title = styled.div`
@@ -169,7 +197,7 @@ const FriendInput = styled.input`
     letter-spacing: -0.04em;
     color: #cccccc;
   }
-  :-ms-input-placeholder {              
+  :-ms-input-placeholder {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 400;
@@ -179,16 +207,20 @@ const FriendInput = styled.input`
     color: #cccccc;
   }
 `
-
+const FriendSearch = styled.button`
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 116px;
+  left: 304px;
+`
 const FriendsDiv = styled.div`
-position:absolute;
-width: 100%;
-top: 21.4%;
-padding:16px 16px 0px 16px;
-overflow: scroll;
-bottom: 0px;
-
-
+  position: absolute;
+  width: 100%;
+  top: 154.1px;
+  padding: 16px 16px 0px 16px;
+  overflow: scroll;
+  bottom: 0px;
 `
 const FriendsLine = styled.div`
   ${setFlexStyles({
@@ -212,13 +244,11 @@ const FriendProfile = styled.div`
 const FriendIcon = styled.div`
   width: 38px;
   height: 38px;
-  border-radius:20px;
+  border-radius: 20px;
   background: #f5f5f7;
-  margin-right:8px;
+  margin-right: 8px;
 `
-const FriendText = styled.div`
-
-`
+const FriendText = styled.div``
 const AddButton = styled.div`
   ${setFlexStyles({
     display: 'flex',
