@@ -147,13 +147,13 @@ function AlertsChallenge() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmAccept(d.AlarmId)}
+                      onClick={() => alarmAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmRefuse(d.AlarmId)}
+                      onClick={() => alarmRefuse(d.alarmId)}
                       style={{ left: '312px' }}
                     >
                       거절
@@ -173,7 +173,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -197,7 +197,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -222,7 +222,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
