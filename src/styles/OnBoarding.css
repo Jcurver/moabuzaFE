@@ -1,0 +1,15 @@
+.slider-wrapper {
+  height: 720px;
+}
+
+.carousel .control-next.control-arrow:before {
+  border-left: 8px solid #4675f0;
+}
+
+.carousel .control-prev.control-arrow:before {
+  border-right: 8px solid #4675f0;
+}
+
+.thumbs-wrapper {
+  display: none;
+}
