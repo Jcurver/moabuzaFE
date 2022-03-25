@@ -11,7 +11,7 @@ import {
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
-import Pig from '../assets/character/01_character_face/pig.png'
+import hero2 from '../assets/character/01_character_face/pig.png'
 
 const shortid = require('shortid')
 
