@@ -48,6 +48,7 @@ function ChallengeBuza() {
 
   useEffect(() => {}, [navigate])
   console.log(homeData)
+  console.log(data)
 
   if (homeData.isLoading) {
     return <Loading />
@@ -172,7 +173,7 @@ function ChallengeBuza() {
         : null}
       {data
         ? data.data.goalStatus === 'waiting' &&
-          data.data.waitingGoal.map((gStatus, idx) => {
+          data.data.waitingGoals.map((gStatus, idx) => {
             return (
               <GoalWrapper key={Date.now()}>
                 <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
