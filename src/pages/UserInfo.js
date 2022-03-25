@@ -131,7 +131,7 @@ function UserInfo() {
         <CharacterDiv>
           <CharacterOne
             style={{ left: '0px' }}
-            onClick={() => setHeroValue('hero1')}
+            onClick={() => setHeroValue('bunny')}
           >
             <Character />
             <CharacterName
@@ -142,7 +142,7 @@ function UserInfo() {
           </CharacterOne>
           <CharacterOne
             style={{ left: '104px' }}
-            onClick={() => setHeroValue('hero2')}
+            onClick={() => setHeroValue('tongki')}
           >
             <Character />
             <CharacterName
@@ -153,7 +153,7 @@ function UserInfo() {
           </CharacterOne>
           <CharacterOne
             style={{ left: '208px' }}
-            onClick={() => setHeroValue('hero3')}
+            onClick={() => setHeroValue('tanni')}
           >
             <Character />
             <CharacterName
