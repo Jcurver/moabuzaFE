@@ -11,7 +11,12 @@ import {
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
-import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+import {
+  BunnyFace,
+  TanniFace,
+  TonkiFace,
+  TanniStep02,
+} from '../assets/character'
 
 const shortid = require('shortid')
 
@@ -79,7 +84,8 @@ function ChallengeBuzaDetail() {
         >
           포기
         </ForgiveMoveButton>
-
+      </ColorWrapper>
+      <ScrollWrapper>
         <DetailWrapper>
           <DetailTitle>
             {data ? challengeData.challengeName : '도전이름이 없습니다'}
@@ -93,18 +99,18 @@ function ChallengeBuzaDetail() {
             <DetaileText> 원 남았어요!</DetaileText>
           </DetailTextWrapper>
           <GroupFriend>
-            {challengeData.challengeMembers.map((member, idx) => {
+            {challengeData.challengeMembers.map((member) => {
               return (
                 <GroupFriendIcon
                   key={shortid.generate()}
                   src={
                     // eslint-disable-next-line no-nested-ternary
-                    member.challengeMemberHero === 'hero3'
+                    member.challengeMemberHero === 'tanni'
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
-                      member.challengeMemberHero === 'hero2'
+                      member.challengeMemberHero === 'tonki'
                       ? TonkiFace
-                      : member.challengeMemberHero === 'hero1'
+                      : member.challengeMemberHero === 'bunny'
                       ? BunnyFace
                       : null
                   }
@@ -112,12 +118,15 @@ function ChallengeBuzaDetail() {
               )
             })}
           </GroupFriend>
-          <DetailCharacter>sdsd</DetailCharacter>
+          <DetailImgWrapper>
+            <DetailCharacter src={TanniStep02} />
+          </DetailImgWrapper>
+
           <ProgressBar
             completed={homeData ? homeData.data.data.challengePercent : 0}
             // completed={70}
             animateOnRender
-            bgColor="#FFB000"
+            bgColor="#4675F0"
             baseBgColor="#ffffff"
             width="328px"
             height="22px"
@@ -163,15 +172,26 @@ function ChallengeBuzaDetail() {
               )
             : null}
         </DetailWrapper>
-      </ColorWrapper>
-      <ScrollWrapper>
+
         <ChallengeFriendWrapper>
           {data
             ? challengeData.challengeMembers.map((member, idx) => {
                 return (
                   <ChallengeFriendList key={shortid.generate()}>
                     <ChallengeFriendContents>
-                      <ChallengeFriendIcon src={member.challengeMemberHero} />
+                      <ChallengeFriendIcon
+                        src={
+                          // eslint-disable-next-line no-nested-ternary
+                          member.challengeMemberHero === 'tanni'
+                            ? TanniFace
+                            : // eslint-disable-next-line no-nested-ternary
+                            member.challengeMemberHero === 'tonki'
+                            ? TonkiFace
+                            : member.challengeMemberHero === 'bunny'
+                            ? BunnyFace
+                            : null
+                        }
+                      />
                       <ChallengeFriendNickName>
                         {member.challengeMemberNickname}
                       </ChallengeFriendNickName>
@@ -242,7 +262,7 @@ const Wrapper = styled.div`
 const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
-  height: 480px;
+  height: 79px;
 `
 const Title = styled.div`
   position: absolute;
@@ -250,6 +270,7 @@ const Title = styled.div`
   height: 23px;
   left: 144px;
   top: 43px;
+  background-color: #ebf2ff;
 `
 
 const Text = styled.span`
@@ -281,17 +302,14 @@ const ForgiveMoveButton = styled.button`
 `
 
 const DetailWrapper = styled.div`
-  width: 328px;
-  height: 23px;
-
-  position: absolute;
-  top: 79px;
-  left: 15px;
+  width: 360px;
+  background-color: #ebf2ff;
+  text-align: center;
 `
 
 const DetailTitle = styled.div`
   width: 328px;
-  height: 23px;
+  /* height: 23px; */
   /* Heading / Roboto / H3(B) */
 
   font-family: 'Roboto';
@@ -300,13 +318,14 @@ const DetailTitle = styled.div`
   font-size: 20px;
   line-height: 23px;
   letter-spacing: -0.04em;
-
+  margin: 0 auto;
   /* color / text / Color-text-Black */
+  background-color: #ebf2ff;
 
   color: #000000;
 
   text-align: center;
-  margin: 21px 0px 8px 0px;
+  /* margin: 21px 0px 8px 0px; */
 `
 
 const DetailTextWrapper = styled.div`
@@ -346,15 +365,19 @@ const DetaileText = styled.span`
 
   color: #000000;
 `
+const DetailImgWrapper = styled.div`
+  text-align: center;
+`
+const DetailCharacter = styled.img`
+  width: 287px;
+  height: 168px;
+  margin: 0px auto 28px auto;
 
-const DetailCharacter = styled.div`
-  width: 329px;
-  height: 185px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `
 // Scroll
 const ScrollWrapper = styled.div`
-  height: 250px;
+  height: 630px;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -388,6 +411,7 @@ const ChallengeFriendIcon = styled.img`
   width: 36px;
   height: 36px;
   margin: 12px 8px 12px 12px;
+  border-radius: 50%;
 `
 
 const ChallengeFriendNickName = styled.span`
