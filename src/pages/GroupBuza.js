@@ -9,6 +9,12 @@ import Nav from '../components/Nav'
 import { api, request } from '../utils/axios'
 import { useGroupData } from '../hooks/useGroupData'
 import Loading from './Loading'
+import {
+  BunnyFace,
+  TanniFace,
+  TonkiFace,
+  TanniStep02,
+} from '../assets/character'
 
 const shortid = require('shortid')
 
@@ -113,7 +119,17 @@ function GroupBuza() {
                     return (
                       <GroupFriendIcon
                         key={shortid.generate()}
-                        src={member.groupMemberHero}
+                        src={
+                          // eslint-disable-next-line no-nested-ternary
+                          member.challengeMemberHero === 'tanni'
+                            ? TanniFace
+                            : // eslint-disable-next-line no-nested-ternary
+                            member.challengeMemberHero === 'tonki'
+                            ? TonkiFace
+                            : member.challengeMemberHero === 'bunny'
+                            ? BunnyFace
+                            : null
+                        }
                       />
                     )
                   })}
