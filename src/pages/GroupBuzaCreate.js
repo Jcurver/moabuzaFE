@@ -22,7 +22,7 @@ function GroupBuzaCreate() {
     formState: { errors },
   } = useForm()
   console.log(watch())
-
+  // 수정대기2
   const friendData = () => {
     return request({ url: '/friends', method: 'get' }).then((res) => {
       console.log(res)
@@ -52,6 +52,7 @@ function GroupBuzaCreate() {
       url: '/money/group/creategroup',
       method: 'post',
       data: {
+        goalType: 'GROUP',
         createGroupName: groupData.createGroupName,
         createGroupAmount: parseInt(groupData.createGroupAmount, 10),
         groupFriends: selentFriendNickName,
