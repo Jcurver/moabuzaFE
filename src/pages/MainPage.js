@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilState, atom } from 'recoil'
+import { useRecoilState, atom} from 'recoil'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ProgressBar from '@ramonak/react-progress-bar'
 import axios from 'axios'
 import { getToken, onMessage } from 'firebase/messaging'
-import { messaging } from './firebase'
+
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
-import { useMainPageData } from '../hooks/useUserData'
+import { useMainPageData } from '../hooks/useOnedauBuzaData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
 import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
 import Loading from './Loading'
@@ -17,12 +17,17 @@ import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
 import { api } from '../utils/axios'
+import { nowDate } from '../hooks/nowDate';
+import { onedayBuzaDate } from '../recoil/setDateToday';
+import { setItem } from '../utils/sessionStorage';
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
+  setItem('nowdate', new Date())
+
 
 
   const { isLoading, data, isError, error } = useMainPageData(navigate)
@@ -48,7 +53,6 @@ function MainPage() {
     }
   }
 
-  
   if (isLoading) {
     return <Loading />
   }
