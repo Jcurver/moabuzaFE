@@ -121,12 +121,12 @@ function GroupBuza() {
                         key={shortid.generate()}
                         src={
                           // eslint-disable-next-line no-nested-ternary
-                          member.challengeMemberHero === 'tanni'
+                          member.groupMemberHero === 'tanni'
                             ? TanniFace
                             : // eslint-disable-next-line no-nested-ternary
-                            member.challengeMemberHero === 'tonki'
+                            member.groupMemberHero === 'tongki'
                             ? TonkiFace
-                            : member.challengeMemberHero === 'bunny'
+                            : member.groupMemberHero === 'bunny'
                             ? BunnyFace
                             : null
                         }

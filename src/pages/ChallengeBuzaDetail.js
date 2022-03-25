@@ -15,7 +15,9 @@ import {
   BunnyFace,
   TanniFace,
   TonkiFace,
-  TanniStep02,
+  TanniStep03,
+  BunnyStep03,
+  TongkiStep03,
 } from '../assets/character'
 
 const shortid = require('shortid')
@@ -119,7 +121,19 @@ function ChallengeBuzaDetail() {
             })}
           </GroupFriend>
           <DetailImgWrapper>
-            <DetailCharacter src={TanniStep02} />
+            <DetailCharacter
+              src={
+                // eslint-disable-next-line no-nested-ternary
+                homeData.data.data.hero === 'tanni'
+                  ? TanniStep03
+                  : // eslint-disable-next-line no-nested-ternary
+                  homeData.data.data.hero === 'tonki'
+                  ? TongkiStep03
+                  : homeData.data.data.hero === 'bunny'
+                  ? BunnyStep03
+                  : null
+              }
+            />
           </DetailImgWrapper>
 
           <ProgressBar
