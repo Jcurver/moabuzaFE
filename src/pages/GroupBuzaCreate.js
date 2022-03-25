@@ -6,6 +6,12 @@ import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
 import { useFriendData } from '../hooks/useGroupData'
 import Loading from './Loading'
+import {
+  BunnyFace,
+  TanniFace,
+  TonkiFace,
+  TanniStep02,
+} from '../assets/character'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
@@ -24,10 +30,12 @@ function GroupBuzaCreate() {
   console.log(watch())
   // 수정대기2
   const friendData = () => {
-    return request({ url: '/friends', method: 'get' }).then((res) => {
-      console.log(res)
-      setDatalist([...res.data.groupMembers])
-    })
+    return request({ url: '/money/group/creategroup', method: 'get' }).then(
+      (res) => {
+        console.log(res)
+        setDatalist([...res.data.groupMembers])
+      },
+    )
   }
 
   const [datalist, setDatalist] = useState([])
@@ -134,29 +142,27 @@ function GroupBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0 ? (
-            <FriendEmptyBox>+</FriendEmptyBox>
-          ) : (
-            selectFriends.map((da, idx) => {
-              return (
-                <div key={da.id}>
-                  <SelectedFriendContent>
-                    {selectFriends[idx].groupMemberNickname}
-                    <DeleteFriendContent
-                      onClick={() => {
-                        setSelectFriends(
-                          selectFriends.filter((flist) => flist.id !== da.id),
-                        )
-                        setDatalist([da, ...datalist])
-                      }}
-                    >
-                      X
-                    </DeleteFriendContent>
-                  </SelectedFriendContent>
-                </div>
-              )
-            })
-          )}
+          {selectFriends.length === 0
+            ? null
+            : selectFriends.map((da, idx) => {
+                return (
+                  <div key={da.id}>
+                    <SelectedFriendContent>
+                      {selectFriends[idx].groupMemberNickname}
+                      <DeleteFriendContent
+                        onClick={() => {
+                          setSelectFriends(
+                            selectFriends.filter((flist) => flist.id !== da.id),
+                          )
+                          setDatalist([da, ...datalist])
+                        }}
+                      >
+                        X
+                      </DeleteFriendContent>
+                    </SelectedFriendContent>
+                  </div>
+                )
+              })}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -185,7 +191,19 @@ function GroupBuzaCreate() {
                   console.log(selectFriends.length)
                 }}
               >
-                <CircleImg src={da.src} />
+                <CircleImg
+                  src={
+                    // eslint-disable-next-line no-nested-ternary
+                    datalist.hero === 'tanni'
+                      ? TanniFace
+                      : // eslint-disable-next-line no-nested-ternary
+                      da.hero === 'tongki'
+                      ? TonkiFace
+                      : da.hero === 'bunny'
+                      ? BunnyFace
+                      : null
+                  }
+                />
                 <FriendsText>{da.groupMemberNickname}</FriendsText>
               </Friends>
             )
