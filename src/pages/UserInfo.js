@@ -137,7 +137,7 @@ function UserInfo() {
             <CharacterName
               style={{ fontWeight: hero === 'hero1' ? '800' : '400' }}
             >
-              캐릭터A
+            버니
             </CharacterName>
           </CharacterOne>
           <CharacterOne
@@ -148,7 +148,7 @@ function UserInfo() {
             <CharacterName
               style={{ fontWeight: hero === 'hero2' ? '800' : '400' }}
             >
-              캐릭터B
+              통키
             </CharacterName>
           </CharacterOne>
           <CharacterOne
@@ -159,7 +159,7 @@ function UserInfo() {
             <CharacterName
               style={{ fontWeight: hero === 'hero3' ? '800' : '400' }}
             >
-              캐릭터C
+              타니
             </CharacterName>
           </CharacterOne>
         </CharacterDiv>
