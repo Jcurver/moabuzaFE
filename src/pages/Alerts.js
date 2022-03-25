@@ -23,9 +23,9 @@ function alertsfriend() {
           />
         </NavLink>
         <Title>알림</Title>
-        <AddFriend />
-        <TopLine />
+
       </TopDiv>
+        <TopLine />
       <NavLink to="/alerts">
         <SelectDiv
           style={{
@@ -118,7 +118,7 @@ const Wrapper = styled.div`
 const TopDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 86px;
+  height: 82px;
   left: 0px;
   top: 0px;
 `
@@ -180,9 +180,10 @@ const Title = styled.div`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
-  right: 0%;
-  top: 98.84%;
-  bottom: 0%;
+  width:360px;
+  height: 1px;
+  top:82px;
+  
 
   /* color/Btn-basic2 */
 
@@ -192,7 +193,7 @@ const IndexBottom = styled.div`
   position: absolute;
   left: 0px;
   width: 360px;
-  top: 18.8%;
+  top: 133px;
   height: 1px;
   background-color: #f2f2f2;
 `
@@ -205,7 +206,7 @@ const SelectDiv = styled.div`
   })}
 
   width: 120px;
-  top: 11.94%;
+  top: 82px;
   height: 50px;
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -224,7 +225,7 @@ const SelectLine = styled.div`
   position: absolute;
 
   width: 120px;
-  top: 18.47%;
+  top: 130px;
   height: 3px;
 
   /* color/Secondary */
