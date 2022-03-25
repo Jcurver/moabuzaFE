@@ -14,11 +14,12 @@ import { ReactComponent as Challenge } from '../assets/icons/navbar/challenge.sv
 import { ReactComponent as Dchallenge } from '../assets/icons/navbar/dchallenge.svg'
 
 import { setFlexStyles } from '../styles/Mixin'
+import { onedayBuzaDate } from '../recoil/setDateToday'
 
 function NavBar() {
   const location = useLocation()
-  console.log("로케이션", location)
-  
+  console.log('로케이션', location)
+
   if (window.location.pathname === '/login') return null
 
   if (window.location.pathname === '/menu') return null
@@ -41,14 +42,20 @@ function NavBar() {
         </Component>
       </NavLink>
       <NavLink
-        to="/onedaybuza"
+        to={{
+          pathname: '/onedaybuza',
+          aboutProps: {
+            name: Date.now(),
+          },
+        }}
         style={({ isActive }) => ({
           textDecoration: 'none',
           color: isActive ? '#4675F0' : '#999999',
           // fontWeight: isActive ? '800' : '400',
         })}
+        // state={time:Date.now()}
       >
-        <Component>
+        <Component style={{ marginTop: '2px' }}>
           {location.pathname === '/onedaybuza' ? (
             <Pay style={{ width: '24px', height: '24px' }} />
           ) : (

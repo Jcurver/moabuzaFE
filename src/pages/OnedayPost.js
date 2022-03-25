@@ -11,6 +11,7 @@ import ko from 'date-fns/locale/ko'
 import '../styles/SelectStyle.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 import { getItem, setItem } from '../utils/sessionStorage'
@@ -19,7 +20,7 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
 import { nowDate } from '../hooks/nowDate'
-
+import { onedayBuzaDate } from '../recoil/setDateToday'
 
 registerLocale('ko', ko)
 
@@ -40,17 +41,13 @@ function OnedayPost() {
   const textInput = useRef()
   const navigate = useNavigate()
 
-  const [selectDate, setSelectDate] = useState(new Date(nowDate()))
-  // useEffect(() => {}, [selectDate])
-  // useEffect(() => {
-  //   setValue('date',selectDate)
-  // },[selectDate])
+  const [selectDate, setSelectDate] = useState(new Date(getItem('nowdate')))
   function setSelectDateValue(date) {
     setSelectDate(date)
-    setItem('nowdate',date)
+    setItem('nowdate', date)
     setValue('date', textInput.current.state.preSelection)
   }
-
+  
   const {
     register,
     handleSubmit,
@@ -222,7 +219,7 @@ function OnedayPost() {
 }
 
 const Wrapper = styled.div`
-  overflow:auto;
+  overflow: auto;
   position: relative;
   width: 100%;
   height: 720px;
