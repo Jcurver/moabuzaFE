@@ -107,7 +107,7 @@ function App() {
             <Route path="/onboarding" element={<OnBoarding />} />
           </Routes>
 
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
         </MainDiv>
       </Suspense>
     </ErrorBoundary>
