@@ -7,7 +7,8 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 
-function alertsfriend() {
+function alertsgroup() {
+  
   return (
     <Wrapper>
       <TopDiv>
@@ -30,8 +31,8 @@ function alertsfriend() {
         <SelectDiv
           style={{
             left: '0%',
-            fontWeight: '500',
-            color: '#000000',
+            fontWeight: '400',
+            color: '#555555',
           }}
         >
           친구
@@ -41,12 +42,13 @@ function alertsfriend() {
         <SelectDiv
           style={{
             left: '33.33%',
-            fontWeight: '400',
-            color: '#555555',
+            fontWeight: '500',
+            color: '#000000',
           }}
         >
           같이해부자
         </SelectDiv>
+        <SelectLine style={{ left: '33.33%' }} />
       </NavLink>
       <NavLink to="/alertschallenge">
         <SelectDiv
@@ -59,17 +61,16 @@ function alertsfriend() {
           도전해부자
         </SelectDiv>
       </NavLink>
-      <SelectLine style={{ left: '0%' }} />
       <IndexBottom />
       <AlertListDiv>
         <AlertList>
           <AlertCharacter />
           <AlertTextDiv>
             <Flex>
-              <AlertTextTop>룰루랄라쁑</AlertTextTop>
+              <AlertTextTop>룰루랄라룰루랄라</AlertTextTop>
               <AlertTextTopRight>님이</AlertTextTopRight>
             </Flex>
-            <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
+            <AlertTextBottom>초대했어요!</AlertTextBottom>
           </AlertTextDiv>
           <AlertAcceptRefuse style={{ left: '232px' }}>수락</AlertAcceptRefuse>
           <AlertAcceptRefuse style={{ left: '312px' }}>거절</AlertAcceptRefuse>
@@ -80,10 +81,10 @@ function alertsfriend() {
             <AlertCharacter style={{ marginRight: '10px' }} />
             <AlertTextDiv>
               <Flex>
-                <AlertTextTop>아리랑</AlertTextTop>
-                <AlertTextTopRight>님이</AlertTextTopRight>
+                <AlertTextTop>아이패드 모으자</AlertTextTop>
+                <AlertTextTopRight>목표가</AlertTextTopRight>
               </Flex>
-              <AlertTextBottom>친구요청을 거절했습니다.</AlertTextBottom>
+              <AlertTextBottom>생성되었습니다.</AlertTextBottom>
             </AlertTextDiv>
           </Flex>
           <Close style={{ color: 'red', marginRight: '11px' }} />
@@ -94,17 +95,60 @@ function alertsfriend() {
             <AlertCharacter style={{ marginRight: '10px' }} />
             <AlertTextDiv>
               <Flex>
-                <AlertTextTop>아리랑</AlertTextTop>
+                <AlertTextTop>훌라훌라</AlertTextTop>
                 <AlertTextTopRight>님이</AlertTextTopRight>
               </Flex>
-              <AlertTextBottom>친구요청을 수락했습니다.</AlertTextBottom>
+              <Flex>
+                <AlertTextBottom>2,000</AlertTextBottom>
+                <AlertTextBottom>원을 입금했습니다</AlertTextBottom>
+              </Flex>
             </AlertTextDiv>
           </Flex>
           <Close style={{ color: 'red', marginRight: '11px' }} />
         </AlertList>
         <AlertHr />
-       
-   
+        <AlertList>
+          <Flex>
+            <AlertCharacter style={{ marginRight: '10px' }} />
+            <AlertTextDiv>
+              <Flex>
+                <AlertTextTop>아이패드내놔</AlertTextTop>
+                <AlertTextTopRight>님이</AlertTextTopRight>
+              </Flex>
+              <AlertTextBottom>초대를 수락했습니다.</AlertTextBottom>
+            </AlertTextDiv>
+          </Flex>
+          <Close style={{ color: 'red', marginRight: '11px' }} />
+        </AlertList>
+        <AlertHr />
+        <AlertList>
+          <Flex>
+            <AlertCharacter style={{ marginRight: '10px' }} />
+            <AlertTextDiv>
+              <Flex>
+                <AlertTextTop>아이패드 모으자</AlertTextTop>
+                <AlertTextTopRight>목표가</AlertTextTopRight>
+              </Flex>
+              <AlertTextBottom>취소되었습니다.</AlertTextBottom>
+            </AlertTextDiv>
+          </Flex>
+          <Close style={{ color: 'red', marginRight: '11px' }} />
+        </AlertList>
+        <AlertHr />
+        <AlertList>
+          <Flex>
+            <AlertCharacter style={{ marginRight: '10px' }} />
+            <AlertTextDiv>
+              <Flex>
+                <AlertTextTop>백만원 가즈아</AlertTextTop>
+                <AlertTextTopRight>목표가</AlertTextTopRight>
+              </Flex>
+              <AlertTextBottom>달성되었습니다!</AlertTextBottom>
+            </AlertTextDiv>
+          </Flex>
+          <Close style={{ color: 'red', marginRight: '11px' }} />
+        </AlertList>
+        <AlertHr />
       </AlertListDiv>
     </Wrapper>
   )
@@ -355,4 +399,4 @@ const AlertHr = styled.div`
 const Flex = styled.div`
   display: flex;
 `
-export default alertsfriend
+export default alertsgroup
