@@ -7,12 +7,13 @@ export const useMainPageData = (navigate) => {
   })
 }
 
-export const useOnedayPageData = (date) => {
-  useMutation(() => {
+export const useOnedayBuzaData = () => {
+  return useMutation((date) => {
     return request({
       url: '/money/dayList',
       method: 'post',
       data: { recordDate: date },
     })
-  })
+  },)
 }
+
