@@ -130,27 +130,29 @@ function GroupBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0
-            ? null
-            : selectFriends.map((da, idx) => {
-                return (
-                  <div key={da.id}>
-                    <SelectedFriendContent>
-                      {selectFriends[idx].groupMemberNickname}
-                      <DeleteFriendContent
-                        onClick={() => {
-                          setSelectFriends(
-                            selectFriends.filter((flist) => flist.id !== da.id),
-                          )
-                          setDatalist([da, ...datalist])
-                        }}
-                      >
-                        X
-                      </DeleteFriendContent>
-                    </SelectedFriendContent>
-                  </div>
-                )
-              })}
+          {selectFriends.length === 0 ? (
+            <FriendEmptyBox>+</FriendEmptyBox>
+          ) : (
+            selectFriends.map((da, idx) => {
+              return (
+                <div key={da.id}>
+                  <SelectedFriendContent>
+                    {selectFriends[idx].groupMemberNickname}
+                    <DeleteFriendContent
+                      onClick={() => {
+                        setSelectFriends(
+                          selectFriends.filter((flist) => flist.id !== da.id),
+                        )
+                        setDatalist([da, ...datalist])
+                      }}
+                    >
+                      X
+                    </DeleteFriendContent>
+                  </SelectedFriendContent>
+                </div>
+              )
+            })
+          )}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -363,6 +365,22 @@ const Friends = styled.div`
   order: 0;
   flex-grow: 0;
   margin: 8px 0px;
+`
+
+const FriendEmptyBox = styled.div`
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 156px;
+  color: #cccccc;
+  /* color / gray / Gray30 */
+
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 8px;
 `
 
 const FriendsText = styled.div`

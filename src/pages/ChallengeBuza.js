@@ -33,10 +33,10 @@ function ChallengeBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(data.data.id)
+      console.log(id)
       if (result.isConfirmed) {
         request({
-          url: `/money/challenge/exitchallenge/${data.data.id}`,
+          url: `/money/challenge/exitchallenge/${id}`,
           method: 'delete',
         }).then(() => {
           navigate(0)
@@ -46,6 +46,8 @@ function ChallengeBuza() {
   }
 
   useEffect(() => {}, [navigate])
+  console.log(homeData)
+
   if (homeData.isLoading) {
     return <Loading />
   }
@@ -158,24 +160,30 @@ function ChallengeBuza() {
           )
         : null}
       {data
-        ? data.data.goalStatus === 'waiting' && (
-            <GoalWrapper>
-              <GoalText>수락대기중</GoalText>
-              <GoalDescribe>
-                모두 수락되면 도전해부자가 생성됩니다.
-              </GoalDescribe>
+        ? data.data.goalStatus === 'waiting' &&
+          data.data.waitingGoal.map((gStatus, idx) => {
+            return (
+              <GoalWrapper key={Date.now()}>
+                <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                <GoalDescribe>
+                  모두 수락되면 도전해부자가 생성됩니다.
+                </GoalDescribe>
 
-              <Button
-                width="296px"
-                height="52px"
-                fontSize="14px"
-                background="#4675F0"
-                onClick={cancelChallenge}
-              >
-                대기취소
-              </Button>
-            </GoalWrapper>
-          )
+                <Button
+                  width="296px"
+                  height="52px"
+                  fontSize="14px"
+                  background="#4675F0"
+                  onClick={() => {
+                    console.log(gStatus.id)
+                    cancelChallenge(gStatus.id)
+                  }}
+                >
+                  대기취소
+                </Button>
+              </GoalWrapper>
+            )
+          })
         : null}
       <Nav />
     </Wrapper>
@@ -339,8 +347,8 @@ const GroupFriend = styled.div`
 `
 const GroupFriendIcon = styled.img`
   /* position: static; */
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
   /* color / gray / Gray50 */
 
