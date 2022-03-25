@@ -7,64 +7,6 @@ import { request } from '../utils/axios'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
-
-  const data = [
-    {
-      id: 1,
-      title: '모아모아1',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 2,
-      title: '모아모아2',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 3,
-      title: '모아모아3',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 4,
-      title: '모아모아4',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 5,
-      title: '모아모아5',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 6,
-      title: '모아모아6',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 7,
-      title: '모아모아7',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 8,
-      title: '모아모아8',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 9,
-      title: '모아모아9',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 10,
-      title: '모아모아10',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-    {
-      id: 11,
-      title: '모아모아',
-      src: 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    },
-  ]
   const [datalist, setDatalist] = useState([])
   const [selectFriends, setSelectFriends] = useState([])
 
@@ -90,15 +32,12 @@ function ChallengeBuzaCreate() {
     formState: { errors },
   } = useForm()
   console.log(watch())
-  const onSubmit = (data) => {
-    console.log(data, ...selectFriends)
-  }
 
   const onError = (error) => {
     console.log(error)
   }
 
-  console.log('selectFriends', selectFriends)
+  // console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
     console.log('challengeData', challengeData)
     return request({
@@ -127,9 +66,6 @@ function ChallengeBuzaCreate() {
   useEffect(() => {
     friendData()
   }, [])
-  // useEffect(() => {
-  //   console.log(selectFriends)
-  // }, [selectFriends])
 
   return (
     <Wrapper>
@@ -187,27 +123,29 @@ function ChallengeBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0
-            ? null
-            : selectFriends.map((da, idx) => {
-                return (
-                  <div key={da.id}>
-                    <SelectedFriendContent>
-                      {selectFriends[idx].challengeMemberNickname}
-                      <DeleteFriendContent
-                        onClick={() => {
-                          setSelectFriends(
-                            selectFriends.filter((flist) => flist.id !== da.id),
-                          )
-                          setDatalist([da, ...datalist])
-                        }}
-                      >
-                        X
-                      </DeleteFriendContent>
-                    </SelectedFriendContent>
-                  </div>
-                )
-              })}
+          {selectFriends.length === 0 ? (
+            <FriendEmptyBox>+</FriendEmptyBox>
+          ) : (
+            selectFriends.map((da, idx) => {
+              return (
+                <div key={da.id}>
+                  <SelectedFriendContent>
+                    {selectFriends[idx].challengeMemberNickname}
+                    <DeleteFriendContent
+                      onClick={() => {
+                        setSelectFriends(
+                          selectFriends.filter((flist) => flist.id !== da.id),
+                        )
+                        setDatalist([da, ...datalist])
+                      }}
+                    >
+                      X
+                    </DeleteFriendContent>
+                  </SelectedFriendContent>
+                </div>
+              )
+            })
+          )}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -302,12 +240,6 @@ const SmallText = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
-  /* identical to box height, or 12px */
-  /* 
-  display: flex;
-  align-items: center; */
-  letter-spacing: -0.04em;
-
   /* color / gray / Gray50 */
 
   color: #999999;
@@ -331,19 +263,15 @@ const CreateMoveButton = styled.button`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
-  /* margin: 106px 16px 16px 16px; */
   width: 328px;
   height: 87px;
   left: 16px;
   top: 106px;
 `
 const IconBox = styled.div`
-  /* position: absolute; */
   width: 328px;
   height: 14px;
   margin: 5px 262px 16px 0px;
-  /* left: 0px;
-  top: 5px; */
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -366,7 +294,6 @@ const MemoInputBox = styled.div`
   left: 16px;
   top: 209px;
 `
-// const Icon = styled.i``
 
 // Friends
 const FriendWrapper = styled.div`
@@ -401,7 +328,21 @@ const FriendsList = styled.div`
     display: none; /* Chrome , Safari , Opera */
   }
 `
+const FriendEmptyBox = styled.div`
+  /* Auto layout */
 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 156px;
+  color: #cccccc;
+  /* color / gray / Gray30 */
+
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 8px;
+`
 const Friends = styled.div`
   /* Auto layout */
 
@@ -493,14 +434,7 @@ const CreateButton = styled.button`
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
-  /* Auto layout */
 
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px; */
-
-  /* position: absolute; */
   width: 328px;
   height: 36px;
   margin: 16px 0px;
@@ -509,7 +443,6 @@ const CreateButton = styled.button`
   flex: none;
   order: 6;
   flex-grow: 0;
-  /* margin: 16px 0px; */
 
   /* 색상 */
   background: #5f5f77;
@@ -525,18 +458,11 @@ const SelectedFriendWrapper = styled.div`
   /* Auto layout */
 
   display: flex;
-  /* flex-direction: row; */
   align-items: flex-start;
   padding: 0px;
   overflow-y: scroll;
   width: 328px;
   height: 140px;
-  /* overflow: hidden; */
-  /* position: absolute;
-  width: 442px;
-  height: 52px;
-  left: 0px;
-  top: 30px; */
   margin: 10px 0px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
@@ -564,7 +490,6 @@ const SelectedFriendContent = styled.div`
   margin: 0px 8px 0px 0px;
 `
 const DeleteFriendContent = styled.button`
-  /* position: absolute; */
   width: 0px;
   height: 18px;
   margin-left: 15px;
