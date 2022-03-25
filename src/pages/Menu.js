@@ -33,7 +33,7 @@ function Menu() {
       </TopDiv>
       <NavLink to="/onedaybuza">
         <TodayDiv style={{ top: '11.94%' }}>
-          <TodayLogoDiv />
+
           <Vector
             style={{
               position: 'absolute',
@@ -57,7 +57,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/groupbuza">
         <TodayDiv style={{ top: '20.27%' }}>
-          <TodayLogoDiv />
+
           <Together
             style={{
               width: '24px',
@@ -81,7 +81,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/challengebuza">
         <TodayDiv style={{ top: '28.61%' }}>
-          <TodayLogoDiv />
+
           <Challenge
             style={{
               width: '24px',
@@ -106,7 +106,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/friends">
         <TodayDiv style={{ top: '41.53%' }}>
-          <TodayLogoDiv />
+
           <Friend
             style={{
               width: '24px',
@@ -131,7 +131,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/bedge">
         <TodayDiv style={{ top: '49.86%' }}>
-          <TodayLogoDiv />
+
           <Asset
             style={{
               width: '24px',
@@ -155,7 +155,7 @@ function Menu() {
       </NavLink>
       <NavLink to="/settings">
         <TodayDiv style={{ top: '58.19%' }}>
-          <TodayLogoDiv />
+
           <Setting
             style={{
               width: '24px',
@@ -201,7 +201,7 @@ const ButtonDiv = styled.div`
   top: 33.72%;
   bottom: 10.47%;
 
-  background: rgba(196, 196, 196, 0.3);
+
 `
 
 const Title = styled.div`

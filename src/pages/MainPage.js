@@ -92,7 +92,7 @@ function MainPage() {
           도전해부자
         </RightBtn>
       </Toggle>
-      {toggle === 'group' && data && data?.data?.groupName ? (
+      {toggle === 'group' && data.data.groupName ? (
         <>
           <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
           <ContentUnderDiv>
