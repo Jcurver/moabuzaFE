@@ -11,6 +11,7 @@ import {
   useChallengeData,
   useChallengeMainPageData,
 } from '../hooks/useChallengeData'
+import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
 import Loading from './Loading'
 
 const shortid = require('shortid')
@@ -113,7 +114,17 @@ function ChallengeBuza() {
 
                           <GroupFriendIcon
                             key={shortid.generate()}
-                            src={member.challengeMemberHero}
+                            src={
+                              // eslint-disable-next-line no-nested-ternary
+                              member.challengeMemberHero === 'tanni'
+                                ? TanniFace
+                                : // eslint-disable-next-line no-nested-ternary
+                                member.challengeMemberHero === 'tonki'
+                                ? TonkiFace
+                                : member.challengeMemberHero === 'bunny'
+                                ? BunnyFace
+                                : null
+                            }
                           />
                         )
                       })
