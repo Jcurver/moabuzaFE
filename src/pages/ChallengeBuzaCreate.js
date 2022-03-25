@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
+import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
@@ -19,6 +20,8 @@ function ChallengeBuzaCreate() {
       setDatalist([...res.data.challengeMembers])
     })
   }
+
+  console.log('selectFriends', selectFriends)
   const selentFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
@@ -123,29 +126,29 @@ function ChallengeBuzaCreate() {
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
         <SelectedFriendWrapper>
-          {selectFriends.length === 0 ? (
-            <FriendEmptyBox>+</FriendEmptyBox>
-          ) : (
-            selectFriends.map((da, idx) => {
-              return (
-                <div key={da.id}>
-                  <SelectedFriendContent>
-                    {selectFriends[idx].challengeMemberNickname}
-                    <DeleteFriendContent
-                      onClick={() => {
-                        setSelectFriends(
-                          selectFriends.filter((flist) => flist.id !== da.id),
-                        )
-                        setDatalist([da, ...datalist])
-                      }}
-                    >
-                      X
-                    </DeleteFriendContent>
-                  </SelectedFriendContent>
-                </div>
-              )
-            })
-          )}
+          {selectFriends.length === 0
+            ? null
+            : selectFriends.map((da, idx) => {
+                return (
+                  <div key={da.id}>
+                    <SelectedFriendContent>
+                      {selectFriends[idx].challengeMemberNickname}
+                      <DeleteFriendContent
+                        onClick={() => {
+                          setSelectFriends(
+                            selectFriends.filter((flist) => flist.id !== da.id),
+                          )
+                          setDatalist([da, ...datalist])
+
+                          console.log('datalist', datalist)
+                        }}
+                      >
+                        X
+                      </DeleteFriendContent>
+                    </SelectedFriendContent>
+                  </div>
+                )
+              })}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -162,7 +165,14 @@ function ChallengeBuzaCreate() {
                     })
                     return
                   }
-
+                  // if (selectFriends.challengeMemberCanInvite) {
+                  //   Swal.fire({
+                  //     icon: 'error',
+                  //     title: '이미 선택!',
+                  //     text: '이미 진행중이에요!',
+                  //   })
+                  //   return
+                  // }
                   setSelectFriends((prevList) => [...prevList, da])
                   const targetIndex = datalist.findIndex(
                     (d) => d.title === da.title,
@@ -172,9 +182,22 @@ function ChallengeBuzaCreate() {
                     ...datalist.slice(targetIndex + 1),
                   ])
                   console.log(selectFriends.length)
+                  console.log('selectFriends', selectFriends)
                 }}
               >
-                <CircleImg src={da.src} />
+                <CircleImg
+                  src={
+                    // eslint-disable-next-line no-nested-ternary
+                    da.hero === 'tanni'
+                      ? TanniFace
+                      : // eslint-disable-next-line no-nested-ternary
+                      da.hero === 'tongki'
+                      ? TonkiFace
+                      : da.hero === 'bunny'
+                      ? BunnyFace
+                      : null
+                  }
+                />
                 <FriendsText>{da.challengeMemberNickname}</FriendsText>
               </Friends>
             )
