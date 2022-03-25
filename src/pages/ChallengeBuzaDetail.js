@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -10,6 +11,7 @@ import {
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
+import Pig from '../assets/character/01_character_face/pig.png'
 
 const shortid = require('shortid')
 
@@ -70,7 +72,13 @@ function ChallengeBuzaDetail() {
         <Title>
           <Text>도전해부자</Text>
         </Title>
-        <ForgiveMoveButton onClick={cancelGroup}>포기</ForgiveMoveButton>
+        <ForgiveMoveButton
+          onClick={() => {
+            cancelGroup()
+          }}
+        >
+          포기
+        </ForgiveMoveButton>
 
         <DetailWrapper>
           <DetailTitle>
@@ -89,7 +97,9 @@ function ChallengeBuzaDetail() {
               return (
                 <GroupFriendIcon
                   key={shortid.generate()}
-                  src={member.challengeMemberHero}
+                  // eslint-disable-next-line global-require
+                  src={require(`${'../assets/character/01_character_face/pig.png'}`)}
+                  // src={member.challengeMemberHero}
                 />
               )
             })}
@@ -222,7 +232,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const ColorWrapper = styled.div`
-  background: #e5e5e5;
+  background: #ebf2ff;
   box-sizing: border-box;
   height: 480px;
 `
@@ -249,6 +259,7 @@ const CancleMoveButton = styled.button`
   height: 48px;
   left: 4px;
   top: 31px;
+  background-color: #ebf2ff;
 `
 
 const ForgiveMoveButton = styled.button`
@@ -257,6 +268,8 @@ const ForgiveMoveButton = styled.button`
   height: 48px;
   left: 308px;
   top: 31px;
+  background-color: #ebf2ff;
+  color: #4675f0;
 `
 
 const DetailWrapper = styled.div`
@@ -420,8 +433,8 @@ const GroupFriend = styled.div`
 `
 const GroupFriendIcon = styled.img`
   /* position: static; */
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
   /* color / gray / Gray50 */
 
