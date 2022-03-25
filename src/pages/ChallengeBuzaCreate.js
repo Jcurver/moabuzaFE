@@ -251,6 +251,7 @@ const CancleMoveButton = styled.button`
   height: 48px;
   left: 4px;
   top: 31px;
+  background-color: #fff;
 `
 
 const CreateMoveButton = styled.button`
@@ -259,6 +260,8 @@ const CreateMoveButton = styled.button`
   height: 48px;
   left: 308px;
   top: 31px;
+  background-color: #fff;
+  color: #4675f0;
 `
 // Inputbox
 const GoalInputBox = styled.div`

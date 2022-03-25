@@ -5,10 +5,11 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
 import { useFriendData } from '../hooks/useGroupData'
+import Loading from './Loading'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
-
+  const { data, isLoading } = useFriendData(navigate)
   useEffect(() => {
     friendData()
   }, [navigate])
@@ -23,12 +24,10 @@ function GroupBuzaCreate() {
   console.log(watch())
 
   const friendData = () => {
-    return request({ url: '/money/group/creategroup', method: 'get' }).then(
-      (res) => {
-        console.log(res.data.groupMembers)
-        setDatalist([...res.data.groupMembers])
-      },
-    )
+    return request({ url: '/friends', method: 'get' }).then((res) => {
+      console.log(res)
+      setDatalist([...res.data.groupMembers])
+    })
   }
 
   const [datalist, setDatalist] = useState([])
@@ -70,6 +69,10 @@ function GroupBuzaCreate() {
     )
   }
 
+  if (isLoading) {
+    return <Loading />
+  }
+  console.log(data)
   // useEffect(() => {
   //   console.log(selectFriends)
   // }, [selectFriends])
@@ -264,6 +267,7 @@ const CancleMoveButton = styled.button`
   height: 48px;
   left: 4px;
   top: 31px;
+  background-color: #fff;
 `
 
 const CreateMoveButton = styled.button`
@@ -272,6 +276,8 @@ const CreateMoveButton = styled.button`
   height: 48px;
   left: 308px;
   top: 31px;
+  background-color: #fff;
+  color: #4675f0;
 `
 // Inputbox
 const GoalInputBox = styled.div`
