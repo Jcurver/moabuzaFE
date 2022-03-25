@@ -1,13 +1,78 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
+import {
+  useAlertsChallengeData,
+  alarmAccept,
+  alarmRefuse,
+  alarmDelete,
+} from '../hooks/useAlertsData'
 
-function alertsgroup() {
+function AlertsGroup() {
+  const cdata = [
+    {
+      AlarmId: 1,
+      alarmDetailType: 'invite',
+      friendNickname: 'bunny11',
+      goalName: '아이패드내놔',
+      goalAmount: 500000,
+    },
+    {
+      AlarmId: 2,
+      alarmDetailType: 'accept',
+      friendNickname: 'bunny22',
+      goalName: '아이패드내놔',
+      goalAmount: 500000,
+    },
+    {
+      AlarmId: 3,
+      alarmDetailType: 'create',
+      friendNickname: 'bunny33',
+      goalName: '수능잘볼래',
+      goalAmount: 50000,
+    },
+    {
+      AlarmId: 4,
+      alarmDetailType: 'record',
+      friendNickname: 'bunny44',
+      goalName: '갤럭시탭내놔',
+      goalAmount: 10000,
+    },
+    {
+      AlarmId: 5,
+      alarmDetailType: 'success',
+      friendNickname: 'bunny55',
+      goalName: '맥북내놔',
+      goalAmount: 3300200,
+    },
+    {
+      AlarmId: 6,
+      alarmDetailType: 'boom',
+      friendNickname: 'bunny66',
+      goalName: '아이패드살래',
+      goalAmount: 440000,
+    },
+  ]
+
+  const navigate = useNavigate()
+  const {
+    isLoading,
+    data: AlertGroupList,
+    isError,
+    error,
+  } = useAlertsChallengeData(navigate)
+  console.log(
+    '알람데이터챌린지 : ',
+    isLoading,
+    AlertGroupList,
+    isError,
+    error,
+  )
 
   return (
     <Wrapper>
@@ -24,9 +89,8 @@ function alertsgroup() {
           />
         </NavLink>
         <Title>알림</Title>
-
       </TopDiv>
-        <TopLine />
+      <TopLine />
       <NavLink to="/alerts">
         <SelectDiv
           style={{
@@ -48,7 +112,6 @@ function alertsgroup() {
         >
           같이해부자
         </SelectDiv>
-        <SelectLine style={{ left: '33.33%' }} />
       </NavLink>
       <NavLink to="/alertschallenge">
         <SelectDiv
@@ -60,9 +123,115 @@ function alertsgroup() {
         >
           도전해부자
         </SelectDiv>
+        <SelectLine style={{ left: '33.33%' }} />
       </NavLink>
       <IndexBottom />
       <AlertListDiv>
+        {AlertGroupList &&
+          AlertGroupList.data.map((d) => {
+            return (
+              <>
+                {d.alarmDetailType === 'invite' && (
+                  <AlertList>
+                    <AlertCharacter />
+                    <AlertTextDiv>
+                      <Flex>
+                        <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                        <AlertTextTopRight>님이</AlertTextTopRight>
+                      </Flex>
+                      <Flex>
+                        <AlertTextBottom style={{ fontWeight: '700' }}>
+                          {d.goalName}
+                        </AlertTextBottom>
+                        <AlertTextBottom>에 초대했어요!</AlertTextBottom>
+                      </Flex>
+                    </AlertTextDiv>
+                    <AlertAcceptRefuse
+                      onClick={() => alarmAccept(d.AlarmId)}
+                      style={{ left: '232px' }}
+                    >
+                      수락
+                    </AlertAcceptRefuse>
+                    <AlertAcceptRefuse
+                      onClick={() => alarmRefuse(d.AlarmId)}
+                      style={{ left: '312px' }}
+                    >
+                      거절
+                    </AlertAcceptRefuse>
+                  </AlertList>
+                )}
+                {d.alarmDetailType === 'accept' && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                          <AlertTextTopRight>님이</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>초대를 수락했습니다.</AlertTextBottom>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDelete(d.AlarmId)}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
+
+                {d.alarmDetailType === 'record' && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                          <AlertTextTopRight>님이</AlertTextTopRight>
+                        </Flex>
+                        <Flex>
+                          <AlertTextBottom>
+                            {d.goalAmount.toLocaleString('en-US')}
+                          </AlertTextBottom>
+                          <AlertTextBottom>원을 입금했습니다</AlertTextBottom>
+                        </Flex>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDelete(d.AlarmId)}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
+                {(d.alarmDetailType === 'create' ||
+                  d.alarmDetailType === 'success' ||
+                  d.alarmDetailType === 'boom') && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.goalName}</AlertTextTop>
+                          <AlertTextTopRight>목표가</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>
+                          {d.alarmDetailType === 'create' && '생성'}
+                          {d.alarmDetailType === 'success' && '달성'}
+                          {d.alarmDetailType === 'boom' && '취소'}
+                          되었습니다.
+                        </AlertTextBottom>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDelete(d.AlarmId)}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
+
+                <AlertHr />
+              </>
+            )
+          })}
         <AlertList>
           <AlertCharacter />
           <AlertTextDiv>
@@ -162,7 +331,7 @@ const Wrapper = styled.div`
 const TopDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 86px;
+  height: 82px;
   left: 0px;
   top: 0px;
 `
@@ -399,4 +568,4 @@ const AlertHr = styled.div`
 const Flex = styled.div`
   display: flex;
 `
-export default alertsgroup
+export default AlertsGroup

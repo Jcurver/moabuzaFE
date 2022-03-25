@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
 
 import 'react-calendar/dist/Calendar.css'
@@ -13,7 +13,7 @@ import {
   SwipeableList,
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
-import useRecoilState from 'recoil'
+import {useRecoilState, useRecoilValue} from 'recoil'
 import { setFlexStyles } from '../styles/Mixin'
 import { selectDate } from '../recoil/todayState'
 import { request } from '../utils/axios'
@@ -27,6 +27,9 @@ import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg
 import { getItem, setItem } from '../utils/sessionStorage'
 // import { setDateInOnedayList } from '../hooks/useUserData';
 import { nowDate } from '../hooks/nowDate'
+import { onedayBuzaDate } from '../recoil/setDateToday';
+import { useOnedayBuzaData } from '../hooks/useOnedauBuzaData';
+
 
 registerLocale('ko', ko)
 
@@ -38,18 +41,27 @@ function ExampleCustomInput({ value, onClick }) {
   )
 }
 
-function OnedayBuza() {
+function OnedayBuza(state) {
+  const location = useLocation()
+  // const [oneDayBuzaDate, setOneDayBuzaDate] = useRecoilState(onedayBuzaDate)
+  
+  console.log("OnedayProps:::", location)
+  
   const navigate = useNavigate()
-
-  const [startDate, setStartDate] = useState(new Date(nowDate()))
-
-  function setDateMutate(date) {
+  if (getItem('nowdate') === undefined) {
+    setItem('nowdate', new Date())
+    console.log("GetITEM",getItem('nowdate'))
+  }
+  const [startDate, setStartDate] = useState(new Date(getItem('nowdate')))
+  
+  async function setDateMutate(date) {
     const newdate = getDate(date)
     setItem('nowdate', date)
     // console.log("date",date)
     setStartDate(date)
     // console.log('newdate:', newdate)
-    mutation.mutate(newdate)
+    // const res = await mutateAsync(newdate)
+    // console.log("res::",res)
   }
 
   const mutation = useMutation((date) => {
@@ -59,6 +71,8 @@ function OnedayBuza() {
       data: { recordDate: date },
     })
   })
+
+  // console.log("M",mutation)
 
   useEffect(() => {
     const selectDate = getDate(startDate)
@@ -100,9 +114,12 @@ function OnedayBuza() {
     )
   }
   function yesterday() {
+    setItem('nowdate', new Date(startDate - 24 * 60 * 60 * 1000))
     setStartDate(new Date(startDate - 24 * 60 * 60 * 1000))
   }
   function nextday() {
+    setItem('nowdate', new Date(startDate -1 + 24 * 60 * 60 * 1000 + 1))
+
     setStartDate(new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
   }
   return (
@@ -212,7 +229,7 @@ function OnedayBuza() {
                         padding: '10px',
                         marginLeft: '10px',
                         marginBottom: '10px',
-                        background: "red",
+                        // background: "red",
                       }}
                     >
                       밀어서 삭제
