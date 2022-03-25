@@ -110,8 +110,7 @@ function ChallengeBuza() {
                 <GroupFriend>
                   {data
                     ? data.data.challengeMembers.map((member) => {
-                      return (
-
+                        return (
                           <GroupFriendIcon
                             key={shortid.generate()}
                             src={
@@ -119,7 +118,7 @@ function ChallengeBuza() {
                               member.challengeMemberHero === 'tanni'
                                 ? TanniFace
                                 : // eslint-disable-next-line no-nested-ternary
-                                member.challengeMemberHero === 'tonki'
+                                member.challengeMemberHero === 'tongki'
                                 ? TonkiFace
                                 : member.challengeMemberHero === 'bunny'
                                 ? BunnyFace

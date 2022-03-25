@@ -19,6 +19,6 @@ export const useGroupDataPost = (date) => {
 
 export const useFriendData = (navigate) => {
   return useQuery(['friend-data', navigate], () => {
-    return request({ url: '/friends', method: 'get' })
+    return request({ url: '/money/group/creategroup', method: 'get' })
   })
 }
