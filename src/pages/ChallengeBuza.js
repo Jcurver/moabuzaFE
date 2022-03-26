@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
@@ -24,7 +24,8 @@ function ChallengeBuza() {
   const { data, isLoading } = useChallengeData(navigate)
   const homeData = useChallengeMainPageData(navigate)
   if (data) {
-    console.log("웨이팅골", data.data.waitingGoals);
+    console.log('데이터ㅣㅣ', data)
+    console.log('웨이팅골', data.data.waitingGoals)
   }
   const cancelChallenge = (id) => {
     Swal.fire({
@@ -40,13 +41,12 @@ function ChallengeBuza() {
       console.log(id)
       console.log(result)
 
-        request({
-          url: `/money/challenge/exitchallenge/${id}`,
-          method: 'delete',
-        }).then(() => {
-          // navigate(0)
-        })
-      
+      request({
+        url: `/money/challenge/exitWaitingChallenge/${id}`,
+        method: 'delete',
+      }).then(() => {
+        // navigate(0)
+      })
     })
   }
 
@@ -85,25 +85,28 @@ function ChallengeBuza() {
       <Title>
         <Text>도전해부자</Text>
       </Title>{' '}
-      {data
-        ? data.data.goalStatus === 'noGoal' && (
-            <GoalWrapper>
-              <GoalText>원하는 목표를 만들어보세요</GoalText>
-              <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
-              <Button
-                width="296px"
-                height="52px"
-                fontSize="14px"
-                background="#4675F0"
-                onClick={() => {
-                  navigate('/challengebuzacreate')
-                }}
-              >
-                + 목표 개설하기
-              </Button>
-            </GoalWrapper>
-          )
-        : null}
+      <ChallengeWaitingDiv>
+        {data
+          ? data.data.goalStatus === 'noGoal' && (
+              <GoalWrapper>
+                <GoalText>원하는 목표를 만들어보세요</GoalText>
+                <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
+
+                <Button
+                  width="296px"
+                  height="52px"
+                  fontSize="14px"
+                  background="#4675F0"
+                  onClick={() => {
+                    navigate('/challengebuzacreate')
+                  }}
+                >
+                  + 목표 개설하기
+                </Button>
+              </GoalWrapper>
+            )
+          : null}
+
       {data
         ? data.data.goalStatus === 'goal' && (
             <>
@@ -179,9 +182,9 @@ function ChallengeBuza() {
             </>
           )
         : null}
-      <ChallengeWaitingDiv>
+      
         {data
-          ? data.data.goalStatus === 'waiting' &&
+          && data.data.goalStatus === 'waiting' ?
             data.data.waitingGoals.map((gStatus, idx) => {
               return (
                 <GoalWrapper>
@@ -435,7 +438,6 @@ const GroupFriendGoalAmount = styled.span`
   /* color / text / Color-text-Black */
 
   color: #4675f0;
-  
 `
 const ChallengeWaitingDiv = styled.div`
   position: absolute;

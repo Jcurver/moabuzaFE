@@ -239,7 +239,7 @@ const RightButtonDiv = styled.div`
   top: 4.03%;
   width: 48px;
   height: 48px;
-  background: rgba(196, 196, 196, 0.3);
+  /* background: rgba(196, 196, 196, 0.3); */
 `
 
 const RightButton = styled.div`
@@ -507,7 +507,7 @@ const BottomLine = styled.div`
   height: 6.7%;
   background: #f5f5f7;
   border-radius: 8px;
-  margin: 8px;
+  margin: 0% 4.45%;
 `
 
 const MyWallet = styled.span`

@@ -14,6 +14,15 @@ import {
 } from '../apis/alertsData'
 
 function AlertsChallenge() {
+  const [, updateState] = useState()
+  const navigate = useNavigate()
+
+
+  function alarmDeleteAndRender(id) {
+    console.log("알람아이디:",id)
+    alarmDelete(id)
+    // navigate(0)
+  }
   const cdata = [
     {
       AlarmId: 1,
@@ -59,7 +68,6 @@ function AlertsChallenge() {
     },
   ]
 
-  const navigate = useNavigate()
   const {
     isLoading,
     data: AlertChallengeList,
@@ -173,7 +181,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.alarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -197,7 +205,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.alarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -222,7 +230,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.alarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -232,7 +240,7 @@ function AlertsChallenge() {
               </>
             )
           })}
-        <AlertList>
+        {/* <AlertList>
           <AlertCharacter />
           <AlertTextDiv>
             <Flex>
@@ -317,7 +325,7 @@ function AlertsChallenge() {
           </Flex>
           <Close style={{ color: 'red', marginRight: '11px' }} />
         </AlertList>
-        <AlertHr />
+        <AlertHr /> */}
       </AlertListDiv>
     </Wrapper>
   )

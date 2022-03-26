@@ -13,7 +13,7 @@ import {
   SwipeableList,
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
-import {useRecoilState, useRecoilValue} from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { setFlexStyles } from '../styles/Mixin'
 import { selectDate } from '../recoil/todayState'
 import { request } from '../utils/axios'
@@ -27,9 +27,8 @@ import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg
 import { getItem, setItem } from '../utils/sessionStorage'
 // import { setDateInOnedayList } from '../hooks/useUserData';
 import { nowDate } from '../hooks/nowDate'
-import { onedayBuzaDate } from '../recoil/setDateToday';
-import { useOnedayBuzaData } from '../apis/onedayBuzaData';
-
+import { onedayBuzaDate } from '../recoil/setDateToday'
+import { useOnedayBuzaData } from '../apis/onedayBuzaData'
 
 registerLocale('ko', ko)
 
@@ -44,16 +43,16 @@ function ExampleCustomInput({ value, onClick }) {
 function OnedayBuza(state) {
   const location = useLocation()
   // const [oneDayBuzaDate, setOneDayBuzaDate] = useRecoilState(onedayBuzaDate)
-  
-  console.log("OnedayProps:::", location)
-  
+
+  console.log('OnedayProps:::', location)
+
   const navigate = useNavigate()
   if (getItem('nowdate') === undefined) {
     setItem('nowdate', new Date())
-    console.log("GetITEM",getItem('nowdate'))
+    console.log('GetITEM', getItem('nowdate'))
   }
   const [startDate, setStartDate] = useState(new Date(getItem('nowdate')))
-  
+
   async function setDateMutate(date) {
     const newdate = getDate(date)
     setItem('nowdate', date)
@@ -118,7 +117,7 @@ function OnedayBuza(state) {
     setStartDate(new Date(startDate - 24 * 60 * 60 * 1000))
   }
   function nextday() {
-    setItem('nowdate', new Date(startDate -1 + 24 * 60 * 60 * 1000 + 1))
+    setItem('nowdate', new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
 
     setStartDate(new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
   }
@@ -144,7 +143,7 @@ function OnedayBuza(state) {
       <TopLine />
       <CalDiv>
         <LeftArrowDiv onClick={() => yesterday()}>
-          <RightArrow style={{transform:"rotate(180deg)"}}/>
+          <RightArrow style={{ transform: 'rotate(180deg)' }} />
         </LeftArrowDiv>
         <DatePicker
           dateFormat="yyyy.MM.dd"
@@ -221,6 +220,7 @@ function OnedayBuza(state) {
           {mutation &&
             mutation?.data?.data?.dayRecordList.map((d) => (
               <SwipeableListItem
+                style={{ backgroundColor: 'red' }}
                 key={d.id}
                 swipeLeft={{
                   content: (
@@ -401,6 +401,7 @@ const CalDiv = styled.div`
   height: 23px;
   left: 120px;
   top: 15.7%;
+
 `
 const LeftArrowDiv = styled.div`
   ${setFlexStyles({
@@ -487,7 +488,7 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
-  background: #f6f9fe;
+  /* background: #f6f9fe; */
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -523,6 +524,7 @@ const TodayListDiv = styled.div`
   ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
+
 `
 const TodayListLine = styled.div`
   ${setFlexStyles({
@@ -536,7 +538,9 @@ const TodayListLine = styled.div`
   height: 31.75%;
 
   /* color/Btn-basic1 */
+
   background: #e5eaf2;
+  /* background: red; */
   border-radius: 8px;
   margin-bottom: 8px;
 `
@@ -618,6 +622,6 @@ const ZigZag = styled.div`
   transform: rotate(45deg);
   margin-left: 6px;
   top: -10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.02);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
 `
 export default OnedayBuza

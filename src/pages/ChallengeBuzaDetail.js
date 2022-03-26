@@ -65,7 +65,7 @@ function ChallengeBuzaDetail() {
 
   const challengeData = data.data
   console.log(homeData)
-  console.log(challengeData)
+  console.log("challegeData:::",challengeData)
   return (
     <Wrapper>
       <ColorWrapper>

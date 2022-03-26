@@ -15,7 +15,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 import { getItem, setItem } from '../utils/sessionStorage'
+
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
@@ -28,11 +30,9 @@ function ExampleCustomInput({ value, onClick }) {
   return (
     <>
       <CalDate>{value}</CalDate>
-      <CalBtn
-        className="example-custom-input"
-        type="button"
-        onClick={onClick}
-      />
+      <CalBtn className="example-custom-input" type="button" onClick={onClick}>
+        <Rightarr style={{ transform: 'rotate(90deg)' }} />
+      </CalBtn>
     </>
   )
 }
@@ -58,6 +58,10 @@ function OnedayPost() {
   } = useForm()
 
   console.log(watch())
+  const handleChange = (e) => {
+    // event handler
+    console.log(e.target.value)
+  }
 
   // 월/일
   const getFormattedDate = (date) => {
@@ -117,7 +121,7 @@ function OnedayPost() {
   return (
     <Wrapper>
       <TopDiv>
-        <Title>하루부자</Title>
+        <Title>입력</Title>
 
         <NavLink to="/onedaybuza">
           <Backarr
@@ -136,21 +140,18 @@ function OnedayPost() {
         <RightButton>저장</RightButton>
         <OptionTitle style={{ top: '125px' }}>항목 선택</OptionTitle>
         <SelectDiv>
-          <select
+          <Select
+            onChange={handleChange}
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...register('option')}
-            style={{
-              position: 'absolute',
-              top: '21.53%',
-              left: '4px',
-            }}
           >
             <option value="0">-- 항목을 골라부자 --</option>
             <option value="income">수입</option>
             <option value="expense">지출</option>
             <option value="group">같이해부자</option>
             <option value="challenge">도전해부자</option>
-          </select>
+          </Select>
+          <Rightarr style={{ transform: 'rotate(90deg)' }} />
         </SelectDiv>
         <ErrorSpan style={{ top: '201.6px' }}>
           {errors?.option?.message}
@@ -232,15 +233,15 @@ const CalDiv = styled.div`
 const CalDate = styled.div`
   margin-left: 16px;
 `
-const CalBtn = styled.button`
+const CalBtn = styled.div`
   position: absolute;
   left: 288px;
 
   top: -6px;
   width: 24px;
   height: 24px;
-
-  background: #c4c4c4;
+  background-color: inherit;
+  /* background: #c4c4c4; */
 `
 const SelectDiv = styled.div`
   ${setFlexStyles({
@@ -254,6 +255,8 @@ const SelectDiv = styled.div`
   top: 155px;
   background: #f5f5f7;
   border-radius: 8px;
+  padding-left: 8px;
+  padding-right:18px;
 `
 const OptionTitle = styled.div`
   position: absolute;
@@ -329,6 +332,7 @@ const RightButton = styled.button`
   height: 14px;
   left: 318px;
   top: 46px;
+  background-color: white;
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -349,8 +353,8 @@ const RightButton = styled.button`
 
 const Title = styled.div`
   position: absolute;
-  left: 42.22%;
-  right: 41.94%;
+  left: 46.11%;
+  right: 45.83%;
   top: 50%;
   bottom: 23.26%;
 
@@ -426,6 +430,11 @@ const ErrorSpan = styled.span`
   letter-spacing: -0.04em;
 
   color: #ff3d00;
+`
+const Select = styled.select`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 `
 
 export default OnedayPost
