@@ -12,3 +12,9 @@ export const useChallengeMainPageData = (navigate) => {
     return request({ url: '/home', method: 'get' })
   })
 }
+
+export const useChallengeFriendData = (navigate) => {
+  return useQuery(['challenge-friend', navigate], () => {
+    return request({ url: '/money/challenge/createChallenge', method: 'get' })
+  })
+}

@@ -6,37 +6,38 @@ import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
 import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
+import Loading from './Loading'
+import { useChallengeFriendData } from '../apis/challengeData'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
   console.log('data:::', datalist)
+  const { data: friendsList, isLoading } = useChallengeFriendData(navigate)
   const [selectFriends, setSelectFriends] = useState([])
-
-  const friendData = () => {
-    return request({
-      url: '/money/challenge/createChallenge',
-      method: 'get',
-    }).then((res) => {
-      console.log(res.data.challengeMembers)
-      setDatalist([...res.data.challengeMembers])
-    })
-  }
+  useEffect(() => {
+    if (friendsList) {
+      setDatalist([...friendsList.data.challengeMembers])
+    }
+  }, [isLoading])
+  // console.log('FF', friendsList)
+  // if (friendsList.data !== undefined) {
+  //   setDatalist([...friendsList.data.challengeMembers])
+  // }
+  // const friendData = () => {
+  //   return request({
+  //     url: '/money/challenge/createChallenge',
+  //     method: 'get',
+  //   }).then((res) => {
+  //     console.log(res.data.challengeMembers)
+  //     setDatalist([...res.data.challengeMembers])
+  //   })
+  // }
 
   console.log('selectFriends', selectFriends)
-  const selentFriendNickName = selectFriends.map(
+  const selectFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
-
-  const {
-    control,
-    handleSubmit,
-    register,
-    watch,
-    setError,
-    formState: { errors },
-  } = useForm()
-  console.log(watch())
 
   const onError = (error) => {
     console.log(error)
@@ -54,7 +55,7 @@ function ChallengeBuzaCreate() {
           challengeData.createChallengeAmount,
           10,
         ),
-        challengeFriends: selentFriendNickName,
+        challengeFriends: selectFriendNickName,
       },
     }).then(
       (res) => console.log('challengeCreate', res),
@@ -68,9 +69,19 @@ function ChallengeBuzaCreate() {
       }),
     )
   }
-  useEffect(() => {
-    friendData()
-  }, [])
+  // useEffect(() => {
+  //   friendData()
+  // }, [])
+
+  const {
+    control,
+    handleSubmit,
+    register,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm()
+  console.log(watch())
 
   return (
     <Wrapper>
@@ -107,7 +118,8 @@ function ChallengeBuzaCreate() {
         </GoalInputBox>
         <MemoInputBox>
           <IconBox>
-            <i className="fas fa-smile" />✏️ 메모
+            <i className="fas fa-smile" />
+            ✏️ 메모
           </IconBox>
           <Input
             placeholder="메모를 입력해주세요."
@@ -451,7 +463,7 @@ const FriendsText = styled.div`
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
-  
+
   position: static;
   width: 36px;
   height: 36px;
@@ -477,8 +489,6 @@ const SelectFriendNameDiv = styled.div`
   /* Heading/Noto Sans KR/H6 */
 
   /* Inside auto layout */
-
-
 
   /* margin: 0px 3px; */
 `
@@ -545,7 +555,6 @@ const SelectedFriendWrapper = styled.div`
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
 `
 
 const SelectedFriendContent = styled.div`

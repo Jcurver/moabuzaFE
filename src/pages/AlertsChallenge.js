@@ -11,7 +11,7 @@ import {
   alarmAccept,
   alarmRefuse,
   alarmDelete,
-} from '../apis/useAlertsData'
+} from '../apis/alertsData'
 
 function AlertsChallenge() {
   const cdata = [

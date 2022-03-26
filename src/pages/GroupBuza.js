@@ -7,7 +7,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
 import { api, request } from '../utils/axios'
-import { useGroupData } from '../apis/useGroupData'
+import { useGroupData } from '../apis/groupData'
 import Loading from './Loading'
 import {
   BunnyFace,

@@ -13,7 +13,7 @@ import {
   alarmFriendAccept,
   alarmFriendRefuse,
   alarmDelete,
-} from '../apis/useAlertsData'
+} from '../apis/alertsData'
 
 function AlertsFriend() {
   const adata = [
