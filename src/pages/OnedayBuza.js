@@ -28,7 +28,7 @@ import { getItem, setItem } from '../utils/sessionStorage'
 // import { setDateInOnedayList } from '../hooks/useUserData';
 import { nowDate } from '../hooks/nowDate'
 import { onedayBuzaDate } from '../recoil/setDateToday';
-import { useOnedayBuzaData } from '../apis/useOnedauBuzaData';
+import { useOnedayBuzaData } from '../apis/onedayBuzaData';
 
 
 registerLocale('ko', ko)
