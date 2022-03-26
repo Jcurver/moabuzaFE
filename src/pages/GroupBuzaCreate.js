@@ -49,10 +49,10 @@ function GroupBuzaCreate() {
     console.log(error)
   }
   const onValid = (groupData) => {
-    if (selectFriends.length < 2) {
+    if (selectFriends.length < 1) {
       return Swal.fire({
-        title: '2명 이상 선택!',
-        text: '2명 이상 선택해주세요!!',
+        title: '1명 이상 선택!',
+        text: '1명 이상 선택해주세요!!',
         icon: 'error',
       })
     }
