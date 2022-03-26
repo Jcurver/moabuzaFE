@@ -35,7 +35,7 @@ function ChallengeBuzaCreate() {
   // }
 
   console.log('selectFriends', selectFriends)
-  const selectFriendNickName = selectFriends.map(
+  let selectFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
 
@@ -45,7 +45,11 @@ function ChallengeBuzaCreate() {
 
   // console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
-    console.log('challengeData', challengeData)
+    console.log('challengeData::', challengeData)
+    console.log(' selectFriendNickName', selectFriendNickName)
+    if (selectFriendNickName.length === 0) {
+      selectFriendNickName = null
+    }
     return request({
       url: '/alarm/goal',
       method: 'post',
@@ -121,7 +125,7 @@ function ChallengeBuzaCreate() {
           </IconBox>
           <Input
             placeholder="메모를 입력해주세요."
-            height="80px"
+            height="52px"
             {...register('createChallengeName', {
               required: '이 부분을 채워부자!',
               maxLength: {
@@ -130,7 +134,7 @@ function ChallengeBuzaCreate() {
               },
             })}
           />
-          <ErrorSpan style={{ top: '120px' }}>
+          <ErrorSpan style={{ top: '90px' }}>
             {errors?.createChallengeName?.message}
           </ErrorSpan>
         </MemoInputBox>
@@ -356,7 +360,7 @@ const IconBox = styled.div`
 const MemoInputBox = styled.div`
   position: absolute;
   width: 328px;
-  height: 110px;
+  height: 87px;
   left: 16px;
   top: 209px;
 `
@@ -594,6 +598,7 @@ const ErrorSpan = styled.span`
   width: 104px;
   height: 11px;
   left: 8px;
+  margin-top: 2px;
 
   font-family: 'Noto Sans KR';
   font-style: normal;
