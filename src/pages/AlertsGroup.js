@@ -11,7 +11,7 @@ import {
   alarmAccept,
   alarmRefuse,
   alarmDelete,
-} from '../hooks/useAlertsData'
+} from '../apis/alertsData'
 
 function AlertsGroup() {
   const cdata = [

@@ -8,7 +8,7 @@ import Button from '../components/Button'
 import Nav from '../components/Nav'
 import ScrollWrapper from '../components/ScrollWrapper'
 import { api, request } from '../utils/axios'
-import { useGroupData } from '../hooks/useGroupData'
+import { useGroupData } from '../apis/groupData'
 import Loading from './Loading'
 import {
   BunnyFace,

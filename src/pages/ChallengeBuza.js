@@ -11,7 +11,7 @@ import { api, request } from '../utils/axios'
 import {
   useChallengeData,
   useChallengeMainPageData,
-} from '../hooks/useChallengeData'
+} from '../apis/challengeData'
 import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
 import Loading from './Loading'
 

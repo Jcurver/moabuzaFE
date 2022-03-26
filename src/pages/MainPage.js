@@ -9,7 +9,7 @@ import { getToken, onMessage } from 'firebase/messaging'
 
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
-import { useMainPageData } from '../hooks/useOnedauBuzaData'
+import { useMainPageData } from '../apis/onedayBuzaData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
 import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
 import Loading from './Loading'
