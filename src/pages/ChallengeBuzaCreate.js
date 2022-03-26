@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
 import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
+  console.log('data:::', datalist)
   const [selectFriends, setSelectFriends] = useState([])
 
   const friendData = () => {
@@ -88,7 +90,6 @@ function ChallengeBuzaCreate() {
         <GoalInputBox>
           <IconBox>💰 목표 금액</IconBox>
           <Input
-            type="number"
             height="52px"
             placeholder="목표 금액을 입력해주세요."
             {...register('createChallengeAmount', {
@@ -106,13 +107,17 @@ function ChallengeBuzaCreate() {
         </GoalInputBox>
         <MemoInputBox>
           <IconBox>
-            <i className="fas fa-smile" />✏ 메모
+            <i className="fas fa-smile" />✏️ 메모
           </IconBox>
           <Input
             placeholder="메모를 입력해주세요."
             height="80px"
             {...register('createChallengeName', {
               required: '이 부분을 채워부자!',
+              maxLength: {
+                value: 10,
+                message: '10글자 이하로 입력해부자!',
+              },
             })}
           />
           <ErrorSpan style={{ top: '120px' }}>
@@ -125,30 +130,50 @@ function ChallengeBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
+        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
         <SelectedFriendWrapper>
-          {selectFriends.length === 0
-            ? null
-            : selectFriends.map((da, idx) => {
-                return (
-                  <div key={da.id}>
-                    <SelectedFriendContent>
-                      {selectFriends[idx].challengeMemberNickname}
-                      <DeleteFriendContent
-                        onClick={() => {
-                          setSelectFriends(
-                            selectFriends.filter((flist) => flist.id !== da.id),
-                          )
-                          setDatalist([da, ...datalist])
+          {selectFriends.map((da, idx) => {
+            return (
+              <div key={da.id}>
+                <SelectedFriendContent>
+                  <CircleImg
+                    src={
+                      // eslint-disable-next-line no-nested-ternary
+                      da.hero === 'tanni'
+                        ? TanniFace
+                        : // eslint-disable-next-line no-nested-ternary
+                        da.hero === 'tongki'
+                        ? TonkiFace
+                        : da.hero === 'bunny'
+                        ? BunnyFace
+                        : null
+                    }
+                  />
+                  <SelectFriendNameDiv>
+                    {selectFriends[idx].challengeMemberNickname}
+                  </SelectFriendNameDiv>
+                  <DeleteFriendContent
+                    onClick={() => {
+                      const targetIndex = selectFriends.findIndex(
+                        (d) =>
+                          d.challengeMemberNickname ===
+                          da.challengeMemberNickname,
+                      )
+                      setDatalist([selectFriends[targetIndex], ...datalist])
+                      setSelectFriends([
+                        ...selectFriends.slice(0, targetIndex),
+                        ...selectFriends.slice(targetIndex + 1),
+                      ])
 
-                          console.log('datalist', datalist)
-                        }}
-                      >
-                        X
-                      </DeleteFriendContent>
-                    </SelectedFriendContent>
-                  </div>
-                )
-              })}
+                      console.log('datalist', datalist)
+                    }}
+                  >
+                    <Close />
+                  </DeleteFriendContent>
+                </SelectedFriendContent>
+              </div>
+            )
+          })}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
@@ -173,10 +198,14 @@ function ChallengeBuzaCreate() {
                   //   })
                   //   return
                   // }
-                  setSelectFriends((prevList) => [...prevList, da])
                   const targetIndex = datalist.findIndex(
-                    (d) => d.title === da.title,
+                    (d) =>
+                      d.challengeMemberNickname === da.challengeMemberNickname,
                   )
+                  setSelectFriends((prevList) => [
+                    datalist[targetIndex],
+                    ...prevList,
+                  ])
                   setDatalist([
                     ...datalist.slice(0, targetIndex),
                     ...datalist.slice(targetIndex + 1),
@@ -235,11 +264,12 @@ const Input = styled.input`
   /* identical to box height, or 14px */
 
   letter-spacing: -0.04em;
+  padding-left: 12px;
 
   /* color / gray / Gray30 */
 
   ::placeholder {
-    color: #cccccc;
+    color: #999999;
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 400;
@@ -332,12 +362,12 @@ const FriendWrapper = styled.div`
   width: 328px;
   height: 40%;
   left: 16px;
-  top: 340px;
+  top: 335px;
 `
 
 const FriendsList = styled.div`
   /* Auto layout */
-
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -346,7 +376,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: ${(props) => (props.friendslength === 0 ? '57px' : '28%')};
+  top: 84px;
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -361,13 +391,16 @@ const FriendEmptyBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 18px 156px;
+  width: 328px;
+  height: 52px;
   color: #cccccc;
   /* color / gray / Gray30 */
-
+  margin-top: 8px;
   border: 1px solid #cccccc;
   box-sizing: border-box;
   border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
 `
 const Friends = styled.div`
   /* Auto layout */
@@ -418,11 +451,11 @@ const FriendsText = styled.div`
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
-
+  
   position: static;
   width: 36px;
   height: 36px;
-  left: 0px;
+  margin-left: 12px;
   top: 0px;
 
   background: #f5f5f7;
@@ -434,7 +467,21 @@ const CircleImg = styled.img`
   flex-grow: 0;
   margin: 0px 8px 0px 0px;
 `
+const SelectFriendNameDiv = styled.div`
+  display: block;
+  width: 53px;
+  height: 14px;
+  margin-right: -5px;
+  /* text-overflow: ellipsis; */
 
+  /* Heading/Noto Sans KR/H6 */
+
+  /* Inside auto layout */
+
+
+
+  /* margin: 0px 3px; */
+`
 const CreateButtonWrapper = styled.div`
   position: absolute;
   /* text-align: center; */
@@ -489,22 +536,27 @@ const SelectedFriendWrapper = styled.div`
   overflow-y: scroll;
   width: 328px;
   height: 140px;
-  margin: 10px 0px;
+  margin-top: 8px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
   ::-webkit-scrollbar {
     display: none; /* Chrome , Safari , Opera */
   }
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 `
 
 const SelectedFriendContent = styled.div`
   /* Auto layout */
 
   display: flex;
+
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  padding: 0px;
+  padding-left: 12px;
 
   position: static;
   width: 142px;
@@ -514,11 +566,17 @@ const SelectedFriendContent = styled.div`
   border: 1px solid #e5eaf2;
   /* Inside auto layout */
   margin: 0px 8px 0px 0px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
   width: 0px;
-  height: 18px;
-  margin-left: 15px;
   /* color / text / Color-text-Gray1 */
 
   background: white;
