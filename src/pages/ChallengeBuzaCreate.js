@@ -19,7 +19,7 @@ function ChallengeBuzaCreate() {
     if (friendsList) {
       setDatalist([...friendsList.data.challengeMembers])
     }
-  }, [isLoading])
+  }, [friendsList])
   // console.log('FF', friendsList)
   // if (friendsList.data !== undefined) {
   //   setDatalist([...friendsList.data.challengeMembers])
