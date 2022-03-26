@@ -13,10 +13,9 @@ import {
   TanniStep02,
   BunnyStep03,
 } from '../assets/character'
+// import '../styles/SweetAlertButton.css'
 
 const shortid = require('shortid')
-
-// import '../styles/SweetAlertButton.css'
 
 function GroupBuzaDetail() {
   const navigate = useNavigate()
@@ -243,7 +242,6 @@ const ForgiveMoveButton = styled.button`
 
 const DetailWrapper = styled.div`
   width: 360px;
-  /* height: 23px; */
   background-color: #f6f9fe;
   margin: 0 auto;
   text-align: center;
