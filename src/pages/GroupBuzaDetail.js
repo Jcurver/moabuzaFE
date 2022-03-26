@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import { useGroupData } from '../hooks/useGroupData'
+import { useGroupData } from '../apis/useGroupData'
 import { request } from '../utils/axios'
 import coin from '../assets/icons/coin/ico_coin1.png'
 import {
