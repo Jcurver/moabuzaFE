@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
+import ScrollWrapper from '../components/ScrollWrapper'
 import { api, request } from '../utils/axios'
 import { useGroupData } from '../apis/groupData'
 import Loading from './Loading'
@@ -109,61 +110,65 @@ function GroupBuza() {
       {data
         ? groupData.goalStatus === 'goal' && (
             <>
-              <GoalWrapper
-                onClick={() => {
-                  navigate('/groupbuzadetail')
-                }}
-              >
-                <GroupFriend>
-                  {groupData.groupMembers.map((member) => {
+              <ScrollWrapper height="44%">
+                <GoalWrapper
+                  onClick={() => {
+                    navigate('/groupbuzadetail')
+                  }}
+                >
+                  <GroupFriend>
+                    {groupData.groupMembers.map((member) => {
+                      return (
+                        <GroupFriendIcon
+                          key={shortid.generate()}
+                          src={
+                            // eslint-disable-next-line no-nested-ternary
+                            member.groupMemberHero === 'tanni'
+                              ? TanniFace
+                              : // eslint-disable-next-line no-nested-ternary
+                              member.groupMemberHero === 'tongki'
+                              ? TonkiFace
+                              : member.groupMemberHero === 'bunny'
+                              ? BunnyFace
+                              : null
+                          }
+                        />
+                      )
+                    })}
+                  </GroupFriend>
+                  <GroupFriendTitle>{groupData.groupName}</GroupFriendTitle>
+                  <GroupFriendGoal>
+                    <GroupFriendGoalAmount>
+                      {groupData.groupLeftAmount.toLocaleString('ko-KR')}
+                    </GroupFriendGoalAmount>
+                    <span> 원 남았습니다.</span>
+                  </GroupFriendGoal>
+                  <ProgressBar
+                    // completed={60}
+                    completed={data ? groupData.groupNowPercent : 50}
+                    animateOnRender
+                    bgColor="#4675F0"
+                    width="304px"
+                    height="20px"
+                    margin="0 auto"
+                    borderRadius="11px"
+                    labelAlignment="center"
+                    labelSize="14px"
+                  />
+                </GoalWrapper>
+                <ConmpletedTitle>완료목록</ConmpletedTitle>
+              </ScrollWrapper>
+              <ScrollWrapper>
+                <CompletedList height="280px">
+                  {groupData.groupDoneGoals.map((data) => {
                     return (
-                      <GroupFriendIcon
-                        key={shortid.generate()}
-                        src={
-                          // eslint-disable-next-line no-nested-ternary
-                          member.groupMemberHero === 'tanni'
-                            ? TanniFace
-                            : // eslint-disable-next-line no-nested-ternary
-                            member.groupMemberHero === 'tongki'
-                            ? TonkiFace
-                            : member.groupMemberHero === 'bunny'
-                            ? BunnyFace
-                            : null
-                        }
-                      />
+                      <CompletedContent key={shortid.generate()}>
+                        <CompletedText>{data}</CompletedText>
+                      </CompletedContent>
                     )
                   })}
-                </GroupFriend>
-                <GroupFriendTitle>{groupData.groupName}</GroupFriendTitle>
-                <GroupFriendGoal>
-                  <GroupFriendGoalAmount>
-                    {groupData.groupLeftAmount.toLocaleString('ko-KR')}
-                  </GroupFriendGoalAmount>
-                  <span> 원 남았습니다.</span>
-                </GroupFriendGoal>
-                <ProgressBar
-                  // completed={60}
-                  completed={data ? groupData.groupNowPercent : 50}
-                  animateOnRender
-                  bgColor="#4675F0"
-                  width="304px"
-                  height="20px"
-                  margin="0 auto"
-                  borderRadius="11px"
-                  labelAlignment="center"
-                  labelSize="14px"
-                />
-              </GoalWrapper>
-              <ConmpletedTitle>완료목록</ConmpletedTitle>
-              <CompletedList>
-                {groupData.groupDoneGoals.map((data) => {
-                  return (
-                    <CompletedContent key={shortid.generate()}>
-                      <CompletedText>{data}</CompletedText>
-                    </CompletedContent>
-                  )
-                })}
-              </CompletedList>
+                </CompletedList>
+              </ScrollWrapper>
             </>
           )
         : null}
