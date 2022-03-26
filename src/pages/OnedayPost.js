@@ -19,7 +19,7 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
-import { nowDate } from '../hooks/nowDate'
+
 import { onedayBuzaDate } from '../recoil/setDateToday'
 
 registerLocale('ko', ko)
@@ -47,7 +47,7 @@ function OnedayPost() {
     setItem('nowdate', date)
     setValue('date', textInput.current.state.preSelection)
   }
-  
+
   const {
     register,
     handleSubmit,

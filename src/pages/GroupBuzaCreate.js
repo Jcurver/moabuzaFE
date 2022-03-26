@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
-import { useFriendData } from '../hooks/useGroupData'
+import { useFriendData } from '../apis/useGroupData'
 import Loading from './Loading'
 import {
   BunnyFace,

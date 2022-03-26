@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   useChallengeData,
   useChallengeMainPageData,
-} from '../hooks/useChallengeData'
+} from '../apis/useChallengeData'
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
