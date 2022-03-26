@@ -254,9 +254,9 @@ const GoalWrapper = styled.div`
   /* position: absolute; */
   width: 328px;
   height: 156px;
-  margin-left: 16px;
+  /* margin-left: 16px; */
   margin-bottom: 10px;
-  padding-top: 0.1px;
+  padding-top: 0.01px;
 
   /* color/Btn-basic2 */
 
