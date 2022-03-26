@@ -272,9 +272,7 @@ const SmallText = styled.span`
   font-size: 12px;
   line-height: 100%;
   /* identical to box height, or 12px */
-  /* 
-  display: flex;
-  align-items: center; */
+
   letter-spacing: -0.04em;
 
   /* color / gray / Gray50 */
@@ -303,7 +301,6 @@ const CreateMoveButton = styled.button`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
-  /* margin: 106px 16px 16px 16px; */
   width: 328px;
   height: 87px;
   left: 16px;
@@ -314,8 +311,6 @@ const IconBox = styled.div`
   width: 328px;
   height: 14px;
   margin: 5px 262px 16px 0px;
-  /* left: 0px;
-  top: 5px; */
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -338,7 +333,6 @@ const MemoInputBox = styled.div`
   left: 16px;
   top: 209px;
 `
-// const Icon = styled.i``
 
 // Friends
 const FriendWrapper = styled.div`
@@ -394,22 +388,6 @@ const Friends = styled.div`
   margin: 8px 0px;
 `
 
-const FriendEmptyBox = styled.div`
-  /* Auto layout */
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 156px;
-  color: #cccccc;
-  /* color / gray / Gray30 */
-
-  border: 1px solid #cccccc;
-  box-sizing: border-box;
-  border-radius: 8px;
-`
-
 const FriendsText = styled.div`
   position: static;
   width: 100px;
@@ -456,75 +434,15 @@ const CircleImg = styled.img`
   margin: 0px 8px 0px 0px;
 `
 
-const CreateButtonWrapper = styled.div`
-  position: absolute;
-  /* text-align: center; */
-  width: 328px;
-  height: 60px;
-  color: #000000;
-  /* background-color: white; */
-  top: 82.5%;
-  left: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  /* z-index: 99; */
-`
-const CreateButton = styled.button`
-  /* 공통 스타일 */
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: 400;
-  cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  /* Auto layout */
-
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px; */
-
-  /* position: absolute; */
-  width: 328px;
-  height: 36px;
-  margin: 16px 0px;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 6;
-  flex-grow: 0;
-  /* margin: 16px 0px; */
-
-  /* 색상 */
-  background: #5f5f77;
-  &:hover {
-    background: #339af0;
-  }
-  &:active {
-    background: #1c7ed6;
-  }
-`
-
 const SelectedFriendWrapper = styled.div`
   /* Auto layout */
 
   display: flex;
-  /* flex-direction: row; */
   align-items: flex-start;
   padding: 0px;
   overflow-y: scroll;
   width: 328px;
   height: 140px;
-  /* overflow: hidden; */
-  /* position: absolute;
-  width: 442px;
-  height: 52px;
-  left: 0px;
-  top: 30px; */
   margin: 10px 0px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
@@ -552,12 +470,9 @@ const SelectedFriendContent = styled.div`
   margin: 0px 8px 0px 0px;
 `
 const DeleteFriendContent = styled.button`
-  /* position: absolute; */
   width: 0px;
   height: 18px;
   margin-left: 15px;
-  /* color / text / Color-text-Gray1 */
-
   background: white;
 `
 
