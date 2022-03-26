@@ -35,7 +35,7 @@ function ChallengeBuzaCreate() {
   // }
 
   console.log('selectFriends', selectFriends)
-  const selectFriendNickName = selectFriends.map(
+  let selectFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
 
@@ -45,7 +45,11 @@ function ChallengeBuzaCreate() {
 
   // console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
-    console.log('challengeData', challengeData)
+    console.log('challengeData::', challengeData)
+    console.log(' selectFriendNickName', selectFriendNickName)
+    if (selectFriendNickName.length === 0) {
+      selectFriendNickName = null
+    }
     return request({
       url: '/alarm/goal',
       method: 'post',
