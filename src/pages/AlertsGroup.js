@@ -7,7 +7,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import {
-  useAlertsChallengeData,
+  useAlertsGroupData,
   alarmAccept,
   alarmRefuse,
   alarmDelete,
@@ -65,7 +65,7 @@ function AlertsGroup() {
     data: AlertGroupList,
     isError,
     error,
-  } = useAlertsChallengeData(navigate)
+  } = useAlertsGroupData(navigate)
   console.log(
     '알람데이터챌린지 : ',
     isLoading,
