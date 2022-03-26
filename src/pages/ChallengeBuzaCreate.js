@@ -22,7 +22,7 @@ function ChallengeBuzaCreate() {
   }
 
   console.log('selectFriends', selectFriends)
-  const selentFriendNickName = selectFriends.map(
+  const selectFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
 
@@ -50,7 +50,7 @@ function ChallengeBuzaCreate() {
         goalType: 'CHALLENGE',
         goalName: challengeData.createChallengeName,
         goalAmount: parseInt(challengeData.createChallengeAmount, 10),
-        friendNickname: selentFriendNickName,
+        friendNickname: selectFriendNickName,
       },
     }).then(
       (res) => console.log('challengeCreate', res),
@@ -431,51 +431,6 @@ const CircleImg = styled.img`
   order: 0;
   flex-grow: 0;
   margin: 0px 8px 0px 0px;
-`
-
-const CreateButtonWrapper = styled.div`
-  position: absolute;
-  /* text-align: center; */
-  width: 328px;
-  height: 60px;
-  color: #000000;
-  /* background-color: white; */
-  top: 82.5%;
-  left: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  /* z-index: 99; */
-`
-const CreateButton = styled.button`
-  /* 공통 스타일 */
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: 400;
-  cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  width: 328px;
-  height: 36px;
-  margin: 16px 0px;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 6;
-  flex-grow: 0;
-
-  /* 색상 */
-  background: #5f5f77;
-  &:hover {
-    background: #339af0;
-  }
-  &:active {
-    background: #1c7ed6;
-  }
 `
 
 const SelectedFriendWrapper = styled.div`
