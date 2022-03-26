@@ -65,7 +65,7 @@ function ChallengeBuzaDetail() {
 
   const challengeData = data.data
   console.log(homeData)
-  console.log("challegeData:::",challengeData)
+  console.log('challegeData:::', challengeData)
   return (
     <Wrapper>
       <ColorWrapper>
@@ -149,7 +149,7 @@ function ChallengeBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               Swal.fire({
@@ -164,7 +164,7 @@ function ChallengeBuzaDetail() {
             }}
           >
             완료버튼
-          </button>
+          </button> */}
           {data
             ? data.data.groupNowPercent === 100 && (
                 <button
@@ -242,7 +242,11 @@ function ChallengeBuzaDetail() {
                   return (
                     <AccountContent key={shortid.generate()}>
                       <AccountDate>
-                        {acd.challengeRecordDate.slice(0, 10)}
+                        {idx > 0 && challengeData.challengeLists[idx - 1]
+                          .challengeRecordDate ===
+                        challengeData.challengeLists[idx].challengeRecordDate
+                          ? ''
+                          : acd.challengeRecordDate.slice(0, 10)}
                       </AccountDate>
                       <AccountListsWrapper>
                         <AccountList>
@@ -276,7 +280,7 @@ const Wrapper = styled.div`
 const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
-  height: 79px;
+  height: 82px;
 `
 const Title = styled.div`
   position: absolute;
@@ -319,6 +323,7 @@ const DetailWrapper = styled.div`
   width: 360px;
   background-color: #ebf2ff;
   text-align: center;
+  height: 340px;
 `
 
 const DetailTitle = styled.div`
@@ -333,6 +338,7 @@ const DetailTitle = styled.div`
   line-height: 23px;
   letter-spacing: -0.04em;
   margin: 0 auto;
+  margin-bottom: 2px;
   /* color / text / Color-text-Black */
   background-color: #ebf2ff;
 
@@ -344,6 +350,7 @@ const DetailTitle = styled.div`
 
 const DetailTextWrapper = styled.div`
   margin: 0 auto;
+
   text-align: center;
 `
 
@@ -474,7 +481,7 @@ const GroupFriend = styled.div`
   justify-content: center;
   padding: 0px;
 
-  margin: 24px 0px;
+  margin: 12px 0px;
   height: 24px;
 `
 const GroupFriendIcon = styled.img`
