@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import Slider from 'react-slick'
 import { ReactComponent as Challenge } from '../assets/icons/menu/challenge.svg'
 import { ReactComponent as Asset } from '../assets/icons/menu/Asset28.svg'
 import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
@@ -9,10 +10,22 @@ import { ReactComponent as Together } from '../assets/icons/menu/together.svg'
 import { ReactComponent as Vector } from '../assets/icons/menu/Vector.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import BugReport from '../assets/menu/moabuza-bugreport.png'
+import Review from '../assets/menu/moabuza-review.png'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import { setFlexStyles } from '../styles/Mixin'
 
 function Menu() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 1000,
+  }
   return (
     <Wrapper>
       <TopDiv>
@@ -31,82 +44,20 @@ function Menu() {
         <Title>메뉴</Title>
         <TopLine />
       </TopDiv>
-      <NavLink to="/onedaybuza">
-        <TodayDiv style={{ top: '11.94%' }}>
 
-          <Vector
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-            }}
-          />
-          <TodayText>하루부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
-      <NavLink to="/groupbuza">
-        <TodayDiv style={{ top: '20.27%' }}>
+      <MenuSlideBox>
+        <Slider {...settings}>
+          <div>
+            <SlideImg src={BugReport} />
+          </div>
+          <div>
+            <SlideImg src={Review} />
+          </div>
+        </Slider>
+      </MenuSlideBox>
 
-          <Together
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          <TodayText>같이해부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
-      <NavLink to="/challengebuza">
-        <TodayDiv style={{ top: '28.61%' }}>
-
-          <Challenge
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          {/* <TodayLogo /> */}
-          <TodayText>도전해부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
       <NavLink to="/friends">
         <TodayDiv style={{ top: '41.53%' }}>
-
           <Friend
             style={{
               width: '24px',
@@ -131,7 +82,6 @@ function Menu() {
       </NavLink>
       <NavLink to="/bedge">
         <TodayDiv style={{ top: '49.86%' }}>
-
           <Asset
             style={{
               width: '24px',
@@ -155,7 +105,6 @@ function Menu() {
       </NavLink>
       <NavLink to="/settings">
         <TodayDiv style={{ top: '58.19%' }}>
-
           <Setting
             style={{
               width: '24px',
@@ -194,14 +143,25 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
+const MenuSlideBox = styled.div`
+  position: absolute;
+  width: 360px;
+  height: 160px;
+  left: 0px;
+  top: 83px;
+`
+
+const SlideImg = styled.img`
+  width: 360px;
+  height: 160px;
+`
+
 const ButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
   right: 85.56%;
   top: 33.72%;
   bottom: 10.47%;
-
-
 `
 
 const Title = styled.div`
