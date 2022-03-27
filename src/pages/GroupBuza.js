@@ -27,7 +27,7 @@ function GroupBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { isLoading, isError, data, error } = useGroupData(navigate)
   console.log('groupData-------', data)
-  const cancelGroup = (id) => {
+  const cancelWaitingGroup = (id) => {
     Swal.fire({
       title: '그룹포기!',
       text: '진짜 포기하시겠어요?!!',
@@ -39,9 +39,10 @@ function GroupBuza() {
       cancelButtonText: '취소!',
     }).then((result) => {
       console.log('result------', result)
+      console.log('id--------', id)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/${data.data.id}`,
+          url: `/money/group/exitWaitingGroup/${id}`,
           method: 'delete',
           data: {
             id: data.id,
@@ -172,26 +173,33 @@ function GroupBuza() {
             </>
           )
         : null}
-      {data
-        ? groupData.goalStatus === 'waiting' && (
-            <GoalWrapper>
-              <GoalText>수락대기중</GoalText>
-              <GoalDescribe>
-                모두 수락되면 같이해부자가 생성됩니다.
-              </GoalDescribe>
+      {data && data.data.goalStatus === 'waiting' ? (
+        <GoalList>
+          {data.data.waitingGoals.map((gStatus, idx) => {
+            return (
+              <GoalWrapper>
+                <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                <GoalDescribe>
+                  모두 수락하면 도전해부자가 생성됩니다.
+                </GoalDescribe>
 
-              <Button
-                width="296px"
-                height="52px"
-                fontSize="14px"
-                background="#4675F0"
-                onClick={cancelGroup}
-              >
-                대기취소
-              </Button>
-            </GoalWrapper>
-          )
-        : null}
+                <Button
+                  width="296px"
+                  height="52px"
+                  fontSize="14px"
+                  background="#4675F0"
+                  onClick={() => {
+                    console.log('gStatus:::', gStatus.id)
+                    cancelWaitingGroup(gStatus.id)
+                  }}
+                >
+                  대기취소
+                </Button>
+              </GoalWrapper>
+            )
+          })}
+        </GoalList>
+      ) : null}
       <Nav />
     </Wrapper>
   )
@@ -203,7 +211,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const Title = styled.div`
-  position: absolute;
+  margin: 43px 144px 32px 144px;
   width: 72px;
   height: 22px;
   left: 144px;
@@ -217,13 +225,18 @@ const Text = styled.span`
   font-size: 16px;
   line-height: 140%;
 `
+const GoalList = styled.div`
+  /* margin-top: 100px; */
+`
 
 const GoalWrapper = styled.div`
-  position: absolute;
+  /* position: absolute; */
+  position: static;
   width: 328px;
   height: 156px;
-  left: 16px;
-  top: 13%;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  padding-top: 0.01px;
 
   /* color/Btn-basic2 */
 
