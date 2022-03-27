@@ -11,9 +11,18 @@ import {
   alarmAccept,
   alarmRefuse,
   alarmDelete,
-} from '../hooks/useAlertsData'
+} from '../apis/alertsData'
 
 function AlertsChallenge() {
+  const [, updateState] = useState()
+  const navigate = useNavigate()
+
+
+  function alarmDeleteAndRender(id) {
+    console.log("알람아이디:",id)
+    alarmDelete(id)
+    // navigate(0)
+  }
   const cdata = [
     {
       AlarmId: 1,
@@ -59,7 +68,6 @@ function AlertsChallenge() {
     },
   ]
 
-  const navigate = useNavigate()
   const {
     isLoading,
     data: AlertChallengeList,
@@ -147,13 +155,13 @@ function AlertsChallenge() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmAccept(d.AlarmId)}
+                      onClick={() => alarmAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmRefuse(d.AlarmId)}
+                      onClick={() => alarmRefuse(d.alarmId)}
                       style={{ left: '312px' }}
                     >
                       거절
@@ -173,7 +181,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -197,7 +205,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -222,7 +230,7 @@ function AlertsChallenge() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -232,7 +240,7 @@ function AlertsChallenge() {
               </>
             )
           })}
-        <AlertList>
+        {/* <AlertList>
           <AlertCharacter />
           <AlertTextDiv>
             <Flex>
@@ -317,7 +325,7 @@ function AlertsChallenge() {
           </Flex>
           <Close style={{ color: 'red', marginRight: '11px' }} />
         </AlertList>
-        <AlertHr />
+        <AlertHr /> */}
       </AlertListDiv>
     </Wrapper>
   )

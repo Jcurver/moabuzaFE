@@ -131,35 +131,35 @@ function UserInfo() {
         <CharacterDiv>
           <CharacterOne
             style={{ left: '0px' }}
-            onClick={() => setHeroValue('hero1')}
+            onClick={() => setHeroValue('bunny')}
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero1' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
             >
-              캐릭터A
+            버니
             </CharacterName>
           </CharacterOne>
           <CharacterOne
             style={{ left: '104px' }}
-            onClick={() => setHeroValue('hero2')}
+            onClick={() => setHeroValue('tongki')}
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero2' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
             >
-              캐릭터B
+              통키
             </CharacterName>
           </CharacterOne>
           <CharacterOne
             style={{ left: '208px' }}
-            onClick={() => setHeroValue('hero3')}
+            onClick={() => setHeroValue('tanni')}
           >
             <Character />
             <CharacterName
-              style={{ fontWeight: hero === 'hero3' ? '800' : '400' }}
+              style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
             >
-              캐릭터C
+              타니
             </CharacterName>
           </CharacterOne>
         </CharacterDiv>

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
+import { useFriendsData } from '../apis/friendsData';
 
 function Friends() {
   function searchFriend() {
@@ -19,6 +20,9 @@ function Friends() {
     setValue,
     setError,
   } = useForm()
+  const { isLoading, data } = useFriendsData()
+  console.log("dddata", data)
+  
 
   function onValid() {
     
