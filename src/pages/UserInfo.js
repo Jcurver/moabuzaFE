@@ -10,6 +10,7 @@ import { request, api } from '../utils/axios'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 import { fcmToken } from '../utils/fcm'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -55,13 +56,13 @@ function UserInfo() {
         if (res.status === 200) {
           if (res.data === '닉네임 사용 가능') {
             setNickNameDup(true)
-              Swal.fire({
-                title: '사용가능한 닉네임',
-                text: '열심히 모아부자!',
-                // icon: 'success',
-              }).then((result) => {
-                console.log(result)
-              })
+            Swal.fire({
+              title: '사용가능한 닉네임',
+              text: '열심히 모아부자!',
+              // icon: 'success',
+            }).then((result) => {
+              console.log(result)
+            })
           }
           if (res.data === '사용중인 닉네임') {
             setNickNameDup(false)
@@ -73,20 +74,17 @@ function UserInfo() {
               console.log(result)
             })
           }
-          
         }
       })
-      .catch(
-        () => {
-          Swal.fire({
-            title: '이미 사용중인 닉네임',
-            text: '다른걸로 해부자 ㅜㅜ',
-            // icon: 'success',
-          }).then((result) => {
-            console.log(result);
-          });
-        }
-      )
+      .catch(() => {
+        Swal.fire({
+          title: '이미 사용중인 닉네임',
+          text: '다른걸로 해부자 ㅜㅜ',
+          // icon: 'success',
+        }).then((result) => {
+          console.log(result)
+        })
+      })
   }
 
   const {
@@ -129,39 +127,41 @@ function UserInfo() {
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne
-            style={{ left: '0px' }}
-            onClick={() => setHeroValue('bunny')}
-          >
-            <Character />
-            <CharacterName
-              style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+          <CharacterCenterDiv>
+            <CharacterOne
+              style={{ left: '0px' }}
+              onClick={() => setHeroValue('bunny')}
             >
-            버니
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '104px' }}
-            onClick={() => setHeroValue('tongki')}
-          >
-            <Character />
-            <CharacterName
-              style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+              <Character src={BunnyFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+              >
+                버니
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '104px' }}
+              onClick={() => setHeroValue('tongki')}
             >
-              통키
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '208px' }}
-            onClick={() => setHeroValue('tanni')}
-          >
-            <Character />
-            <CharacterName
-              style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+              <Character src={TongkiFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+              >
+                통키
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '208px' }}
+              onClick={() => setHeroValue('tanni')}
             >
-              타니
-            </CharacterName>
-          </CharacterOne>
+              <Character src={TanniFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+              >
+                타니
+              </CharacterName>
+            </CharacterOne>
+          </CharacterCenterDiv>
         </CharacterDiv>
         <NicknameText>닉네임</NicknameText>
         <NicknameInput
@@ -244,6 +244,7 @@ const ButtonSubmit = styled.button`
   letter-spacing: -0.04em;
 
   color: #000000;
+  background-color: #fff;
 `
 const Title = styled.div`
   position: absolute;
@@ -285,11 +286,19 @@ const CharacterDiv = styled.div`
   padding: 0px;
 
   position: absolute;
+  width: 360px;
+  height: 166px;
+  top: 85px;
+  background-color: #f6f9fe;
+`
+const CharacterCenterDiv = styled.div`
+  position: absolute;
   width: 288px;
   height: 102px;
   left: calc(50% - 288px / 2);
-  top: 15.83%;
+  top: 32px;
 `
+
 const CharacterOne = styled.div`
   position: absolute;
   width: 80px;
@@ -302,7 +311,7 @@ const CharacterOne = styled.div`
   order: 0;
   flex-grow: 0;
 `
-const Character = styled.div`
+const Character = styled.img`
   position: absolute;
   width: 80px;
   height: 80px;
