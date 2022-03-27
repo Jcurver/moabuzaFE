@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import {
   useChallengeData,
   useChallengeMainPageData,
-} from '../hooks/useChallengeData'
+} from '../apis/challengeData'
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
 import {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   TanniStep03,
   BunnyStep03,
   TongkiStep03,
@@ -65,7 +65,7 @@ function ChallengeBuzaDetail() {
 
   const challengeData = data.data
   console.log(homeData)
-  console.log(challengeData)
+  console.log('challegeData:::', challengeData)
   return (
     <Wrapper>
       <ColorWrapper>
@@ -111,7 +111,7 @@ function ChallengeBuzaDetail() {
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
                       member.challengeMemberHero === 'tonki'
-                      ? TonkiFace
+                      ? TongkiFace
                       : member.challengeMemberHero === 'bunny'
                       ? BunnyFace
                       : null
@@ -149,22 +149,7 @@ function ChallengeBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-          <button
-            type="button"
-            onClick={() => {
-              Swal.fire({
-                icon: 'success',
-                title: '목표달성!',
-                text: '이미 프로 도전러! ',
-                // imageUrl: 'https://unsplash.it/400/200',
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-              })
-            }}
-          >
-            완료버튼
-          </button>
+
           {data
             ? data.data.groupNowPercent === 100 && (
                 <button
@@ -200,7 +185,7 @@ function ChallengeBuzaDetail() {
                             ? TanniFace
                             : // eslint-disable-next-line no-nested-ternary
                             member.challengeMemberHero === 'tonki'
-                            ? TonkiFace
+                            ? TongkiFace
                             : member.challengeMemberHero === 'bunny'
                             ? BunnyFace
                             : null
@@ -242,7 +227,12 @@ function ChallengeBuzaDetail() {
                   return (
                     <AccountContent key={shortid.generate()}>
                       <AccountDate>
-                        {acd.challengeRecordDate.slice(0, 10)}
+                        {idx > 0 &&
+                        challengeData.challengeLists[idx - 1]
+                          .challengeRecordDate ===
+                          challengeData.challengeLists[idx].challengeRecordDate
+                          ? ''
+                          : acd.challengeRecordDate.slice(0, 10)}
                       </AccountDate>
                       <AccountListsWrapper>
                         <AccountList>
@@ -276,7 +266,7 @@ const Wrapper = styled.div`
 const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
-  height: 79px;
+  height: 82px;
 `
 const Title = styled.div`
   position: absolute;
@@ -319,6 +309,7 @@ const DetailWrapper = styled.div`
   width: 360px;
   background-color: #ebf2ff;
   text-align: center;
+  height: 340px;
 `
 
 const DetailTitle = styled.div`
@@ -333,6 +324,7 @@ const DetailTitle = styled.div`
   line-height: 23px;
   letter-spacing: -0.04em;
   margin: 0 auto;
+  margin-bottom: 2px;
   /* color / text / Color-text-Black */
   background-color: #ebf2ff;
 
@@ -344,6 +336,7 @@ const DetailTitle = styled.div`
 
 const DetailTextWrapper = styled.div`
   margin: 0 auto;
+
   text-align: center;
 `
 
@@ -386,8 +379,6 @@ const DetailCharacter = styled.img`
   width: 287px;
   height: 168px;
   margin: 0px auto 28px auto;
-
-  /* border: 1px solid black; */
 `
 // Scroll
 const ScrollWrapper = styled.div`
@@ -474,7 +465,7 @@ const GroupFriend = styled.div`
   justify-content: center;
   padding: 0px;
 
-  margin: 24px 0px;
+  margin: 12px 0px;
   height: 24px;
 `
 const GroupFriendIcon = styled.img`

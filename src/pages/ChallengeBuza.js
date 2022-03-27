@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
@@ -11,8 +11,8 @@ import { api, request } from '../utils/axios'
 import {
   useChallengeData,
   useChallengeMainPageData,
-} from '../hooks/useChallengeData'
-import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+} from '../apis/challengeData'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
 
 const shortid = require('shortid')
@@ -23,7 +23,10 @@ function ChallengeBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useChallengeData(navigate)
   const homeData = useChallengeMainPageData(navigate)
-
+  if (data) {
+    console.log('데이터ㅣㅣ', data)
+    console.log('웨이팅골', data.data.waitingGoals)
+  }
   const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전 포기!',
@@ -36,14 +39,14 @@ function ChallengeBuza() {
       cancelButtonText: '취소!',
     }).then((result) => {
       console.log(id)
-      if (result.isConfirmed) {
-        request({
-          url: `/money/challenge/exitchallenge/${id}`,
-          method: 'delete',
-        }).then(() => {
-          navigate(0)
-        })
-      }
+      console.log(result)
+
+      request({
+        url: `/money/challenge/exitWaitingChallenge/${id}`,
+        method: 'delete',
+      }).then(() => {
+        navigate(0)
+      })
     })
   }
 
@@ -82,109 +85,12 @@ function ChallengeBuza() {
       <Title>
         <Text>도전해부자</Text>
       </Title>{' '}
-      {data
-        ? data.data.goalStatus === 'noGoal' && (
-            <GoalWrapper>
-              <GoalText>원하는 목표를 만들어보세요</GoalText>
-              <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
-              <Button
-                width="296px"
-                height="52px"
-                fontSize="14px"
-                background="#4675F0"
-                onClick={() => {
-                  navigate('/challengebuzacreate')
-                }}
-              >
-                + 목표 개설하기
-              </Button>
-            </GoalWrapper>
-          )
-        : null}
-      {data
-        ? data.data.goalStatus === 'goal' && (
-            <>
-              <ScrollWrapper height="44%">
-                <GoalWrapper
-                  onClick={() => {
-                    navigate('/challengebuzadetail')
-                  }}
-                >
-                  <GroupFriend>
-                    {data
-                      ? data.data.challengeMembers.map((member) => {
-                          return (
-                            <GroupFriendIcon
-                              key={shortid.generate()}
-                              src={
-                                // eslint-disable-next-line no-nested-ternary
-                                member.challengeMemberHero === 'tanni'
-                                  ? TanniFace
-                                  : // eslint-disable-next-line no-nested-ternary
-                                  member.challengeMemberHero === 'tongki'
-                                  ? TonkiFace
-                                  : member.challengeMemberHero === 'bunny'
-                                  ? BunnyFace
-                                  : null
-                              }
-                            />
-                          )
-                        })
-                      : null}
-                  </GroupFriend>
-                  <GroupFriendTitle>
-                    {data ? data.data.challengeName : null}
-                  </GroupFriendTitle>
-                  <GroupFriendGoal>
-                    <GroupFriendGoalAmount>
-                      {homeData
-                        ? homeData.data.data.challengeNeedAmount.toLocaleString(
-                            'ko-KR',
-                          )
-                        : null}
-                    </GroupFriendGoalAmount>
-                    <span> 원 남았습니다.</span>
-                  </GroupFriendGoal>
-                  <ProgressBar
-                    // completed={60}
-                    completed={
-                      homeData ? homeData.data.data.challengePercent : 50
-                    }
-                    animateOnRender
-                    bgColor="#4675F0"
-                    width="304px"
-                    height="20px"
-                    margin="0 auto"
-                    borderRadius="11px"
-                    labelAlignment="center"
-                    labelSize="14px"
-                  />
-                </GoalWrapper>
-                <ConmpletedTitle>완료목록</ConmpletedTitle>
-              </ScrollWrapper>
-              <ScrollWrapper height="280px">
-                <CompletedList>
-                  {data.data.challengeDoneGoals.map((data, idx) => {
-                    return (
-                      <CompletedContent key={shortid.generate()}>
-                        <CompletedText>{data}</CompletedText>
-                      </CompletedContent>
-                    )
-                  })}
-                </CompletedList>
-              </ScrollWrapper>
-            </>
-          )
-        : null}
-      {data
-        ? data.data.goalStatus === 'waiting' &&
-          data.data.waitingGoals.map((gStatus, idx) => {
-            return (
-              <GoalWrapper key={Date.now()}>
-                <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
-                <GoalDescribe>
-                  모두 수락되면 도전해부자가 생성됩니다.
-                </GoalDescribe>
+      <ChallengeWaitingDiv>
+        {data
+          ? data.data.goalStatus === 'noGoal' && (
+              <GoalWrapper>
+                <GoalText>원하는 목표를 만들어보세요</GoalText>
+                <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
 
                 <Button
                   width="296px"
@@ -192,16 +98,117 @@ function ChallengeBuza() {
                   fontSize="14px"
                   background="#4675F0"
                   onClick={() => {
-                    console.log(gStatus.id)
-                    cancelChallenge(gStatus.id)
+                    navigate('/challengebuzacreate')
                   }}
                 >
-                  대기취소
+                  + 목표 개설하기
                 </Button>
               </GoalWrapper>
             )
-          })
-        : null}
+          : null}
+
+        {data
+          ? data.data.goalStatus === 'goal' && (
+              <>
+                <ScrollWrapper height="44%">
+                  <GoalWrapper
+                    onClick={() => {
+                      navigate('/challengebuzadetail')
+                    }}
+                  >
+                    <GroupFriend>
+                      {data
+                        ? data.data.challengeMembers.map((member) => {
+                            return (
+                              <GroupFriendIcon
+                                key={shortid.generate()}
+                                src={
+                                  // eslint-disable-next-line no-nested-ternary
+                                  member.challengeMemberHero === 'tanni'
+                                    ? TanniFace
+                                    : // eslint-disable-next-line no-nested-ternary
+                                    member.challengeMemberHero === 'tongki'
+                                    ? TongkiFace
+                                    : member.challengeMemberHero === 'bunny'
+                                    ? BunnyFace
+                                    : null
+                                }
+                              />
+                            )
+                          })
+                        : null}
+                    </GroupFriend>
+                    <GroupFriendTitle>
+                      {data ? data.data.challengeName : null}
+                    </GroupFriendTitle>
+                    <GroupFriendGoal>
+                      <GroupFriendGoalAmount>
+                        {homeData
+                          ? homeData.data.data.challengeNeedAmount.toLocaleString(
+                              'ko-KR',
+                            )
+                          : null}
+                      </GroupFriendGoalAmount>
+                      <span> 원 남았습니다.</span>
+                    </GroupFriendGoal>
+                    <ProgressBar
+                      // completed={60}
+                      completed={
+                        homeData ? homeData.data.data.challengePercent : 50
+                      }
+                      animateOnRender
+                      bgColor="#4675F0"
+                      width="304px"
+                      height="20px"
+                      margin="0 auto"
+                      borderRadius="11px"
+                      labelAlignment="center"
+                      labelSize="14px"
+                    />
+                  </GoalWrapper>
+                  <ConmpletedTitle>완료목록</ConmpletedTitle>
+                </ScrollWrapper>
+                <ScrollWrapper height="280px">
+                  <CompletedList>
+                    {data.data.challengeDoneGoals.map((data, idx) => {
+                      return (
+                        <CompletedContent key={shortid.generate()}>
+                          <CompletedText>{data}</CompletedText>
+                        </CompletedContent>
+                      )
+                    })}
+                  </CompletedList>
+                </ScrollWrapper>
+              </>
+            )
+          : null}
+
+        {data && data.data.goalStatus === 'waiting'
+          ? data.data.waitingGoals.map((gStatus, idx) => {
+              return (
+                <GoalWrapper>
+                  <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                  <GoalDescribe>
+                    모두 수락하면 도전해부자가 생성됩니다.
+                  </GoalDescribe>
+
+                  <Button
+                    width="296px"
+                    height="52px"
+                    fontSize="14px"
+                    background="#4675F0"
+                    onClick={() => {
+                      console.log('gStatus:::', gStatus.id)
+                      cancelChallenge(gStatus.id)
+                    }}
+                  >
+                    대기취소
+                  </Button>
+                </GoalWrapper>
+              )
+            })
+          : null}
+      </ChallengeWaitingDiv>
       <Nav />
     </Wrapper>
   )
@@ -246,9 +253,11 @@ const GoalWrapper = styled.div`
   position: absolute;
   width: 328px;
   height: 156px;
-  left: 16px;
-  top: 13%;
-
+  /* top: 13%; */
+  /* margin-left: 16px; */
+  margin-bottom: 10px;
+  padding-top: 0.01px;
+  margin-left: 16px;
   /* color/Btn-basic2 */
 
   background: #f5f5f7;
@@ -429,6 +438,19 @@ const GroupFriendGoalAmount = styled.span`
   /* color / text / Color-text-Black */
 
   color: #4675f0;
+`
+const ChallengeWaitingDiv = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  left: 0px;
+  height: calc(87% - 90px);
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 
 export default ChallengeBuza

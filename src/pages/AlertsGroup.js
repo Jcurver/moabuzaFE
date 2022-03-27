@@ -7,11 +7,11 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import {
-  useAlertsChallengeData,
+  useAlertsGroupData,
   alarmAccept,
   alarmRefuse,
   alarmDelete,
-} from '../hooks/useAlertsData'
+} from '../apis/alertsData'
 
 function AlertsGroup() {
   const cdata = [
@@ -65,7 +65,7 @@ function AlertsGroup() {
     data: AlertGroupList,
     isError,
     error,
-  } = useAlertsChallengeData(navigate)
+  } = useAlertsGroupData(navigate)
   console.log(
     '알람데이터챌린지 : ',
     isLoading,
@@ -147,13 +147,13 @@ function AlertsGroup() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmAccept(d.AlarmId)}
+                      onClick={() => alarmAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmRefuse(d.AlarmId)}
+                      onClick={() => alarmRefuse(d.alarmId)}
                       style={{ left: '312px' }}
                     >
                       거절
@@ -173,7 +173,7 @@ function AlertsGroup() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -197,7 +197,7 @@ function AlertsGroup() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
@@ -222,7 +222,7 @@ function AlertsGroup() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete(d.AlarmId)}
+                      onClick={() => alarmDelete(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>

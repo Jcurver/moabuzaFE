@@ -1,6 +1,6 @@
 import BunnyFace from './01_character_face/bunny.png'
 import TanniFace from './01_character_face/tanni.png'
-import TonkiFace from './01_character_face/tonki.png'
+import TongkiFace from './01_character_face/tonki.png'
 import BunnyGG from './02_bunny/bunny_gg.png'
 import BunnyStep01 from './02_bunny/bunny_step01.png'
 import BunnyStep02 from './02_bunny/bunny_step02.png'
@@ -20,7 +20,7 @@ import AllCharacters03 from './05_challenge_all/All_step03.png'
 export {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   BunnyGG,
   BunnyStep01,
   BunnyStep02,
