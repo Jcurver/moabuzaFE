@@ -12,7 +12,7 @@ import {
   useChallengeData,
   useChallengeMainPageData,
 } from '../apis/challengeData'
-import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
 
 const shortid = require('shortid')
@@ -128,7 +128,7 @@ function ChallengeBuza() {
                                     ? TanniFace
                                     : // eslint-disable-next-line no-nested-ternary
                                     member.challengeMemberHero === 'tongki'
-                                    ? TonkiFace
+                                    ? TongkiFace
                                     : member.challengeMemberHero === 'bunny'
                                     ? BunnyFace
                                     : null

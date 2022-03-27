@@ -9,7 +9,7 @@ import coin from '../assets/icons/coin/ico_coin1.png'
 import {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   TanniStep02,
   BunnyStep03,
   AllCharacters01,
@@ -109,7 +109,7 @@ function GroupBuzaDetail() {
                           ? TanniFace
                           : // eslint-disable-next-line no-nested-ternary
                           data.groupMemberHero === 'tongki'
-                          ? TonkiFace
+                          ? TongkiFace
                           : data.groupMemberHero === 'bunny'
                           ? BunnyFace
                           : null

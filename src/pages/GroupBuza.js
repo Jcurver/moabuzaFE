@@ -13,7 +13,7 @@ import Loading from './Loading'
 import {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   TanniStep02,
 } from '../assets/character'
 
@@ -128,7 +128,7 @@ function GroupBuza() {
                               ? TanniFace
                               : // eslint-disable-next-line no-nested-ternary
                               member.groupMemberHero === 'tongki'
-                              ? TonkiFace
+                              ? TongkiFace
                               : member.groupMemberHero === 'bunny'
                               ? BunnyFace
                               : null

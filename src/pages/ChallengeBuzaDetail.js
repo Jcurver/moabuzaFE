@@ -14,7 +14,7 @@ import coin from '../assets/icons/coin/ico_coin1.png'
 import {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   TanniStep03,
   BunnyStep03,
   TongkiStep03,
@@ -111,7 +111,7 @@ function ChallengeBuzaDetail() {
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
                       member.challengeMemberHero === 'tonki'
-                      ? TonkiFace
+                      ? TongkiFace
                       : member.challengeMemberHero === 'bunny'
                       ? BunnyFace
                       : null
@@ -185,7 +185,7 @@ function ChallengeBuzaDetail() {
                             ? TanniFace
                             : // eslint-disable-next-line no-nested-ternary
                             member.challengeMemberHero === 'tonki'
-                            ? TonkiFace
+                            ? TongkiFace
                             : member.challengeMemberHero === 'bunny'
                             ? BunnyFace
                             : null
