@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import Slider from 'react-slick'
+import Swal from 'sweetalert2'
 import { ReactComponent as Challenge } from '../assets/icons/menu/challenge.svg'
 import { ReactComponent as Asset } from '../assets/icons/menu/Asset28.svg'
 import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
@@ -10,8 +11,11 @@ import { ReactComponent as Together } from '../assets/icons/menu/together.svg'
 import { ReactComponent as Vector } from '../assets/icons/menu/Vector.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as Edit } from '../assets/icons/settings/edit1.svg'
+import { ReactComponent as Logout } from '../assets/icons/settings/logout.svg'
+import { ReactComponent as Review } from '../assets/icons/settings/review.svg'
 import BugReport from '../assets/menu/moabuza-bugreport.png'
-import Review from '../assets/menu/moabuza-review.png'
+import SlideReview from '../assets/menu/moabuza-review.png'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -19,12 +23,33 @@ import { setFlexStyles } from '../styles/Mixin'
 
 function Menu() {
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplaySpeed: 1000,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    cssEase: 'linear',
+  }
+
+  function logout() {
+    console.log('gkgk')
+    Swal.fire({
+      title: '로그아웃할 거지?',
+      text: '꼭 다시 돌아와부자!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '나가부자',
+      cancelButtonText: '있어부자',
+    }).then((result) => {
+      if (result.value) {
+        console.log(result)
+        // this.props.submitUser(this.state)
+      }
+    })
   }
   return (
     <Wrapper>
@@ -51,13 +76,13 @@ function Menu() {
             <SlideImg src={BugReport} />
           </div>
           <div>
-            <SlideImg src={Review} />
+            <SlideImg src={SlideReview} />
           </div>
         </Slider>
       </MenuSlideBox>
 
       <NavLink to="/friends">
-        <TodayDiv style={{ top: '41.53%' }}>
+        <TodayDiv style={{ top: '243px' }}>
           <Friend
             style={{
               width: '24px',
@@ -81,7 +106,7 @@ function Menu() {
         </TodayDiv>
       </NavLink>
       <NavLink to="/bedge">
-        <TodayDiv style={{ top: '49.86%' }}>
+        <TodayDiv style={{ top: '303px' }}>
           <Asset
             style={{
               width: '24px',
@@ -103,8 +128,58 @@ function Menu() {
           />
         </TodayDiv>
       </NavLink>
+
+      <NavLink to="/modified">
+        <TodayDiv style={{ top: '363px' }}>
+          <TodayLogoDiv />
+          <Edit
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '16px',
+              top: '18px',
+            }}
+          />
+          <TodayText>캐릭터/닉네임 수정</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
+        </TodayDiv>
+      </NavLink>
+
+      <NavLink to="/review">
+        <TodayDiv style={{ top: '423px' }}>
+          <TodayLogoDiv />
+          <Review
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '16px',
+              top: '18px',
+            }}
+          />
+          <TodayText>리뷰</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
+        </TodayDiv>
+      </NavLink>
       <NavLink to="/settings">
-        <TodayDiv style={{ top: '58.19%' }}>
+        <TodayDiv style={{ top: '483px' }}>
           <Setting
             style={{
               width: '24px',
@@ -210,7 +285,7 @@ const TodayLogoDiv = styled.div`
   left: 4px;
   top: 6px;
 
-  background: rgba(196, 196, 196, 0.3);
+  /* background: rgba(196, 196, 196, 0.3); */
 `
 const TodayLogo = styled.div`
   position: absolute;
