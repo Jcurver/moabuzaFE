@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
-import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import { useChallengeFriendData } from '../apis/challengeData'
@@ -157,7 +157,7 @@ function ChallengeBuzaCreate() {
                         ? TanniFace
                         : // eslint-disable-next-line no-nested-ternary
                         da.hero === 'tongki'
-                        ? TonkiFace
+                        ? TongkiFace
                         : da.hero === 'bunny'
                         ? BunnyFace
                         : null
@@ -235,7 +235,7 @@ function ChallengeBuzaCreate() {
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
                       da.hero === 'tongki'
-                      ? TonkiFace
+                      ? TongkiFace
                       : da.hero === 'bunny'
                       ? BunnyFace
                       : null

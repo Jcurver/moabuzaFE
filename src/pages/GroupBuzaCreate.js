@@ -5,11 +5,12 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
 import { useFriendData } from '../apis/groupData'
+import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import {
   BunnyFace,
   TanniFace,
-  TonkiFace,
+  TongkiFace,
   TanniStep02,
 } from '../assets/character'
 
@@ -17,7 +18,6 @@ function GroupBuzaCreate() {
   const navigate = useNavigate()
   const { data, isLoading } = useFriendData(navigate)
 
-  
   useEffect(() => {
     friendData()
   }, [navigate])
@@ -59,13 +59,13 @@ function GroupBuzaCreate() {
       })
     }
     return request({
-      url: '/money/group/creategroup',
+      url: '/alarm/goal',
       method: 'post',
       data: {
         goalType: 'GROUP',
-        createGroupName: groupData.createGroupName,
-        createGroupAmount: parseInt(groupData.createGroupAmount, 10),
-        groupFriends: selentFriendNickName,
+        goalName: groupData.createGroupName,
+        goalAmount: parseInt(groupData.createGroupAmount, 10),
+        friendNickname: selentFriendNickName,
       },
     }).then(
       (res) => console.log('groupCreate', res),
@@ -148,18 +148,26 @@ function GroupBuzaCreate() {
             ? null
             : selectFriends.map((da, idx) => {
                 return (
-                  <div key={da.id}>
+                  <div key={Date.now()}>
                     <SelectedFriendContent>
                       {selectFriends[idx].groupMemberNickname}
                       <DeleteFriendContent
                         onClick={() => {
-                          setSelectFriends(
-                            selectFriends.filter((flist) => flist.id !== da.id),
+                          const targetIndex = selectFriends.findIndex(
+                            (d) =>
+                              d.challengeMemberNickname ===
+                              da.challengeMemberNickname,
                           )
-                          setDatalist([da, ...datalist])
+                          setDatalist([selectFriends[targetIndex], ...datalist])
+                          setSelectFriends([
+                            ...selectFriends.slice(0, targetIndex),
+                            ...selectFriends.slice(targetIndex + 1),
+                          ])
+
+                          console.log('datalist', datalist)
                         }}
                       >
-                        X
+                        <Close />
                       </DeleteFriendContent>
                     </SelectedFriendContent>
                   </div>
@@ -170,7 +178,7 @@ function GroupBuzaCreate() {
           {datalist.map((da, idx) => {
             return (
               <Friends
-                key={da.id}
+                key={Date.now()}
                 onClick={() => {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
@@ -186,6 +194,10 @@ function GroupBuzaCreate() {
                   const targetIndex = datalist.findIndex(
                     (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
+                  setSelectFriends((prevList) => [
+                    datalist[targetIndex],
+                    ...prevList,
+                  ])
                   setDatalist([
                     ...datalist.slice(0, targetIndex),
                     ...datalist.slice(targetIndex + 1),
@@ -200,7 +212,7 @@ function GroupBuzaCreate() {
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
                       da.hero === 'tongki'
-                      ? TonkiFace
+                      ? TongkiFace
                       : da.hero === 'bunny'
                       ? BunnyFace
                       : null

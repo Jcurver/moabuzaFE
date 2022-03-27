@@ -4,11 +4,15 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import Swal from 'sweetalert2'
 import { useForm } from 'react-hook-form'
+import { request, api } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
+
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 
 function Modified() {
   const navigate = useNavigate()
-  const [hero, setHero] = useState(1)
+  const [hero, setHero] = useState('')
+  const [nickNameDup, setNickNameDup] = useState(false)
   function setHeroValue(i) {
     setHero(i)
     setValue('character', i)
@@ -16,24 +20,70 @@ function Modified() {
 
   console.log('hero:', hero)
   const onValid = async (data) => {
-    Swal.fire({
-      title: '수정 완료!',
-      text: '더 열심히 모아부자!',
-      icon: 'success',
-    }).then((result) => {
-      console.log(result)
-      navigate('/settings')
-    })
-    // if (data.password !== data.password1) {
-    //     setError(
-    //       'password1',
-    //       { message: 'Password are not the same' },
-    //       { shouldFocus: true },
-    //     )
-    //   }
-    //   setError("extraError", { message: "Server offline." });
-    // }
+    if (hero === 'hero0') {
+      return
+    }
+
+    if (!nickNameDup) {
+      Swal.fire({
+        title: '닉네임 중복확인해부자',
+        //  text: '열심히 모아부자!',
+        // icon: 'success',
+      }).then((result) => {
+        console.log(result)
+      })
+      return
+    }
+
+    await api.getUserInfo(data, hero)
+    navigate('/')
   }
+  const nicknameDup = () => {
+    console.log('닉네임::', watch().nickname)
+    if (watch().nickname === '') {
+      return null
+    }
+    return request({
+      url: '/nickname/validation',
+      method: 'post',
+      data: { nickname: watch().nickname },
+    })
+      .then((res) => {
+        console.log('중복확인::', res)
+        if (res.status === 200) {
+          if (res.data === '닉네임 사용 가능') {
+            setNickNameDup(true)
+            Swal.fire({
+              title: '사용가능한 닉네임',
+              text: '열심히 모아부자!',
+              // icon: 'success',
+            }).then((result) => {
+              console.log(result)
+            })
+          }
+          if (res.data === '사용중인 닉네임') {
+            setNickNameDup(false)
+            Swal.fire({
+              title: '사용중인 닉네임',
+              text: '다른거로 골라부자 ㅠㅠ',
+              // icon: 'success',
+            }).then((result) => {
+              console.log(result)
+            })
+          }
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          title: '이미 사용중인 닉네임',
+          text: '다른걸로 해부자 ㅜㅜ',
+          // icon: 'success',
+        }).then((result) => {
+          console.log(result)
+        })
+      })
+  }
+
   const {
     register,
     handleSubmit,
@@ -46,8 +96,20 @@ function Modified() {
   return (
     <Wrapper>
       <NavLink to="/settings">
-        <ButtonDiv />
-        <Button />
+        <ButtonDiv>
+          <svg
+            width="48"
+            height="48"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.07 24.0002L27.71 15.5202C28.05 15.1502 28.02 14.5702 27.64 14.2402C27.27 13.9002 26.69 13.9302 26.36 14.3102L18.18 23.3902C17.87 23.7402 17.87 24.2602 18.18 24.6102L26.36 33.7002C26.54 33.9002 26.79 34.0002 27.04 34.0002C27.26 34.0002 27.47 33.9202 27.65 33.7702C28.02 33.4302 28.05 32.8602 27.72 32.4902L20.09 24.0102L20.07 24.0002Z"
+              fill="#333333"
+            />
+          </svg>
+        </ButtonDiv>
       </NavLink>
       <TopLine />
 
@@ -55,30 +117,41 @@ function Modified() {
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne style={{ left: '0px' }} onClick={() => setHeroValue(1)}>
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 1 ? '800' : '400' }}>
-              캐릭터A
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '104px' }}
-            onClick={() => setHeroValue(2)}
-          >
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 2 ? '800' : '400' }}>
-              캐릭터B
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '208px' }}
-            onClick={() => setHeroValue(3)}
-          >
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 3 ? '800' : '400' }}>
-              캐릭터C
-            </CharacterName>
-          </CharacterOne>
+          <CharacterCenterDiv>
+            <CharacterOne
+              style={{ left: '0px' }}
+              onClick={() => setHeroValue('bunny')}
+            >
+              <Character src={BunnyFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+              >
+                버니
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '104px' }}
+              onClick={() => setHeroValue('tongki')}
+            >
+              <Character src={TongkiFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+              >
+                통키
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '208px' }}
+              onClick={() => setHeroValue('tanni')}
+            >
+              <Character src={TanniFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+              >
+                타니
+              </CharacterName>
+            </CharacterOne>
+          </CharacterCenterDiv>
         </CharacterDiv>
         <NicknameText>닉네임</NicknameText>
         <NicknameInput
@@ -93,6 +166,7 @@ function Modified() {
             },
           })}
         />
+        <NicknameSubmit onClick={() => nicknameDup()}>중복확인</NicknameSubmit>
         {errors?.nickname ? (
           <NicknameAlert style={{ color: 'red' }}>
             {errors?.nickname?.message}
@@ -122,15 +196,15 @@ const ButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
 
-  top: 33.72%;
+  top: 4.5%;
   width: 48px;
   height: 48px;
 
-  background: rgba(196, 196, 196, 0.3);
+  /* background: rgba(196, 196, 196, 0.3); */
 `
 
 const Button = styled.div`
-  position: absolute;
+  /* position: absolute; */
   left: 4.44%;
 
   top: 5.97%;
@@ -157,7 +231,7 @@ const ButtonSubmit = styled.button`
 
   text-align: center;
   letter-spacing: -0.04em;
-
+  background-color: #fff;
   color: #000000;
 `
 const Title = styled.div`
@@ -196,15 +270,25 @@ const CharacterDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'flex-start',
+    justifyContent: 'center',
   })}
   padding: 0px;
 
   position: absolute;
+  width: 360px;
+  height: 166px;
+  /* left: calc(50% - 288px / 2); */
+  top: 85px;
+  background-color: #f6f9fe;
+`
+const CharacterCenterDiv = styled.div`
+  position: absolute;
   width: 288px;
   height: 102px;
   left: calc(50% - 288px / 2);
-  top: 15.83%;
+  top: 32px;
 `
+
 const CharacterOne = styled.div`
   position: absolute;
   width: 80px;
@@ -217,7 +301,7 @@ const CharacterOne = styled.div`
   order: 0;
   flex-grow: 0;
 `
-const Character = styled.div`
+const Character = styled.img`
   position: absolute;
   width: 80px;
   height: 80px;
@@ -225,7 +309,6 @@ const Character = styled.div`
   left: 0px;
   top: 0px;
   /* color/Btn-basic1 */
-
   background: #e5eaf2;
 `
 const CharacterName = styled.div`
@@ -268,6 +351,41 @@ const NicknameText = styled.div`
   letter-spacing: -0.04em;
 
   color: #000000;
+`
+
+const NicknameSubmit = styled.div`
+  position: absolute;
+  width: 104px;
+  height: 52px;
+  left: 240px;
+  top: 40.83%;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+
+  /* color/Btn-basic1 */
+
+  border: 1px solid #e5eaf2;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: right;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
+  color: #4675f0;
 `
 const NicknameInput = styled.input`
   position: absolute;
