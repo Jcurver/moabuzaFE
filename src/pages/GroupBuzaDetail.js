@@ -12,6 +12,9 @@ import {
   TonkiFace,
   TanniStep02,
   BunnyStep03,
+  AllCharacters01,
+  AllCharacters02,
+  AllCharacters03,
 } from '../assets/character'
 // import '../styles/SweetAlertButton.css'
 
@@ -116,7 +119,19 @@ function GroupBuzaDetail() {
                 })
               : null}
           </GroupFriend>
-          <DetailCharacter src={BunnyStep03} />
+          <DetailCharacter
+            src={
+              // eslint-disable-next-line no-nested-ternary
+              data.data.groupNowPercent <= 20
+                ? AllCharacters01
+                : // eslint-disable-next-line no-nested-ternary
+                data.data.groupNowPercent > 20
+                ? AllCharacters02
+                : data.data.groupNowPercent > 60
+                ? AllCharacters03
+                : null
+            }
+          />
           <ProgressBar
             completed={data ? data.data.groupNowPercent : 0}
             // completed={70}
@@ -130,27 +145,6 @@ function GroupBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-
-          {data
-            ? data.data.groupNowPercent === 100 && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    Swal.fire({
-                      icon: 'success',
-                      title: '목표달성!',
-                      text: '이미 프로 도전러! ',
-                      imageUrl: 'https://unsplash.it/400/200',
-                      imageWidth: 400,
-                      imageHeight: 200,
-                      imageAlt: 'Custom image',
-                    })
-                  }}
-                >
-                  완료버튼
-                </button>
-              )
-            : null}
         </DetailWrapper>
 
         <AccountTitle>내역</AccountTitle>
