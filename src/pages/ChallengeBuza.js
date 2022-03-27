@@ -12,7 +12,7 @@ import {
   useChallengeData,
   useChallengeMainPageData,
 } from '../apis/challengeData'
-import { BunnyFace, TanniFace, TonkiFace } from '../assets/character'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
 
 const shortid = require('shortid')
@@ -45,7 +45,7 @@ function ChallengeBuza() {
         url: `/money/challenge/exitWaitingChallenge/${id}`,
         method: 'delete',
       }).then(() => {
-        // navigate(0)
+        navigate(0)
       })
     })
   }
@@ -107,85 +107,84 @@ function ChallengeBuza() {
             )
           : null}
 
-      {data
-        ? data.data.goalStatus === 'goal' && (
-            <>
-              <ScrollWrapper height="44%">
-                <GoalWrapper
-                  onClick={() => {
-                    navigate('/challengebuzadetail')
-                  }}
-                >
-                  <GroupFriend>
-                    {data
-                      ? data.data.challengeMembers.map((member) => {
-                          return (
-                            <GroupFriendIcon
-                              key={shortid.generate()}
-                              src={
-                                // eslint-disable-next-line no-nested-ternary
-                                member.challengeMemberHero === 'tanni'
-                                  ? TanniFace
-                                  : // eslint-disable-next-line no-nested-ternary
-                                  member.challengeMemberHero === 'tongki'
-                                  ? TonkiFace
-                                  : member.challengeMemberHero === 'bunny'
-                                  ? BunnyFace
-                                  : null
-                              }
-                            />
-                          )
-                        })
-                      : null}
-                  </GroupFriend>
-                  <GroupFriendTitle>
-                    {data ? data.data.challengeName : null}
-                  </GroupFriendTitle>
-                  <GroupFriendGoal>
-                    <GroupFriendGoalAmount>
-                      {homeData
-                        ? homeData.data.data.challengeNeedAmount.toLocaleString(
-                            'ko-KR',
-                          )
-                        : null}
-                    </GroupFriendGoalAmount>
-                    <span> 원 남았습니다.</span>
-                  </GroupFriendGoal>
-                  <ProgressBar
-                    // completed={60}
-                    completed={
-                      homeData ? homeData.data.data.challengePercent : 50
-                    }
-                    animateOnRender
-                    bgColor="#4675F0"
-                    width="304px"
-                    height="20px"
-                    margin="0 auto"
-                    borderRadius="11px"
-                    labelAlignment="center"
-                    labelSize="14px"
-                  />
-                </GoalWrapper>
-                <ConmpletedTitle>완료목록</ConmpletedTitle>
-              </ScrollWrapper>
-              <ScrollWrapper height="280px">
-                <CompletedList>
-                  {data.data.challengeDoneGoals.map((data, idx) => {
-                    return (
-                      <CompletedContent key={shortid.generate()}>
-                        <CompletedText>{data}</CompletedText>
-                      </CompletedContent>
-                    )
-                  })}
-                </CompletedList>
-              </ScrollWrapper>
-            </>
-          )
-        : null}
-      
         {data
-          && data.data.goalStatus === 'waiting' ?
-            data.data.waitingGoals.map((gStatus, idx) => {
+          ? data.data.goalStatus === 'goal' && (
+              <>
+                <ScrollWrapper height="44%">
+                  <GoalWrapper
+                    onClick={() => {
+                      navigate('/challengebuzadetail')
+                    }}
+                  >
+                    <GroupFriend>
+                      {data
+                        ? data.data.challengeMembers.map((member) => {
+                            return (
+                              <GroupFriendIcon
+                                key={shortid.generate()}
+                                src={
+                                  // eslint-disable-next-line no-nested-ternary
+                                  member.challengeMemberHero === 'tanni'
+                                    ? TanniFace
+                                    : // eslint-disable-next-line no-nested-ternary
+                                    member.challengeMemberHero === 'tongki'
+                                    ? TongkiFace
+                                    : member.challengeMemberHero === 'bunny'
+                                    ? BunnyFace
+                                    : null
+                                }
+                              />
+                            )
+                          })
+                        : null}
+                    </GroupFriend>
+                    <GroupFriendTitle>
+                      {data ? data.data.challengeName : null}
+                    </GroupFriendTitle>
+                    <GroupFriendGoal>
+                      <GroupFriendGoalAmount>
+                        {homeData
+                          ? homeData.data.data.challengeNeedAmount.toLocaleString(
+                              'ko-KR',
+                            )
+                          : null}
+                      </GroupFriendGoalAmount>
+                      <span> 원 남았습니다.</span>
+                    </GroupFriendGoal>
+                    <ProgressBar
+                      // completed={60}
+                      completed={
+                        homeData ? homeData.data.data.challengePercent : 50
+                      }
+                      animateOnRender
+                      bgColor="#4675F0"
+                      width="304px"
+                      height="20px"
+                      margin="0 auto"
+                      borderRadius="11px"
+                      labelAlignment="center"
+                      labelSize="14px"
+                    />
+                  </GoalWrapper>
+                  <ConmpletedTitle>완료목록</ConmpletedTitle>
+                </ScrollWrapper>
+                <ScrollWrapper height="280px">
+                  <CompletedList>
+                    {data.data.challengeDoneGoals.map((data, idx) => {
+                      return (
+                        <CompletedContent key={shortid.generate()}>
+                          <CompletedText>{data}</CompletedText>
+                        </CompletedContent>
+                      )
+                    })}
+                  </CompletedList>
+                </ScrollWrapper>
+              </>
+            )
+          : null}
+
+        {data && data.data.goalStatus === 'waiting'
+          ? data.data.waitingGoals.map((gStatus, idx) => {
               return (
                 <GoalWrapper>
                   <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
@@ -251,13 +250,14 @@ const Text = styled.span`
 `
 
 const GoalWrapper = styled.div`
-  /* position: absolute; */
+  position: absolute;
   width: 328px;
   height: 156px;
+  /* top: 13%; */
   /* margin-left: 16px; */
   margin-bottom: 10px;
   padding-top: 0.01px;
-
+  margin-left: 16px;
   /* color/Btn-basic2 */
 
   background: #f5f5f7;
