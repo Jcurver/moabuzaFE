@@ -117,39 +117,41 @@ function Modified() {
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne
-            style={{ left: '0px' }}
-            onClick={() => setHeroValue('bunny')}
-          >
-            <Character src={BunnyFace} />
-            <CharacterName
-              style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+          <CharacterCenterDiv>
+            <CharacterOne
+              style={{ left: '0px' }}
+              onClick={() => setHeroValue('bunny')}
             >
-              버니
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '104px' }}
-            onClick={() => setHeroValue('tongki')}
-          >
-            <Character src={TongkiFace} />
-            <CharacterName
-              style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+              <Character src={BunnyFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+              >
+                버니
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '104px' }}
+              onClick={() => setHeroValue('tongki')}
             >
-              통키
-            </CharacterName>
-          </CharacterOne>
-          <CharacterOne
-            style={{ left: '208px' }}
-            onClick={() => setHeroValue('tanni')}
-          >
-            <Character src={TanniFace} />
-            <CharacterName
-              style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+              <Character src={TongkiFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+              >
+                통키
+              </CharacterName>
+            </CharacterOne>
+            <CharacterOne
+              style={{ left: '208px' }}
+              onClick={() => setHeroValue('tanni')}
             >
-              타니
-            </CharacterName>
-          </CharacterOne>
+              <Character src={TanniFace} />
+              <CharacterName
+                style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+              >
+                타니
+              </CharacterName>
+            </CharacterOne>
+          </CharacterCenterDiv>
         </CharacterDiv>
         <NicknameText>닉네임</NicknameText>
         <NicknameInput
@@ -268,15 +270,25 @@ const CharacterDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'flex-start',
+    justifyContent: 'center',
   })}
   padding: 0px;
 
   position: absolute;
+  width: 360px;
+  height: 166px;
+  /* left: calc(50% - 288px / 2); */
+  top: 85px;
+  background-color: #f6f9fe;
+`
+const CharacterCenterDiv = styled.div`
+  position: absolute;
   width: 288px;
   height: 102px;
   left: calc(50% - 288px / 2);
-  top: 15.83%;
+  top: 32px;
 `
+
 const CharacterOne = styled.div`
   position: absolute;
   width: 80px;
