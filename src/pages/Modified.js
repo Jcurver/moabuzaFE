@@ -6,9 +6,11 @@ import Swal from 'sweetalert2'
 import { useForm } from 'react-hook-form'
 import { setFlexStyles } from '../styles/Mixin'
 
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
+
 function Modified() {
   const navigate = useNavigate()
-  const [hero, setHero] = useState(1)
+  const [hero, setHero] = useState('')
   function setHeroValue(i) {
     setHero(i)
     setValue('character', i)
@@ -55,28 +57,37 @@ function Modified() {
       <form onSubmit={handleSubmit(onValid)}>
         <ButtonSubmit>확인</ButtonSubmit>
         <CharacterDiv>
-          <CharacterOne style={{ left: '0px' }} onClick={() => setHeroValue(1)}>
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 1 ? '800' : '400' }}>
-              캐릭터A
+          <CharacterOne
+            style={{ left: '0px' }}
+            onClick={() => setHeroValue('bunny')}
+          >
+            <Character src={BunnyFace} />
+            <CharacterName
+              style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+            >
+              버니
             </CharacterName>
           </CharacterOne>
           <CharacterOne
             style={{ left: '104px' }}
-            onClick={() => setHeroValue(2)}
+            onClick={() => setHeroValue('tongki')}
           >
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 2 ? '800' : '400' }}>
-              캐릭터B
+            <Character src={TongkiFace} />
+            <CharacterName
+              style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+            >
+              통키
             </CharacterName>
           </CharacterOne>
           <CharacterOne
             style={{ left: '208px' }}
-            onClick={() => setHeroValue(3)}
+            onClick={() => setHeroValue('tanni')}
           >
-            <Character />
-            <CharacterName style={{ fontWeight: hero === 3 ? '800' : '400' }}>
-              캐릭터C
+            <Character src={TanniFace} />
+            <CharacterName
+              style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+            >
+              타니
             </CharacterName>
           </CharacterOne>
         </CharacterDiv>
@@ -217,7 +228,7 @@ const CharacterOne = styled.div`
   order: 0;
   flex-grow: 0;
 `
-const Character = styled.div`
+const Character = styled.img`
   position: absolute;
   width: 80px;
   height: 80px;
@@ -225,7 +236,6 @@ const Character = styled.div`
   left: 0px;
   top: 0px;
   /* color/Btn-basic1 */
-
   background: #e5eaf2;
 `
 const CharacterName = styled.div`
