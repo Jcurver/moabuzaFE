@@ -149,22 +149,7 @@ function ChallengeBuzaDetail() {
             labelAlignment="center"
             labelSize="14px"
           />
-          {/* <button
-            type="button"
-            onClick={() => {
-              Swal.fire({
-                icon: 'success',
-                title: '목표달성!',
-                text: '이미 프로 도전러! ',
-                // imageUrl: 'https://unsplash.it/400/200',
-                imageWidth: 400,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-              })
-            }}
-          >
-            완료버튼
-          </button> */}
+
           {data
             ? data.data.groupNowPercent === 100 && (
                 <button
@@ -242,9 +227,10 @@ function ChallengeBuzaDetail() {
                   return (
                     <AccountContent key={shortid.generate()}>
                       <AccountDate>
-                        {idx > 0 && challengeData.challengeLists[idx - 1]
+                        {idx > 0 &&
+                        challengeData.challengeLists[idx - 1]
                           .challengeRecordDate ===
-                        challengeData.challengeLists[idx].challengeRecordDate
+                          challengeData.challengeLists[idx].challengeRecordDate
                           ? ''
                           : acd.challengeRecordDate.slice(0, 10)}
                       </AccountDate>
@@ -393,8 +379,6 @@ const DetailCharacter = styled.img`
   width: 287px;
   height: 168px;
   margin: 0px auto 28px auto;
-
-  /* border: 1px solid black; */
 `
 // Scroll
 const ScrollWrapper = styled.div`
