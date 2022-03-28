@@ -48,7 +48,6 @@ instance.interceptors.request.use((config) => {
 })
 
 export const request = async ({ ...options }) => {
-
   console.log('req instance headers: ', instance.defaults.headers)
 
   const onSuccess = (response) => {
@@ -86,7 +85,7 @@ export const api = {
       }),
   getKakaoLogin: (code) =>
     instance
-      .get(`/member/kakao/callback?code=${code}`)
+      .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
         console.log(res)
         return res
@@ -114,14 +113,18 @@ instance.interceptors.response.use(
 
   async (error) => {
     const { data: responseData, config: originalRequest } = error.response
-    console.log('ERR RESPONSED', responseData, responseData.message, originalRequest)
+    console.log(
+      'ERR RESPONSED',
+      responseData,
+      responseData.message,
+      originalRequest,
+    )
     if (responseData.message === '컨트롤러 Move to Login Page') {
       console.log('dddd')
 
       setMoveToLoginPage()
       return Promise.reject(error)
     }
-
 
     // if (
     //   responseData.responseMessage === null &&
