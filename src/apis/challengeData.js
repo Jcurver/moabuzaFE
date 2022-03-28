@@ -3,7 +3,7 @@ import { request } from '../utils/axios'
 
 export const useChallengeData = (navigate) => {
   return useQuery(['challenge-data', navigate], () => {
-    return request({ url: '/money/challenge', method: 'get' })
+    return request({ url: '/challenge', method: 'get' })
   })
 }
 
@@ -15,6 +15,6 @@ export const useChallengeMainPageData = (navigate) => {
 
 export const useChallengeFriendData = (navigate) => {
   return useQuery(['challenge-friend', navigate], () => {
-    return request({ url: '/money/challenge/createChallenge', method: 'get' })
+    return request({ url: '/challenge/friend', method: 'get' })
   })
 }
