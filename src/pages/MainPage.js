@@ -10,7 +10,7 @@ import { getToken, onMessage } from 'firebase/messaging'
 
 import { setFlexStyles } from '../styles/Mixin'
 import { toggleGroupChallenge } from '../recoil/homeToggle'
-import { useMainPageData } from '../apis/onedayBuzaData'
+import { useMainPageData } from '../apis/mainpageData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
 import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
 import Loading from './Loading'
@@ -121,23 +121,23 @@ function MainPage() {
             <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
             <CharacterWrapper
               src={
-                data.data.hero === 'bunny' && nowGroupPercent < 40
+                data.data.hero === 'bunny' && nowGroupPercent < 30
                   ? BunnyStep01
                   : data.data.hero === 'bunny' && nowGroupPercent < 60
                   ? BunnyStep02
-                  : data.data.hero === 'bunny' && nowGroupPercent > 60
+                  : data.data.hero === 'bunny' && nowGroupPercent
                   ? BunnyStep03
-                  : data.data.hero === 'tongki' && nowGroupPercent < 40
+                  : data.data.hero === 'tongki' && nowGroupPercent < 30
                   ? TongkiStep01
                   : data.data.hero === 'tongki' && nowGroupPercent < 60
                   ? TongkiStep02
-                  : data.data.hero === 'tongki' && nowGroupPercent > 60
+                  : data.data.hero === 'tongki' && nowGroupPercent
                   ? TongkiStep03
-                  : data.data.hero === 'tanni' && nowGroupPercent < 40
+                  : data.data.hero === 'tanni' && nowGroupPercent < 30
                   ? TanniStep01
                   : data.data.hero === 'tanni' && nowGroupPercent < 60
                   ? TanniStep02
-                  : data.data.hero === 'tanni' && nowGroupPercent > 60
+                  : data.data.hero === 'tanni' && nowGroupPercent
                   ? TanniStep03
                   : null
               }
@@ -165,7 +165,7 @@ function MainPage() {
                 margin="0 auto"
                 borderRadius="11px"
                 labelAlignment="center"
-                labelSize="14px"
+                labelSize={data && data.data.groupPercent > 9 ? '14px' : '0px'}
               />
             </ProgressDiv>
           </>
@@ -252,7 +252,11 @@ function MainPage() {
                 margin="0 auto"
                 borderRadius="11px"
                 labelAlignment="center"
-                labelSize="14px"
+                labelSize={
+                  data && data.data.challengePercent > 9
+                    ? '14px'
+                    : '0px'
+                }
               />
             </ProgressDiv>
           </div>
