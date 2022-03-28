@@ -98,7 +98,7 @@ function Modified() {
     <Wrapper>
       <NavLink to="/settings">
         <ButtonDiv>
-          <Backarr />
+          <BackarrButton />
         </ButtonDiv>
       </NavLink>
       <TopLine />
@@ -181,8 +181,11 @@ const TopDiv = styled.div`
   left: 0px;
   top: 0px;
 `
-
+const BackarrButton = styled(Backarr)``
 const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   left: 1.11%;
 
