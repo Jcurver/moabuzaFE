@@ -382,7 +382,7 @@ const NicknameSubmit = styled.div`
 `
 const NicknameInput = styled.input`
   position: absolute;
-  width: 328px;
+  width: 216px;
   height: 52px;
   left: 16px;
   top: 40.83%;
