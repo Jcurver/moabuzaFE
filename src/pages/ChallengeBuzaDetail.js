@@ -4,10 +4,9 @@ import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import {
-  useChallengeData,
-  useChallengeMainPageData,
-} from '../apis/challengeData'
+import { useChallengeData } from '../apis/challengeData'
+import { useMainPageData } from '../apis/mainpageData'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { request } from '../utils/axios'
 import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
@@ -26,7 +25,7 @@ function ChallengeBuzaDetail() {
   const navigate = useNavigate()
 
   const { data, isLoading } = useChallengeData(navigate)
-  const homeData = useChallengeMainPageData(navigate)
+  const homeData = useMainPageData(navigate)
 
   const cancelGroup = (id) => {
     Swal.fire({
@@ -74,7 +73,7 @@ function ChallengeBuzaDetail() {
             navigate('/challengebuza')
           }}
         >
-          취소
+          <Backarr />
         </CancleMoveButton>
         <Title>
           <Text>도전해부자</Text>
@@ -147,7 +146,11 @@ function ChallengeBuzaDetail() {
             margin="0 auto"
             borderRadius="11px"
             labelAlignment="center"
-            labelSize="14px"
+            labelSize={
+              homeData && homeData.data.data.challengePercent > 9
+                ? '14px'
+                : '0px'
+            }
           />
 
           {data
@@ -210,8 +213,10 @@ function ChallengeBuzaDetail() {
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
+                      labelSize={
+                        member.challengeMemberNowPercent > 9 ? '14px' : '0px'
+                      }
                       labelAlignment="center"
-                      labelSize="14px"
                     />
                   </ChallengeFriendList>
                 )

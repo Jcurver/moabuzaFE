@@ -488,7 +488,7 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
-  /* background: #f6f9fe; */
+  background: #f6f9fe;
 `
 const TodayListTitle = styled.div`
   position: absolute;
