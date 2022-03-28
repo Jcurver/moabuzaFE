@@ -65,7 +65,7 @@ function OnedayBuza(state) {
 
   const mutation = useMutation((date) => {
     return request({
-      url: '/money/dayList',
+      url: '/daylist',
       method: 'post',
       data: { recordDate: date },
     })
@@ -99,7 +99,7 @@ function OnedayBuza(state) {
     // ])
 
     return request({
-      url: `/money/dayList/delete/${id}`,
+      url: `/daylist/${id}`,
       method: 'delete',
       data: {},
     }).then(navigate(0))

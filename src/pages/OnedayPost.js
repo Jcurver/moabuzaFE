@@ -94,7 +94,7 @@ function OnedayPost() {
       )
     } else {
       return request({
-        url: '/money/addRecord/post',
+        url: '/daylist/record',
         method: 'post',
         data: {
           recordType: data.option,

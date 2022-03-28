@@ -51,7 +51,7 @@ function ChallengeBuzaCreate() {
       selectFriendNickName = null
     }
     return request({
-      url: '/alarm/goal',
+      url: '/challenge',
       method: 'post',
       data: {
         goalType: 'CHALLENGE',
