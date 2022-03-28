@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import Slider from 'react-slick'
+import Swal from 'sweetalert2'
 import { ReactComponent as Challenge } from '../assets/icons/menu/challenge.svg'
 import { ReactComponent as Asset } from '../assets/icons/menu/Asset28.svg'
 import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
@@ -9,10 +11,46 @@ import { ReactComponent as Together } from '../assets/icons/menu/together.svg'
 import { ReactComponent as Vector } from '../assets/icons/menu/Vector.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { ReactComponent as Edit } from '../assets/icons/settings/edit1.svg'
+import { ReactComponent as Logout } from '../assets/icons/settings/logout.svg'
+import { ReactComponent as Review } from '../assets/icons/settings/review.svg'
+import BugReport from '../assets/menu/moabuza-bugreport.png'
+import SlideReview from '../assets/menu/moabuza-review.png'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import { setFlexStyles } from '../styles/Mixin'
 
 function Menu() {
+  const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    cssEase: 'linear',
+  }
+
+  function logout() {
+    console.log('gkgk')
+    Swal.fire({
+      title: '로그아웃할 거지?',
+      text: '꼭 다시 돌아와부자!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '나가부자',
+      cancelButtonText: '있어부자',
+    }).then((result) => {
+      if (result.value) {
+        console.log(result)
+        // this.props.submitUser(this.state)
+      }
+    })
+  }
   return (
     <Wrapper>
       <TopDiv>
@@ -31,82 +69,20 @@ function Menu() {
         <Title>메뉴</Title>
         <TopLine />
       </TopDiv>
-      <NavLink to="/onedaybuza">
-        <TodayDiv style={{ top: '11.94%' }}>
 
-          <Vector
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-            }}
-          />
-          <TodayText>하루부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
-      <NavLink to="/groupbuza">
-        <TodayDiv style={{ top: '20.27%' }}>
+      <MenuSlideBox>
+        <Slider {...settings}>
+          <div>
+            <SlideImg src={BugReport} />
+          </div>
+          <div>
+            <SlideImg src={SlideReview} />
+          </div>
+        </Slider>
+      </MenuSlideBox>
 
-          <Together
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          <TodayText>같이해부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
-      <NavLink to="/challengebuza">
-        <TodayDiv style={{ top: '28.61%' }}>
-
-          <Challenge
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          {/* <TodayLogo /> */}
-          <TodayText>도전해부자</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink>
       <NavLink to="/friends">
-        <TodayDiv style={{ top: '41.53%' }}>
-
+        <TodayDiv style={{ top: '243px' }}>
           <Friend
             style={{
               width: '24px',
@@ -130,8 +106,7 @@ function Menu() {
         </TodayDiv>
       </NavLink>
       <NavLink to="/bedge">
-        <TodayDiv style={{ top: '49.86%' }}>
-
+        <TodayDiv style={{ top: '303px' }}>
           <Asset
             style={{
               width: '24px',
@@ -153,9 +128,80 @@ function Menu() {
           />
         </TodayDiv>
       </NavLink>
-      <NavLink to="/settings">
-        <TodayDiv style={{ top: '58.19%' }}>
 
+      <NavLink to="/modified">
+        <TodayDiv style={{ top: '363px' }}>
+          <TodayLogoDiv />
+          <Edit
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '16px',
+              top: '18px',
+            }}
+          />
+          <TodayText>캐릭터/닉네임 수정</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
+        </TodayDiv>
+      </NavLink>
+
+      <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
+        <TodayDiv style={{ top: '423px' }}>
+          <TodayLogoDiv />
+          <Review
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '16px',
+              top: '18px',
+            }}
+          />
+          <TodayText>리뷰</TodayText>
+          <Rightarr
+            style={{
+              position: 'absolute',
+              width: '24px',
+              height: '24px',
+              left: '320px',
+              top: '18px',
+            }}
+          />
+        </TodayDiv>
+      </a>
+      <TodayDiv onClick={() => logout()} style={{ top: '483px' }}>
+        <TodayLogoDiv />
+        <Logout
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '16px',
+            top: '18px',
+          }}
+        />
+        <TodayText>로그아웃</TodayText>
+        <Rightarr
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '320px',
+            top: '18px',
+          }}
+        />
+      </TodayDiv>
+      {/* <NavLink to="/settings">
+        <TodayDiv style={{ top: '543px' }}>
           <Setting
             style={{
               width: '24px',
@@ -176,7 +222,7 @@ function Menu() {
             }}
           />
         </TodayDiv>
-      </NavLink>
+      </NavLink> */}
     </Wrapper>
   )
 }
@@ -194,14 +240,25 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
+const MenuSlideBox = styled.div`
+  position: absolute;
+  width: 360px;
+  height: 160px;
+  left: 0px;
+  top: 83px;
+`
+
+const SlideImg = styled.img`
+  width: 360px;
+  height: 160px;
+`
+
 const ButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
   right: 85.56%;
   top: 33.72%;
   bottom: 10.47%;
-
-
 `
 
 const Title = styled.div`
@@ -250,7 +307,7 @@ const TodayLogoDiv = styled.div`
   left: 4px;
   top: 6px;
 
-  background: rgba(196, 196, 196, 0.3);
+  /* background: rgba(196, 196, 196, 0.3); */
 `
 const TodayLogo = styled.div`
   position: absolute;
