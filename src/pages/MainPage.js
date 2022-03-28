@@ -144,6 +144,7 @@ function MainPage() {
             />
             <ContentUnderDiv>
               <ContentWon>
+                체크1
                 {data.data.groupNeedAmount.toLocaleString('en-US')}원
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
@@ -156,9 +157,9 @@ function MainPage() {
               <ProgressBar
                 // completed={60}
                 completed={data.data.groupPercent}
-                animateOnRender="true"
+                animateOnRender
                 bgColor="#4675F0"
-                baseBgColor="E5EAF2"
+                baseBgColor="#E5EAF2"
                 width="328px"
                 height="20px"
                 margin="0 auto"
@@ -243,9 +244,9 @@ function MainPage() {
             <ProgressDiv>
               <ProgressBar
                 completed={data.data.challengePercent}
-                animateOnRender="true"
+                animateOnRender
                 bgColor="#4675F0"
-                baseBgColor="E5EAF2"
+                baseBgColor="#E5EAF2"
                 width="328px"
                 height="20px"
                 margin="0 auto"
@@ -335,7 +336,7 @@ const CharacterWrapper = styled.img`
   width: 287px;
   height: 168px;
   left: 36.5px;
-  top: 213px;
+  top: 31.52%;
 `
 const RightButtonDiv = styled.div`
   position: absolute;
