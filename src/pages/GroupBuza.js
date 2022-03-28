@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
@@ -9,27 +9,26 @@ import Nav from '../components/Nav'
 import ScrollWrapper from '../components/ScrollWrapper'
 import { api, request } from '../utils/axios'
 import { useGroupData } from '../apis/groupData'
+import { useMainPageData } from '../apis/mainpageData'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
-import {
-  BunnyFace,
-  TanniFace,
-  TongkiFace,
-  TanniStep02,
-} from '../assets/character'
 
 const shortid = require('shortid')
 
 function GroupBuza() {
-  const [pending, setPending] = useState(true)
-  const [isData, setIsData] = useState(true)
   const navigate = useNavigate()
 
   // 홈데이터 부르는 부분 수정사함 -----------
-  const { isLoading, isError, data, error } = useGroupData(navigate)
-  console.log('groupData-------', data)
-  const cancelWaitingGroup = (id) => {
+  const { data, isLoading } = useGroupData(navigate)
+  console.log('그룹부자데이터::', data)
+  const homeData = useMainPageData(navigate)
+  if (data) {
+    console.log('데이터ㅣㅣ', data)
+    console.log('웨이팅골', data.data.waitingGoals)
+  }
+  const cancelGroup = (id) => {
     Swal.fire({
-      title: '그룹포기!',
+      title: '도전 포기!',
       text: '진짜 포기하시겠어요?!!',
       icon: 'warning',
       showCancelButton: true,
@@ -38,168 +37,166 @@ function GroupBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log('result------', result)
-      console.log('id--------', id)
-      if (result.isConfirmed) {
-        request({
-          url: `/group/${id}/waiting`,
-          method: 'delete',
-          data: {
-            id: data.id,
-          },
-        }).then((res) => {
-          navigate(0)
-        })
-      }
+      console.log(id)
+      console.log(result)
+
+      request({
+        url: `/group/${id}/waiting`,
+        method: 'delete',
+      }).then(() => {
+        navigate(0)
+      })
     })
   }
+
   useEffect(() => {}, [navigate])
-  // if (homeData.isLoading) {
-  //   return <Loading />
-  // }
+  console.log(homeData)
+  console.log(data)
+
+  if (homeData.isLoading) {
+    return <Loading />
+  }
   if (isLoading) {
     return <Loading />
   }
-  const groupData = data.data
 
   return (
     <Wrapper>
-      {/* {data ? groupData.goalStatus : 'asdasd'}
-      <button
-        type="button"
-        onClick={() => {
-          request({
-            url: `/money/group`,
-            method: 'get',
-            data: {
-              id: data.id,
-            },
-          }).then(
-            (response) => console.log(response),
-            (groupData.goalStatus = 'goal'),
-            navigate('/groupbuza'),
-          )
-        }}
-      >
-        설정변경
-      </button> */}
       <Title>
         <Text>같이해부자</Text>
       </Title>{' '}
-      {data
-        ? groupData.goalStatus === 'noGoal' && (
-            <GoalWrapper>
-              <GoalText>원하는 목표를 만들어보세요</GoalText>
-              <GoalDescribe>
-                공동의 목표를 친구와 함께 달성해보세요.
-              </GoalDescribe>
-              <Button
-                width="296px"
-                height="52px"
-                fontSize="14px"
-                background="#4675F0"
-                baseBgColor="E5EAF2"
-                onClick={() => {
-                  navigate('/groupbuzacreate')
-                }}
-              >
-                + 목표 개설하기
-              </Button>
-            </GoalWrapper>
-          )
-        : null}
-      {data
-        ? groupData.goalStatus === 'goal' && (
-            <>
+      <GroupWaitingDiv>
+        {data
+          ? data.data.goalStatus === 'noGoal' && (
               <ScrollWrapper height="44%">
-                <GoalWrapper
-                  onClick={() => {
-                    navigate('/groupbuzadetail')
-                  }}
-                >
-                  <GroupFriend>
-                    {groupData.groupMembers.map((member) => {
+                <GoalWrapper>
+                  <GoalText>원하는 목표를 만들어보세요!</GoalText>
+                  <GoalDescribe>
+                    공동의 목표를 친구와 함께 달성해보세요
+                  </GoalDescribe>
+
+                  <Button
+                    width="296px"
+                    height="52px"
+                    fontSize="14px"
+                    background="#4675F0"
+                    onClick={() => {
+                      navigate('/groupbuzacreate')
+                    }}
+                  >
+                    + 목표 개설하기
+                  </Button>
+                </GoalWrapper>
+              </ScrollWrapper>
+            )
+          : null}
+
+        {data
+          ? data.data.goalStatus === 'goal' && (
+              <>
+                <ScrollWrapper height="44%">
+                  <GoalWrapper
+                    onClick={() => {
+                      navigate('/groupbuzadetail')
+                    }}
+                  >
+                    <GroupFriend>
+                      {data
+                        ? data.data.groupMembers.map((member) => {
+                            return (
+                              <GroupFriendIcon
+                                key={shortid.generate()}
+                                src={
+                                  // eslint-disable-next-line no-nested-ternary
+                                  member.groupMemberHero === 'tanni'
+                                    ? TanniFace
+                                    : // eslint-disable-next-line no-nested-ternary
+                                    member.groupMemberHero === 'tongki'
+                                    ? TongkiFace
+                                    : member.groupMemberHero === 'bunny'
+                                    ? BunnyFace
+                                    : null
+                                }
+                              />
+                            )
+                          })
+                        : null}
+                    </GroupFriend>
+                    <GroupFriendTitle>
+                      {data ? data.data.groupName : null}
+                    </GroupFriendTitle>
+                    <GroupFriendGoal>
+                      <GroupFriendGoalAmount>
+                        {homeData
+                          ? homeData.data.data.groupNeedAmount.toLocaleString(
+                              'ko-KR',
+                            )
+                          : null}
+                      </GroupFriendGoalAmount>
+                      <span> 원 남았습니다.</span>
+                    </GroupFriendGoal>
+                    <ProgressBar
+                      // completed={60}
+                      completed={
+                        homeData ? homeData.data.data.groupPercent : 50
+                      }
+                      animateOnRender
+                      bgColor="#4675F0"
+                      width="304px"
+                      height="20px"
+                      margin="0 auto"
+                      borderRadius="11px"
+                      labelAlignment="center"
+                      labelSize={
+                        homeData && homeData.data.data.groupPercent > 9
+                          ? '14px'
+                          : '0px'
+                      }
+                    />
+                  </GoalWrapper>
+                  <ConmpletedTitle>완료목록</ConmpletedTitle>
+                </ScrollWrapper>
+                <ScrollWrapper height="280px">
+                  <CompletedList>
+                    {data.data.groupDoneGoals.map((data, idx) => {
                       return (
-                        <GroupFriendIcon
-                          key={shortid.generate()}
-                          src={
-                            // eslint-disable-next-line no-nested-ternary
-                            member.groupMemberHero === 'tanni'
-                              ? TanniFace
-                              : // eslint-disable-next-line no-nested-ternary
-                              member.groupMemberHero === 'tongki'
-                              ? TongkiFace
-                              : member.groupMemberHero === 'bunny'
-                              ? BunnyFace
-                              : null
-                          }
-                        />
+                        <CompletedContent key={shortid.generate()}>
+                          <CompletedText>{data}</CompletedText>
+                        </CompletedContent>
                       )
                     })}
-                  </GroupFriend>
-                  <GroupFriendTitle>{groupData.groupName}</GroupFriendTitle>
-                  <GroupFriendGoal>
-                    <GroupFriendGoalAmount>
-                      {groupData.groupLeftAmount.toLocaleString('ko-KR')}
-                    </GroupFriendGoalAmount>
-                    <span> 원 남았습니다.</span>
-                  </GroupFriendGoal>
-                  <ProgressBar
-                    // completed={60}
-                    completed={data ? groupData.groupNowPercent : 50}
-                    animateOnRender
-                    bgColor="#4675F0"
-                    width="304px"
-                    height="20px"
-                    margin="0 auto"
-                    borderRadius="11px"
-                    labelAlignment="center"
-                    labelSize="14px"
-                  />
-                </GoalWrapper>
-                <ConmpletedTitle>완료목록</ConmpletedTitle>
-              </ScrollWrapper>
-              <ScrollWrapper>
-                <CompletedList height="280px">
-                  {groupData.groupDoneGoals.map((data) => {
-                    return (
-                      <CompletedContent key={shortid.generate()}>
-                        <CompletedText>{data}</CompletedText>
-                      </CompletedContent>
-                    )
-                  })}
-                </CompletedList>
-              </ScrollWrapper>
-            </>
-          )
-        : null}
-      {data && data.data.goalStatus === 'waiting' ? (
-        <GoalList>
-          {data.data.waitingGoals.map((gStatus, idx) => {
-            return (
-              <GoalWrapper>
-                <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
-                <GoalDescribe>
-                  모두 수락하면 도전해부자가 생성됩니다.
-                </GoalDescribe>
-
-                <Button
-                  width="296px"
-                  height="52px"
-                  fontSize="14px"
-                  background="#4675F0"
-                  onClick={() => {
-                    console.log('gStatus:::', gStatus.id)
-                    cancelWaitingGroup(gStatus.id)
-                  }}
-                >
-                  대기취소
-                </Button>
-              </GoalWrapper>
+                  </CompletedList>
+                </ScrollWrapper>
+              </>
             )
-          })}
-        </GoalList>
-      ) : null}
+          : null}
+
+        {data && data.data.goalStatus === 'waiting'
+          ? data.data.waitingGoals.map((gStatus, idx) => {
+              return (
+                <GoalWrapper>
+                  <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                  <GoalDescribe>
+                    모두 수락하면 같이해부자가 생성됩니다.
+                  </GoalDescribe>
+
+                  <Button
+                    width="296px"
+                    height="52px"
+                    fontSize="14px"
+                    background="#4675F0"
+                    onClick={() => {
+                      console.log('gStatus:::', gStatus.id)
+                      cancelGroup(gStatus.id)
+                    }}
+                  >
+                    대기취소
+                  </Button>
+                </GoalWrapper>
+              )
+            })
+          : null}
+      </GroupWaitingDiv>
       <Nav />
     </Wrapper>
   )
@@ -211,11 +208,25 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const Title = styled.div`
-  margin: 43px 144px 32px 144px;
+  /* ${setFlexStyles({
+    display: 'flex',
+    // flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  })}
+  margin-top: 19px;
+  margin-bottom: 33px; */
+
+  position: absolute;
   width: 72px;
   height: 22px;
   left: 144px;
   top: 43px;
+`
+
+const MoveButton = styled.button`
+  width: 48px;
+  height: 48px;
 `
 
 const Text = styled.span`
@@ -225,17 +236,13 @@ const Text = styled.span`
   font-size: 16px;
   line-height: 140%;
 `
-const GoalList = styled.div`
-  /* margin-top: 100px; */
-`
 
 const GoalWrapper = styled.div`
-  /* position: absolute; */
-  position: static;
+  position: absolute;
   width: 328px;
   height: 156px;
-  margin-left: 16px;
-  margin-bottom: 8px;
+  /* top: 13%; */
+  margin-bottom: 10px;
   padding-top: 0.01px;
 
   /* color/Btn-basic2 */
@@ -291,9 +298,10 @@ const CompletedList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* justify-content: center; */
   padding: 0px;
 
-  position: absolute;
+  /* position: absolute; */
   width: 328px;
   height: 256px;
   left: 16px;
@@ -314,10 +322,8 @@ const CompletedContent = styled.div`
   flex-grow: 0;
   margin: 8px 0px;
   padding: 16px;
-
   display: flex;
   /* justify-content: center; */
-
   align-items: center;
 `
 
@@ -347,13 +353,16 @@ const GroupFriend = styled.div`
   padding: 0px;
 
   margin: 20px 0px 16px 12px;
+  /* position: absolute; */
   width: 200px;
   height: 24px;
+  /* left: 28px;
+  top: 16.5%; */
 `
 const GroupFriendIcon = styled.img`
   /* position: static; */
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
   /* color / gray / Gray50 */
 
@@ -368,6 +377,8 @@ const GroupFriendIcon = styled.img`
 `
 
 const GroupFriendTitle = styled.div`
+  /* position: absolute;
+   */
   margin: 16px 132px 8px 12px;
   width: 300px;
   height: 16px;
@@ -414,6 +425,19 @@ const GroupFriendGoalAmount = styled.span`
   /* color / text / Color-text-Black */
 
   color: #4675f0;
+`
+const GroupWaitingDiv = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  left: 0px;
+  height: calc(87% - 90px);
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 `
 
 export default GroupBuza
