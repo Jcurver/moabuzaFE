@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { useForm } from 'react-hook-form'
 import { request, api } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 
@@ -97,18 +98,7 @@ function Modified() {
     <Wrapper>
       <NavLink to="/settings">
         <ButtonDiv>
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20.07 24.0002L27.71 15.5202C28.05 15.1502 28.02 14.5702 27.64 14.2402C27.27 13.9002 26.69 13.9302 26.36 14.3102L18.18 23.3902C17.87 23.7402 17.87 24.2602 18.18 24.6102L26.36 33.7002C26.54 33.9002 26.79 34.0002 27.04 34.0002C27.26 34.0002 27.47 33.9202 27.65 33.7702C28.02 33.4302 28.05 32.8602 27.72 32.4902L20.09 24.0102L20.07 24.0002Z"
-              fill="#333333"
-            />
-          </svg>
+          <Backarr />
         </ButtonDiv>
       </NavLink>
       <TopLine />
