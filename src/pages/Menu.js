@@ -154,7 +154,7 @@ function Menu() {
         </TodayDiv>
       </NavLink>
 
-      <NavLink to="/review">
+      <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
         <TodayDiv style={{ top: '423px' }}>
           <TodayLogoDiv />
           <Review
@@ -177,9 +177,31 @@ function Menu() {
             }}
           />
         </TodayDiv>
-      </NavLink>
-      <NavLink to="/settings">
-        <TodayDiv style={{ top: '483px' }}>
+      </a>
+      <TodayDiv onClick={() => logout()} style={{ top: '483px' }}>
+        <TodayLogoDiv />
+        <Logout
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '16px',
+            top: '18px',
+          }}
+        />
+        <TodayText>로그아웃</TodayText>
+        <Rightarr
+          style={{
+            position: 'absolute',
+            width: '24px',
+            height: '24px',
+            left: '320px',
+            top: '18px',
+          }}
+        />
+      </TodayDiv>
+      {/* <NavLink to="/settings">
+        <TodayDiv style={{ top: '543px' }}>
           <Setting
             style={{
               width: '24px',
@@ -200,7 +222,7 @@ function Menu() {
             }}
           />
         </TodayDiv>
-      </NavLink>
+      </NavLink> */}
     </Wrapper>
   )
 }
