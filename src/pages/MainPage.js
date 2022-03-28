@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable no-nested-ternary */
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { useRecoilState, atom} from 'recoil'
+import { useRecoilState, atom } from 'recoil'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -17,9 +18,23 @@ import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
 import '../styles/MenuTransition.css'
 import { api } from '../utils/axios'
-import { nowDate } from '../hooks/nowDate';
-import { onedayBuzaDate } from '../recoil/setDateToday';
-import { setItem } from '../utils/sessionStorage';
+import { nowDate } from '../hooks/nowDate'
+import { onedayBuzaDate } from '../recoil/setDateToday'
+import { setItem } from '../utils/sessionStorage'
+import {
+  BunnyGG,
+  TongkiGG,
+  TanniGG,
+  TanniStep03,
+  TanniStep02,
+  TanniStep01,
+  BunnyStep03,
+  TongkiStep03,
+  TongkiStep02,
+  TongkiStep01,
+  BunnyStep02,
+  BunnyStep01,
+} from '../assets/character'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -27,8 +42,6 @@ function MainPage() {
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
   setItem('nowdate', new Date())
-
-
 
   const { isLoading, data, isError, error } = useMainPageData(navigate)
   console.log('데이터확인 : ', isLoading, data, isError, error)
@@ -60,93 +73,146 @@ function MainPage() {
     console.log('error : ', error)
     return <ErrorLog error={error} />
   }
+
+  const nowChallengePercent = data.data.challengePercent
+  const nowGroupPercent = data.data.groupPercent
+
+  console.log('nowChallengePercent', nowChallengePercent)
+  console.log('nowGroupPercent', nowGroupPercent)
   // if(data && data.data.nickname )
 
   return (
     <Wrapper>
-      <NavLink to="/alerts">
-        <RightButtonDiv />
-        {data && data?.data?.alarmCount > 0 ? (
-          <AlertOn
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '88.89%',
-              top: '5.69%',
-              position: 'absolute',
-            }}
-          />
-        ) : (
-          <Alert
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '88.89%',
-              top: '5.69%',
-              position: 'absolute',
-            }}
-          />
-        )}
-      </NavLink>
-      <Toggle>
-        <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
-          같이해부자
-        </LeftBtn>
-        <RightBtn toggle={toggle} onClick={rightToggleBtn}>
-          도전해부자
-        </RightBtn>
-      </Toggle>
-      {toggle === 'group' && data.data.groupName ? (
-        <>
-          <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
-          <ContentUnderDiv>
-            <ContentWon>
-              {data.data.groupNeedAmount.toLocaleString('en-US')}원
-            </ContentWon>
-            <ContentNeed>남았어요!</ContentNeed>
-          </ContentUnderDiv>
-          {/* <CharacterInfo>
-            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo> */}
-          <ProgressDiv>
-            <ProgressBar
-              // completed={60}
-              completed={data.data.groupPercent}
-              animateOnRender="true"
-              bgColor="#4675F0"
-              baseBgColor="E5EAF2"
-              width="328px"
-              height="20px"
-              margin="0 auto"
-              borderRadius="11px"
-              labelAlignment="center"
-              labelSize="14px"
+      <ColorWrapper>
+        <NavLink to="/alerts">
+          <RightButtonDiv />
+          {data && data?.data?.alarmCount > 0 ? (
+            <AlertOn
+              style={{
+                width: '24px',
+                height: '24px',
+                left: '88.89%',
+                top: '5.69%',
+                position: 'absolute',
+              }}
             />
-          </ProgressDiv>
-        </>
-      ) : (
-        ''
-      )}
-      {toggle === 'group' && !data.data.groupName ? (
-        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-      ) : (
-        ''
-      )}
-      {toggle === 'challenge' && data.data.challengeName ? (
-        <div>
-          <ContentGoalName>{data?.data?.challengeName}</ContentGoalName>
-          <ContentUnderDiv>
-            <ContentWon>
-              {data?.data?.challengeNeedAmount.toLocaleString('en-US')}원
-            </ContentWon>
-            <ContentNeed>남았어요!</ContentNeed>
-          </ContentUnderDiv>
-          {/* <CharacterInfo>
+          ) : (
+            <Alert
+              style={{
+                width: '24px',
+                height: '24px',
+                left: '88.89%',
+                top: '5.69%',
+                position: 'absolute',
+              }}
+            />
+          )}
+        </NavLink>
+        <Toggle>
+          <LeftBtn toggle={toggle} onClick={leftToggleBtn}>
+            같이해부자
+          </LeftBtn>
+          <RightBtn toggle={toggle} onClick={rightToggleBtn}>
+            도전해부자
+          </RightBtn>
+        </Toggle>
+        {toggle === 'group' && data.data.groupName ? (
+          <>
+            <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
+            <CharacterWrapper
+              src={
+                data.data.hero === 'bunny' && nowGroupPercent < 40
+                  ? BunnyStep01
+                  : data.data.hero === 'bunny' && nowGroupPercent < 60
+                  ? BunnyStep02
+                  : data.data.hero === 'bunny' && nowGroupPercent > 60
+                  ? BunnyStep03
+                  : data.data.hero === 'tongki' && nowGroupPercent < 40
+                  ? TongkiStep01
+                  : data.data.hero === 'tongki' && nowGroupPercent < 60
+                  ? TongkiStep02
+                  : data.data.hero === 'tongki' && nowGroupPercent > 60
+                  ? TongkiStep03
+                  : data.data.hero === 'tanni' && nowGroupPercent < 40
+                  ? TanniStep01
+                  : data.data.hero === 'tanni' && nowGroupPercent < 60
+                  ? TanniStep02
+                  : data.data.hero === 'tanni' && nowGroupPercent > 60
+                  ? TanniStep03
+                  : null
+              }
+            />
+            <ContentUnderDiv>
+              <ContentWon>
+                {data.data.groupNeedAmount.toLocaleString('en-US')}원
+              </ContentWon>
+              <ContentNeed>남았어요!</ContentNeed>
+            </ContentUnderDiv>
+            {/* <CharacterInfo>
             <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
             <CharacterNickname>{data.data.hero}</CharacterNickname>
           </CharacterInfo> */}
-          {/* <ProgressDiv />
+            <ProgressDiv>
+              <ProgressBar
+                // completed={60}
+                completed={data.data.groupPercent}
+                animateOnRender="true"
+                bgColor="#4675F0"
+                baseBgColor="E5EAF2"
+                width="328px"
+                height="20px"
+                margin="0 auto"
+                borderRadius="11px"
+                labelAlignment="center"
+                labelSize="14px"
+              />
+            </ProgressDiv>
+          </>
+        ) : (
+          ''
+        )}
+        {toggle === 'group' && !data.data.groupName ? (
+          <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+        ) : (
+          ''
+        )}
+        {toggle === 'challenge' && data.data.challengeName ? (
+          <div>
+            <ContentGoalName>{data?.data?.challengeName}</ContentGoalName>
+            <CharacterWrapper
+              src={
+                data.data.hero === 'bunny' && nowChallengePercent < 40
+                  ? BunnyStep01
+                  : data.data.hero === 'bunny' && nowChallengePercent < 60
+                  ? BunnyStep02
+                  : data.data.hero === 'bunny' && nowChallengePercent > 60
+                  ? BunnyStep03
+                  : data.data.hero === 'tongki' && nowChallengePercent < 40
+                  ? TongkiStep01
+                  : data.data.hero === 'tongki' && nowChallengePercent < 60
+                  ? TongkiStep02
+                  : data.data.hero === 'tongki' && nowChallengePercent > 60
+                  ? TongkiStep03
+                  : data.data.hero === 'tanni' && nowChallengePercent < 40
+                  ? TanniStep01
+                  : data.data.hero === 'tanni' && nowChallengePercent < 60
+                  ? TanniStep02
+                  : data.data.hero === 'tanni' && nowChallengePercent > 60
+                  ? TanniStep03
+                  : null
+              }
+            />
+            <ContentUnderDiv>
+              <ContentWon>
+                {data?.data?.challengeNeedAmount.toLocaleString('en-US')}원
+              </ContentWon>
+              <ContentNeed>남았어요!</ContentNeed>
+            </ContentUnderDiv>
+            {/* <CharacterInfo>
+            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
+            <CharacterNickname>{data.data.hero}</CharacterNickname>
+          </CharacterInfo> */}
+            {/* <ProgressDiv />
           <div
             style={{
               width: '100%',
@@ -174,44 +240,70 @@ function MainPage() {
               {data && data.data.challengePercent > 5 ? "%":''}
             </ProgressBarCharge>
           </div> */}
-          <ProgressDiv>
-            <ProgressBar
-              completed={data.data.challengePercent}
-              animateOnRender="true"
-              bgColor="#4675F0"
-              baseBgColor="E5EAF2"
-              width="328px"
-              height="20px"
-              margin="0 auto"
-              borderRadius="11px"
-              labelAlignment="center"
-              labelSize="14px"
+            <ProgressDiv>
+              <ProgressBar
+                completed={data.data.challengePercent}
+                animateOnRender="true"
+                bgColor="#4675F0"
+                baseBgColor="E5EAF2"
+                width="328px"
+                height="20px"
+                margin="0 auto"
+                borderRadius="11px"
+                labelAlignment="center"
+                labelSize="14px"
+              />
+            </ProgressDiv>
+          </div>
+        ) : (
+          ''
+        )}
+        {toggle === 'challenge' && !data.data.challengeName ? (
+          <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
+        ) : (
+          ''
+        )}
+        {data && toggle === 'group' && !data.data.groupName ? (
+          <>
+            <CharacterWrapper
+              src={
+                data.data.hero === 'tanni'
+                  ? TanniGG
+                  : data.data.hero === 'tongki'
+                  ? TongkiGG
+                  : data.data.hero === 'bunny'
+                  ? BunnyGG
+                  : null
+              }
             />
-          </ProgressDiv>
-        </div>
-      ) : (
-        ''
-      )}
-      {toggle === 'challenge' && !data.data.challengeName ? (
-        <ContentDiv>😂 아직 목표가 없어요!</ContentDiv>
-      ) : (
-        ''
-      )}
-      {data && toggle === 'group' && !data.data.groupName ? (
-        <SetAmountButton onClick={() => makeGoal()}>
-          목표를 설정해주세요
-        </SetAmountButton>
-      ) : (
-        ''
-      )}
-      {data && toggle === 'challenge' && !data.data.challengeName ? (
-        <SetAmountButton onClick={() => makeGoal()}>
-          목표를 설정해주세요
-        </SetAmountButton>
-      ) : (
-        ''
-      )}
-
+            <SetAmountButton onClick={() => makeGoal()}>
+              목표를 설정해주세요
+            </SetAmountButton>
+          </>
+        ) : (
+          ''
+        )}
+        {data && toggle === 'challenge' && !data.data.challengeName ? (
+          <>
+            <CharacterWrapper
+              src={
+                data.data.hero === 'tanni'
+                  ? TanniGG
+                  : data.data.hero === 'tongki'
+                  ? TongkiGG
+                  : data.data.hero === 'bunny'
+                  ? BunnyGG
+                  : null
+              }
+            />
+            <SetAmountButton onClick={() => makeGoal()}>
+              목표를 설정해주세요
+            </SetAmountButton>
+          </>
+        ) : (
+          ''
+        )}
+      </ColorWrapper>
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
         <Won>{data ? data.data.wallet.toLocaleString('en-US') : '0'}원</Won>
@@ -232,6 +324,18 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+`
+const ColorWrapper = styled.div`
+  height: 66%;
+  background-color: #f6f9fe;
+`
+
+const CharacterWrapper = styled.img`
+  position: absolute;
+  width: 287px;
+  height: 168px;
+  left: 36.5px;
+  top: 213px;
 `
 const RightButtonDiv = styled.div`
   position: absolute;
