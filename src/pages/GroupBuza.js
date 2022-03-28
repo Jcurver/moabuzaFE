@@ -42,7 +42,7 @@ function GroupBuza() {
       console.log('id--------', id)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitWaitingGroup/${id}`,
+          url: `/group/${id}/waiting`,
           method: 'delete',
           data: {
             id: data.id,

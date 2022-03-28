@@ -8,8 +8,8 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import {
   useAlertsChallengeData,
-  alarmAccept,
-  alarmRefuse,
+  alarmChallengeAccept,
+  alarmChallengeRefuse,
   alarmDelete,
 } from '../apis/alertsData'
 
@@ -155,13 +155,13 @@ function AlertsChallenge() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmAccept(d.alarmId)}
+                      onClick={() => alarmChallengeAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmRefuse(d.alarmId)}
+                      onClick={() => alarmChallengeRefuse(d.alarmId)}
                       style={{ left: '312px' }}
                     >
                       거절

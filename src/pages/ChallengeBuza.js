@@ -42,7 +42,7 @@ function ChallengeBuza() {
       console.log(result)
 
       request({
-        url: `/money/challenge/exitWaitingChallenge/${id}`,
+        url: `/challenge/${id}/waiting`,
         method: 'delete',
       }).then(() => {
         navigate(0)
@@ -254,10 +254,9 @@ const GoalWrapper = styled.div`
   width: 328px;
   height: 156px;
   /* top: 13%; */
-  /* margin-left: 16px; */
   margin-bottom: 10px;
   padding-top: 0.01px;
-  margin-left: 16px;
+
   /* color/Btn-basic2 */
 
   background: #f5f5f7;
