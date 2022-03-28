@@ -86,7 +86,7 @@ export const api = {
       }),
   getKakaoLogin: (code) =>
     instance
-      .get(`/user/kakao/callback?code=${code}`)
+      .get(`/member/kakao/callback?code=${code}`)
       .then((res) => {
         console.log(res)
         return res
