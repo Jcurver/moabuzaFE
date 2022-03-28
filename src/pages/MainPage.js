@@ -144,7 +144,7 @@ function MainPage() {
             />
             <ContentUnderDiv>
               <ContentWon>
-                체크1
+              
                 {data.data.groupNeedAmount.toLocaleString('en-US')}원
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
@@ -182,23 +182,23 @@ function MainPage() {
             <ContentGoalName>{data?.data?.challengeName}</ContentGoalName>
             <CharacterWrapper
               src={
-                data.data.hero === 'bunny' && nowChallengePercent < 40
+                data.data.hero === 'bunny' && nowChallengePercent < 30
                   ? BunnyStep01
                   : data.data.hero === 'bunny' && nowChallengePercent < 60
                   ? BunnyStep02
-                  : data.data.hero === 'bunny' && nowChallengePercent > 60
+                  : data.data.hero === 'bunny' && nowChallengePercent
                   ? BunnyStep03
-                  : data.data.hero === 'tongki' && nowChallengePercent < 40
+                  : data.data.hero === 'tongki' && nowChallengePercent < 30
                   ? TongkiStep01
                   : data.data.hero === 'tongki' && nowChallengePercent < 60
                   ? TongkiStep02
-                  : data.data.hero === 'tongki' && nowChallengePercent > 60
+                  : data.data.hero === 'tongki' && nowChallengePercent
                   ? TongkiStep03
-                  : data.data.hero === 'tanni' && nowChallengePercent < 40
+                  : data.data.hero === 'tanni' && nowChallengePercent < 30
                   ? TanniStep01
                   : data.data.hero === 'tanni' && nowChallengePercent < 60
                   ? TanniStep02
-                  : data.data.hero === 'tanni' && nowChallengePercent > 60
+                  : data.data.hero === 'tanni' && nowChallengePercent
                   ? TanniStep03
                   : null
               }
