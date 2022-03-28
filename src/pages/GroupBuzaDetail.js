@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { useGroupData } from '../apis/groupData'
 import { request } from '../utils/axios'
+import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import coin from '../assets/icons/coin/ico_coin1.png'
 import {
   BunnyFace,
@@ -77,7 +78,7 @@ function GroupBuzaDetail() {
             navigate('/groupbuza')
           }}
         >
-          취소
+          <Backarr/>
         </CancleMoveButton>
         <Title>
           <Text>같이해부자</Text>
@@ -143,7 +144,9 @@ function GroupBuzaDetail() {
             margin="0 auto"
             borderRadius="11px"
             labelAlignment="center"
-            labelSize="14px"
+            labelSize={
+              data && data.data.groupNowPercent > 9 ? '14px' : '0px'
+            }
           />
         </DetailWrapper>
 

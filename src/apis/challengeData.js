@@ -7,13 +7,8 @@ export const useChallengeData = (navigate) => {
   })
 }
 
-export const useChallengeMainPageData = (navigate) => {
-  return useQuery(['challenge-home', navigate], () => {
-    return request({ url: '/home', method: 'get' })
-  })
-}
 
-export const useChallengeFriendData = (navigate) => {
+export const useFriendData = (navigate) => {
   return useQuery(['challenge-friend', navigate], () => {
     return request({ url: '/challenge/friend', method: 'get' })
   })
