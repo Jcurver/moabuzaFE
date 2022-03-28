@@ -42,7 +42,7 @@ function ChallengeBuzaDetail() {
       console.log(result)
       if (result.isConfirmed) {
         request({
-          url: `/money/challenge/exitchallenge/${data.data.id}`,
+          url: `/challenge/${data.data.id}/doing`,
           method: 'delete',
         }).then(() => {
           navigate('/challengebuza')
@@ -110,7 +110,7 @@ function ChallengeBuzaDetail() {
                     member.challengeMemberHero === 'tanni'
                       ? TanniFace
                       : // eslint-disable-next-line no-nested-ternary
-                      member.challengeMemberHero === 'tonki'
+                      member.challengeMemberHero === 'tongki'
                       ? TongkiFace
                       : member.challengeMemberHero === 'bunny'
                       ? BunnyFace
@@ -127,7 +127,7 @@ function ChallengeBuzaDetail() {
                 homeData.data.data.hero === 'tanni'
                   ? TanniStep03
                   : // eslint-disable-next-line no-nested-ternary
-                  homeData.data.data.hero === 'tonki'
+                  homeData.data.data.hero === 'tongki'
                   ? TongkiStep03
                   : homeData.data.data.hero === 'bunny'
                   ? BunnyStep03
@@ -184,7 +184,7 @@ function ChallengeBuzaDetail() {
                           member.challengeMemberHero === 'tanni'
                             ? TanniFace
                             : // eslint-disable-next-line no-nested-ternary
-                            member.challengeMemberHero === 'tonki'
+                            member.challengeMemberHero === 'tongki'
                             ? TongkiFace
                             : member.challengeMemberHero === 'bunny'
                             ? BunnyFace

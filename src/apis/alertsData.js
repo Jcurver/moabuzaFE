@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 import { request } from '../utils/axios'
 
 export const useAlertsFriendData = (navigate) => {
@@ -14,36 +14,54 @@ export const useAlertsGroupData = (navigate) => {
   })
 }
 
+
 export const useAlertsChallengeData = (navigate) => {
   return useQuery(['alerts-challenge', navigate], () => {
     return request({ url: '/alarm/challenge', method: 'get' })
   })
 }
 
-export const alarmAccept = (id) => {
-  return request({ url: `/alarm/goal/accept/${id}`, method: 'post' })
+export const alarmChallengeAccept = (id) => {
+  return request({ url: `/challenge/${id}/accept`, method: 'post'})
 }
 
-export const alarmRefuse = (id) => {
-  return request({ url: `/alarm/goal/refuse/${id}`, method: 'post' })
+export const alarmChallengeRefuse = (id) => {
+  return request({ url: `/challenge/${id}/refuse`, method: 'post' })
 }
+
+export const alarmGroupAccept = (id) => {
+  return request({ url: `/group/${id}/accept`, method: 'post' })
+}
+
+export const alarmGroupRefuse = (id) => {
+  return request({ url: `/group/${id}/refuse`, method: 'post' })
+}
+
 export const alarmDelete = (id) => {
-  return request({ url: `/alarm/delete/${id}`, method: 'delete' }).then((res) =>
-    console.log('알람삭제ㅣ:::', res),
-  )
+
+  return request({ url: `/alarm/${id}`, method: 'delete' }).then((res)=>console.log("알람삭제ㅣ:::",res))
 }
+
 
 export const alarmFriendAccept = (nickname) => {
-  return request({ url: `/alarm/firend/accept/${nickname}`, method: 'post' })
+  return request({
+    url: `/firend/accept`, method: 'post', data: {
+    friendNickname:nickname
+  } })
 }
 export const alarmFriendRefuse = (nickname) => {
-  return request({ url: `/alarm/firend/refuse/${nickname}`, method: 'post' })
+  return request({
+    url: `/firend/refuse`, method: 'post', data: {
+    friendNickname:nickname
+  } })
 }
+
+
 
 // export const useAcceptGroup = () => {
 //   const queryClient = useQueryClient()
 //   return useMutation(acceptGroup, {
-
+    
 //     onMutate: async (newHero) => {
 //       await queryClient.cancelQueries('alerts-group')
 //       const previousHeroData = queryClient.getQueryData('alerts-group')
