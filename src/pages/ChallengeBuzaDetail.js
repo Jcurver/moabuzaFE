@@ -1,4 +1,4 @@
-/* eslint-disable import/no-dynamic-require */
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -105,11 +105,9 @@ function ChallengeBuzaDetail() {
                 <GroupFriendIcon
                   key={shortid.generate()}
                   src={
-                    // eslint-disable-next-line no-nested-ternary
                     member.challengeMemberHero === 'tanni'
                       ? TanniFace
-                      : // eslint-disable-next-line no-nested-ternary
-                      member.challengeMemberHero === 'tongki'
+                      : member.challengeMemberHero === 'tongki'
                       ? TongkiFace
                       : member.challengeMemberHero === 'bunny'
                       ? BunnyFace
@@ -122,11 +120,9 @@ function ChallengeBuzaDetail() {
           <DetailImgWrapper>
             <DetailCharacter
               src={
-                // eslint-disable-next-line no-nested-ternary
                 homeData.data.data.hero === 'tanni'
                   ? TanniStep03
-                  : // eslint-disable-next-line no-nested-ternary
-                  homeData.data.data.hero === 'tongki'
+                  : homeData.data.data.hero === 'tongki'
                   ? TongkiStep03
                   : homeData.data.data.hero === 'bunny'
                   ? BunnyStep03
@@ -183,11 +179,9 @@ function ChallengeBuzaDetail() {
                     <ChallengeFriendContents>
                       <ChallengeFriendIcon
                         src={
-                          // eslint-disable-next-line no-nested-ternary
                           member.challengeMemberHero === 'tanni'
                             ? TanniFace
-                            : // eslint-disable-next-line no-nested-ternary
-                            member.challengeMemberHero === 'tongki'
+                            : member.challengeMemberHero === 'tongki'
                             ? TongkiFace
                             : member.challengeMemberHero === 'bunny'
                             ? BunnyFace

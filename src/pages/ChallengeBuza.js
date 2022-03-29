@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom'
@@ -8,10 +9,7 @@ import Button from '../components/Button'
 import Nav from '../components/Nav'
 import { api, request } from '../utils/axios'
 import ScrollWrapper from '../components/ScrollWrapper'
-import {
-  useChallengeData,
-
-} from '../apis/challengeData'
+import { useChallengeData } from '../apis/challengeData'
 import { useMainPageData } from '../apis/mainpageData'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
@@ -128,11 +126,9 @@ function ChallengeBuza() {
                               <GroupFriendIcon
                                 key={shortid.generate()}
                                 src={
-                                  // eslint-disable-next-line no-nested-ternary
                                   member.challengeMemberHero === 'tanni'
                                     ? TanniFace
-                                    : // eslint-disable-next-line no-nested-ternary
-                                    member.challengeMemberHero === 'tongki'
+                                    : member.challengeMemberHero === 'tongki'
                                     ? TongkiFace
                                     : member.challengeMemberHero === 'bunny'
                                     ? BunnyFace
@@ -173,7 +169,7 @@ function ChallengeBuza() {
                           ? 'center'
                           : 'left'
                       }
-                      labelSize='14px'
+                      labelSize="14px"
                     />
                   </GoalWrapper>
                   <ConmpletedTitle>완료목록</ConmpletedTitle>
@@ -266,7 +262,6 @@ const GoalWrapper = styled.div`
   /* top: 13%; */
   margin-bottom: 10px;
   padding-top: 0.01px;
-
 
   /* color/Btn-basic2 */
 
