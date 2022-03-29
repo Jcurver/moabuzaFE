@@ -10,8 +10,9 @@ import ScrollWrapper from '../components/ScrollWrapper'
 import { api, request } from '../utils/axios'
 import {
   useChallengeData,
-  useChallengeMainPageData,
+
 } from '../apis/challengeData'
+import { useMainPageData } from '../apis/mainpageData'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
 
@@ -22,7 +23,7 @@ function ChallengeBuza() {
 
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useChallengeData(navigate)
-  const homeData = useChallengeMainPageData(navigate)
+  const homeData = useMainPageData(navigate)
   if (data) {
     console.log('데이터ㅣㅣ', data)
     console.log('웨이팅골', data.data.waitingGoals)
@@ -42,7 +43,7 @@ function ChallengeBuza() {
       console.log(result)
 
       request({
-        url: `/money/challenge/exitWaitingChallenge/${id}`,
+        url: `/challenge/${id}/waiting`,
         method: 'delete',
       }).then(() => {
         navigate(0)
@@ -88,22 +89,26 @@ function ChallengeBuza() {
       <ChallengeWaitingDiv>
         {data
           ? data.data.goalStatus === 'noGoal' && (
-              <GoalWrapper>
-                <GoalText>원하는 목표를 만들어보세요</GoalText>
-                <GoalDescribe>도전할 금액을 설정한 후 모아보세요.</GoalDescribe>
+              <ScrollWrapper height="44%">
+                <GoalWrapper>
+                  <GoalText>원하는 목표를 만들어보세요</GoalText>
+                  <GoalDescribe>
+                    도전할 금액을 설정한 후 모아보세요.
+                  </GoalDescribe>
 
-                <Button
-                  width="296px"
-                  height="52px"
-                  fontSize="14px"
-                  background="#4675F0"
-                  onClick={() => {
-                    navigate('/challengebuzacreate')
-                  }}
-                >
-                  + 목표 개설하기
-                </Button>
-              </GoalWrapper>
+                  <Button
+                    width="296px"
+                    height="52px"
+                    fontSize="14px"
+                    background="#4675F0"
+                    onClick={() => {
+                      navigate('/challengebuzacreate')
+                    }}
+                  >
+                    + 목표 개설하기
+                  </Button>
+                </GoalWrapper>
+              </ScrollWrapper>
             )
           : null}
 
@@ -163,7 +168,11 @@ function ChallengeBuza() {
                       margin="0 auto"
                       borderRadius="11px"
                       labelAlignment="center"
-                      labelSize="14px"
+                      labelSize={
+                        homeData && homeData.data.data.challengePercent > 9
+                          ? '14px'
+                          : '0px'
+                      }
                     />
                   </GoalWrapper>
                   <ConmpletedTitle>완료목록</ConmpletedTitle>
@@ -254,10 +263,10 @@ const GoalWrapper = styled.div`
   width: 328px;
   height: 156px;
   /* top: 13%; */
-  /* margin-left: 16px; */
   margin-bottom: 10px;
   padding-top: 0.01px;
-  margin-left: 16px;
+
+
   /* color/Btn-basic2 */
 
   background: #f5f5f7;

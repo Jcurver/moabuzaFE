@@ -7,13 +7,13 @@ import { request } from '../utils/axios'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
-import { useChallengeFriendData } from '../apis/challengeData'
+import { useFriendData } from '../apis/challengeData'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
   console.log('data:::', datalist)
-  const { data: friendsList, isLoading } = useChallengeFriendData(navigate)
+  const { data: friendsList, isLoading } = useFriendData(navigate)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -51,7 +51,7 @@ function ChallengeBuzaCreate() {
       selectFriendNickName = null
     }
     return request({
-      url: '/alarm/goal',
+      url: '/challenge',
       method: 'post',
       data: {
         goalType: 'CHALLENGE',

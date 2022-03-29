@@ -3,7 +3,7 @@ import { request } from '../utils/axios'
 
 export const useGroupData = (navigate) => {
   return useQuery(['group-data', navigate], () => {
-    return request({ url: '/money/group', method: 'get' })
+    return request({ url: '/group', method: 'get' })
   })
 }
 
@@ -19,6 +19,6 @@ export const useGroupDataPost = (date) => {
 
 export const useFriendData = (navigate) => {
   return useQuery(['friend-data', navigate], () => {
-    return request({ url: '/money/group/creategroup', method: 'get' })
+    return request({ url: '/group/friend', method: 'get' })
   })
 }

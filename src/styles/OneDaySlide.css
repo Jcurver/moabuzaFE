@@ -1,0 +1,7 @@
+.swipeable-list-item__content {
+  background-color: var(--bg-primary);
+}
+
+.example-custom-input {
+  background-color: #fff;
+}

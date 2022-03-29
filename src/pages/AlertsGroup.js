@@ -8,8 +8,8 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import {
   useAlertsGroupData,
-  alarmAccept,
-  alarmRefuse,
+  alarmGroupAccept,
+  alarmGroupRefuse,
   alarmDelete,
 } from '../apis/alertsData'
 
@@ -147,13 +147,13 @@ function AlertsGroup() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmAccept(d.alarmId)}
+                      onClick={() => alarmGroupAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmRefuse(d.alarmId)}
+                      onClick={() => alarmGroupRefuse(d.alarmId)}
                       style={{ left: '312px' }}
                     >
                       거절

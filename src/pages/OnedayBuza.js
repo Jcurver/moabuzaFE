@@ -20,6 +20,7 @@ import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
+import '../styles/OneDaySlide.css'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as LeftArrow } from '../assets/icons/arrow/arrowleftgray.svg'
 import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
@@ -65,7 +66,7 @@ function OnedayBuza(state) {
 
   const mutation = useMutation((date) => {
     return request({
-      url: '/money/dayList',
+      url: '/daylist',
       method: 'post',
       data: { recordDate: date },
     })
@@ -99,7 +100,7 @@ function OnedayBuza(state) {
     // ])
 
     return request({
-      url: `/money/dayList/delete/${id}`,
+      url: `/daylist/${id}`,
       method: 'delete',
       data: {},
     }).then(navigate(0))
@@ -401,7 +402,6 @@ const CalDiv = styled.div`
   height: 23px;
   left: 120px;
   top: 15.7%;
-
 `
 const LeftArrowDiv = styled.div`
   ${setFlexStyles({
@@ -488,7 +488,7 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
-  /* background: #f6f9fe; */
+  background-color: var(--bg-primary);
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -524,7 +524,6 @@ const TodayListDiv = styled.div`
   ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
-
 `
 const TodayListLine = styled.div`
   ${setFlexStyles({

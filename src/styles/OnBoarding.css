@@ -10,6 +10,13 @@
   border-right: 8px solid #4675f0;
 }
 
-.thumbs-wrapper {
+/* .thumbs-wrapper {
   display: none;
+} */
+
+.control-dots {
+  top: 540px;
+}
+.carousel .control-dots .dot {
+  background: #8c939d;
 }
