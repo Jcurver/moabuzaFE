@@ -43,17 +43,13 @@ export const alarmDelete = (id) => {
 }
 
 
-export const alarmFriendAccept = (nickname) => {
+export const alarmFriendAccept = (id) => {
   return request({
-    url: `/firend/accept`, method: 'post', data: {
-    friendNickname:nickname
-  } })
+    url: `/firend/${id}/accept`, method: 'post'})
 }
-export const alarmFriendRefuse = (nickname) => {
+export const alarmFriendRefuse = (id) => {
   return request({
-    url: `/firend/refuse`, method: 'post', data: {
-    friendNickname:nickname
-  } })
+    url: `/firend/${id}/refuse`, method: 'post' })
 }
 
 
