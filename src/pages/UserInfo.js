@@ -104,11 +104,11 @@ function UserInfo() {
       return
     }
     const kakaoAuthCode = window.location.search.split('=')[1]
-
+    
     async function getTokenWithKakao() {
       const { data } = await api.getKakaoLogin(kakaoAuthCode)
-      setCookie('A-AUTH-TOKEN', data.data.access)
-      setCookie('R-AUTH-TOKEN', data.data.refresh)
+      setCookie('A-AUTH-TOKEN', data.data.access,5)
+      setCookie('R-AUTH-TOKEN', data.data.refresh,5)
       if (data.data.nickname) {
         navigate('/')
       }
