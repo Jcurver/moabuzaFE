@@ -105,6 +105,7 @@ function App() {
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
             <Route path="/onboarding" element={<OnBoarding />} />
+            <Route path="/loading" element={<Loading />} />
           </Routes>
 
           {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
