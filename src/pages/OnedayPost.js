@@ -12,17 +12,20 @@ import '../styles/SelectStyle.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { useMainPageData } from '../apis/mainpageData'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 import { getItem, setItem } from '../utils/sessionStorage'
 
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
+import { ReactComponent as success } from '../assets/icons/onedaybuza/popup.svg'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
 
 import { onedayBuzaDate } from '../recoil/setDateToday'
+import Loading from './Loading'
 
 registerLocale('ko', ko)
 
@@ -40,6 +43,7 @@ function ExampleCustomInput({ value, onClick }) {
 function OnedayPost() {
   const textInput = useRef()
   const navigate = useNavigate()
+  const { data, isLoading } = useMainPageData(navigate)
 
   const [selectDate, setSelectDate] = useState(new Date(getItem('nowdate')))
   function setSelectDateValue(date) {
@@ -102,21 +106,38 @@ function OnedayPost() {
           memos: data.memo,
           recordAmount: parseInt(data.amount, 10),
         },
-      }).then(
-        (res) => console.log('resLLLL', res),
-        Swal.fire({
-          title: '입력 완료!',
-          text: '더 힘차게 모아부자!',
-          icon: 'success',
-        }).then((result) => {
-          console.log(result)
-          navigate('/onedaybuza')
-        }),
-      )
+      })
+        .then((res) => {
+          console.log(res.data.complete)
+          if (res.data.complete) {
+            Swal.fire({
+              title: '목표 완료!',
+              text: '다시 한번 해부자!',
+              imageUrl:
+                'https://user-images.githubusercontent.com/66179677/160414132-24f69bd6-0b83-4f14-b69c-ab29f79f6450.svg',
+            }).then(() => {
+              navigate('/')
+            })
+          } else {
+            Swal.fire({
+              title: '입력 완료!',
+              text: '더 힘차게 모아부자!',
+              icon: 'success',
+            }).then(() => {
+              navigate('/onedaybuza')
+            })
+          }
+        })
+        .then(() => {})
     }
     return null
     // setError("extraError", { message: "Server offline." });
   }
+  if (isLoading) {
+    return <Loading />
+  }
+  console.log(data.data)
+  const homeData = data.data
 
   return (
     <Wrapper>
@@ -148,8 +169,12 @@ function OnedayPost() {
             <option value="0">-- 항목을 골라부자 --</option>
             <option value="income">수입</option>
             <option value="expense">지출</option>
-            <option value="group">같이해부자</option>
-            <option value="challenge">도전해부자</option>
+            {homeData.groupName ? (
+              <option value="group">같이해부자</option>
+            ) : null}
+            {homeData.challengeName ? (
+              <option value="challenge">도전해부자</option>
+            ) : null}
           </Select>
           <Rightarr style={{ transform: 'rotate(90deg)' }} />
         </SelectDiv>
@@ -256,7 +281,7 @@ const SelectDiv = styled.div`
   background: #f5f5f7;
   border-radius: 8px;
   padding-left: 8px;
-  padding-right:18px;
+  padding-right: 18px;
 `
 const OptionTitle = styled.div`
   position: absolute;

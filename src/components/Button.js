@@ -17,13 +17,13 @@ const MainButton = styled.button`
   /* 공통 스타일 */
   outline: none;
   border: none;
-  border-radius: 4px;
+  border-radius: ${(props) => props.borderRadius || '4px'};
   color: ${(props) => props.color || 'white'};
   font-weight: 400;
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
-
+  margin-top: ${(props) => props.marginTop};
   /* 크기 */
   width: ${(props) => props.width || '100%'};
 
