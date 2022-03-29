@@ -78,7 +78,7 @@ function GroupBuzaDetail() {
             navigate('/groupbuza')
           }}
         >
-          <Backarr/>
+          <Backarr />
         </CancleMoveButton>
         <Title>
           <Text>같이해부자</Text>
@@ -143,10 +143,12 @@ function GroupBuzaDetail() {
             height="22px"
             margin="0 auto"
             borderRadius="11px"
-            labelAlignment="center"
-            labelSize={
-              data && data.data.groupNowPercent > 9 ? '14px' : '0px'
+            labelAlignment={
+              data && data.data.groupNowPercent > 9
+                ? 'center'
+                : 'left'
             }
+            labelSize="14px"
           />
         </DetailWrapper>
 

@@ -146,12 +146,12 @@ function GroupBuza() {
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
-                      labelAlignment="center"
-                      labelSize={
+                      labelAlignment={
                         homeData && homeData.data.data.groupPercent > 9
-                          ? '14px'
-                          : '0px'
+                          ? 'center'
+                          : 'left'
                       }
+                      labelSize="14px"
                     />
                   </GoalWrapper>
                   <ConmpletedTitle>완료목록</ConmpletedTitle>
