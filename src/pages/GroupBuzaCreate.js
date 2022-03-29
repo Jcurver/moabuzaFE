@@ -17,6 +17,15 @@ import {
 function GroupBuzaCreate() {
   const navigate = useNavigate()
   const { data, isLoading } = useFriendData(navigate)
+  // 수정대기2
+  const friendData = () => {
+    return request({ url: '/money/group/creategroup', method: 'get' }).then(
+      (res) => {
+        console.log(res)
+        setDatalist([...res.data.groupMembers])
+      },
+    )
+  }
 
   useEffect(() => {
     friendData()
@@ -30,15 +39,6 @@ function GroupBuzaCreate() {
     formState: { errors },
   } = useForm()
   console.log(watch())
-  // 수정대기2
-  const friendData = () => {
-    return request({ url: '/money/group/creategroup', method: 'get' }).then(
-      (res) => {
-        console.log(res)
-        setDatalist([...res.data.groupMembers])
-      },
-    )
-  }
 
   const [datalist, setDatalist] = useState([])
   const [selectFriends, setSelectFriends] = useState([])

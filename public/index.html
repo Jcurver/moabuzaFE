@@ -9,12 +9,15 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Paper">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/moa192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -53,14 +56,17 @@
     <script type="module" src="./firebase-messaging-sw.js" ></script>
         <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
+        window.addEventListener('load',()=>{
+
+          navigator.serviceWorker
           .register("./firebase-messaging-sw.js")
           .then((res)=> {
             console.log("서비스 워커가 등록됨!!:::",res);
           })
           .catch((err)=>{
-            consol.log("서비스워커 등록이 안됨 ㅠㅠ:::",err)
+            console.log("서비스워커 등록이 안됨 ㅠㅠ:::",err)
           })
+        })
       }
     </script>
   </body>

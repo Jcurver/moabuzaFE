@@ -16,8 +16,8 @@ import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
-import '../styles/MenuTransition.css'
 import { api } from '../utils/axios'
+import '../styles/MenuTransition.css'
 import { nowDate } from '../hooks/nowDate'
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import { setItem } from '../utils/sessionStorage'
@@ -92,7 +92,7 @@ function MainPage() {
                 width: '24px',
                 height: '24px',
                 left: '88.89%',
-                top: '5.69%',
+                top: '8.43%',
                 position: 'absolute',
               }}
             />
@@ -102,7 +102,7 @@ function MainPage() {
                 width: '24px',
                 height: '24px',
                 left: '88.89%',
-                top: '5.69%',
+                top: '8.43%',
                 position: 'absolute',
               }}
             />
@@ -144,7 +144,6 @@ function MainPage() {
             />
             <ContentUnderDiv>
               <ContentWon>
-                체크1
                 {data.data.groupNeedAmount.toLocaleString('en-US')}원
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
@@ -164,8 +163,8 @@ function MainPage() {
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
-                labelAlignment="center"
-                labelSize={data && data.data.groupPercent > 9 ? '14px' : '0px'}
+                labelAlignment={data.data.groupPercent > 9 ? 'center' : 'left'}
+                labelSize="14px"
               />
             </ProgressDiv>
           </>
@@ -182,23 +181,23 @@ function MainPage() {
             <ContentGoalName>{data?.data?.challengeName}</ContentGoalName>
             <CharacterWrapper
               src={
-                data.data.hero === 'bunny' && nowChallengePercent < 40
+                data.data.hero === 'bunny' && nowChallengePercent < 30
                   ? BunnyStep01
                   : data.data.hero === 'bunny' && nowChallengePercent < 60
                   ? BunnyStep02
-                  : data.data.hero === 'bunny' && nowChallengePercent > 60
+                  : data.data.hero === 'bunny' && nowChallengePercent
                   ? BunnyStep03
-                  : data.data.hero === 'tongki' && nowChallengePercent < 40
+                  : data.data.hero === 'tongki' && nowChallengePercent < 30
                   ? TongkiStep01
                   : data.data.hero === 'tongki' && nowChallengePercent < 60
                   ? TongkiStep02
-                  : data.data.hero === 'tongki' && nowChallengePercent > 60
+                  : data.data.hero === 'tongki' && nowChallengePercent
                   ? TongkiStep03
-                  : data.data.hero === 'tanni' && nowChallengePercent < 40
+                  : data.data.hero === 'tanni' && nowChallengePercent < 30
                   ? TanniStep01
                   : data.data.hero === 'tanni' && nowChallengePercent < 60
                   ? TanniStep02
-                  : data.data.hero === 'tanni' && nowChallengePercent > 60
+                  : data.data.hero === 'tanni' && nowChallengePercent
                   ? TanniStep03
                   : null
               }
@@ -251,12 +250,10 @@ function MainPage() {
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
-                labelAlignment="center"
-                labelSize={
-                  data && data.data.challengePercent > 9
-                    ? '14px'
-                    : '0px'
+                labelAlignment={
+                  data.data.challengePercent > 9 ? 'center' : 'left'
                 }
+                labelSize="14px"
               />
             </ProgressDiv>
           </div>

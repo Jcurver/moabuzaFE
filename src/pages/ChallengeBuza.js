@@ -6,8 +6,8 @@ import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
-import ScrollWrapper from '../components/ScrollWrapper'
 import { api, request } from '../utils/axios'
+import ScrollWrapper from '../components/ScrollWrapper'
 import {
   useChallengeData,
 
@@ -166,13 +166,14 @@ function ChallengeBuza() {
                       width="304px"
                       height="20px"
                       margin="0 auto"
+                      labelColor="white"
                       borderRadius="11px"
-                      labelAlignment="center"
-                      labelSize={
+                      labelAlignment={
                         homeData && homeData.data.data.challengePercent > 9
-                          ? '14px'
-                          : '0px'
+                          ? 'center'
+                          : 'left'
                       }
+                      labelSize='14px'
                     />
                   </GoalWrapper>
                   <ConmpletedTitle>완료목록</ConmpletedTitle>
