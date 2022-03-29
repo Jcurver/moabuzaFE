@@ -1,16 +1,30 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import { setFlexStyles } from '../styles/Mixin'
+import Loading from './Loading'
+import ErrorLog from './ErrorLog'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import { useFriendsData, useSearchFriend,requestFriend } from '../apis/friendsData.js'
 
 
 
 function AddFriends() {
+  const navigate = useNavigate()
+  const findFriend  = useSearchFriend()
+  const [ nick, setNick ] = useState('')
+  console.log('sf:::', findFriend)
 
-  function findFreind() { }
+  if (findFriend.isLoading) {
+    return <Loading />
+  }
   
+  if (findFriend.isError) {
+    console.log('error : ', findFriend.error);
+    return <ErrorLog error={findFriend.error} />;
+  }
+
   return (
     <Wrapper>
       <TopDiv>
@@ -26,23 +40,34 @@ function AddFriends() {
           />
         </NavLink>
         <Title>친구 추가</Title>
-        <AddFriend />
+
         <TopLine />
       </TopDiv>
       <NicknameText>닉네임</NicknameText>
-      <NicknameInput placeholder="닉네임을 입력해주세요" />
-      <NicknameButton onClick={() => findFreind()}>
+      <NicknameInput
+        placeholder="닉네임을 입력해주세요"
+        onChange={(e) => setNick(e.target.value)}
+      />
+      <NicknameButton onClick={() => findFriend.mutate(nick)}>
         <Search />
       </NicknameButton>
-      <FriendLine>
-        <FriendInfo>
-          <FriendCharactor />
-          <FriendNickName>나는 부자</FriendNickName>
-        </FriendInfo>
-        <FriendAddButton>
-          <FriendAddButtonText>추가</FriendAddButtonText>
-        </FriendAddButton>
-      </FriendLine>
+      {findFriend?.data?.data?.nicknameValid ? (
+        <FriendLine>
+          <FriendInfo>
+            <FriendCharactor />
+            <FriendNickName>{findFriend.data.data.nickname}</FriendNickName>
+          </FriendInfo>
+          <FriendAddButton>
+            <FriendAddButtonText
+              onClick={() => requestFriend(findFriend.data.data.nickname)}
+            >
+              추가
+            </FriendAddButtonText>
+          </FriendAddButton>
+        </FriendLine>
+      ) : (
+        ''
+      )}
     </Wrapper>
   )
 }
@@ -152,7 +177,7 @@ const NicknameInput = styled.input`
   height: 52px;
   left: 16px;
   top: 132px;
-
+  font-family: 'Noto Sans KR';
   background: #f5f5f7;
   border-radius: 8px;
   padding-left: 16px;
@@ -186,7 +211,7 @@ const NicknameButton = styled.div`
 const FriendLine = styled.div`
   ${setFlexStyles({
     display: 'flex',
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems: 'flex-start',
   })}
   padding: 0px;

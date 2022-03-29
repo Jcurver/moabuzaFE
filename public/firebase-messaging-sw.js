@@ -70,7 +70,7 @@ const IMMUTABLE_APPSHELL = [
 const MUTABLE_APPSHELL = [
   '/src/pages/AddFriends.js',
   '/src/pages/Alerts.js',
-  '/src/pages/App.js',
+  // '/src/pages/App.js',
   '/src/pages/Bedge.js',
   '/src/pages/CalendarMain.js',
   '/src/pages/ChallengeBuza.js',
