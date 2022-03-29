@@ -86,7 +86,7 @@ export const api = {
       }),
   getKakaoLogin: (code) =>
     instance
-      .get(`/member/kakao/callback?code=${code}`)
+      .get(`/user/kakao/callback?code=${code}`)
       .then((res) => {
         console.log(res)
         return res
@@ -115,7 +115,7 @@ instance.interceptors.response.use(
   async (error) => {
     const { data: responseData, config: originalRequest } = error.response
     console.log('ERR RESPONSED', responseData, responseData.message, originalRequest)
-    if (responseData.message === '컨트롤러 Move to Login Page') {
+    if (responseData.message === 'Move to Login Page') {
       console.log('dddd')
 
       setMoveToLoginPage()

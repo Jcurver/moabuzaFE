@@ -92,7 +92,7 @@ function MainPage() {
                 width: '24px',
                 height: '24px',
                 left: '88.89%',
-                top: '5.69%',
+                top: '8.43%',
                 position: 'absolute',
               }}
             />
@@ -102,7 +102,7 @@ function MainPage() {
                 width: '24px',
                 height: '24px',
                 left: '88.89%',
-                top: '5.69%',
+                top: '8.43%',
                 position: 'absolute',
               }}
             />
@@ -144,7 +144,6 @@ function MainPage() {
             />
             <ContentUnderDiv>
               <ContentWon>
-              
                 {data.data.groupNeedAmount.toLocaleString('en-US')}원
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
@@ -164,8 +163,8 @@ function MainPage() {
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
-                labelAlignment="center"
-                labelSize={data && data.data.groupPercent > 9 ? '14px' : '0px'}
+                labelAlignment={data.data.groupPercent > 9 ? 'center' : 'left'}
+                labelSize="14px"
               />
             </ProgressDiv>
           </>
@@ -251,12 +250,10 @@ function MainPage() {
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
-                labelAlignment="center"
-                labelSize={
-                  data && data.data.challengePercent > 9
-                    ? '14px'
-                    : '0px'
+                labelAlignment={
+                  data.data.challengePercent > 9 ? 'center' : 'left'
                 }
+                labelSize="14px"
               />
             </ProgressDiv>
           </div>
