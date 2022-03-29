@@ -117,13 +117,13 @@ function AlertsFriend() {
                       <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmFriendAccept(d.friendNickname)}
+                      onClick={() => alarmFriendAccept(d.AlarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmFriendRefuse(d.friendNickname)}
+                      onClick={() => alarmFriendRefuse(d.AlarmId)}
                       style={{ left: '312px' }}
                     >
                       거절
