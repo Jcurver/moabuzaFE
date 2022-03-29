@@ -96,7 +96,7 @@ function Modified() {
   console.log(watch())
   return (
     <Wrapper>
-      <NavLink to="/settings">
+      <NavLink to="/menu">
         <ButtonDiv>
           <BackarrButton />
         </ButtonDiv>

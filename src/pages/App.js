@@ -32,7 +32,7 @@ const ChallengeBuzaDetail = lazy(() => import('./ChallengeBuzaDetail'))
 const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
 const Friends = lazy(() => import('./Friends'))
-const AddFriends = lazy(() => import('./AddFriends.js'))
+const FriendsAdd = lazy(() => import('./FriendsAdd.js'))
 
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
@@ -97,7 +97,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/modified" element={<Modified />} />
             <Route path="/friends" element={<Friends />} />
-            <Route path="/friends/add" element={<AddFriends />} />
+            <Route path="/friends/add" element={<FriendsAdd />} />
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
