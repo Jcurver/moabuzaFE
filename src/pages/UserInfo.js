@@ -41,7 +41,7 @@ function UserInfo() {
     await api.getUserInfo(data, hero)
     navigate('/')
   }
-  
+
   const nicknameDup = () => {
     console.log('닉네임::', watch().nickname)
     if (watch().nickname === '') {
@@ -118,7 +118,7 @@ function UserInfo() {
     }
     getTokenWithKakao()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, watch().nickname])
+  }, [navigate])
 
   return (
     <Wrapper>
