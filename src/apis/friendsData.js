@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { request, instance } from '../utils/axios'
-
-
 
 export const useFriendsData = (navigate) => {
   return useQuery(['friend', navigate], () => {
@@ -25,7 +24,24 @@ export const searchFriends = (nickname) => {
     data: {
       friendNickname: nickname,
     },
-  }).then(res => { return res })
+  }).then((res) => {
+    if (!res.data.nicknameValid) {
+       Swal.fire({
+         title: '해당 사용자가 없어요!',
+         text: '다른 닉네임으로 검색해부자!',
+         icon: 'warning',
+         showCancelButton: false,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: '넵ㅠㅠ',
+         cancelButtonText: '취소!',
+       }).then((result) => {
+         console.log(result)
+       })
+    }
+    console.log("searchFriend::",res)
+    return res
+  })
 }
 export const useSearchFriend = () => {
   return useMutation(searchFriends, {
