@@ -39,7 +39,7 @@ function UserInfo() {
     }
 
     await api.getUserInfo(data, hero)
-    await navigate('/onboarding')
+    navigate('/onboarding')
   }
   function NicknameDup() {
     console.log('닉네임::', watch().nickname)
@@ -52,7 +52,7 @@ function UserInfo() {
       data: { nickname: watch().nickname },
     })
       .then((res) => {
-        console.log('중복확인::', res)
+        console.log('중복확인::', res.data.msg)
         if (res.status === 200) {
           if (res.data.msg === '해당 닉네임은 사용이 가능합니다.') {
             setNickNameDup(true)
@@ -64,7 +64,7 @@ function UserInfo() {
               console.log(result)
             })
           }
-          if (res.data === '사용중인 닉네임') {
+          if (res.data.msg === '해당 닉네임은 사용 중 입니다.') {
             setNickNameDup(false)
             Swal.fire({
               title: '사용중인 닉네임',
@@ -207,22 +207,18 @@ const TopDiv = styled.div`
 const ButtonDiv = styled.div`
   position: absolute;
   left: 1.11%;
-
   top: 33.72%;
   width: 48px;
   height: 48px;
-
   background: rgba(196, 196, 196, 0.3);
 `
 
 const Button = styled.div`
   position: absolute;
   left: 4.44%;
-
   top: 5.97%;
   width: 24px;
   height: 24px;
-
   background: #c4c4c4;
 `
 const ButtonSubmit = styled.button`
@@ -231,19 +227,15 @@ const ButtonSubmit = styled.button`
   height: 14px;
   left: 318px;
   top: 6.67%;
-
   /* Heading/Noto Sans KR/H6 */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   text-align: center;
   letter-spacing: -0.04em;
-
   color: #000000;
   background-color: #fff;
 `
@@ -253,7 +245,6 @@ const Title = styled.div`
   height: 23px;
   left: 119px;
   top: 5.97%;
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
@@ -265,7 +256,6 @@ const Title = styled.div`
   })}
   text-align: center;
   letter-spacing: -0.04em;
-
   color: #000000;
 `
 const TopLine = styled.div`
@@ -274,9 +264,7 @@ const TopLine = styled.div`
   right: 0%;
   top: 98.84%;
   bottom: 0%;
-
   /* color/Btn-basic2 */
-
   background: #f5f5f7;
 `
 const CharacterDiv = styled.div`
@@ -285,7 +273,6 @@ const CharacterDiv = styled.div`
     alignItems: 'flex-start',
   })}
   padding: 0px;
-
   position: absolute;
   width: 360px;
   height: 166px;
@@ -305,9 +292,7 @@ const CharacterOne = styled.div`
   width: 80px;
   height: 102px;
   top: 0px;
-
   /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -320,7 +305,6 @@ const Character = styled.img`
   left: 0px;
   top: 0px;
   /* color/Btn-basic1 */
-
   background: #e5eaf2;
 `
 const CharacterName = styled.div`
@@ -329,19 +313,15 @@ const CharacterName = styled.div`
   height: 14px;
   left: 17px;
   top: 88px;
-
   /* Heading/Noto Sans KR/H6 */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   text-align: center;
   letter-spacing: -0.04em;
-
   color: #000000;
 `
 const NicknameText = styled.div`
@@ -350,18 +330,14 @@ const NicknameText = styled.div`
   height: 14px;
   left: 16px;
   top: 37.78%;
-
   /* Heading/Noto Sans KR/H6 */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   letter-spacing: -0.04em;
-
   color: #000000;
 `
 const NicknameInput = styled.input`
@@ -370,7 +346,6 @@ const NicknameInput = styled.input`
   height: 52px;
   left: 16px;
   top: 40.83%;
-
   background: #f5f5f7;
   border-radius: 8px;
   padding-left: 16px;
@@ -405,27 +380,20 @@ const NicknameSubmit = styled.div`
     alignItems: 'center',
     justifyContent: 'center',
   })}
-
   /* color/Btn-basic1 */
-
   border: 1px solid #e5eaf2;
   box-sizing: border-box;
   border-radius: 8px;
-
   /* Heading/Noto Sans KR/H6 */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   text-align: right;
   letter-spacing: -0.04em;
-
   /* color/Secondary */
-
   color: #4675f0;
 `
 const NicknameAlert = styled.div`
@@ -434,22 +402,18 @@ const NicknameAlert = styled.div`
   height: 11px;
   left: 31px;
   top: 48.89%;
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 11px;
   line-height: 100%;
   /* identical to box height, or 11px */
-
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
   })}
   letter-spacing: -0.04em;
-
   /* color / gray / Gray50 */
-
   color: #999999;
 `
 
