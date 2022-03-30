@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
+import { LogoText, LogoImg } from '../assets/icons/login'
 
 function KakaoLogin() {
   const navigate = useNavigate()
@@ -41,12 +42,14 @@ function KakaoLogin() {
   return (
     <Wrapper>
       <TextDiv>
-        <div style={{display:"flex",justifyContent:"center"}}>
-          <p style={{fontWeight:"700"}}>모아부자</p>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <p style={{ fontWeight: '700' }}>모아부자</p>
           <p>에</p>
         </div>
         <p>오신걸 환영합니다!</p>
       </TextDiv>
+      <LoadingIconBox src={LogoImg} />
+      <LogoTextBox src={LogoText} />
       <KakaoLogins onClick={loginWithKakao}>
         <img src="img/kakao_login_medium_wide.png" alt="카카오계정 로그인" />
       </KakaoLogins>
@@ -77,6 +80,21 @@ const Wrapper = styled.div`
 `
 const KakaoLogins = styled.div`
   margin-top: 176%;
+`
+const LoadingIconBox = styled.img`
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  left: 116px;
+  top: 34.44%;
+`
+
+const LogoTextBox = styled.img`
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 52.22%;
+  bottom: 42.59%;
 `
 
 export default KakaoLogin
