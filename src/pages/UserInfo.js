@@ -41,6 +41,7 @@ function UserInfo() {
     await api.getUserInfo(data, hero)
     navigate('/')
   }
+  
   const nicknameDup = () => {
     console.log('닉네임::', watch().nickname)
     if (watch().nickname === '') {
@@ -104,7 +105,7 @@ function UserInfo() {
       return
     }
     const kakaoAuthCode = window.location.search.split('=')[1]
-    
+
     async function getTokenWithKakao() {
       const { data } = await api.getKakaoLogin(kakaoAuthCode)
       setCookie('A-AUTH-TOKEN', data.data.access,5)
