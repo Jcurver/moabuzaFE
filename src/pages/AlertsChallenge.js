@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Swal from 'sweetalert2'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { alertSelect } from '../recoil/alertSelect'
@@ -13,13 +15,45 @@ import {
   alarmDelete,
 } from '../apis/alertsData'
 
+import {
+  FriendAccept,
+  FriendAdd,
+  FriendReject,
+  GoalCancel,
+  GoalCreate,
+  GoalSuccess,
+  InviteAccept,
+  Inviting,
+  MoneyDeposit,
+} from '../assets/icons/alarm'
+
 function AlertsChallenge() {
   const [, updateState] = useState()
   const navigate = useNavigate()
 
-
   function alarmDeleteAndRender(id) {
-    console.log("알람아이디:",id)
+    console.log('알람아이디:', id)
+    Swal.fire({
+      title: '알람을 삭제하시겠어요?',
+      text: '삭제하면 다시 못봐요!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      showLoaderOnConfirm: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        alarmDelete(id)
+        Swal.fire({
+          title: '삭제 되었습니다!',
+          icon: 'success',
+        }).then(() => {
+          navigate(0)
+        })
+      }
+    })
     alarmDelete(id)
     // navigate(0)
   }
@@ -140,8 +174,8 @@ function AlertsChallenge() {
             return (
               <>
                 {d.alarmDetailType === 'invite' && (
-                  <AlertList>
-                    <AlertCharacter />
+                  <AlertList key={Date.now()}>
+                    <AlertCharacter src={Inviting} />
                     <AlertTextDiv>
                       <Flex>
                         <AlertTextTop>{d.friendNickname}</AlertTextTop>
@@ -155,13 +189,59 @@ function AlertsChallenge() {
                       </Flex>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmChallengeAccept(d.alarmId)}
+                      onClick={() => {
+                        Swal.fire({
+                          title: '초대를 수락하시겠어요?',
+                          text: '수락하면 도전이 생성 되요!',
+                          icon: 'question',
+                          showCancelButton: true,
+                          confirmButtonText: '수락',
+                          cancelButtonText: '취소',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          showLoaderOnConfirm: true,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            alarmChallengeAccept(d.alarmId)
+                            Swal.fire({
+                              title: '수락 되었습니다!',
+                              icon: 'success',
+                              confirmButtonText: '확인!',
+                            }).then(() => {
+                              navigate(0)
+                            })
+                          }
+                        })
+                      }}
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmChallengeRefuse(d.alarmId)}
+                      onClick={() => {
+                        Swal.fire({
+                          title: '초대를 거절하시겠어요?',
+                          text: '거절하면 도전이 취소 되요!',
+                          icon: 'question',
+                          showCancelButton: true,
+                          confirmButtonText: '거절',
+                          cancelButtonText: '취소',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          showLoaderOnConfirm: true,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            alarmChallengeRefuse(d.alarmId)
+                            Swal.fire({
+                              title: '거절 되었습니다!',
+                              icon: 'warning',
+                              confirmButtonText: '확인!',
+                            }).then(() => {
+                              navigate(0)
+                            })
+                          }
+                        })
+                      }}
                       style={{ left: '312px' }}
                     >
                       거절
@@ -171,7 +251,10 @@ function AlertsChallenge() {
                 {d.alarmDetailType === 'accept' && (
                   <AlertList>
                     <Flex>
-                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertCharacter
+                        src={InviteAccept}
+                        style={{ marginRight: '10px' }}
+                      />
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
@@ -190,7 +273,10 @@ function AlertsChallenge() {
                 {d.alarmDetailType === 'record' && (
                   <AlertList>
                     <Flex>
-                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertCharacter
+                        src={MoneyDeposit}
+                        style={{ marginRight: '10px' }}
+                      />
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
@@ -215,7 +301,18 @@ function AlertsChallenge() {
                   d.alarmDetailType === 'boom') && (
                   <AlertList>
                     <Flex>
-                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertCharacter
+                        src={
+                          d.alarmDetailType === 'create'
+                            ? GoalCreate
+                            : d.alarmDetailType === 'success'
+                            ? GoalSuccess
+                            : d.alarmDetailType === 'boom'
+                            ? GoalCancel
+                            : null
+                        }
+                        style={{ marginRight: '10px' }}
+                      />
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.goalName}</AlertTextTop>
@@ -472,17 +569,18 @@ const AlertList = styled.div`
   margin-left: 8px;
   margin-top: 4%;
 `
-const AlertCharacter = styled.div`
-  width: 32px;
-  height: 32px;
+const AlertCharacter = styled.img`
+  width: 48px;
+  height: 48px;
   padding: 8px;
-  background: gray;
+  /* background: gray; */
 `
 const AlertTextDiv = styled.div`
   width: 160px;
   height: 34px;
   padding: 4px;
   margin-left: 8px;
+  margin-top: 8px;
 `
 const AlertTextTop = styled.div`
   font-family: 'Noto Sans KR';
