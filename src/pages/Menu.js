@@ -18,8 +18,9 @@ import BugReport from '../assets/menu/moabuza-bugreport.png'
 import SlideReview from '../assets/menu/moabuza-review.png'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-
+import { request } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
+import { setMoveToLoginPage } from '../utils/setMoveToLoginPage';
 
 function Menu() {
   const settings = {
@@ -45,8 +46,9 @@ function Menu() {
       confirmButtonText: '나가부자',
       cancelButtonText: '있어부자',
     }).then((result) => {
-      if (result.value) {
-        console.log(result)
+      if (result.isConfirmed) {
+        request({ url: 'member/login', method: 'get' })
+        setMoveToLoginPage()
         // this.props.submitUser(this.state)
       }
     })
@@ -105,7 +107,7 @@ function Menu() {
           />
         </TodayDiv>
       </NavLink>
-      <NavLink to="/bedge">
+      <NavLink to="/menu">
         <TodayDiv style={{ top: '303px' }}>
           <Asset
             style={{

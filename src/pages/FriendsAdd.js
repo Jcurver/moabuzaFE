@@ -6,25 +6,36 @@ import { setFlexStyles } from '../styles/Mixin'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
-import { useFriendsData, useSearchFriend,requestFriend } from '../apis/friendsData.js'
-
-
+import {
+  useFriendsData,
+  useSearchFriend,
+  requestFriend,
+} from '../apis/friendsData.js'
 
 function AddFriends() {
   const navigate = useNavigate()
-  const findFriend  = useSearchFriend()
-  const [ nick, setNick ] = useState('')
+  const findFriend = useSearchFriend()
+  const [nick, setNick] = useState('')
+
   console.log('sf:::', findFriend)
 
   if (findFriend.isLoading) {
     return <Loading />
   }
-  
-  if (findFriend.isError) {
-    console.log('error : ', findFriend.error);
-    return <ErrorLog error={findFriend.error} />;
-  }
 
+  if (findFriend.isError) {
+    console.log('error : ', findFriend.error)
+    return <ErrorLog error={findFriend.error} />
+  }
+  // function searchFriend(nickname) {
+
+  // }
+  // async function friend() {
+
+  //   const findFriend = await searchFriends(nick)
+  //   console.log(findFriend)
+  //   return findFriend
+  // }
   return (
     <Wrapper>
       <TopDiv>
@@ -48,7 +59,12 @@ function AddFriends() {
         placeholder="닉네임을 입력해주세요"
         onChange={(e) => setNick(e.target.value)}
       />
-      <NicknameButton onClick={() => findFriend.mutate(nick)}>
+      <NicknameButton
+        onClick={() => {
+          findFriend.mutate(nick)
+          navigate(0)
+        }}
+      >
         <Search />
       </NicknameButton>
       {findFriend?.data?.data?.nicknameValid ? (
@@ -59,7 +75,9 @@ function AddFriends() {
           </FriendInfo>
           <FriendAddButton>
             <FriendAddButtonText
-              onClick={() => requestFriend(findFriend.data.data.nickname)}
+              onClick={() => {
+                requestFriend(findFriend.data.data.nickname)
+              }}
             >
               추가
             </FriendAddButtonText>

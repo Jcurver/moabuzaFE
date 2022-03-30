@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { setMoveToLoginPage } from './setMoveToLoginPage'
-import { getCookie, setCookie } from './cookie'
+import { deleteCookie, getCookie, setCookie } from './cookie'
 import { getItem } from './sessionStorage'
 // import { fcmToken } from './fcm'
 
@@ -22,6 +22,7 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
+
 export const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
@@ -31,6 +32,19 @@ export const instance = axios.create({
   },
 })
 
+// let isTokenRefreshing = false
+const refreshSubscribers = []
+console.log('refreshSubscribers', refreshSubscribers)
+
+const onTokenRefreshed = (accessToken) => {
+  refreshSubscribers.map((callback) => callback(accessToken))
+  console.log('refreshSubscribers', refreshSubscribers)
+}
+
+const addRefreshSubscriber = (callback) => {
+  refreshSubscribers.push(callback)
+}
+
 instance.interceptors.request.use((config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
@@ -39,6 +53,7 @@ instance.interceptors.request.use((config) => {
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
     config.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
+    console.log('인터셉터 CONFIG', config)
     // config.headers.common['FB-TOKEN'] = `Bearer ${FB_TOKEN}`
   }
   // config.headers['Access-Control-Allow-Origin'] = '*'
@@ -112,12 +127,17 @@ instance.interceptors.response.use(
   },
 
   async (error) => {
-    const { data: responseData, config: originalRequest } = error.response
+    const {
+      data: responseData,
+      config: originalRequest,
+      status: statusCode,
+    } = error.response
     console.log(
       'ERR RESPONSED',
       responseData,
       responseData.message,
       originalRequest,
+      statusCode,
     )
     if (responseData.message === 'Move to Login Page') {
       console.log('dddd')
@@ -126,108 +146,228 @@ instance.interceptors.response.use(
       return Promise.reject(error)
     }
 
-    // if (
-    //   responseData.responseMessage === null &&
-    //   responseData.statusCode === null
-    // ) {
-    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //     console.error(error.response)
-    //   }
+    if (statusCode === UNAUTHORIZED && responseData.code === 1004) {
+      if (process.env.REACT_APP_NODE_ENV === 'development') {
+        console.error('엑세스 토큰 만료됨', error)
+      }
+      const oldAccess = `Bearer ${getCookie('A-AUTH-TOKEN')}`
+      const oldRefresh = `Bearer ${getCookie('R-AUTH-TOKEN')}`
+      const { data } = await axios({
+        url: 'https://panghoon.shop/member/reissue',
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'A-AUTH-TOKEN': oldAccess,
+          'R-AUTH-TOKEN': oldRefresh,
+          accept: 'application/json,',
+        },
+      })
+        .then((res) => {
+          return res
+        })
+        .catch((error) => console.log(error.response))
+      console.log('reissue데이터::', data)
+      const newAccess = data.data.access
+      const newRefresh = data.data.refresh
+      deleteCookie('A-AUTH-TOKEN')
+      deleteCookie('R-AUTH-TOKEN')
+      setCookie('A-AUTH-TOKEN', newAccess)
+      setCookie('R-AUTH-TOKEN', newRefresh)
+      console.log("오리지날1",originalRequest)
+      originalRequest.headers['A-AUTH-TOKEN'] = `Bearer ${newAccess}`
+      originalRequest.headers['R-AUTH-TOKEN'] = `Bearer ${newRefresh}`
+      console.log('오리지날2', originalRequest)
 
-    //   return Promise.reject(error)
-    // }
-
-    // if (responseData.statusCode === UNAUTHORIZED) {
-    //   if (responseData.responseMessage === ACCESS_TOKEN_SIGNATURE_EXCEPTION) {
-    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //       console.error(error)
-    //     }
-
-    //     return Promise.reject(error)
-    //   }
-
-    //   if (responseData.responseMessage === ACCESS_TOKEN_MALFORMED) {
-    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //       console.error(error)
-    //     }
-
-    //     return Promise.reject(error)
-    //   }
-    // }
-
-    // if (
-    //   responseData.statusCode === BAD_REQUEST &&
-    //   responseData.responseMessage === ACCESS_TOKEN_EXPIRED
-    // ) {
-    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //     console.error(responseData)
-    //   }
-
-    //   try {
-    //     const { data } = await axios({
-    //       method: 'GET',
-    //       url: `${process.env.REACT_APP_BASE_URL}/user/loginCheck`,
-    //       headers: {
-    //         'Content-Type': 'application/json;charset=UTF-8',
-    //         'R-AUTH-TOKEN': getCookie('habit-R-Token'),
-    //       },
-    //     })
-
-    //     if (data.statusCode === OK) {
-    //       setCookie('habit-A-Token', data.accessToken)
-    //       originalRequest.headers['A-AUTH-TOKEN'] = `${data.accessToken}`
-    //       return axios(originalRequest)
-    //     }
-    //   } catch (error) {
-    //     if (
-    //       error?.response?.data?.statusCode === BAD_REQUEST &&
-    //       error?.response?.data?.responseMessage === REFRESH_TOKEN_EXPIRED
-    //     ) {
-    //       if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //         console.error(error)
-    //       }
-
-    //       return Promise.reject(error)
-    //     }
-    //     if (error?.response?.data?.statusCode === UNAUTHORIZED) {
-    //       if (
-    //         error?.response?.data?.responseMessage ===
-    //         REFRESH_TOKEN_SIGNATURE_EXCEPTION
-    //       ) {
-    //         return Promise.reject(error)
-    //       }
-    //       if (
-    //         error?.response?.data?.responseMessage === REFRESH_TOKEN_MALFORMED
-    //       ) {
-    //         if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //           console.error(error)
-    //         }
-
-    //         return Promise.reject(error)
-    //       }
-    //     }
-    //     if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //       console.error(error)
-    //     }
-    //     return Promise.reject(error)
-    //   }
-    // }
-
-    // if (error.response.data.statusCode === NOT_FOUND) {
-    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //     console.error(error)
-    //   }
-    //   return Promise.reject(error)
-    // }
-
-    // if (error.response.data.statusCode === INTERNAL_SERVER_ERROR) {
-    //   if (process.env.REACT_APP_NODE_ENV === 'development') {
-    //     console.error(error)
-    //   }
-
-    //   return Promise.reject(error)
-    // }
-
+      return axios(originalRequest)
+    }
     return Promise.reject(error)
   },
 )
+
+// const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+// const refreshToken = await AsyncStorage.getItem('refreshToken')
+// token refresh 요청
+
+//     try {
+//       const originalRequest = error.config;
+//       const data = await instance.get('/member/reissue');
+//       if (data) {
+//         const { access, refresh } = data.data;
+//         console.log("토큰들",access,refresh)
+//         deleteCookie('A-AUTH-TOKEN');
+//         deleteCookie('R-AUTH-TOKEN');
+//         setCookie('A-AUTH-TOKEN', access);
+//         setCookie('R-AUTH-TOKEN', refresh);
+//         // localStorage.removeItem('user');
+//         // localStorage.setItem('user', JSON.stringify(data.data, ['accessToken', 'refreshToken']));
+//         originalRequest.headers['A-AUTH-TOKEN'] = access;
+//         originalRequest.headers['R-AUTH-TOKEN'] = refresh;
+//         return await instance.request(originalRequest);
+//       }
+//     } catch (error) {
+//       localStorage.removeItem('user');
+//       console.log(error);
+//     }
+//     return Promise.reject(error);
+
+// }
+// const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
+// const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
+// console.log("신규엑세스토큰",A_AUTH_TOKEN)
+// axios.defaults.headers.common[
+//   'A-AUTH-TOKEN'
+// ] = `Bearer ${A_AUTH_TOKEN}`
+// axios.defaults.headers.common[
+//   'R-AUTH-TOKEN'
+// ] = `Bearer ${R_AUTH_TOKEN}`
+
+// const { data } = await axios
+//   .get(
+//     'https://panghoon.shop/member/reissue',
+
+// {
+//   refreshToken,
+// },
+// )
+// .then((res) => {
+// const newAccessToken = res.data.data.access;
+// const newRefreshToken = res.data.data.refresh;
+//     deleteCookie('A-AUTH-TOKEN')
+//     deleteCookie('R-AUTH-TOKEN')
+// setCookie('A-AUTH-TOKEN', newAccessToken);
+// setCookie('R-AUTH-TOKEN', newRefreshToken);
+// originalRequest.headers.common[
+//   'A-AUTH-TOKEN'
+// ] = `Bearer ${newAccessToken}`;
+// originalRequest.headers.common[
+//   'R-AUTH-TOKEN'
+// ] = `Bearer ${newRefreshToken}`;
+// isTokenRefreshing = false;
+// return axios(originalRequest);
+//   return res
+// })
+// .catch((error) => {
+//   console.log('토큰 만료후 재 요청시 에러:::', error.response)
+// })
+
+//   console.log('리프레쉬된 토큰 데이터가 왔따!!!', data)
+//   // 새로운 토큰 저장
+//   const newAccessToken = data.data.access
+//   const newRefreshToken = data.data.refresh
+//   console.log(newAccessToken, newRefreshToken)
+//   deleteCookie('A-AUTH-TOKEN')
+//   deleteCookie('R-AUTH-TOKEN')
+
+//   setCookie('A-AUTH-TOKEN', newAccessToken)
+//   setCookie('R-AUTH-TOKEN', newRefreshToken)
+
+//   isTokenRefreshing = false
+//   originalRequest.headers[
+//     'A-AUTH-TOKEN'
+//   ] = `Bearer ${newAccessToken}`
+//   originalRequest.headers[
+//     'R-AUTH-TOKEN'
+//   ] = `Bearer ${newRefreshToken}`
+
+//   onTokenRefreshed(newAccessToken)
+//   onTokenRefreshed(newRefreshToken)
+// }
+
+// const retryOriginalRequest = new Promise((resolve) => {
+//   addRefreshSubscriber((accessToken, refreshToken) => {
+//     originalRequest.headers.common[
+//       'A-AUTH-TOKEN'
+//     ] = `Bearer ${accessToken}`
+//     originalRequest.headers.common[
+//       'R-AUTH-TOKEN'
+//     ] = `Bearer ${refreshToken}`
+//     console.log("리트라이오리지날리퀘스트",originalRequest)
+//     return resolve(axios(originalRequest))
+//   })
+//   // const accessToken = getCookie('A-AUTH-TOKEN')
+//   // const refreshToken = getCookie('R-AUTH-TOKEN')
+//   // originalRequest.headers.common['A-AUTH-TOKEN'] = `Bearer ${accessToken}`
+//   // originalRequest.headers.common['R-AUTH-TOKEN'] = `Bearer ${refreshToken}`
+//   // resolve(axios(originalRequest))
+// })
+
+// if (responseData.responseMessage === ACCESS_TOKEN_MALFORMED) {
+//   if (process.env.REACT_APP_NODE_ENV === 'development') {
+//     console.error(error)
+//   }
+
+//   return Promise.reject(error)
+// }
+
+// if (
+//   responseData.statusCode === BAD_REQUEST &&
+//   responseData.responseMessage === ACCESS_TOKEN_EXPIRED
+// ) {
+//   if (process.env.REACT_APP_NODE_ENV === 'development') {
+//     console.error(responseData)
+//   }
+
+//   try {
+//     const { data } = await axios({
+//       method: 'GET',
+//       url: `${process.env.REACT_APP_BASE_URL}/user/loginCheck`,
+//       headers: {
+//         'Content-Type': 'application/json;charset=UTF-8',
+//         'R-AUTH-TOKEN': getCookie('habit-R-Token'),
+//       },
+//     })
+
+//     if (data.statusCode === OK) {
+//       setCookie('habit-A-Token', data.accessToken)
+//       originalRequest.headers['A-AUTH-TOKEN'] = `${data.accessToken}`
+//       return axios(originalRequest)
+//     }
+//   } catch (error) {
+//     if (
+//       error?.response?.data?.statusCode === BAD_REQUEST &&
+//       error?.response?.data?.responseMessage === REFRESH_TOKEN_EXPIRED
+//     ) {
+//       if (process.env.REACT_APP_NODE_ENV === 'development') {
+//         console.error(error)
+//       }
+
+//       return Promise.reject(error)
+//     }
+//     if (error?.response?.data?.statusCode === UNAUTHORIZED) {
+//       if (
+//         error?.response?.data?.responseMessage ===
+//         REFRESH_TOKEN_SIGNATURE_EXCEPTION
+//       ) {
+//         return Promise.reject(error)
+//       }
+//       if (
+//         error?.response?.data?.responseMessage === REFRESH_TOKEN_MALFORMED
+//       ) {
+//         if (process.env.REACT_APP_NODE_ENV === 'development') {
+//           console.error(error)
+//         }
+
+//         return Promise.reject(error)
+//       }
+//     }
+//     if (process.env.REACT_APP_NODE_ENV === 'development') {
+//       console.error(error)
+//     }
+//     return Promise.reject(error)
+//   }
+// }
+
+// if (error.response.data.statusCode === NOT_FOUND) {
+//   if (process.env.REACT_APP_NODE_ENV === 'development') {
+//     console.error(error)
+//   }
+//   return Promise.reject(error)
+// }
+
+// if (error.response.data.statusCode === INTERNAL_SERVER_ERROR) {
+//   if (process.env.REACT_APP_NODE_ENV === 'development') {
+//     console.error(error)
+//   }
+
+//   return Promise.reject(error)
+// }

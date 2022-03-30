@@ -1,6 +1,8 @@
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
-import { request } from '../utils/axios'
+import { request, instance } from '../utils/axios'
+
+
 
 export const useFriendsData = (navigate) => {
   return useQuery(['friend', navigate], () => {
@@ -23,7 +25,7 @@ export const searchFriends = (nickname) => {
     data: {
       friendNickname: nickname,
     },
-  })
+  }).then(res => { return res })
 }
 export const useSearchFriend = () => {
   return useMutation(searchFriends, {
