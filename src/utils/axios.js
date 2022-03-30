@@ -22,7 +22,6 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
-
 export const instance = axios.create({
   baseURL: 'https://panghoon.shop',
   // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
@@ -32,7 +31,7 @@ export const instance = axios.create({
   },
 })
 
-// let isTokenRefreshing = false
+let isTokenRefreshing = false
 const refreshSubscribers = []
 console.log('refreshSubscribers', refreshSubscribers)
 
@@ -147,38 +146,45 @@ instance.interceptors.response.use(
     }
 
     if (statusCode === UNAUTHORIZED && responseData.code === 1004) {
-      if (process.env.REACT_APP_NODE_ENV === 'development') {
-        console.error('엑세스 토큰 만료됨', error)
-      }
-      const oldAccess = `Bearer ${getCookie('A-AUTH-TOKEN')}`
-      const oldRefresh = `Bearer ${getCookie('R-AUTH-TOKEN')}`
-      const { data } = await axios({
-        url: 'https://panghoon.shop/member/reissue',
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'A-AUTH-TOKEN': oldAccess,
-          'R-AUTH-TOKEN': oldRefresh,
-          accept: 'application/json,',
-        },
-      })
-        .then((res) => {
-          return res
-        })
-        .catch((error) => console.log(error.response))
-      console.log('reissue데이터::', data)
-      const newAccess = data.data.access
-      const newRefresh = data.data.refresh
-      deleteCookie('A-AUTH-TOKEN')
-      deleteCookie('R-AUTH-TOKEN')
-      setCookie('A-AUTH-TOKEN', newAccess)
-      setCookie('R-AUTH-TOKEN', newRefresh)
-      console.log("오리지날1",originalRequest)
-      originalRequest.headers['A-AUTH-TOKEN'] = `Bearer ${newAccess}`
-      originalRequest.headers['R-AUTH-TOKEN'] = `Bearer ${newRefresh}`
-      console.log('오리지날2', originalRequest)
+      if (!isTokenRefreshing) {
+        isTokenRefreshing = true
+        if (process.env.REACT_APP_NODE_ENV === 'development') {
+          console.error('엑세스 토큰 만료됨', error)
+        }
 
-      return axios(originalRequest)
+        const oldAccess = `Bearer ${getCookie('A-AUTH-TOKEN')}`
+        const oldRefresh = `Bearer ${getCookie('R-AUTH-TOKEN')}`
+
+        const { data } = await axios({
+          url: 'https://panghoon.shop/member/reissue',
+          method: 'get',
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'A-AUTH-TOKEN': oldAccess,
+            'R-AUTH-TOKEN': oldRefresh,
+            accept: 'application/json,',
+          },
+        })
+
+        console.log('reissue데이터::', data)
+        if (data.code === 'OK') {
+          const newAccess = data.data.access
+          const newRefresh = data.data.refresh
+          deleteCookie('A-AUTH-TOKEN')
+          deleteCookie('R-AUTH-TOKEN')
+          setCookie('A-AUTH-TOKEN', newAccess)
+          setCookie('R-AUTH-TOKEN', newRefresh)
+          console.log('오리지날1', originalRequest)
+          originalRequest.headers['A-AUTH-TOKEN'] = `Bearer ${newAccess}`
+          originalRequest.headers['R-AUTH-TOKEN'] = `Bearer ${newRefresh}`
+          console.log('오리지날2', originalRequest)
+          isTokenRefreshing = false
+          return axios(originalRequest)
+        }
+      } else {
+        setMoveToLoginPage()
+        return Promise.reject(error)
+      }
     }
     return Promise.reject(error)
   },
