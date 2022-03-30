@@ -353,8 +353,8 @@ const TopDiv = styled.div`
 
 const RightButton = styled.button`
   position: absolute;
-  width: 26px;
-  height: 14px;
+  width: 24px;
+  height: 24px;
   left: 318px;
   top: 46px;
   background-color: white;

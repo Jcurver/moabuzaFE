@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NavLink, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import { setFlexStyles } from '../styles/Mixin'
 import Loading from './Loading'
+
 import ErrorLog from './ErrorLog'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import {
@@ -61,7 +63,9 @@ function AddFriends() {
       />
       <NicknameButton
         onClick={() => {
-          findFriend.mutate(nick)
+          const mutateresult = findFriend.mutate(nick)
+          console.log("mresult",mutateresult)
+          // console.log("FF",findFriend.mutate(nick))
           // navigate(0)
         }}
       >
@@ -76,7 +80,27 @@ function AddFriends() {
           <FriendAddButton>
             <FriendAddButtonText
               onClick={() => {
-                requestFriend(findFriend.data.data.nickname)
+                Swal.fire({
+                  title: '친구로 추가하시겠어요?',
+                  // text: '!',
+                  icon: 'question',
+                  showCancelButton: true,
+                  confirmButtonText: '추가',
+                  cancelButtonText: '취소',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  showLoaderOnConfirm: true,
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    requestFriend(findFriend.data.data.nickname)
+                    Swal.fire({
+                      title: '친구요청 완료!',
+                      icon: 'success',
+                    }).then(() => {
+                      navigate(0)
+                    })
+                  }
+                })
               }}
             >
               추가
