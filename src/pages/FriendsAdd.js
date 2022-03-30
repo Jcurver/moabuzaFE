@@ -62,7 +62,7 @@ function AddFriends() {
       <NicknameButton
         onClick={() => {
           findFriend.mutate(nick)
-          navigate(0)
+          // navigate(0)
         }}
       >
         <Search />
