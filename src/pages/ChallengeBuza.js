@@ -145,7 +145,7 @@ function ChallengeBuza() {
                     <GroupFriendGoal>
                       <GroupFriendGoalAmount>
                         {homeData
-                          ? homeData.data.data.challengeNeedAmount.toLocaleString(
+                          ? homeData?.data?.data?.challengeNeedAmount.toLocaleString(
                               'ko-KR',
                             )
                           : null}
@@ -191,7 +191,8 @@ function ChallengeBuza() {
 
         {data && data.data.goalStatus === 'waiting'
           ? data.data.waitingGoals.map((gStatus, idx) => {
-              return (
+            return (
+              <ScrollWrapper height="44%">
                 <GoalWrapper>
                   <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
                   <GoalDescribe>
@@ -211,7 +212,8 @@ function ChallengeBuza() {
                     대기취소
                   </Button>
                 </GoalWrapper>
-              )
+              </ScrollWrapper>
+            )
             })
           : null}
       </ChallengeWaitingDiv>
