@@ -25,6 +25,7 @@ function ChallengeBuzaDetail() {
   const navigate = useNavigate()
 
   const { data, isLoading } = useChallengeData(navigate)
+
   const homeData = useMainPageData(navigate)
 
   const cancelGroup = (id) => {
@@ -41,7 +42,7 @@ function ChallengeBuzaDetail() {
       console.log(result)
       if (result.isConfirmed) {
         request({
-          url: `/challenge/${data.data.id}/doing`,
+          url: `/challenge/doing`,
           method: 'delete',
         }).then(() => {
           navigate('/challengebuza')

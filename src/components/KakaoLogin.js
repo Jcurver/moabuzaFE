@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { setCookie } from '../utils/cookie'
+import { deleteCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 
 function KakaoLogin() {
   const navigate = useNavigate()
+  deleteCookie('A-AUTH-TOKEN')
+  deleteCookie('R-AUTH-TOKEN')
   // const refresher = useRefreshUser()
 
   // useEffect(() => {
