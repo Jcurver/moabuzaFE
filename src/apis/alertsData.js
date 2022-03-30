@@ -39,7 +39,7 @@ export const alarmGroupRefuse = (id) => {
 
 export const alarmDelete = (id) => {
 
-  return request({ url: `/alarm/${id}`, method: 'delete' }).then((res)=>console.log("알람삭제ㅣ:::",res))
+  return request({ url: `/alarm/${id}`, method: 'delete' })
 }
 
 
