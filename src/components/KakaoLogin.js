@@ -81,7 +81,8 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const KakaoLogins = styled.div`
-  margin-top: 176%;
+  position:absolute;
+  top: 88%;
 `
 const LoadingIconBox = styled.img`
   position: absolute;
