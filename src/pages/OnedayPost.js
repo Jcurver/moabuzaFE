@@ -108,6 +108,7 @@ function OnedayPost() {
         },
       })
         .then((res) => {
+          console.log('입력저장::', res)
           console.log(res.data.complete)
           if (res.data.complete) {
             Swal.fire({
@@ -128,7 +129,9 @@ function OnedayPost() {
             })
           }
         })
-        .then(() => {})
+        .catch((error) => {
+          console.log('저장에러', error.message)
+        })
     }
     return null
     // setError("extraError", { message: "Server offline." });

@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 
 import '../utils/fcm'
 import axios from 'axios'
-import { fcmToken } from './ec2'
+import { fcmToken } from '../utils/ec2'
 // import { instance } from "./axios";
 
 function Fcmprac() {

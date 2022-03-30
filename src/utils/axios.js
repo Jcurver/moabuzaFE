@@ -53,7 +53,7 @@ instance.interceptors.request.use((config) => {
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
     config.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-    console.log('인터셉터 CONFIG', config)
+    console.log('인터셉터 REQUEST CONFIG', config)
     // config.headers.common['FB-TOKEN'] = `Bearer ${FB_TOKEN}`
   }
   // config.headers['Access-Control-Allow-Origin'] = '*'
