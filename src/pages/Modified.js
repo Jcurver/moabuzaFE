@@ -63,7 +63,7 @@ function Modified() {
               console.log(result)
             })
           }
-          if (res.data === '사용중인 닉네임') {
+          if (res.data.msg === '해당 닉네임은 사용 중 입니다.') {
             setNickNameDup(false)
             Swal.fire({
               title: '사용중인 닉네임',
@@ -76,7 +76,7 @@ function Modified() {
         }
       })
       .catch((error) => {
-        console.log("중복확인 catch에러::::",error.response)
+        console.log('중복확인 catch에러::::', error.response)
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
