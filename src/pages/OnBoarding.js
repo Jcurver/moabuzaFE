@@ -148,7 +148,7 @@ function OnBoarding() {
       <JumpButton
         type="button"
         onClick={() => {
-          navigate('/kakaologin')
+          navigate('/')
         }}
         boarderRadius="8px"
         width="328px"

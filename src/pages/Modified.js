@@ -12,7 +12,7 @@ import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 
 function Modified() {
   const navigate = useNavigate()
-  const [hero, setHero] = useState('')
+  const [hero, setHero] = useState('heor0')
   const [nickNameDup, setNickNameDup] = useState(false)
   function setHeroValue(i) {
     setHero(i)
@@ -21,10 +21,11 @@ function Modified() {
 
   console.log('hero:', hero)
   const onValid = async (data) => {
-    if (hero === 'hero0') {
+    if (hero === 'heor0') {
       return
     }
 
+    console.log(hero)
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
@@ -52,7 +53,7 @@ function Modified() {
       .then((res) => {
         console.log('중복확인::', res)
         if (res.status === 200) {
-          if (res.data === '닉네임 사용 가능') {
+          if (res.data === 'NicknameOK') {
             setNickNameDup(true)
             Swal.fire({
               title: '사용가능한 닉네임',
