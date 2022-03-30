@@ -84,9 +84,10 @@ export const api = {
         nickname: data.nickname,
         hero,
       })
-      .then(() => {
+      .then((res) => {
+        console.log("getUserInfo:::",res)
 
-        window.location.href('/onboarding')
+        // window.location.href('/onboarding')
         // Swal.fire({
         //   title: '환영합니다!',
         //   text: '이제부터 열심히 모아부자!',
