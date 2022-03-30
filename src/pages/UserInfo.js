@@ -39,10 +39,9 @@ function UserInfo() {
     }
 
     await api.getUserInfo(data, hero)
-    navigate('/')
+    navigate('/onboarding')
   }
-
-  const nicknameDup = () => {
+  function NicknameDup() {
     console.log('닉네임::', watch().nickname)
     if (watch().nickname === '') {
       return null
@@ -55,7 +54,7 @@ function UserInfo() {
       .then((res) => {
         console.log('중복확인::', res)
         if (res.status === 200) {
-          if (res.data === '닉네임 사용 가능') {
+          if (res.data === 'NicknameOK') {
             setNickNameDup(true)
             Swal.fire({
               title: '사용가능한 닉네임',
@@ -108,8 +107,9 @@ function UserInfo() {
 
     async function getTokenWithKakao() {
       const { data } = await api.getKakaoLogin(kakaoAuthCode)
-      setCookie('A-AUTH-TOKEN', data.data.access,5)
-      setCookie('R-AUTH-TOKEN', data.data.refresh,5)
+      console.log('data-----------', data)
+      setCookie('A-AUTH-TOKEN', data.data.access, 5)
+      setCookie('R-AUTH-TOKEN', data.data.refresh, 5)
       if (data.data.nickname) {
         navigate('/')
       }
@@ -177,7 +177,7 @@ function UserInfo() {
             },
           })}
         />
-        <NicknameSubmit onClick={() => nicknameDup()}>중복확인</NicknameSubmit>
+        <NicknameSubmit onClick={() => NicknameDup()}>중복확인</NicknameSubmit>
 
         {errors?.nickname ? (
           <NicknameAlert style={{ color: 'red' }}>
