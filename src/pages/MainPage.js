@@ -309,14 +309,14 @@ function MainPage() {
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
         <Won>{data ? data.data.wallet.toLocaleString('en-US') : '0'}원</Won>
-        <ChartBtn>분석해부자</ChartBtn>
+        {/* <ChartBtn>분석해부자</ChartBtn> */}
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
         <Won>
           {data ? data.data.totalAmount.toLocaleString('en-US') : '0'}원
         </Won>
-        <ChartBtn>분석해부자</ChartBtn>
+        {/* <ChartBtn>분석해부자</ChartBtn> */}
       </BottomLine>
       <Nav />
     </Wrapper>

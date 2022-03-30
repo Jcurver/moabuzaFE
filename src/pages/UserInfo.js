@@ -54,7 +54,7 @@ function UserInfo() {
       .then((res) => {
         console.log('중복확인::', res)
         if (res.status === 200) {
-          if (res.data === '해당 닉네임은 사용이 가능합니다.') {
+          if (res.data.msg === '해당 닉네임은 사용이 가능합니다.') {
             setNickNameDup(true)
             Swal.fire({
               title: '사용가능한 닉네임',

@@ -23,7 +23,7 @@ import {
 } from '../constants/statusMessage'
 
 export const instance = axios.create({
-  baseURL: 'https://panghoon.shop',
+  baseURL: `${process.env.REACT_APP_SERVER_URL}`,
   // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
@@ -155,7 +155,7 @@ instance.interceptors.response.use(
         const oldRefresh = `Bearer ${getCookie('R-AUTH-TOKEN')}`
 
         const { data } = await axios({
-          url: 'https://panghoon.shop/member/reissue',
+          url: `${process.env.REACT_APP_SERVER_URL}/member/reissue`,
           method: 'get',
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
