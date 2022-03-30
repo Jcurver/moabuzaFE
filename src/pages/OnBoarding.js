@@ -3,9 +3,11 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loa
 import { useNavigate, Link } from 'react-router-dom'
 import { Carousel } from 'react-responsive-carousel'
 import styled from 'styled-components'
+import Swal from 'sweetalert2'
 import img1 from '../assets/login.png'
 import Button from '../components/Button'
 import '../styles/OnBoarding.css'
+
 import {
   HomeGuide,
   ChallengeGuide,
@@ -150,6 +152,16 @@ function OnBoarding() {
           type="button"
           onClick={() => {
             navigate('/')
+
+            Swal.fire({
+              title: '환영합니다!',
+              text: '이제부터 열심히 모아부자!',
+              icon: 'success',
+            })
+              .then((result) => {
+                console.log(result)
+              })
+              .catch((err) => console.log(err))
           }}
           boarderRadius="8px"
           width="328px"
