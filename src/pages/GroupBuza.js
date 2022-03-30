@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom'
@@ -107,11 +108,9 @@ function GroupBuza() {
                               <GroupFriendIcon
                                 key={shortid.generate()}
                                 src={
-                                  // eslint-disable-next-line no-nested-ternary
                                   member.groupMemberHero === 'tanni'
                                     ? TanniFace
-                                    : // eslint-disable-next-line no-nested-ternary
-                                    member.groupMemberHero === 'tongki'
+                                    : member.groupMemberHero === 'tongki'
                                     ? TongkiFace
                                     : member.groupMemberHero === 'bunny'
                                     ? BunnyFace
