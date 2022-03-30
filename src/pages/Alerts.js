@@ -119,7 +119,7 @@ function AlertsFriend() {
               <>
                 {d.alarmDetailType === 'request' && (
                   <AlertList>
-                    <AlertCharacter />
+                    <AlertCharacter src={Inviting} />
                     <AlertTextDiv>
                       <Flex>
                         <AlertTextTop>{d.friendNickname}</AlertTextTop>
@@ -144,7 +144,14 @@ function AlertsFriend() {
                 {d.alarmDetailType !== 'request' && (
                   <AlertList>
                     <Flex>
-                      <AlertCharacter style={{ marginRight: '10px' }} />
+                      <AlertCharacter
+                        src={
+                          d.alarmDetailType === 'accept'
+                            ? FriendAccept
+                            : FriendReject
+                        }
+                        style={{ marginRight: '10px' }}
+                      />
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
@@ -355,17 +362,18 @@ const AlertList = styled.div`
   margin-left: 8px;
   margin-top: 4%;
 `
-const AlertCharacter = styled.div`
-  width: 32px;
-  height: 32px;
+const AlertCharacter = styled.img`
+  width: 48px;
+  height: 48px;
   padding: 8px;
-  background: gray;
+  /* background: gray; */
 `
 const AlertTextDiv = styled.div`
   width: 160px;
   height: 34px;
   padding: 4px;
   margin-left: 8px;
+  margin-top: 8px;
 `
 const AlertTextTop = styled.div`
   font-family: 'Noto Sans KR';
