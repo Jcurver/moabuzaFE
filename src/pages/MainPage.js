@@ -44,7 +44,6 @@ function MainPage() {
   setItem('nowdate', new Date())
 
   const { isLoading, data, isError, error } = useMainPageData(navigate)
-  console.log('데이터확인 : ', isLoading, data, isError, error)
 
   function makeGoal() {
     if (toggle === 'group') {
@@ -73,6 +72,7 @@ function MainPage() {
     console.log('error : ', error)
     return <ErrorLog error={error} />
   }
+  console.log('데이터확인 : ', isLoading, data, isError, error)
 
   const nowChallengePercent = data.data.challengePercent
   const nowGroupPercent = data.data.groupPercent

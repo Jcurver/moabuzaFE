@@ -21,12 +21,8 @@ function GroupBuza() {
 
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useGroupData(navigate)
-  console.log('그룹부자데이터::', data)
   const homeData = useMainPageData(navigate)
-  if (data) {
-    console.log('데이터ㅣㅣ', data)
-    console.log('웨이팅골', data.data.waitingGoals)
-  }
+
   const cancelGroup = (id) => {
     Swal.fire({
       title: '도전 포기!',
@@ -51,8 +47,8 @@ function GroupBuza() {
   }
 
   useEffect(() => {}, [navigate])
-  console.log(homeData)
-  console.log(data)
+  // console.log(homeData)
+  // console.log(data)
 
   if (homeData.isLoading) {
     return <Loading />
@@ -60,7 +56,11 @@ function GroupBuza() {
   if (isLoading) {
     return <Loading />
   }
-
+  // if (data) {
+  //   console.log('데이터ㅣㅣ', data)
+  //   console.log('웨이팅골', data.data.waitingGoals)
+  // }
+  // console.log('그룹부자데이터::', data)
   return (
     <Wrapper>
       <Title>
