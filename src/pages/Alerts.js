@@ -14,6 +14,17 @@ import {
   alarmFriendRefuse,
   alarmDelete,
 } from '../apis/alertsData'
+import {
+  FriendAccept,
+  FriendAdd,
+  FriendReject,
+  GoalCancel,
+  GoalCreate,
+  GoalSuccess,
+  InviteAccept,
+  Inviting,
+  MoneyDeposit,
+} from '../assets/icons/alarm'
 
 function AlertsFriend() {
   const adata = [
