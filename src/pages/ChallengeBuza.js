@@ -50,8 +50,6 @@ function ChallengeBuza() {
   }
 
   useEffect(() => {}, [navigate])
-  console.log(homeData)
-  console.log(data)
 
   if (homeData.isLoading) {
     return <Loading />
@@ -59,7 +57,8 @@ function ChallengeBuza() {
   if (isLoading) {
     return <Loading />
   }
-
+  console.log(homeData)
+  console.log(data)
   return (
     <Wrapper>
       {/* {data ? data.data.goalStatus : 'asdasd'}
