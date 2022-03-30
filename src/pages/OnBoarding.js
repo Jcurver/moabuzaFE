@@ -1,6 +1,6 @@
 import React from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Carousel } from 'react-responsive-carousel'
 import styled from 'styled-components'
 import img1 from '../assets/login.png'
@@ -145,19 +145,21 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
       </Carousel>
-      <JumpButton
-        type="button"
-        onClick={() => {
-          navigate('/')
-        }}
-        boarderRadius="8px"
-        width="328px"
-        height="52px"
-        background="#4675F0"
-        // marginTop="60px"
-      >
-        건너뛰기!
-      </JumpButton>
+      <Link to="/">
+        <JumpButton
+          type="button"
+          onClick={() => {
+            navigate('/')
+          }}
+          boarderRadius="8px"
+          width="328px"
+          height="52px"
+          background="#4675F0"
+          // marginTop="60px"
+        >
+          건너뛰기!
+        </JumpButton>
+      </Link>
     </Wrapper>
   )
 }
