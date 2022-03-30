@@ -5,6 +5,9 @@
 .carousel-status {
   display: none;
 }
+.slider-wrapper {
+  height: 600px;
+}
 
 .carousel .control-next.control-arrow:before {
   border-left: 16px solid #4675f0;
