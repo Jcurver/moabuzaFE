@@ -23,7 +23,7 @@ function Friends() {
     setError,
   } = useForm()
   const { isLoading, data: friendList, error, isError } = useFriendsData()
- 
+  console.log("friendList::",friendList)
 
   if (isLoading) {
     return <Loading />
@@ -71,7 +71,7 @@ function Friends() {
               <FriendProfile>
                 <FriendIcon />
                 <FriendText>
-                  {friendList.data.waitingFriendListDto.nickName}
+                  {d.nickname}
                 </FriendText>
               </FriendProfile>
               <AddButton>수락대기</AddButton>
@@ -84,7 +84,7 @@ function Friends() {
               <FriendProfile>
                 <FriendIcon />
                 <FriendText>
-                  {friendList.data.friendListDto.nickName}
+                  {d.nickname}
                 </FriendText>
               </FriendProfile>
             </FriendsLine>
