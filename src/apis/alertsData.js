@@ -39,21 +39,17 @@ export const alarmGroupRefuse = (id) => {
 
 export const alarmDelete = (id) => {
 
-  return request({ url: `/alarm/${id}`, method: 'delete' }).then((res)=>console.log("알람삭제ㅣ:::",res))
+  return request({ url: `/alarm/${id}`, method: 'delete' })
 }
 
 
-export const alarmFriendAccept = (nickname) => {
+export const alarmFriendAccept = (id) => {
   return request({
-    url: `/firend/accept`, method: 'post', data: {
-    friendNickname:nickname
-  } })
+    url: `/firend/${id}/accept`, method: 'post'})
 }
-export const alarmFriendRefuse = (nickname) => {
+export const alarmFriendRefuse = (id) => {
   return request({
-    url: `/firend/refuse`, method: 'post', data: {
-    friendNickname:nickname
-  } })
+    url: `/firend/${id}/refuse`, method: 'post' })
 }
 
 

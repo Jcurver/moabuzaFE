@@ -45,7 +45,7 @@ function Modified() {
       return null
     }
     return request({
-      url: '/nickname/validation',
+      url: '/member/validation',
       method: 'post',
       data: { nickname: watch().nickname },
     })
@@ -96,7 +96,7 @@ function Modified() {
   console.log(watch())
   return (
     <Wrapper>
-      <NavLink to="/settings">
+      <NavLink to="/menu">
         <ButtonDiv>
           <BackarrButton />
         </ButtonDiv>
