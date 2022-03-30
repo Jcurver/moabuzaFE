@@ -247,6 +247,7 @@ function ChallengeBuzaCreate() {
     </Wrapper>
   )
 }
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
