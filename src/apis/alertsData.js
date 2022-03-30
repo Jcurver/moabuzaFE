@@ -45,11 +45,11 @@ export const alarmDelete = (id) => {
 
 export const alarmFriendAccept = (id) => {
   return request({
-    url: `/firend/${id}/accept`, method: 'post'})
+    url: `/friend/${id}/accept`, method: 'post'})
 }
 export const alarmFriendRefuse = (id) => {
   return request({
-    url: `/firend/${id}/refuse`, method: 'post' })
+    url: `/friend/${id}/refuse`, method: 'post' })
 }
 
 
