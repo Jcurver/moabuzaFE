@@ -187,13 +187,13 @@ function OnedayBuza(state) {
       <TotalLine style={{ top: '36.25%' }}>
         <TotalLeft>같이해부자</TotalLeft>
         <TotalRight>
-          + {mutation?.data?.data?.dayGroupAmount.toLocaleString('en-US')} 원
+          {mutation?.data?.data?.dayGroupAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
       <TotalLine style={{ top: '40.97%' }}>
         <TotalLeft>도전해부자</TotalLeft>
         <TotalRight>
-          + {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')}{' '}
+          {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')}{' '}
           원
         </TotalRight>
       </TotalLine>
@@ -313,7 +313,7 @@ const RightButtonDiv = styled.div`
 const RightButton = styled.div`
   position: absolute;
   width: 26px;
-  height: 14px;
+  height: 26px;
   left: 318px;
   top: 46px;
 
@@ -488,7 +488,9 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
-  background-color: var(--bg-primary);
+  /* background-color: #EBF2FF; */
+  /* background-color: var(--bg-primary); */
+  /* background: red; */
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -519,6 +521,7 @@ const TodayListDiv = styled.div`
   top: 60.56%;
   padding: 0 16px;
   overflow: scroll;
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   ::-webkit-scrollbar {

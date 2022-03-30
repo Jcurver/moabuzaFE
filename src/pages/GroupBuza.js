@@ -172,7 +172,8 @@ function GroupBuza() {
 
         {data && data.data.goalStatus === 'waiting'
           ? data.data.waitingGoals.map((gStatus, idx) => {
-              return (
+            return (
+              <ScrollWrapper height="44%">
                 <GoalWrapper>
                   <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
                   <GoalDescribe>
@@ -192,7 +193,8 @@ function GroupBuza() {
                     대기취소
                   </Button>
                 </GoalWrapper>
-              )
+              </ScrollWrapper>
+            )
             })
           : null}
       </GroupWaitingDiv>
