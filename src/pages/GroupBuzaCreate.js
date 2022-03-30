@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
@@ -17,6 +18,15 @@ import {
 function GroupBuzaCreate() {
   const navigate = useNavigate()
   const { data, isLoading } = useFriendData(navigate)
+  // 수정대기2
+  const friendData = () => {
+    return request({ url: '/money/group/creategroup', method: 'get' }).then(
+      (res) => {
+        console.log(res)
+        setDatalist([...res.data.groupMembers])
+      },
+    )
+  }
 
   useEffect(() => {
     friendData()
@@ -30,15 +40,6 @@ function GroupBuzaCreate() {
     formState: { errors },
   } = useForm()
   console.log(watch())
-  // 수정대기2
-  const friendData = () => {
-    return request({ url: '/money/group/creategroup', method: 'get' }).then(
-      (res) => {
-        console.log(res)
-        setDatalist([...res.data.groupMembers])
-      },
-    )
-  }
 
   const [datalist, setDatalist] = useState([])
   const [selectFriends, setSelectFriends] = useState([])
@@ -181,7 +182,6 @@ function GroupBuzaCreate() {
                 key={Date.now()}
                 onClick={() => {
                   if (selectFriends.length > 2) {
-                    // eslint-disable-next-line no-alert
                     Swal.fire({
                       icon: 'error',
                       title: '인원초과!',
@@ -207,11 +207,9 @@ function GroupBuzaCreate() {
               >
                 <CircleImg
                   src={
-                    // eslint-disable-next-line no-nested-ternary
                     datalist.hero === 'tanni'
                       ? TanniFace
-                      : // eslint-disable-next-line no-nested-ternary
-                      da.hero === 'tongki'
+                      : da.hero === 'tongki'
                       ? TongkiFace
                       : da.hero === 'bunny'
                       ? BunnyFace

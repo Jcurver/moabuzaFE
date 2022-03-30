@@ -119,7 +119,7 @@ instance.interceptors.response.use(
       responseData.message,
       originalRequest,
     )
-    if (responseData.message === '컨트롤러 Move to Login Page') {
+    if (responseData.message === 'Move to Login Page') {
       console.log('dddd')
 
       setMoveToLoginPage()

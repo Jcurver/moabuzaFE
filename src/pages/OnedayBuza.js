@@ -621,6 +621,6 @@ const ZigZag = styled.div`
   transform: rotate(45deg);
   margin-left: 6px;
   top: -10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
 `
 export default OnedayBuza
