@@ -5,7 +5,9 @@ import { useForm } from 'react-hook-form'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
-import { useFriendsData } from '../apis/friendsData';
+import Loading from './Loading'
+import ErrorLog from './ErrorLog'
+import { useFriendsData, useSearchFriend } from '../apis/friendsData'
 
 function Friends() {
   function searchFriend() {
@@ -20,13 +22,20 @@ function Friends() {
     setValue,
     setError,
   } = useForm()
-  const { isLoading, data } = useFriendsData()
-  console.log("dddata", data)
-  
+  const { isLoading, data: friendList, error, isError } = useFriendsData()
+ 
 
-  function onValid() {
-    
+  if (isLoading) {
+    return <Loading />
   }
+  if (isError) {
+    console.log('error : ', error)
+    return <ErrorLog error={error} />
+  }
+
+  console.log('friendList:::', friendList)
+
+  function onValid() {}
 
   return (
     <Wrapper>
@@ -43,8 +52,8 @@ function Friends() {
           />
         </NavLink>
         <Title>친구</Title>
-        <AddFriend />
-        <NavLink to="/Friends/Add">
+
+        <NavLink to="/friends/add">
           <AddFriendText>추가</AddFriendText>
         </NavLink>
         <TopLine />
@@ -56,6 +65,31 @@ function Friends() {
         </FriendSearch>
       </form>
       <FriendsDiv>
+        {friendList.data.waitingFriendListDto.map((d) => {
+          return (
+            <FriendsLine>
+              <FriendProfile>
+                <FriendIcon />
+                <FriendText>
+                  {friendList.data.waitingFriendListDto.nickName}
+                </FriendText>
+              </FriendProfile>
+              <AddButton>수락대기</AddButton>
+            </FriendsLine>
+          )
+        })}
+        {friendList.data.friendListDto.map((d) => {
+          return (
+            <FriendsLine>
+              <FriendProfile>
+                <FriendIcon />
+                <FriendText>
+                  {friendList.data.friendListDto.nickName}
+                </FriendText>
+              </FriendProfile>
+            </FriendsLine>
+          )
+        })}
         <FriendsLine>
           <FriendProfile>
             <FriendIcon />
@@ -75,7 +109,6 @@ function Friends() {
             <FriendIcon />
             <FriendText>홍길동</FriendText>
           </FriendProfile>
-          <AddButton>수락대기</AddButton>
         </FriendsLine>
       </FriendsDiv>
     </Wrapper>
@@ -90,7 +123,7 @@ const Wrapper = styled.div`
 const TopDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 86px;
+  height: 82px;
   left: 0px;
   top: 0px;
 `
@@ -268,7 +301,7 @@ const AddButton = styled.div`
 
   /* color / gray / Gray30 */
 
-  background: #cccccc;
+  background: #e5eaf2;
   border-radius: 13px;
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -285,7 +318,7 @@ const AddButton = styled.div`
 
   /* Rectangle 173 */
 
-  color: #ffffff;
+  color: #8c939d;
 `
 
 export default Friends

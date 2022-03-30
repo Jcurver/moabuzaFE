@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
@@ -152,11 +153,9 @@ function ChallengeBuzaCreate() {
                 <SelectedFriendContent>
                   <CircleImg
                     src={
-                      // eslint-disable-next-line no-nested-ternary
                       da.hero === 'tanni'
                         ? TanniFace
-                        : // eslint-disable-next-line no-nested-ternary
-                        da.hero === 'tongki'
+                        : da.hero === 'tongki'
                         ? TongkiFace
                         : da.hero === 'bunny'
                         ? BunnyFace
@@ -230,11 +229,9 @@ function ChallengeBuzaCreate() {
               >
                 <CircleImg
                   src={
-                    // eslint-disable-next-line no-nested-ternary
                     da.hero === 'tanni'
                       ? TanniFace
-                      : // eslint-disable-next-line no-nested-ternary
-                      da.hero === 'tongki'
+                      : da.hero === 'tongki'
                       ? TongkiFace
                       : da.hero === 'bunny'
                       ? BunnyFace
