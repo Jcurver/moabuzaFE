@@ -488,7 +488,9 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
-  background-color: var(--bg-primary);
+  /* background-color: #EBF2FF; */
+  /* background-color: var(--bg-primary); */
+  /* background: red; */
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -519,6 +521,7 @@ const TodayListDiv = styled.div`
   top: 60.56%;
   padding: 0 16px;
   overflow: scroll;
+
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   ::-webkit-scrollbar {
