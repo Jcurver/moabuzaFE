@@ -28,7 +28,7 @@ function OnBoarding() {
             </TextArea>
           </TextArea>
           <OnBoardingImg src={HomeGuide} alt="" />
-          <Button
+          {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
             }}
@@ -39,7 +39,7 @@ function OnBoarding() {
             marginTop="60px"
           >
             건너뛰기
-          </Button>
+          </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
         </div>
@@ -53,7 +53,7 @@ function OnBoarding() {
           </TextArea>
 
           <OnBoardingImg src={OneDayBuzaGuide} alt="" />
-          <Button
+          {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
             }}
@@ -64,7 +64,7 @@ function OnBoarding() {
             marginTop="60px"
           >
             건너뛰기
-          </Button>
+          </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
         </div>
@@ -78,7 +78,7 @@ function OnBoarding() {
           </TextArea>
 
           <OnBoardingImg src={OneDayBuzaDelete} alt="" />
-          <Button
+          {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
             }}
@@ -89,7 +89,7 @@ function OnBoarding() {
             marginTop="60px"
           >
             건너뛰기
-          </Button>
+          </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
         </div>
@@ -103,7 +103,7 @@ function OnBoarding() {
           </TextArea>
 
           <OnBoardingImg src={GroupBuzaGuide} alt="" />
-          <Button
+          {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
             }}
@@ -114,7 +114,7 @@ function OnBoarding() {
             marginTop="60px"
           >
             건너뛰기
-          </Button>
+          </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
         </div>
@@ -128,7 +128,8 @@ function OnBoarding() {
           </TextArea>
 
           <OnBoardingImg src={ChallengeGuide} alt="" />
-          <Button
+          {/* <JumpButton
+            type="button"
             onClick={() => {
               navigate('/kakaologin')
             }}
@@ -139,11 +140,24 @@ function OnBoarding() {
             marginTop="60px"
           >
             시작해부자!
-          </Button>
+          </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
         </div>
       </Carousel>
+      <JumpButton
+        type="button"
+        onClick={() => {
+          navigate('/kakaologin')
+        }}
+        boarderRadius="8px"
+        width="328px"
+        height="52px"
+        background="#4675F0"
+        // marginTop="60px"
+      >
+        건너뛰기!
+      </JumpButton>
     </Wrapper>
   )
 }
@@ -165,6 +179,33 @@ const TextArea = styled.div`
   letter-spacing: -0.04em;
 
   color: #000000;
+`
+const JumpButton = styled.button`
+  position: absolute;
+  width: 328px;
+  height: 52px;
+  left: 16px;
+  top: 596px;
+
+  /* color/Secondary */
+
+  background: #4675f0;
+  border-radius: 8px;
+
+  /* Button / Noto Sans KR / Btn_Md(m) */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+
+  /* Rectangle 173 */
+
+  color: #ffffff;
 `
 
 const OnBoardingImg = styled.img`

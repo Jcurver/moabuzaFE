@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -105,11 +106,9 @@ function GroupBuzaDetail() {
                     <GroupFriendIcon
                       key={shortid.generate()}
                       src={
-                        // eslint-disable-next-line no-nested-ternary
                         data.groupMemberHero === 'tanni'
                           ? TanniFace
-                          : // eslint-disable-next-line no-nested-ternary
-                          data.groupMemberHero === 'tongki'
+                          : data.groupMemberHero === 'tongki'
                           ? TongkiFace
                           : data.groupMemberHero === 'bunny'
                           ? BunnyFace
@@ -122,11 +121,9 @@ function GroupBuzaDetail() {
           </GroupFriend>
           <DetailCharacter
             src={
-              // eslint-disable-next-line no-nested-ternary
               data.data.groupNowPercent <= 20
                 ? AllCharacters01
-                : // eslint-disable-next-line no-nested-ternary
-                data.data.groupNowPercent > 20
+                : data.data.groupNowPercent > 20
                 ? AllCharacters02
                 : data.data.groupNowPercent > 60
                 ? AllCharacters03
@@ -144,9 +141,7 @@ function GroupBuzaDetail() {
             margin="0 auto"
             borderRadius="11px"
             labelAlignment={
-              data && data.data.groupNowPercent > 9
-                ? 'center'
-                : 'left'
+              data && data.data.groupNowPercent > 9 ? 'center' : 'left'
             }
             labelSize="14px"
           />
@@ -329,8 +324,8 @@ const GroupFriend = styled.div`
   height: 24px;
 `
 const GroupFriendIcon = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 
   /* color / gray / Gray50 */
 
