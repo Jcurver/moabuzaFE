@@ -50,9 +50,9 @@ function Modified() {
       data: { nickname: watch().nickname },
     })
       .then((res) => {
-        console.log('중복확인::', res)
+        console.log('중복확인 response::', res)
         if (res.status === 200) {
-          if (res.data === '닉네임 사용 가능') {
+          if (res.data === 'NicknameOK') {
             setNickNameDup(true)
             Swal.fire({
               title: '사용가능한 닉네임',
@@ -74,7 +74,8 @@ function Modified() {
           }
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log("중복확인 catch에러::::",error.response)
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
