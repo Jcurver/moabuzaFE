@@ -27,14 +27,14 @@
       "short_name": "열어부자",
       "description": "새창을 열어보세보세보세",
       "url": "./",
-      "icons": [{ "src": "./moa192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "./moabuza192.png", "sizes": "192x192" }]
     },
     {
       "name": "새창",
       "short_name": "새",
       "description": "열어부자",
       "url": "./",
-      "icons": [{ "src": "./moa512.png", "sizes": "512x512" }]
+      "icons": [{ "src": "./moabuza512.png", "sizes": "512x512" }]
     }
   ]
 }
