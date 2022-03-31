@@ -22,7 +22,6 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
-
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
   // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
@@ -53,7 +52,7 @@ instance.interceptors.request.use((config) => {
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
     config.headers.common['R-AUTH-TOKEN'] = `Bearer ${R_AUTH_TOKEN}`
-    console.log('인터셉터 CONFIG', config)
+    console.log('인터셉터 REQUEST CONFIG', config)
     // config.headers.common['FB-TOKEN'] = `Bearer ${FB_TOKEN}`
   }
   // config.headers['Access-Control-Allow-Origin'] = '*'
@@ -85,7 +84,7 @@ export const api = {
         hero,
       })
       .then((res) => {
-        console.log("getUserInfo:::",res)
+        console.log('getUserInfo:::', res)
 
         // window.location.href('/onboarding')
         // Swal.fire({
@@ -167,9 +166,12 @@ instance.interceptors.response.use(
             'R-AUTH-TOKEN': oldRefresh,
             accept: 'application/json,',
           },
+        }).catch(() => {
+         setMoveToLoginPage()
         })
 
         console.log('reissue데이터::', data)
+        
         if (data.code === 'OK') {
           const newAccess = data.data.access
           const newRefresh = data.data.refresh
