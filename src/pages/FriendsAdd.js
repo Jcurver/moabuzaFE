@@ -19,9 +19,6 @@ function AddFriends() {
   const findFriend = useSearchFriend()
   const [nick, setNick] = useState('')
 
-  console.log('findFriend:::', findFriend)
-  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
-
   if (findFriend.isLoading) {
     return <Loading />
   }
@@ -30,7 +27,8 @@ function AddFriends() {
     console.log('error : ', findFriend.error)
     return <ErrorLog error={findFriend.error} />
   }
-
+  console.log('findFriend:::', findFriend)
+  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
   // function searchFriend(nickname) {
 
   // }
