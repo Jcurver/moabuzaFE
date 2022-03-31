@@ -79,7 +79,7 @@ export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
-        fcmToken: getItem('fcmToken'),
+        // fcmToken: getItem('fcmToken'),
         nickname: data.nickname,
         hero,
       })
@@ -171,7 +171,7 @@ instance.interceptors.response.use(
         })
 
         console.log('reissue데이터::', data)
-        
+
         if (data.code === 'OK') {
           const newAccess = data.data.access
           const newRefresh = data.data.refresh
