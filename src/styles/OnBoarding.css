@@ -25,13 +25,15 @@
 /* .thumbs-wrapper {
   display: none;
 } */
-
+.carousel .control-dots .dot {
+  margin: 0 4px;
+}
 .control-dots {
   top: 540px;
 }
 .carousel .control-dots .dot {
-  background: none;
+  background: #8c939d;
 }
-.carousel .control-dots .dot :active {
-  background: white;
-}
+/* .carousel .control-dots .dot :active {
+  background: #8c939d;
+} */
