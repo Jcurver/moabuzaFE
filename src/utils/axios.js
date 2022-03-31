@@ -167,9 +167,12 @@ instance.interceptors.response.use(
             'R-AUTH-TOKEN': oldRefresh,
             accept: 'application/json,',
           },
+        }).catch(() => {
+         setMoveToLoginPage()
         })
 
         console.log('reissue데이터::', data)
+        
         if (data.code === 'OK') {
           const newAccess = data.data.access
           const newRefresh = data.data.refresh
