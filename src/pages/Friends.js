@@ -7,7 +7,7 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import Loading from './Loading'
 import bunny from '../assets/character/01_character_face/bunny.png'
-import tonki from '../assets/character/01_character_face/tanni.png'
+import tongki from '../assets/character/01_character_face/tonki.png'
 import tanni from '../assets/character/01_character_face/tanni.png'
 import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
@@ -89,7 +89,7 @@ function Friends() {
                     d.hero === 'bunny'
                       ? bunny
                       : d.hero === 'tongki'
-                      ? tonki
+                      ? tongki
                       : d.hero === 'tanni'
                       ? tanni
                       : null
