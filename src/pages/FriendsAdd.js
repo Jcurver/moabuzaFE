@@ -64,7 +64,7 @@ function AddFriends() {
       <NicknameButton
         onClick={() => {
           const mutateresult = findFriend.mutate(nick)
-          console.log("mresult",mutateresult)
+          console.log('mresult', mutateresult)
           // console.log("FF",findFriend.mutate(nick))
           // navigate(0)
         }}

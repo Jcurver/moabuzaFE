@@ -22,7 +22,6 @@ import {
   REFRESH_TOKEN_MALFORMED,
 } from '../constants/statusMessage'
 
-
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
   // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
@@ -85,7 +84,7 @@ export const api = {
         hero,
       })
       .then((res) => {
-        console.log("getUserInfo:::",res)
+        console.log('getUserInfo:::', res)
 
         // window.location.href('/onboarding')
         // Swal.fire({
