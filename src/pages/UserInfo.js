@@ -329,7 +329,7 @@ const NicknameText = styled.div`
   width: 38px;
   height: 14px;
   left: 16px;
-  top: 37.78%;
+  top: 272px;
   /* Heading/Noto Sans KR/H6 */
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -345,7 +345,7 @@ const NicknameInput = styled.input`
   width: 216px;
   height: 52px;
   left: 16px;
-  top: 40.83%;
+  top: 294px;
   background: #f5f5f7;
   border-radius: 8px;
   padding-left: 16px;
@@ -374,7 +374,7 @@ const NicknameSubmit = styled.div`
   width: 104px;
   height: 52px;
   left: 240px;
-  top: 40.83%;
+  top: 294px;
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
@@ -401,7 +401,7 @@ const NicknameAlert = styled.div`
   width: 110px;
   height: 11px;
   left: 31px;
-  top: 48.89%;
+  top: 352px;
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
