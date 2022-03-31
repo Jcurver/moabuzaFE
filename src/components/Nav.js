@@ -35,7 +35,7 @@ function NavBar() {
           // fontWeight: isActive ? '800' : '400',
         })}
       >
-        <Component>
+        <Component style={{ marginTop: '2px' }}>
           <Dmenu style={{ width: '24px', height: '24px' }} />
           {/* <MenuIcon>z</MenuIcon> */}
           <MenuText>메뉴</MenuText>
