@@ -83,7 +83,18 @@ function Friends() {
           return (
             <FriendsLine>
               <FriendProfile>
-                <FriendIcon src={d.hero} />
+                <FriendIcon
+
+                  src={
+                    d.hero === 'bunny'
+                      ? bunny
+                      : d.hero === 'tongki'
+                      ? tonki
+                      : d.hero === 'tanni'
+                      ? tanni
+                      : null
+                  }
+                />
                 <FriendText>{d.nickname}</FriendText>
               </FriendProfile>
             </FriendsLine>

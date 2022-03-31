@@ -1,6 +1,6 @@
 {
   "name": "모아부자!",
-  "short_name": "모아부자",
+  "short_name": "모아부자!",
   "discription": "pwa by moabuza",
   "scope":".",
   "start_url": "./",
@@ -11,12 +11,12 @@
 
   "icons": [
     {
-      "src": "moa192.png",
+      "src": "moabuza192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "moa512.png",
+      "src": "moabuza512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

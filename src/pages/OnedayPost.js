@@ -130,7 +130,12 @@ function OnedayPost() {
           }
         })
         .catch((error) => {
-          console.log('저장에러', error.message)
+          console.log("에러저장",error.response)
+           Swal.fire({
+             title: '금액 부족!',
+             text: '지갑에 돈이 부족해요ㅠㅠ',
+             icon: 'warning',
+           })
         })
     }
     return null
