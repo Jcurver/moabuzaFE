@@ -19,9 +19,6 @@ function AddFriends() {
   const findFriend = useSearchFriend()
   const [nick, setNick] = useState('')
 
-  console.log('findFriend:::', findFriend)
-  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
-
   if (findFriend.isLoading) {
     return <Loading />
   }
@@ -30,7 +27,8 @@ function AddFriends() {
     console.log('error : ', findFriend.error)
     return <ErrorLog error={findFriend.error} />
   }
-
+  console.log('findFriend:::', findFriend)
+  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
   // function searchFriend(nickname) {
 
   // }
@@ -132,7 +130,7 @@ const Wrapper = styled.div`
 const TopDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 86px;
+  height: 82px;
   left: 0px;
   top: 0px;
 `
@@ -175,7 +173,7 @@ const Title = styled.div`
   width: 60px;
   height: 23px;
   left: 150px;
-  top: 43px;
+  top: 40px;
 
   font-family: 'Noto Sans KR';
   font-style: normal;

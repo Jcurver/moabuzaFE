@@ -25,6 +25,7 @@ export const searchFriends = (nickname) => {
       friendNickname: nickname,
     },
   }).then((res) => {
+    console.log("searchFriend::",res)
     if (res.data.msg === '이미 친구로 저장되어 있습니다.') {
        Swal.fire({
          title: '이미 친구에요!',
@@ -41,8 +42,8 @@ export const searchFriends = (nickname) => {
     }
     if (res.data.msg === '친구요청을 보낸 상태입니다.') {
       Swal.fire({
-        title: '이미 친구요청을 보냈어요!',
-        //  text: '다른 닉네임으로 검색해부자!',
+        // title: '친구요청을 이미 보내거나 받았어요!',
+        text: '친구요청을 이미 보내거나 받았어요!',
         icon: 'warning',
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
@@ -67,7 +68,6 @@ export const searchFriends = (nickname) => {
         console.log(result)
       })
     }
-    console.log("searchFriend::",res)
     return res
   })
 }

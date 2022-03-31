@@ -15,6 +15,7 @@ import {
   OneDayBuzaGuide,
   GroupBuzaGuide,
 } from '../assets/onboarding'
+import { TanniFace } from '../assets/character'
 
 function OnBoarding() {
   const navigate = useNavigate()
@@ -147,6 +148,8 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
       </Carousel>
+      <PrevArrow img={TanniFace} />
+      <NextArrow img={TanniFace} />
       <Link to="/">
         <JumpButton
           type="button"
@@ -225,6 +228,21 @@ const JumpButton = styled.button`
 const OnBoardingImg = styled.img`
   width: 217px !important;
   height: 402px;
+`
+
+const PrevArrow = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 4px;
+  top: 336px;
+`
+const NextArrow = styled.img`
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 4px;
+  top: 336px;
 `
 
 export default OnBoarding
