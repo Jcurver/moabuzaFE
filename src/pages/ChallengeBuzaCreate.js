@@ -21,6 +21,7 @@ function ChallengeBuzaCreate() {
       setDatalist([...friendsList.data.challengeMembers])
     }
   }, [friendsList])
+  //
   // console.log('FF', friendsList)
   // if (friendsList.data !== undefined) {
   //   setDatalist([...friendsList.data.challengeMembers])
