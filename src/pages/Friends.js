@@ -6,9 +6,10 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import Loading from './Loading'
-import bunny from '../assets/character/01_character_face/bunny.png'
-import tonki from '../assets/character/01_character_face/tanni.png'
-import tanni from '../assets/character/01_character_face/tanni.png'
+import {
+  BunnyFace, TongkiFace, TanniFace
+} from '../assets/character/index'
+
 import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
 
@@ -87,11 +88,11 @@ function Friends() {
 
                   src={
                     d.hero === 'bunny'
-                      ? bunny
+                      ? BunnyFace
                       : d.hero === 'tongki'
-                      ? tonki
+                      ? TongkiFace
                       : d.hero === 'tanni'
-                      ? tanni
+                      ? TanniFace
                       : null
                   }
                 />
