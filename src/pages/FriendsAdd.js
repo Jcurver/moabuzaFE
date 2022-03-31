@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import { setFlexStyles } from '../styles/Mixin'
 import Loading from './Loading'
-
+import { BunnyFace, TongkiFace, TanniFace } from '../assets/character/index'
 import ErrorLog from './ErrorLog'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import {
@@ -73,7 +73,18 @@ function AddFriends() {
       {findFriend?.data?.data?.nickname ? (
         <FriendLine>
           <FriendInfo>
-            <FriendCharactor />
+            {/* <FriendCharactor /> */}
+            <FriendCharactor
+              src={
+                findFriend.data.data.hero === 'bunny'
+                  ? BunnyFace
+                  : findFriend.data.data.hero === 'tongki'
+                  ? TongkiFace
+                  : findFriend.data.data.hero === 'tanni'
+                  ? TanniFace
+                  : null
+              }
+            />
             <FriendNickName>{findFriend.data.data.nickname}</FriendNickName>
           </FriendInfo>
           <FriendAddButton>
@@ -277,12 +288,13 @@ const FriendInfo = styled.div`
   left: 0px;
   top: 5px;
 `
-const FriendCharactor = styled.div`
+const FriendCharactor = styled.img`
   position: static;
   width: 38px;
   height: 38px;
   left: 0px;
   top: 0px;
+  border-radius: 50%;
 
   background: #f5f5f7;
 
