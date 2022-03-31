@@ -132,7 +132,7 @@ const Wrapper = styled.div`
 const TopDiv = styled.div`
   position: absolute;
   width: 360px;
-  height: 86px;
+  height: 82px;
   left: 0px;
   top: 0px;
 `
@@ -175,7 +175,7 @@ const Title = styled.div`
   width: 60px;
   height: 23px;
   left: 150px;
-  top: 43px;
+  top: 40px;
 
   font-family: 'Noto Sans KR';
   font-style: normal;

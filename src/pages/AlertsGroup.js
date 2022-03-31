@@ -183,7 +183,7 @@ function AlertsGroup() {
                       onClick={() => {
                         Swal.fire({
                           title: '초대를 수락하시겠어요?',
-                          text: '수락하면 친구가 되요!',
+                          text: '수락하면 그룹이 생성되요!',
                           icon: 'question',
                           showCancelButton: true,
                           confirmButtonText: '수락',

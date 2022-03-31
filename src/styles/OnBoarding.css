@@ -1,12 +1,8 @@
-.slider-wrapper {
-  height: 720px;
-}
-
 .carousel-status {
   display: none;
 }
 .slider-wrapper {
-  height: 600px;
+  height: 580px;
 }
 
 .carousel .control-next.control-arrow:before {
@@ -29,5 +25,10 @@
   top: 540px;
 }
 .carousel .control-dots .dot {
-  background: #8c939d;
+  background: none;
+
+}
+.carousel .control-dots .dot :active {
+  background: white;
+
 }
