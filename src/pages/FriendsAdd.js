@@ -19,7 +19,8 @@ function AddFriends() {
   const findFriend = useSearchFriend()
   const [nick, setNick] = useState('')
 
-  console.log('sf:::', findFriend)
+  console.log('findFriend:::', findFriend)
+  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
 
   if (findFriend.isLoading) {
     return <Loading />
@@ -29,6 +30,7 @@ function AddFriends() {
     console.log('error : ', findFriend.error)
     return <ErrorLog error={findFriend.error} />
   }
+
   // function searchFriend(nickname) {
 
   // }
@@ -63,15 +65,12 @@ function AddFriends() {
       />
       <NicknameButton
         onClick={() => {
-          const mutateresult = findFriend.mutate(nick)
-          console.log("mresult",mutateresult)
-          // console.log("FF",findFriend.mutate(nick))
-          // navigate(0)
+          findFriend.mutate(nick)
         }}
       >
         <Search />
       </NicknameButton>
-      {findFriend?.data?.data?.nicknameValid ? (
+      {findFriend?.data?.data?.nickname ? (
         <FriendLine>
           <FriendInfo>
             <FriendCharactor />

@@ -108,6 +108,7 @@ function OnedayPost() {
         },
       })
         .then((res) => {
+          console.log('입력저장::', res)
           console.log(res.data.complete)
           if (res.data.complete) {
             Swal.fire({
@@ -128,7 +129,14 @@ function OnedayPost() {
             })
           }
         })
-        .then(() => {})
+        .catch((error) => {
+          console.log("에러저장",error.response)
+           Swal.fire({
+             title: '금액 부족!',
+             text: '지갑에 돈이 부족해요ㅠㅠ',
+             icon: 'warning',
+           })
+        })
     }
     return null
     // setError("extraError", { message: "Server offline." });
