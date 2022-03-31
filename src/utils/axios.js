@@ -80,6 +80,7 @@ export const api = {
     instance
       .put('/member/info', {
         // fcmToken: getItem('fcmToken'),
+        fcmToken: 'fcmToken',
         nickname: data.nickname,
         hero,
       })
