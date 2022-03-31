@@ -18,7 +18,8 @@
 }
 
 .carousel.carousel-slider .control-arrow:hover {
-  background-color: #fff;
+  background-color: #ffffff;
+  opacity: 0;
 }
 
 /* .thumbs-wrapper {
@@ -30,9 +31,7 @@
 }
 .carousel .control-dots .dot {
   background: none;
-
 }
 .carousel .control-dots .dot :active {
   background: white;
-
 }
