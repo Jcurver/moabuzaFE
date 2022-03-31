@@ -6,15 +6,19 @@
 }
 
 .carousel .control-next.control-arrow:before {
-  border-left: 16px solid #4675f0;
+  border-left: 16px solid #fff;
   border-top: 16px solid transparent;
   border-bottom: 16px solid transparent;
 }
 
 .carousel .control-prev.control-arrow:before {
-  border-right: 16px solid #4675f0;
+  border-right: 16px solid #fff;
   border-top: 16px solid transparent;
   border-bottom: 16px solid transparent;
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+  background-color: #fff;
 }
 
 /* .thumbs-wrapper {
