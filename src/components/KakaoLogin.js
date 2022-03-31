@@ -4,6 +4,9 @@ import styled from 'styled-components'
 import { deleteCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 import { LogoText, LogoImg } from '../assets/icons/login'
+import { ReactComponent as KakaoLoginButton } from '../assets/kakaoSymbol.svg'
+import { loginBtnStyle } from '../styles/Mixin'
+
 
 function KakaoLogin() {
   const navigate = useNavigate()
@@ -53,7 +56,8 @@ function KakaoLogin() {
       <LoadingIconBox src={LogoImg} />
       <LogoTextBox src={LogoText} />
       <KakaoLogins onClick={loginWithKakao}>
-        <img src="img/kakao_login_medium_wide.png" alt="카카오계정 로그인" />
+        <KakaoLoginButton />
+        <SocialTitle>카카오톡으로 시작하기</SocialTitle>
       </KakaoLogins>
     </Wrapper>
   )
@@ -82,7 +86,16 @@ const Wrapper = styled.div`
 `
 const KakaoLogins = styled.div`
   position:absolute;
-  top: 88%;
+  top:88%;
+  ${loginBtnStyle('kakao')}
+  
+
+  & > svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 19px;
+    position: absolute;
+  }
 `
 const LoadingIconBox = styled.img`
   position: absolute;
@@ -90,6 +103,11 @@ const LoadingIconBox = styled.img`
   height: 128px;
   left: 116px;
   top: 34.44%;
+`
+const SocialTitle = styled.span`
+  margin: 0 auto;
+  /* height: 24px;
+  margin: 0px 83px 0px 103px; */
 `
 
 const LogoTextBox = styled.img`
