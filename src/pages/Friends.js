@@ -71,7 +71,17 @@ function Friends() {
           return (
             <FriendsLine>
               <FriendProfile>
-                <FriendIcon src={d.hero} />
+                <FriendIcon
+                  src={
+                    d.hero === 'bunny'
+                      ? BunnyFace
+                      : d.hero === 'tongki'
+                      ? TongkiFace
+                      : d.hero === 'tanni'
+                      ? TanniFace
+                      : null
+                  }
+                />
                 <FriendText>{d.nickname}</FriendText>
               </FriendProfile>
               <AddButton>수락대기</AddButton>

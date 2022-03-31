@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Swal from 'sweetalert2'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import Swal from 'sweetalert2'
-
 import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
@@ -158,13 +157,57 @@ function AlertsFriend() {
                       <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() => alarmFriendAccept(d.alarmId)}
+                      onClick={() =>
+                        Swal.fire({
+                          title: '친구초대를 수락하시겠어요?',
+                          // text: '삭제하면 다시 못봐요!',
+                          icon: 'question',
+                          showCancelButton: true,
+                          confirmButtonText: '수락',
+                          cancelButtonText: '취소',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          showLoaderOnConfirm: true,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            alarmFriendAccept(d.alarmId)
+                            Swal.fire({
+                              title: '수락 되었습니다!',
+                              icon: 'success',
+                            }).then(() => {
+                              navigate(0)
+                            })
+                          }
+                        })
+                      }
                       style={{ left: '232px' }}
                     >
                       수락
                     </AlertAcceptRefuse>
                     <AlertAcceptRefuse
-                      onClick={() => alarmFriendRefuse(d.alarmId)}
+                      onClick={() => {
+                        Swal.fire({
+                          title: '친구초대를 거절하시겠어요?',
+                          // text: '삭제하면 다시 못봐요!',
+                          icon: 'question',
+                          showCancelButton: true,
+                          confirmButtonText: '거절',
+                          cancelButtonText: '취소',
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          showLoaderOnConfirm: true,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            alarmFriendRefuse(d.alarmId)
+                            Swal.fire({
+                              title: '거절 되었습니다!',
+                              icon: 'success',
+                            }).then(() => {
+                              navigate(0)
+                            })
+                          }
+                        })
+                      }}
                       style={{ left: '312px' }}
                     >
                       거절
