@@ -84,7 +84,7 @@ const GlobalStyle = createGlobalStyle`
       min-height: -webkit-fill-available;
       margin: 0px;
       padding: 0px;
-      font-family: 'Nato-Sans KR', sans-serif;
+      font-family: 'Noto Sans KR';
       -ms-overflow-style: none;
 
       li {
