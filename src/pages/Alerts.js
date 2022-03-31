@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
+import Swal from 'sweetalert2'
+
 import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
@@ -52,6 +54,34 @@ function AlertsFriend() {
     isError,
     error,
   } = useAlertsFriendData(navigate)
+
+  function alarmDeleteAndRender(id) {
+    console.log('알람아이디:', id)
+    Swal.fire({
+      title: '알람을 삭제하시겠어요?',
+      text: '삭제하면 다시 못봐요!',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      showLoaderOnConfirm: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        alarmDelete(id)
+        Swal.fire({
+          title: '삭제 되었습니다!',
+          icon: 'success',
+        }).then(() => {
+          navigate(0)
+        })
+      }
+    })
+    alarmDelete(id)
+    // navigate(0)
+  }
+
   console.log('알람데이터친구 : ', isLoading, AlertFriendsList, isError, error)
   if (isLoading) {
     return <Loading />
@@ -128,10 +158,7 @@ function AlertsFriend() {
                       <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
                     </AlertTextDiv>
                     <AlertAcceptRefuse
-                      onClick={() =>
-
-                        alarmFriendAccept(d.alarmId)
-                      }
+                      onClick={() => alarmFriendAccept(d.alarmId)}
                       style={{ left: '232px' }}
                     >
                       수락
@@ -168,7 +195,7 @@ function AlertsFriend() {
                       </AlertTextDiv>
                     </Flex>
                     <Close
-                      onClick={() => alarmDelete()}
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
                       style={{ color: 'red', marginRight: '11px' }}
                     />
                   </AlertList>
