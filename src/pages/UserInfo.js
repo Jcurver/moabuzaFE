@@ -78,8 +78,8 @@ function UserInfo() {
       })
       .catch(() => {
         Swal.fire({
-          title: '이미 사용중인 닉네임',
-          text: '다른걸로 해부자 ㅜㅜ',
+          title: '에러 발생',
+          text: '개발자 바보 ㅜㅜ',
           // icon: 'success',
         }).then((result) => {
           console.log(result)

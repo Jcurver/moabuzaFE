@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { deleteCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { LogoText, LogoImg } from '../assets/icons/login'
-import { ReactComponent as KakaoLoginButton } from '../assets/kakaoSymbol.svg'
+import  LogoImg  from '../assets/icons/login/logo_start.gif'
+import { ReactComponent as KakaoLoginBtn } from '../assets/icons/kakaoLoginBtn.svg'
+import { ReactComponent as MoabuzaText } from '../assets/icons/login/moabuza_logo.svg'
 import { loginBtnStyle } from '../styles/Mixin'
-
 
 function KakaoLogin() {
   const navigate = useNavigate()
@@ -46,18 +46,22 @@ function KakaoLogin() {
 
   return (
     <Wrapper>
-      <TextDiv>
+      {/* <TextDiv>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <p style={{ fontWeight: '700' }}>모아부자</p>
           <p>에</p>
         </div>
         <p>오신걸 환영합니다!</p>
-      </TextDiv>
-      <LoadingIconBox src={LogoImg} />
-      <LogoTextBox src={LogoText} />
+      </TextDiv> */}
+      <LoadingIconBox
+        src={LogoImg}
+        style={{ position: 'absolute', top: '30%' }}
+      />
+      {/* <LogoTextBox src={LogoText} /> */}
+      <MoabuzaText style={{ position: 'absolute', top: '47.78%' }} />
+      <Explain>챌린지를 통한 경제습관 바로잡기</Explain>
       <KakaoLogins onClick={loginWithKakao}>
-        <KakaoLoginButton />
-        <SocialTitle>카카오톡으로 시작하기</SocialTitle>
+        <KakaoLoginBtn />
       </KakaoLogins>
     </Wrapper>
   )
@@ -85,17 +89,8 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const KakaoLogins = styled.div`
-  position:absolute;
-  top:88%;
-  ${loginBtnStyle('kakao')}
-  
-
-  & > svg {
-    width: 20px;
-    height: 20px;
-    margin-left: 19px;
-    position: absolute;
-  }
+  position: absolute;
+  top: 88%;
 `
 const LoadingIconBox = styled.img`
   position: absolute;
@@ -116,6 +111,29 @@ const LogoTextBox = styled.img`
   right: 20%;
   top: 52.22%;
   bottom: 42.59%;
+`
+const Explain = styled.div`
+  position: absolute;
+  width: 221px;
+  height: 18px;
+  left: 75px;
+  top: 55.13%;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  /* identical to box height, or 18px */
+
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  letter-spacing: -0.08em;
+
+  /* color/Secondary */
+
+  color: #4675f0;
 `
 
 export default KakaoLogin
