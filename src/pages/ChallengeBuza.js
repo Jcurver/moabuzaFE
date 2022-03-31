@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom'
@@ -19,7 +18,7 @@ const shortid = require('shortid')
 function ChallengeBuza() {
   const navigate = useNavigate()
 
-  // 홈데이터 부르는 부분 수정사함 -----------
+  // 홈데이터 부르는 부분 수정사항 -----------
   const { data, isLoading } = useChallengeData(navigate)
   const homeData = useMainPageData(navigate)
   if (data) {

@@ -144,6 +144,7 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
+        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
         <SelectedFriendWrapper>
           {selectFriends.length === 0
             ? null
@@ -156,8 +157,7 @@ function GroupBuzaCreate() {
                         onClick={() => {
                           const targetIndex = selectFriends.findIndex(
                             (d) =>
-                              d.challengeMemberNickname ===
-                              da.challengeMemberNickname,
+                              d.groupMemberNickname === da.groupMemberNickname,
                           )
                           setDatalist([selectFriends[targetIndex], ...datalist])
                           setSelectFriends([
@@ -225,6 +225,7 @@ function GroupBuzaCreate() {
     </Wrapper>
   )
 }
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -253,11 +254,12 @@ const Input = styled.input`
   /* identical to box height, or 14px */
 
   letter-spacing: -0.04em;
+  padding-left: 12px;
 
   /* color / gray / Gray30 */
 
   ::placeholder {
-    color: #cccccc;
+    color: #999999;
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 400;
@@ -281,10 +283,6 @@ const SmallText = styled.span`
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
-  /* identical to box height, or 12px */
-
-  letter-spacing: -0.04em;
-
   /* color / gray / Gray50 */
 
   color: #999999;
@@ -317,7 +315,6 @@ const GoalInputBox = styled.div`
   top: 106px;
 `
 const IconBox = styled.div`
-  /* position: absolute; */
   width: 328px;
   height: 14px;
   margin: 5px 262px 16px 0px;
@@ -339,7 +336,7 @@ const IconBox = styled.div`
 const MemoInputBox = styled.div`
   position: absolute;
   width: 328px;
-  height: 110px;
+  height: 87px;
   left: 16px;
   top: 209px;
 `
@@ -355,12 +352,12 @@ const FriendWrapper = styled.div`
   width: 328px;
   height: 40%;
   left: 16px;
-  top: 340px;
+  top: 335px;
 `
 
 const FriendsList = styled.div`
   /* Auto layout */
-
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -369,7 +366,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: ${(props) => (props.friendslength === 0 ? '57px' : '28%')};
+  top: 84px;
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -377,7 +374,24 @@ const FriendsList = styled.div`
     display: none; /* Chrome , Safari , Opera */
   }
 `
+const FriendEmptyBox = styled.div`
+  /* Auto layout */
 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 328px;
+  height: 52px;
+  color: #cccccc;
+  /* color / gray / Gray30 */
+  margin-top: 8px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+`
 const Friends = styled.div`
   /* Auto layout */
 
@@ -431,7 +445,7 @@ const CircleImg = styled.img`
   position: static;
   width: 36px;
   height: 36px;
-  left: 0px;
+  margin-left: 12px;
   top: 0px;
 
   background: #f5f5f7;
@@ -443,6 +457,63 @@ const CircleImg = styled.img`
   flex-grow: 0;
   margin: 0px 8px 0px 0px;
 `
+const SelectFriendNameDiv = styled.div`
+  display: block;
+  width: 53px;
+  height: 14px;
+  margin-right: -5px;
+  /* text-overflow: ellipsis; */
+
+  /* Heading/Noto Sans KR/H6 */
+
+  /* Inside auto layout */
+
+  /* margin: 0px 3px; */
+`
+const CreateButtonWrapper = styled.div`
+  position: absolute;
+  /* text-align: center; */
+  width: 328px;
+  height: 60px;
+  color: #000000;
+  /* background-color: white; */
+  top: 82.5%;
+  left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  /* z-index: 99; */
+`
+const CreateButton = styled.button`
+  /* 공통 스타일 */
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  width: 328px;
+  height: 36px;
+  margin: 16px 0px;
+  /* Inside auto layout */
+
+  flex: none;
+  order: 6;
+  flex-grow: 0;
+
+  /* 색상 */
+  background: #5f5f77;
+  &:hover {
+    background: #339af0;
+  }
+  &:active {
+    background: #1c7ed6;
+  }
+`
 
 const SelectedFriendWrapper = styled.div`
   /* Auto layout */
@@ -453,22 +524,26 @@ const SelectedFriendWrapper = styled.div`
   overflow-y: scroll;
   width: 328px;
   height: 140px;
-  margin: 10px 0px;
+  margin-top: 8px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
   ::-webkit-scrollbar {
     display: none; /* Chrome , Safari , Opera */
   }
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 
 const SelectedFriendContent = styled.div`
   /* Auto layout */
 
   display: flex;
+
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  padding: 0px;
+  padding-left: 12px;
 
   position: static;
   width: 142px;
@@ -478,11 +553,19 @@ const SelectedFriendContent = styled.div`
   border: 1px solid #e5eaf2;
   /* Inside auto layout */
   margin: 0px 8px 0px 0px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
   width: 0px;
-  height: 18px;
-  margin-left: 15px;
+  /* color / text / Color-text-Gray1 */
+
   background: white;
 `
 
@@ -491,6 +574,7 @@ const ErrorSpan = styled.span`
   width: 104px;
   height: 11px;
   left: 8px;
+  margin-top: 2px;
 
   font-family: 'Noto Sans KR';
   font-style: normal;
