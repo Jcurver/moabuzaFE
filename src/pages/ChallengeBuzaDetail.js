@@ -42,7 +42,7 @@ function ChallengeBuzaDetail() {
       if (result.isConfirmed) {
         request({
           url: `/challenge/doing`,
-          method: 'delete',
+          method: 'post',
         }).then(() => {
           navigate('/challengebuza')
         })

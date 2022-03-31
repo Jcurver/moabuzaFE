@@ -40,8 +40,8 @@ function GroupBuzaDetail() {
       console.log(data.data.id)
       if (result.isConfirmed) {
         request({
-          url: `/money/group/exitgroup/${data.data.id}`,
-          method: 'delete',
+          url: `/group/doing`,
+          method: 'post',
           data: {
             id: data.id,
           },
