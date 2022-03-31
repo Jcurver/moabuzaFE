@@ -24,7 +24,8 @@
 }
 @font-face {
   font-family: 'Noto Sans KR';
-  src: url('./NotoSansKR-Medium.woff') format('font woff');
+  src: url('./NotoSansKR-Medium.woff') format('woff'),
+      url("./NotoSansKR-Medium.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
@@ -94,7 +95,8 @@
 
 @font-face {
   font-family: 'Roboto';
-  src: url('./Roboto-Regular.woff') format('woff');
+  src: url('./Roboto-Regular.woff') format('woff'),
+  url('./Roboto-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
