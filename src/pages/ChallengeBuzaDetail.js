@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'

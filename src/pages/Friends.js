@@ -6,6 +6,8 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import Loading from './Loading'
+import { BunnyFace, TongkiFace, TanniFace } from '../assets/character/index'
+
 import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
 
@@ -23,7 +25,7 @@ function Friends() {
     setError,
   } = useForm()
   const { isLoading, data: friendList, error, isError } = useFriendsData()
-  console.log("friendList::",friendList)
+  console.log('friendList::', friendList)
 
   if (isLoading) {
     return <Loading />
@@ -69,10 +71,8 @@ function Friends() {
           return (
             <FriendsLine>
               <FriendProfile>
-                <FriendIcon />
-                <FriendText>
-                  {d.nickname}
-                </FriendText>
+                <FriendIcon src={d.hero} />
+                <FriendText>{d.nickname}</FriendText>
               </FriendProfile>
               <AddButton>수락대기</AddButton>
             </FriendsLine>
@@ -82,17 +82,25 @@ function Friends() {
           return (
             <FriendsLine>
               <FriendProfile>
-                <FriendIcon />
-                <FriendText>
-                  {d.nickname}
-                </FriendText>
+                <FriendIcon
+                  src={
+                    d.hero === 'bunny'
+                      ? BunnyFace
+                      : d.hero === 'tongki'
+                      ? TongkiFace
+                      : d.hero === 'tanni'
+                      ? TanniFace
+                      : null
+                  }
+                />
+                <FriendText>{d.nickname}</FriendText>
               </FriendProfile>
             </FriendsLine>
           )
         })}
-        <FriendsLine>
+        {/* <FriendsLine>
           <FriendProfile>
-            <FriendIcon />
+            <FriendIcon src={bunny} />
             <FriendText>홍길동</FriendText>
           </FriendProfile>
           <AddButton>수락대기</AddButton>
@@ -109,7 +117,7 @@ function Friends() {
             <FriendIcon />
             <FriendText>홍길동</FriendText>
           </FriendProfile>
-        </FriendsLine>
+        </FriendsLine> */}
       </FriendsDiv>
     </Wrapper>
   )
@@ -278,11 +286,11 @@ const FriendProfile = styled.div`
 
   width:100px;
 `
-const FriendIcon = styled.div`
+const FriendIcon = styled.img`
   width: 38px;
   height: 38px;
   border-radius: 20px;
-  background: #f5f5f7;
+  /* background: #f5f5f7; */
   margin-right: 8px;
 `
 const FriendText = styled.div``
