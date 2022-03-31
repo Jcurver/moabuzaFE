@@ -6,9 +6,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
 import Loading from './Loading'
-import {
-  BunnyFace, TongkiFace, TanniFace
-} from '../assets/character/index'
+import { BunnyFace, TongkiFace, TanniFace } from '../assets/character/index'
 
 import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
@@ -85,7 +83,6 @@ function Friends() {
             <FriendsLine>
               <FriendProfile>
                 <FriendIcon
-
                   src={
                     d.hero === 'bunny'
                       ? BunnyFace
