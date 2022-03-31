@@ -50,6 +50,12 @@ function GroupBuzaCreate() {
     console.log(' selectFriendNickName', selectFriendNickName)
     if (selectFriendNickName.length === 0) {
       selectFriendNickName = null
+      Swal.fire({
+        title: '친구를 선택해주세요!',
+        text: '2인 이상만 가능해요!',
+        icon: 'warning',
+      })
+      return null
     }
     return request({
       url: '/group',
