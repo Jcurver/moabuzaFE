@@ -5,68 +5,60 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { request } from '../utils/axios'
-import { useFriendData } from '../apis/groupData'
+import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
-import {
-  BunnyFace,
-  TanniFace,
-  TongkiFace,
-  TanniStep02,
-} from '../assets/character'
+import { useFriendData } from '../apis/groupData'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
-  const { data, isLoading } = useFriendData(navigate)
-  // 수정대기2
-  const friendData = () => {
-    return request({ url: '/money/group/creategroup', method: 'get' }).then(
-      (res) => {
-        console.log(res)
-        setDatalist([...res.data.groupMembers])
-      },
-    )
-  }
-
-  useEffect(() => {
-    friendData()
-  }, [navigate])
-  const {
-    control,
-    handleSubmit,
-    register,
-    watch,
-    setError,
-    formState: { errors },
-  } = useForm()
-  console.log(watch())
-
   const [datalist, setDatalist] = useState([])
+  console.log('data:::', datalist)
+  const { data: friendsList, isLoading } = useFriendData(navigate)
   const [selectFriends, setSelectFriends] = useState([])
+  useEffect(() => {
+    if (friendsList) {
+      setDatalist([...friendsList.data.groupMembers])
+    }
+  }, [friendsList])
+  // console.log('FF', friendsList)
+  // if (friendsList.data !== undefined) {
+  //   setDatalist([...friendsList.data.challengeMembers])
+  // }
+  // const friendData = () => {
+  //   return request({
+  //     url: '/money/challenge/createChallenge',
+  //     method: 'get',
+  //   }).then((res) => {
+  //     console.log(res.data.challengeMembers)
+  //     setDatalist([...res.data.challengeMembers])
+  //   })
+  // }
 
-  const selentFriendNickName = selectFriends.map(
+  console.log('selectFriends', selectFriends)
+  let selectFriendNickName = selectFriends.map(
     (data) => data.groupMemberNickname,
   )
 
   const onError = (error) => {
     console.log(error)
   }
+
+  // console.log('selectFriends', selectFriends)
   const onValid = (groupData) => {
-    if (selectFriends.length < 1) {
-      return Swal.fire({
-        title: '1명 이상 선택!',
-        text: '1명 이상 선택해주세요!!',
-        icon: 'error',
-      })
+    console.log('groupData::', groupData)
+    console.log(' selectFriendNickName', selectFriendNickName)
+    if (selectFriendNickName.length === 0) {
+      selectFriendNickName = null
     }
     return request({
-      url: '/alarm/goal',
+      url: '/group',
       method: 'post',
       data: {
         goalType: 'GROUP',
         goalName: groupData.createGroupName,
         goalAmount: parseInt(groupData.createGroupAmount, 10),
-        friendNickname: selentFriendNickName,
+        friendNickname: selectFriendNickName,
       },
     }).then(
       (res) => console.log('groupCreate', res),
@@ -80,14 +72,19 @@ function GroupBuzaCreate() {
       }),
     )
   }
-
-  if (isLoading) {
-    return <Loading />
-  }
-  console.log(data)
   // useEffect(() => {
-  //   console.log(selectFriends)
-  // }, [selectFriends])
+  //   friendData()
+  // }, [])
+
+  const {
+    control,
+    handleSubmit,
+    register,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm()
+  console.log(watch())
 
   return (
     <Wrapper>
@@ -107,7 +104,6 @@ function GroupBuzaCreate() {
         <GoalInputBox>
           <IconBox>💰 목표 금액</IconBox>
           <Input
-            type="number"
             height="52px"
             placeholder="목표 금액을 입력해주세요."
             {...register('createGroupAmount', {
@@ -125,16 +121,21 @@ function GroupBuzaCreate() {
         </GoalInputBox>
         <MemoInputBox>
           <IconBox>
-            <i className="fas fa-smile" />✏ 메모
+            <i className="fas fa-smile" />
+            ✏️ 메모
           </IconBox>
           <Input
             placeholder="메모를 입력해주세요."
-            height="80px"
+            height="52px"
             {...register('createGroupName', {
               required: '이 부분을 채워부자!',
+              maxLength: {
+                value: 10,
+                message: '10글자 이하로 입력해부자!',
+              },
             })}
           />
-          <ErrorSpan style={{ top: '120px' }}>
+          <ErrorSpan style={{ top: '90px' }}>
             {errors?.createGroupName?.message}
           </ErrorSpan>
         </MemoInputBox>
@@ -146,42 +147,55 @@ function GroupBuzaCreate() {
         </Text>
         {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
         <SelectedFriendWrapper>
-          {selectFriends.length === 0
-            ? null
-            : selectFriends.map((da, idx) => {
-                return (
-                  <div key={Date.now()}>
-                    <SelectedFriendContent>
-                      {selectFriends[idx].groupMemberNickname}
-                      <DeleteFriendContent
-                        onClick={() => {
-                          const targetIndex = selectFriends.findIndex(
-                            (d) =>
-                              d.groupMemberNickname === da.groupMemberNickname,
-                          )
-                          setDatalist([selectFriends[targetIndex], ...datalist])
-                          setSelectFriends([
-                            ...selectFriends.slice(0, targetIndex),
-                            ...selectFriends.slice(targetIndex + 1),
-                          ])
+          {selectFriends.map((da, idx) => {
+            return (
+              <div key={da.id}>
+                <SelectedFriendContent>
+                  <CircleImg
+                    src={
+                      da.hero === 'tanni'
+                        ? TanniFace
+                        : da.hero === 'tongki'
+                        ? TongkiFace
+                        : da.hero === 'bunny'
+                        ? BunnyFace
+                        : null
+                    }
+                  />
+                  <SelectFriendNameDiv>
+                    {selectFriends[idx].groupMemberNickname}
+                  </SelectFriendNameDiv>
+                  <DeleteFriendContent
+                    onClick={() => {
+                      const targetIndex = selectFriends.findIndex(
+                        (d) =>
+                          d.groupMemberNickname ===
+                          da.groupMemberNickname,
+                      )
+                      setDatalist([selectFriends[targetIndex], ...datalist])
+                      setSelectFriends([
+                        ...selectFriends.slice(0, targetIndex),
+                        ...selectFriends.slice(targetIndex + 1),
+                      ])
 
-                          console.log('datalist', datalist)
-                        }}
-                      >
-                        <Close />
-                      </DeleteFriendContent>
-                    </SelectedFriendContent>
-                  </div>
-                )
-              })}
+                      console.log('datalist', datalist)
+                    }}
+                  >
+                    <Close />
+                  </DeleteFriendContent>
+                </SelectedFriendContent>
+              </div>
+            )
+          })}
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
             return (
               <Friends
-                key={Date.now()}
+                key={da.id}
                 onClick={() => {
                   if (selectFriends.length > 2) {
+                    // eslint-disable-next-line no-alert
                     Swal.fire({
                       icon: 'error',
                       title: '인원초과!',
@@ -189,10 +203,17 @@ function GroupBuzaCreate() {
                     })
                     return
                   }
-
-                  setSelectFriends((prevList) => [...prevList, da])
+                  // if (selectFriends.challengeMemberCanInvite) {
+                  //   Swal.fire({
+                  //     icon: 'error',
+                  //     title: '이미 선택!',
+                  //     text: '이미 진행중이에요!',
+                  //   })
+                  //   return
+                  // }
                   const targetIndex = datalist.findIndex(
-                    (d) => d.groupMemberNickname === da.groupMemberNickname,
+                    (d) =>
+                      d.groupMemberNickname === da.groupMemberNickname,
                   )
                   setSelectFriends((prevList) => [
                     datalist[targetIndex],
@@ -203,11 +224,12 @@ function GroupBuzaCreate() {
                     ...datalist.slice(targetIndex + 1),
                   ])
                   console.log(selectFriends.length)
+                  console.log('selectFriends', selectFriends)
                 }}
               >
                 <CircleImg
                   src={
-                    datalist.hero === 'tanni'
+                    da.hero === 'tanni'
                       ? TanniFace
                       : da.hero === 'tongki'
                       ? TongkiFace

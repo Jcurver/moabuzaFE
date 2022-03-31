@@ -22,6 +22,7 @@ function GroupBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useGroupData(navigate)
   const homeData = useMainPageData(navigate)
+  console.log("groupData:::",data)
 
   const cancelGroup = (id) => {
     Swal.fire({
