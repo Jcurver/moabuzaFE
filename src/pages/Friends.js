@@ -108,26 +108,6 @@ function Friends() {
             </FriendsLine>
           )
         })}
-        {/* <FriendsLine>
-          <FriendProfile>
-            <FriendIcon src={bunny} />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-          <AddButton>수락대기</AddButton>
-        </FriendsLine>
-        <FriendsLine>
-          <FriendProfile>
-            <FriendIcon />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-          <AddButton>수락대기</AddButton>
-        </FriendsLine>
-        <FriendsLine>
-          <FriendProfile>
-            <FriendIcon />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-        </FriendsLine> */}
       </FriendsDiv>
     </Wrapper>
   )
