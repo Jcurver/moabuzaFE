@@ -6,6 +6,9 @@ import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import img1 from '../assets/login.png'
 import Button from '../components/Button'
+import { ReactComponent as LeftArr } from '../assets/icons/arrow/left_arrow.svg'
+import { ReactComponent as RightArr } from '../assets/icons/arrow/right_arrow.svg'
+
 import '../styles/OnBoarding.css'
 
 import {
@@ -30,6 +33,8 @@ function OnBoarding() {
               저축 습관을 길러보세요!
             </TextArea>
           </TextArea>
+          <PrevArrow />
+          <NextArrow />
           <OnBoardingImg src={HomeGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
@@ -54,7 +59,8 @@ function OnBoarding() {
               밀어서 삭제해보세요!
             </TextArea>
           </TextArea>
-
+          <PrevArrow />
+          <NextArrow />
           <OnBoardingImg src={OneDayBuzaGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
@@ -79,7 +85,8 @@ function OnBoarding() {
               함께 달성해보세요!
             </TextArea>
           </TextArea>
-
+          <PrevArrow />
+          <NextArrow />
           <OnBoardingImg src={OneDayBuzaDelete} alt="" />
           {/* <JumpButton
             onClick={() => {
@@ -104,7 +111,8 @@ function OnBoarding() {
               도전해봐요!
             </TextArea>
           </TextArea>
-
+          <PrevArrow />
+          <NextArrow />
           <OnBoardingImg src={GroupBuzaGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
@@ -129,7 +137,8 @@ function OnBoarding() {
               저축 습관을 길러보세요!
             </TextArea>
           </TextArea>
-
+          <PrevArrow />
+          <NextArrow />
           <OnBoardingImg src={ChallengeGuide} alt="" />
           {/* <JumpButton
             type="button"
@@ -148,8 +157,7 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
       </Carousel>
-      <PrevArrow img={TanniFace} />
-      <NextArrow img={TanniFace} />
+
       <Link to="/">
         <JumpButton
           type="button"
@@ -230,19 +238,21 @@ const OnBoardingImg = styled.img`
   height: 402px;
 `
 
-const PrevArrow = styled.img`
+const PrevArrow = styled(LeftArr)`
   position: absolute;
   width: 48px;
   height: 48px;
   left: 4px;
-  top: 336px;
+  top: 300px;
+  overflow: visible;
 `
-const NextArrow = styled.img`
+const NextArrow = styled(RightArr)`
   position: absolute;
   width: 48px;
   height: 48px;
   right: 4px;
-  top: 336px;
+  top: 300px;
+  overflow: visible;
 `
 
 export default OnBoarding
