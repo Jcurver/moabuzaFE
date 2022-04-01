@@ -39,7 +39,6 @@ function Menu() {
     Swal.fire({
       title: '로그아웃할 거지?',
       text: '꼭 다시 돌아와부자!',
-      icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '나가부자',
       cancelButtonText: '있어부자',

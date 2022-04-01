@@ -50,6 +50,7 @@ function Modified() {
       Swal.fire({
         title: '변경완료!',
         text: '이제부터 열심히 모아부자!',
+        confirmButtonText: '확인!',
       })
         .then((result) => {
           console.log(result)
@@ -77,6 +78,7 @@ function Modified() {
             Swal.fire({
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -87,6 +89,7 @@ function Modified() {
             Swal.fire({
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -99,6 +102,7 @@ function Modified() {
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
+          confirmButtonText: '확인!',
           // icon: 'success',
         }).then((result) => {
           console.log(result)

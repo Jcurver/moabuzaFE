@@ -39,6 +39,7 @@ function UserInfo() {
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
+        confirmButtonText: '확인!',
         //  text: '열심히 모아부자!',
         // icon: 'success',
       }).then((result) => {
@@ -51,7 +52,7 @@ function UserInfo() {
       Swal.fire({
         title: '환영합니다!',
         text: '이제부터 열심히 모아부자!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       })
         .then((result) => {
           console.log(result)
@@ -78,6 +79,7 @@ function UserInfo() {
             Swal.fire({
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -88,6 +90,7 @@ function UserInfo() {
             Swal.fire({
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -99,6 +102,7 @@ function UserInfo() {
         Swal.fire({
           title: '에러 발생',
           text: '개발자 바보 ㅜㅜ',
+          confirmButtonText: '확인!',
           // icon: 'success',
         }).then((result) => {
           console.log(result)
