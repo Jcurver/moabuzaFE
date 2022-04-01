@@ -15,6 +15,8 @@ function GroupBuzaCreate() {
   const [datalist, setDatalist] = useState([])
   console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
+
+  console.log("friendLIst:::",friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -151,7 +153,7 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
+        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -394,7 +396,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: 84px;
+  top: ${(props)=> props.friendslength === 0 ? '32px':'84px'};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

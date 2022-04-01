@@ -28,7 +28,7 @@ export const instance = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
-    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Origin': '*',
   },
 })
 
@@ -48,11 +48,11 @@ const addRefreshSubscriber = (callback) => {
 instance.interceptors.request.use((config) => {
   // setCookie(
   //   'A-AUTH-TOKEN',
-  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNjgzZTNkYSIsImlhdCI6MTY0ODgxNzEyMSwiZXhwIjoxNjQ4ODIwNzIxfQ.qXrdCQNu3GMhaTKQox759S6sbMMGYu81cHDw2ZuvKes',
+  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNjgzZTNkYSIsImlhdCI6MTY0ODgyNDQ2NSwiZXhwIjoxNjQ4ODI4MDY1fQ.ww6RoxGZkxhN8LWP_IJRtS4mQiEn4-SDylpbUYsfng8',
   // )
   // setCookie(
   //   'R-AUTH-TOKEN',
-  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNjgzZTNkYSIsImlhdCI6MTY0ODgxNzEyMSwiZXhwIjoxNjQ4OTAzNTIxfQ.BMLW9nRBWD_iMEZiW1Qf0iWl7zpRd6KAkupSlbz_SOg',
+  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlNjgzZTNkYSIsImlhdCI6MTY0ODgyNDQ2NSwiZXhwIjoxNjQ4OTEwODY1fQ.GGvlgZzRTpE5mBkNRjN4lvjB05rIh_XU_y7-J6YWUZY',
   // )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
@@ -177,7 +177,7 @@ instance.interceptors.response.use(
             accept: 'application/json,',
           },
         }).catch(() => {
-        //  setMoveToLoginPage()
+          //  setMoveToLoginPage()
         })
 
         console.log('reissue데이터::', data)
