@@ -68,8 +68,16 @@ function ChallengeBuzaCreate() {
         text: '시작이 반!!',
         confirmButtonText: '확인!',
       }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: '하루부자로 이동하자!',
+            text: '금액입력은 하루부자에서!',
+            confirmButtonText: '확인!',
+          }).then(() => {
+            navigate('/challengebuza')
+          })
+        }
         console.log(result)
-        navigate('/challengebuza')
       }),
     )
   }
