@@ -257,7 +257,7 @@ const Wrapper = styled.div`
   overflow: auto;
   position: relative;
   width: 100%;
-  height: 720px;
+  /* height: 720px; */
 `
 const CalDiv = styled.div`
   width: 328px;
