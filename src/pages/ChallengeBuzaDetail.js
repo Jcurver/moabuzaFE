@@ -290,7 +290,7 @@ const DetailWrapper = styled.div`
 `
 
 const DetailTitle = styled.div`
-  width: 328px;
+  width: 360px;
   /* height: 23px; */
   /* Heading / Roboto / H3(B) */
 
