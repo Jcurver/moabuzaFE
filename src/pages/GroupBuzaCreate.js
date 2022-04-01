@@ -23,19 +23,6 @@ function GroupBuzaCreate() {
       setDatalist([...friendsList.data.groupMembers])
     }
   }, [friendsList])
-  // console.log('FF', friendsList)
-  // if (friendsList.data !== undefined) {
-  //   setDatalist([...friendsList.data.challengeMembers])
-  // }
-  // const friendData = () => {
-  //   return request({
-  //     url: '/money/challenge/createChallenge',
-  //     method: 'get',
-  //   }).then((res) => {
-  //     console.log(res.data.challengeMembers)
-  //     setDatalist([...res.data.challengeMembers])
-  //   })
-  // }
 
   console.log('selectFriends', selectFriends)
   let selectFriendNickName = selectFriends.map(
@@ -211,14 +198,6 @@ function GroupBuzaCreate() {
                     })
                     return
                   }
-                  // if (selectFriends.challengeMemberCanInvite) {
-                  //   Swal.fire({
-                  //     icon: 'error',
-                  //     title: '이미 선택!',
-                  //     text: '이미 진행중이에요!',
-                  //   })
-                  //   return
-                  // }
                   const targetIndex = datalist.findIndex(
                     (d) =>
                       d.groupMemberNickname === da.groupMemberNickname,
