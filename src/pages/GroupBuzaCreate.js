@@ -297,13 +297,30 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.button`
+const CancleMoveButton = styled.div`
   position: absolute;
-  width: 48px;
-  height: 48px;
   left: 4px;
+
   top: 31px;
-  background-color: #fff;
+  width: 48px;
+  height:48px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  color: #000000;
 `
 
 const CreateMoveButton = styled.button`
@@ -313,6 +330,19 @@ const CreateMoveButton = styled.button`
   left: 308px;
   top: 31px;
   background-color: #fff;
+  color: #4675f0;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
   color: #4675f0;
 `
 // Inputbox
@@ -468,9 +498,10 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 53px;
+  width: 40px;
   height: 14px;
-  margin-right: -5px;
+  text-overflow: ellipsis;
+  /* margin-right: -15px; */
   /* text-overflow: ellipsis; */
 
   /* Heading/Noto Sans KR/H6 */
@@ -574,7 +605,7 @@ const SelectedFriendContent = styled.div`
 const DeleteFriendContent = styled.button`
   width: 0px;
   /* color / text / Color-text-Gray1 */
-
+  
   background: white;
 `
 

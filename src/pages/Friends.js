@@ -1,7 +1,8 @@
-import * as React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Search } from '../assets/icons/common/search.svg'
@@ -12,18 +13,11 @@ import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
 
 function Friends() {
-  function searchFriend() {
-    console.log('cccc')
-  }
+  const inputFriend = useRef('')
+  const [updateFriend, setUpdateFriend] = useState('')
+  // console.log("ref",inputFriend)
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    setValue,
-    setError,
-  } = useForm()
+  console.log('input::', inputFriend)
   const { isLoading, data: friendList, error, isError } = useFriendsData()
 
   if (isLoading) {
@@ -36,7 +30,10 @@ function Friends() {
 
   console.log('friendList:::', friendList)
 
-  function onValid() {}
+  const search = () => {
+    setUpdateFriend(inputFriend.current.value)
+    console.log(inputFriend.current.value)
+  }
 
   return (
     <Wrapper>
@@ -59,53 +56,64 @@ function Friends() {
         </NavLink>
         <TopLine />
       </TopDiv>
-      <form onSubmit={handleSubmit(onValid)}>
-        <FriendInput placeholder="닉네임을 입력해주세요." />
-        <FriendSearch style={{ color: '#999999' }}>
-          <Search />
-        </FriendSearch>
-      </form>
+
+      <FriendInput
+        id="nickname"
+        placeholder="닉네임을 입력해주세요."
+        ref={inputFriend}
+      />
+      <FriendSearch style={{ color: '#999999' }} onClick={search}>
+        <Search />
+      </FriendSearch>
+
       <FriendsDiv>
         {friendList?.data?.waitingFriendListDto.map((d) => {
-          return (
-            <FriendsLine>
-              <FriendProfile>
-                <FriendIcon
-                  src={
-                    d.hero === 'bunny'
-                      ? BunnyFace
-                      : d.hero === 'tongki'
-                      ? TongkiFace
-                      : d.hero === 'tanni'
-                      ? TanniFace
-                      : null
-                  }
-                />
-                <FriendText>{d.nickname}</FriendText>
-              </FriendProfile>
-              <AddButton>수락대기</AddButton>
-            </FriendsLine>
-          )
+          if (d.nickname.includes(updateFriend) || d.nickname === '') {
+            return (
+              <FriendsLine>
+                <FriendProfile>
+                  <FriendIcon
+                    src={
+                      d.hero === 'bunny'
+                        ? BunnyFace
+                        : d.hero === 'tongki'
+                        ? TongkiFace
+                        : d.hero === 'tanni'
+                        ? TanniFace
+                        : null
+                    }
+                  />
+                  <FriendText>{d.nickname}</FriendText>
+                </FriendProfile>
+                <AddButton>수락대기</AddButton>
+              </FriendsLine>
+            )
+          }
+          return null
         })}
         {friendList.data.friendListDto.map((d) => {
-          return (
-            <FriendsLine>
-              <FriendProfile>
-                <FriendIcon
-                  src={
-                    d.hero === 'bunny'
-                      ? BunnyFace
-                      : d.hero === 'tongki'
-                      ? TongkiFace
-                      : d.hero === 'tanni'
-                      ? TanniFace
-                      : null
-                  }
-                />
-                <FriendText>{d.nickname}</FriendText>
-              </FriendProfile>
-            </FriendsLine>
-          )
+          const nick = d.nickname
+          if (d.nickname.includes(updateFriend) || inputFriend === '') {
+            return (
+              <FriendsLine>
+                <FriendProfile>
+                  <FriendIcon
+                    src={
+                      d.hero === 'bunny'
+                        ? BunnyFace
+                        : d.hero === 'tongki'
+                        ? TongkiFace
+                        : d.hero === 'tanni'
+                        ? TanniFace
+                        : null
+                    }
+                  />
+                  <FriendText>{d.nickname}</FriendText>
+                </FriendProfile>
+              </FriendsLine>
+            )
+          }
+          return null
         })}
       </FriendsDiv>
     </Wrapper>
@@ -241,7 +249,7 @@ const FriendInput = styled.input`
     color: #cccccc;
   }
 `
-const FriendSearch = styled.button`
+const FriendSearch = styled.div`
   position: absolute;
   width: 24px;
   height: 24px;
