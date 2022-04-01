@@ -24,17 +24,16 @@ function ChallengeBuzaDetail() {
   const navigate = useNavigate()
 
   const { data, isLoading } = useChallengeData(navigate)
+  // console.log("challengeData::",data)
 
   const homeData = useMainPageData(navigate)
+  console.log('homeData::', homeData)
 
-  const cancelGroup = (id) => {
+  const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전포기!',
       text: '진짜 포기하시겠어요?!!',
-      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
@@ -80,7 +79,7 @@ function ChallengeBuzaDetail() {
         </Title>
         <ForgiveMoveButton
           onClick={() => {
-            cancelGroup()
+            cancelChallenge()
           }}
         >
           포기
@@ -148,27 +147,6 @@ function ChallengeBuzaDetail() {
             }
             labelSize="14px"
           />
-
-          {data
-            ? data.data.groupNowPercent === 100 && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    Swal.fire({
-                      icon: 'success',
-                      title: '목표달성!',
-                      text: '이미 프로 도전러! ',
-                      imageUrl: 'https://unsplash.it/400/200',
-                      imageWidth: 400,
-                      imageHeight: 200,
-                      imageAlt: 'Custom image',
-                    })
-                  }}
-                >
-                  완료버튼
-                </button>
-              )
-            : null}
         </DetailWrapper>
 
         <ChallengeFriendWrapper>

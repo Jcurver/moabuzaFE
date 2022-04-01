@@ -20,7 +20,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { request } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
-import { setMoveToLoginPage } from '../utils/setMoveToLoginPage';
+import { setMoveToLoginPage } from '../utils/setMoveToLoginPage'
 
 function Menu() {
   const settings = {
@@ -39,10 +39,7 @@ function Menu() {
     Swal.fire({
       title: '로그아웃할 거지?',
       text: '꼭 다시 돌아와부자!',
-      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '나가부자',
       cancelButtonText: '있어부자',
     }).then((result) => {
@@ -107,7 +104,7 @@ function Menu() {
           />
         </TodayDiv>
       </NavLink>
-      <NavLink to="/menu">
+      {/* <NavLink to="/menu">
         <TodayDiv style={{ top: '303px' }}>
           <Asset
             style={{
@@ -129,10 +126,10 @@ function Menu() {
             }}
           />
         </TodayDiv>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink to="/modified">
-        <TodayDiv style={{ top: '363px' }}>
+        <TodayDiv style={{ top: '303px' }}>
           <TodayLogoDiv />
           <Edit
             style={{
@@ -157,7 +154,7 @@ function Menu() {
       </NavLink>
 
       <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
-        <TodayDiv style={{ top: '423px' }}>
+        <TodayDiv style={{ top: '363px' }}>
           <TodayLogoDiv />
           <Review
             style={{
@@ -180,7 +177,7 @@ function Menu() {
           />
         </TodayDiv>
       </a>
-      <TodayDiv onClick={() => logout()} style={{ top: '483px' }}>
+      <TodayDiv onClick={() => logout()} style={{ top: '423px' }}>
         <TodayLogoDiv />
         <Logout
           style={{

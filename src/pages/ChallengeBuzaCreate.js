@@ -66,7 +66,7 @@ function ChallengeBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
         console.log(result)
         navigate('/challengebuza')
@@ -146,7 +146,7 @@ function ChallengeBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
+        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -198,9 +198,9 @@ function ChallengeBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
@@ -318,6 +318,15 @@ const CancleMoveButton = styled.button`
   left: 4px;
   top: 31px;
   background-color: #fff;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
 `
 
 const CreateMoveButton = styled.button`
@@ -327,6 +336,19 @@ const CreateMoveButton = styled.button`
   left: 308px;
   top: 31px;
   background-color: #fff;
+  color: #4675f0;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
   color: #4675f0;
 `
 // Inputbox
@@ -389,7 +411,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: 84px;
+  top: ${(props) => (props.friendslength === 0 ? '32px' : '84px')};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

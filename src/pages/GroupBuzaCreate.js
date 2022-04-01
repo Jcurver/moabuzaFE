@@ -15,25 +15,14 @@ function GroupBuzaCreate() {
   const [datalist, setDatalist] = useState([])
   console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
+
+  console.log('friendLIst:::', friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
       setDatalist([...friendsList.data.groupMembers])
     }
   }, [friendsList])
-  // console.log('FF', friendsList)
-  // if (friendsList.data !== undefined) {
-  //   setDatalist([...friendsList.data.challengeMembers])
-  // }
-  // const friendData = () => {
-  //   return request({
-  //     url: '/money/challenge/createChallenge',
-  //     method: 'get',
-  //   }).then((res) => {
-  //     console.log(res.data.challengeMembers)
-  //     setDatalist([...res.data.challengeMembers])
-  //   })
-  // }
 
   console.log('selectFriends', selectFriends)
   let selectFriendNickName = selectFriends.map(
@@ -53,7 +42,7 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '친구를 선택해주세요!',
         text: '2인 이상만 가능해요!',
-        icon: 'warning',
+        confirmButtonText: '확인!',
       })
       return null
     }
@@ -71,7 +60,7 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
         console.log(result)
         navigate('/groupbuza')
@@ -151,7 +140,7 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
+        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -174,9 +163,7 @@ function GroupBuzaCreate() {
                   <DeleteFriendContent
                     onClick={() => {
                       const targetIndex = selectFriends.findIndex(
-                        (d) =>
-                          d.groupMemberNickname ===
-                          da.groupMemberNickname,
+                        (d) => d.groupMemberNickname === da.groupMemberNickname,
                       )
                       setDatalist([selectFriends[targetIndex], ...datalist])
                       setSelectFriends([
@@ -203,23 +190,14 @@ function GroupBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
-                  // if (selectFriends.challengeMemberCanInvite) {
-                  //   Swal.fire({
-                  //     icon: 'error',
-                  //     title: '이미 선택!',
-                  //     text: '이미 진행중이에요!',
-                  //   })
-                  //   return
-                  // }
                   const targetIndex = datalist.findIndex(
-                    (d) =>
-                      d.groupMemberNickname === da.groupMemberNickname,
+                    (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
                   setSelectFriends((prevList) => [
                     datalist[targetIndex],
@@ -316,13 +294,30 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.button`
+const CancleMoveButton = styled.div`
   position: absolute;
+  left: 4px;
+
+  top: 31px;
   width: 48px;
   height: 48px;
-  left: 4px;
-  top: 31px;
-  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  color: #000000;
 `
 
 const CreateMoveButton = styled.button`
@@ -332,6 +327,19 @@ const CreateMoveButton = styled.button`
   left: 308px;
   top: 31px;
   background-color: #fff;
+  color: #4675f0;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
   color: #4675f0;
 `
 // Inputbox
@@ -394,7 +402,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: 84px;
+  top: ${(props) => (props.friendslength === 0 ? '32px' : '84px')};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -487,9 +495,10 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 53px;
+  width: 40px;
   height: 14px;
-  margin-right: -5px;
+  text-overflow: ellipsis;
+  /* margin-right: -15px; */
   /* text-overflow: ellipsis; */
 
   /* Heading/Noto Sans KR/H6 */

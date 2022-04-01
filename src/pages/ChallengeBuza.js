@@ -29,10 +29,7 @@ function ChallengeBuza() {
     Swal.fire({
       title: '도전 포기!',
       text: '진짜 포기하시겠어요?!!',
-      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
@@ -87,7 +84,7 @@ function ChallengeBuza() {
           ? data.data.goalStatus === 'noGoal' && (
               <ScrollWrapper height="44%">
                 <GoalWrapper>
-                  <GoalText>원하는 목표를 만들어보세요</GoalText>
+                  <GoalText>원하는 목표를 만들어보세요!</GoalText>
                   <GoalDescribe>
                     도전할 금액을 설정한 후 모아보세요.
                   </GoalDescribe>
@@ -189,29 +186,29 @@ function ChallengeBuza() {
 
         {data && data.data.goalStatus === 'waiting'
           ? data.data.waitingGoals.map((gStatus, idx) => {
-            return (
-              <ScrollWrapper height="44%">
-                <GoalWrapper>
-                  <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
-                  <GoalDescribe>
-                    모두 수락하면 도전해부자가 생성됩니다.
-                  </GoalDescribe>
+              return (
+                <ScrollWrapper height="44%">
+                  <GoalWrapper>
+                    <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                    <GoalDescribe>
+                      모두 수락하면 도전해부자가 생성됩니다.
+                    </GoalDescribe>
 
-                  <Button
-                    width="296px"
-                    height="52px"
-                    fontSize="14px"
-                    background="#4675F0"
-                    onClick={() => {
-                      console.log('gStatus:::', gStatus.id)
-                      cancelChallenge(gStatus.id)
-                    }}
-                  >
-                    대기취소
-                  </Button>
-                </GoalWrapper>
-              </ScrollWrapper>
-            )
+                    <Button
+                      width="296px"
+                      height="52px"
+                      fontSize="14px"
+                      background="#4675F0"
+                      onClick={() => {
+                        console.log('gStatus:::', gStatus.id)
+                        cancelChallenge(gStatus.id)
+                      }}
+                    >
+                      대기취소
+                    </Button>
+                  </GoalWrapper>
+                </ScrollWrapper>
+              )
             })
           : null}
       </ChallengeWaitingDiv>
