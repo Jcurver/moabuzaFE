@@ -254,8 +254,8 @@ function OnedayBuza(state) {
                   <TodayListLineRight>
                     {d.recordType === 'income' ? '+' : ''}
                     {d.recordType === 'expense' ? '-' : ''}
-                    {d.recordType === 'group' ? '+' : ''}
-                    {d.recordType === 'challenge' ? '+' : ''}
+                    {/* {d.recordType === 'group' ? '+' : ''} */}
+                    {/* {d.recordType === 'challenge' ? '+' : ''} */}
                     {d.recordAmount.toLocaleString('en-US')} 원
                   </TodayListLineRight>
                 </TodayListLine>

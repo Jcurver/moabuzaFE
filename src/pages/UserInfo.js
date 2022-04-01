@@ -24,6 +24,15 @@ function UserInfo() {
 
   const onValid = async (data) => {
     if (hero === 'hero0') {
+      Swal.fire({
+        title: '캐릭터를 골라부자!',
+        // text: '이제부터 열심히 모아부자!',
+        icon: 'warning',
+      })
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => console.log(err))
       return
     }
     console.log('fcmToken:::', fcmToken)
@@ -38,7 +47,17 @@ function UserInfo() {
       return
     }
 
-    await api.getUserInfo(data, hero)
+    await api.getUserInfo(data, hero).then(() =>
+      Swal.fire({
+        title: '환영합니다!',
+        text: '이제부터 열심히 모아부자!',
+        icon: 'success',
+      })
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => console.log(err)),
+    )
     navigate('/onboarding')
   }
   function NicknameDup() {
@@ -133,9 +152,17 @@ function UserInfo() {
               style={{ left: '0px' }}
               onClick={() => setHeroValue('bunny')}
             >
-              <Character src={BunnyFace} />
+              <Character
+                src={BunnyFace}
+                style={{
+                  border: hero === 'bunny' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'bunny' ? '800' : '400',
+                  color: hero === 'bunny' ? '#4675F0' : '#60666F',
+                }}
               >
                 버니
               </CharacterName>
@@ -144,9 +171,17 @@ function UserInfo() {
               style={{ left: '104px' }}
               onClick={() => setHeroValue('tongki')}
             >
-              <Character src={TongkiFace} />
+              <Character
+                src={TongkiFace}
+                style={{
+                  border: hero === 'tongki' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'tongki' ? '800' : '400',
+                  color: hero === 'tongki' ? '#4675F0' : '#60666F',
+                }}
               >
                 통키
               </CharacterName>
@@ -155,9 +190,17 @@ function UserInfo() {
               style={{ left: '208px' }}
               onClick={() => setHeroValue('tanni')}
             >
-              <Character src={TanniFace} />
+              <Character
+                src={TanniFace}
+                style={{
+                  border: hero === 'tanni' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'tanni' ? '800' : '400',
+                  color: hero === 'tanni' ? '#4675F0' : '#60666F',
+                }}
               >
                 타니
               </CharacterName>
