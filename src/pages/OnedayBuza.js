@@ -193,8 +193,7 @@ function OnedayBuza(state) {
       <TotalLine style={{ top: '40.97%' }}>
         <TotalLeft>도전해부자</TotalLeft>
         <TotalRight>
-          {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')}{' '}
-          원
+          {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
 
@@ -230,7 +229,14 @@ function OnedayBuza(state) {
                         padding: '10px',
                         marginLeft: '10px',
                         marginBottom: '10px',
-                        // background: "red",
+                        width: '328px',
+                        height: '64px',
+                        background: '#B9BFC8',
+                        borderRadius: '8px',
+                        color: 'white',
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
                       }}
                     >
                       밀어서 삭제
@@ -544,6 +550,7 @@ const TodayListLine = styled.div`
   background: #e5eaf2;
   /* background: red; */
   border-radius: 8px;
+  overflow: hidden;
   margin-bottom: 8px;
 `
 const TodayListLineLeft = styled.div``
