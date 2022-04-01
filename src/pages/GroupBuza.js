@@ -28,7 +28,6 @@ function GroupBuza() {
     Swal.fire({
       title: '도전 포기!',
       text: '진짜 포기하시겠어요?!!',
-      icon: 'warning',
       showCancelButton: true,
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',

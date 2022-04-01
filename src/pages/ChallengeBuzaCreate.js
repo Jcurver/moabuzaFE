@@ -318,6 +318,15 @@ const CancleMoveButton = styled.button`
   left: 4px;
   top: 31px;
   background-color: #fff;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
 `
 
 const CreateMoveButton = styled.button`
@@ -327,6 +336,19 @@ const CreateMoveButton = styled.button`
   left: 308px;
   top: 31px;
   background-color: #fff;
+  color: #4675f0;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color/Secondary */
+
   color: #4675f0;
 `
 // Inputbox
