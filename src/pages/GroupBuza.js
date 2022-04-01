@@ -74,7 +74,7 @@ function GroupBuza() {
                 <GoalWrapper>
                   <GoalText>원하는 목표를 만들어보세요!</GoalText>
                   <GoalDescribe>
-                    공동의 목표를 친구와 함께 달성해보세요
+                    공동의 목표를 친구와 함께 달성해보세요.
                   </GoalDescribe>
 
                   <Button
@@ -88,6 +88,7 @@ function GroupBuza() {
                   >
                     + 목표 개설하기
                   </Button>
+                  
                 </GoalWrapper>
               </ScrollWrapper>
             )

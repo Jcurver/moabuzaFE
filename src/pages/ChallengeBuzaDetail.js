@@ -24,10 +24,12 @@ function ChallengeBuzaDetail() {
   const navigate = useNavigate()
 
   const { data, isLoading } = useChallengeData(navigate)
+  // console.log("challengeData::",data)
 
   const homeData = useMainPageData(navigate)
+  console.log("homeData::",homeData)
 
-  const cancelGroup = (id) => {
+  const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전포기!',
       text: '진짜 포기하시겠어요?!!',
@@ -80,7 +82,7 @@ function ChallengeBuzaDetail() {
         </Title>
         <ForgiveMoveButton
           onClick={() => {
-            cancelGroup()
+            cancelChallenge()
           }}
         >
           포기
@@ -150,7 +152,7 @@ function ChallengeBuzaDetail() {
           />
 
           {data
-            ? data.data.groupNowPercent === 100 && (
+            ? data.data.challengeNowPercent === 100 && (
                 <button
                   type="button"
                   onClick={() => {

@@ -31,7 +31,7 @@ function NavBar() {
         to="/menu"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -50,14 +50,14 @@ function NavBar() {
         }}
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
         // state={time:Date.now()}
       >
         <Component style={{ marginTop: '2px' }}>
           {location.pathname === '/onedaybuza' ? (
-            <Pay style={{ width: '24px', height: '24px', color:'red' }} />
+            <Pay style={{ width: '24px', height: '24px' }} />
           ) : (
             <Dpay style={{ width: '24px', height: '24px' }} />
           )}
@@ -70,7 +70,7 @@ function NavBar() {
         to="/"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -89,7 +89,7 @@ function NavBar() {
         to="/groupbuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -107,7 +107,7 @@ function NavBar() {
         to="/challengebuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -152,5 +152,6 @@ const MenuText = styled.div`
   font-size: 10px;
   line-height: 14px;
   text-align: center;
+  color:#999999;
 `
 export default NavBar
