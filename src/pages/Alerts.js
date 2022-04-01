@@ -445,7 +445,7 @@ const AlertTextDiv = styled.div`
   width: 160px;
   height: 34px;
   padding: 4px;
-  margin-left: 8px;
+
   margin-top: 8px;
 `
 const AlertTextTop = styled.div`
