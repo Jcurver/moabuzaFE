@@ -28,6 +28,7 @@ export const instance = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
+    'Access-Control-Allow-Origin': '*',
   },
 })
 
@@ -47,7 +48,6 @@ const addRefreshSubscriber = (callback) => {
 instance.interceptors.request.use((config) => {
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
@@ -79,7 +79,8 @@ export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
-        fcmToken: getItem('fcmToken'),
+        // fcmToken: getItem('fcmToken'),
+        fcmToken: 'fcmToken',
         nickname: data.nickname,
         hero,
       })
@@ -167,11 +168,11 @@ instance.interceptors.response.use(
             accept: 'application/json,',
           },
         }).catch(() => {
-         setMoveToLoginPage()
+          setMoveToLoginPage()
         })
 
         console.log('reissue데이터::', data)
-        
+
         if (data.code === 'OK') {
           const newAccess = data.data.access
           const newRefresh = data.data.refresh

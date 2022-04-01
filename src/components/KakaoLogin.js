@@ -116,7 +116,7 @@ const Explain = styled.div`
   position: absolute;
   width: 221px;
   height: 18px;
-  left: 75px;
+  left: 70px;
   top: 55.13%;
 
   font-family: 'Noto Sans KR';

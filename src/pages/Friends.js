@@ -25,7 +25,6 @@ function Friends() {
     setError,
   } = useForm()
   const { isLoading, data: friendList, error, isError } = useFriendsData()
-  console.log('friendList::', friendList)
 
   if (isLoading) {
     return <Loading />
@@ -67,7 +66,7 @@ function Friends() {
         </FriendSearch>
       </form>
       <FriendsDiv>
-        {friendList.data.waitingFriendListDto.map((d) => {
+        {friendList?.data?.waitingFriendListDto.map((d) => {
           return (
             <FriendsLine>
               <FriendProfile>
@@ -108,26 +107,6 @@ function Friends() {
             </FriendsLine>
           )
         })}
-        {/* <FriendsLine>
-          <FriendProfile>
-            <FriendIcon src={bunny} />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-          <AddButton>수락대기</AddButton>
-        </FriendsLine>
-        <FriendsLine>
-          <FriendProfile>
-            <FriendIcon />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-          <AddButton>수락대기</AddButton>
-        </FriendsLine>
-        <FriendsLine>
-          <FriendProfile>
-            <FriendIcon />
-            <FriendText>홍길동</FriendText>
-          </FriendProfile>
-        </FriendsLine> */}
       </FriendsDiv>
     </Wrapper>
   )
