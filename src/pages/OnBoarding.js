@@ -26,16 +26,19 @@ function OnBoarding() {
     <Wrapper>
       <Carousel>
         <div>
-          <TextArea>
-            친구들과 함께
-            <TextArea fontWeight="500" margin="0 auto 10px auto">
-              {' '}
-              저축 습관을 길러보세요!
+          <TextDiv>
+            <TextArea>
+              친구들과 함께
+              <TextArea fontWeight="500" margin="0 auto 10px auto">
+                {' '}
+                저축 습관을 길러보세요!
+              </TextArea>
             </TextArea>
-          </TextArea>
+
+            <OnBoardingImg src={HomeGuide} alt="" />
+          </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <OnBoardingImg src={HomeGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -52,16 +55,19 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <TextArea>
-            하루부자의 내역을
-            <TextArea fontWeight="500" margin="0 auto 10px auto">
-              {' '}
-              밀어서 삭제해보세요!
+          <TextDiv>
+            <TextArea>
+              하루부자의 내역을
+              <TextArea fontWeight="500" margin="0 auto 10px auto">
+                {' '}
+                밀어서 삭제해보세요!
+              </TextArea>
             </TextArea>
-          </TextArea>
+
+            <OnBoardingImg src={OneDayBuzaGuide} alt="" />
+          </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <OnBoardingImg src={OneDayBuzaGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -78,16 +84,19 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <TextArea>
-            공동의 목표를 친구와
-            <TextArea fontWeight="500" margin="0 auto 10px auto">
-              {' '}
-              함께 달성해보세요!
+          <TextDiv>
+            <TextArea>
+              공동의 목표를 친구와
+              <TextArea fontWeight="500" margin="0 auto 10px auto">
+                {' '}
+                함께 달성해보세요!
+              </TextArea>
             </TextArea>
-          </TextArea>
+
+            <OnBoardingImg src={OneDayBuzaDelete} alt="" />
+          </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <OnBoardingImg src={OneDayBuzaDelete} alt="" />
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -104,16 +113,19 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <TextArea>
-            목표 금액을 세우고
-            <TextArea fontWeight="500" margin="0 auto 10px auto">
-              {' '}
-              도전해봐요!
+          <TextDiv>
+            <TextArea>
+              목표 금액을 세우고
+              <TextArea fontWeight="500" margin="0 auto 10px auto">
+                {' '}
+                도전해봐요!
+              </TextArea>
             </TextArea>
-          </TextArea>
+
+            <OnBoardingImg src={GroupBuzaGuide} alt="" />
+          </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <OnBoardingImg src={GroupBuzaGuide} alt="" />
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -130,16 +142,19 @@ function OnBoarding() {
           {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <TextArea>
-            친구들과 함께 <br />
-            <TextArea fontWeight="500" margin="0 auto 10px auto">
-              {' '}
-              저축 습관을 길러보세요!
+          <TextDiv>
+            <TextArea>
+              친구들과 함께 <br />
+              <TextArea fontWeight="500" margin="0 auto 10px auto">
+                {' '}
+                저축 습관을 길러보세요!
+              </TextArea>
             </TextArea>
-          </TextArea>
+
+            <OnBoardingImg src={ChallengeGuide} alt="" />
+          </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <OnBoardingImg src={ChallengeGuide} alt="" />
           {/* <JumpButton
             type="button"
             onClick={() => {
@@ -188,48 +203,45 @@ function OnBoarding() {
 }
 
 const Wrapper = styled.div`
+  position: relative;
   height: 720px;
 `
 
 const TextArea = styled.div`
   height: 58px;
-  margin: ${(props) => props.margin || '64px auto 10px auto'};
+  /* margin: ${(props) => props.margin || '64px auto 10px auto'}; */
   font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: ${(props) => props.fontWeight || 350};
+  font-weight: ${(props) => props.fontWeight || 100};
   font-size: 21px;
   line-height: 140%;
   /* or 29px */
-
   letter-spacing: -0.04em;
-
   color: #000000;
+`
+const TextDiv = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 74px;
 `
 const JumpButton = styled.button`
   position: absolute;
   width: 328px;
   height: 52px;
   left: 16px;
-  top: 596px;
-
+  top: 75%;
   /* color/Secondary */
-
   background: #4675f0;
   border-radius: 8px;
-
   /* Button / Noto Sans KR / Btn_Md(m) */
-
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
-
   text-align: center;
-
   /* Rectangle 173 */
-
   color: #ffffff;
 `
 
@@ -243,7 +255,7 @@ const PrevArrow = styled(LeftArr)`
   width: 48px;
   height: 48px;
   left: 4px;
-  top: 300px;
+  top: 240px;
   overflow: visible;
 `
 const NextArrow = styled(RightArr)`
@@ -251,7 +263,7 @@ const NextArrow = styled(RightArr)`
   width: 48px;
   height: 48px;
   right: 4px;
-  top: 300px;
+  top: 240px;
   overflow: visible;
 `
 
