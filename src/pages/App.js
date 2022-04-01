@@ -125,7 +125,7 @@ const MainDiv = styled.div`
   right: 0;
   overflow: hidden;
   width: 980px;
-  background-color: yellow;
+
   -webkit-full-screen{
     width: 100%;
     height:100%;
