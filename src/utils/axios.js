@@ -56,7 +56,6 @@ instance.interceptors.request.use((config) => {
   // )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
-
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
   if (A_AUTH_TOKEN) {
     config.headers.common['A-AUTH-TOKEN'] = `Bearer ${A_AUTH_TOKEN}`
@@ -177,7 +176,9 @@ instance.interceptors.response.use(
             accept: 'application/json,',
           },
         }).catch(() => {
-          //  setMoveToLoginPage()
+
+          setMoveToLoginPage()
+
         })
 
         console.log('reissue데이터::', data)
