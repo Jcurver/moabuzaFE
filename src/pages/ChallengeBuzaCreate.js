@@ -66,7 +66,7 @@ function ChallengeBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
         console.log(result)
         navigate('/challengebuza')
@@ -198,9 +198,9 @@ function ChallengeBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
@@ -327,8 +327,6 @@ const CancleMoveButton = styled.button`
 
   text-align: center;
   letter-spacing: -0.04em;
-
-
 `
 
 const CreateMoveButton = styled.button`

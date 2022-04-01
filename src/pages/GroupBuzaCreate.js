@@ -16,7 +16,7 @@ function GroupBuzaCreate() {
   console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
 
-  console.log("friendLIst:::",friendsList)
+  console.log('friendLIst:::', friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -42,7 +42,7 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '친구를 선택해주세요!',
         text: '2인 이상만 가능해요!',
-        icon: 'warning',
+        confirmButtonText: '확인!',
       })
       return null
     }
@@ -60,7 +60,7 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
         console.log(result)
         navigate('/groupbuza')
@@ -163,9 +163,7 @@ function GroupBuzaCreate() {
                   <DeleteFriendContent
                     onClick={() => {
                       const targetIndex = selectFriends.findIndex(
-                        (d) =>
-                          d.groupMemberNickname ===
-                          da.groupMemberNickname,
+                        (d) => d.groupMemberNickname === da.groupMemberNickname,
                       )
                       setDatalist([selectFriends[targetIndex], ...datalist])
                       setSelectFriends([
@@ -192,15 +190,14 @@ function GroupBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
                   const targetIndex = datalist.findIndex(
-                    (d) =>
-                      d.groupMemberNickname === da.groupMemberNickname,
+                    (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
                   setSelectFriends((prevList) => [
                     datalist[targetIndex],
@@ -303,8 +300,8 @@ const CancleMoveButton = styled.div`
 
   top: 31px;
   width: 48px;
-  height:48px;
-  display:flex;
+  height: 48px;
+  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -405,7 +402,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: ${(props)=> props.friendslength === 0 ? '32px':'84px'};
+  top: ${(props) => (props.friendslength === 0 ? '32px' : '84px')};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -605,7 +602,7 @@ const SelectedFriendContent = styled.div`
 const DeleteFriendContent = styled.button`
   width: 0px;
   /* color / text / Color-text-Gray1 */
-  
+
   background: white;
 `
 
