@@ -32,8 +32,6 @@ function GroupBuzaDetail() {
       text: '진짜 포기하시겠어요?!!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
