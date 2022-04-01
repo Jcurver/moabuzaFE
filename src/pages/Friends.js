@@ -66,7 +66,7 @@ function Friends() {
         </FriendSearch>
       </form>
       <FriendsDiv>
-        {friendList.data.waitingFriendListDto.map((d) => {
+        {friendList?.data?.waitingFriendListDto.map((d) => {
           return (
             <FriendsLine>
               <FriendProfile>

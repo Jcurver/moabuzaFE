@@ -28,7 +28,7 @@ export const instance = axios.create({
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
-    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Origin': '*',
   },
 })
 
@@ -46,6 +46,14 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
+  setCookie(
+    'A-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgwNjcxMiwiZXhwIjoxNjQ4ODEwMzEyfQ.CjoXUEpA5J3V0lbytu697eyL-1vnB48SFCYlVe5e_Q8',
+  )
+  setCookie(
+    'R-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgwNjcxMiwiZXhwIjoxNjQ4ODkzMTEyfQ.XLeyecBcmsatQPAhm--z4YHwyndjiBkqrdVqAh5D0rg',
+  )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)

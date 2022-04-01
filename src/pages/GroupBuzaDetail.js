@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGroupData } from '../apis/groupData'
 import { request } from '../utils/axios'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
+import Loading from './Loading'
 import coin from '../assets/icons/coin/ico_coin1.png'
 import {
   BunnyFace,
@@ -24,8 +25,7 @@ const shortid = require('shortid')
 
 function GroupBuzaDetail() {
   const navigate = useNavigate()
-  const [sortedData, setsortedData] = useState([])
-  const { data } = useGroupData(navigate)
+  const { data, isLoading } = useGroupData(navigate)
   const cancelGroup = (id) => {
     Swal.fire({
       title: '그룹포기!',
@@ -42,7 +42,6 @@ function GroupBuzaDetail() {
         request({
           url: `/group/doing`,
           method: 'post',
-     
         }).then(() => {
           navigate('/groupbuza')
         })
@@ -57,17 +56,13 @@ function GroupBuzaDetail() {
     return dateA < dateB ? 1 : -1
   }
 
-  useEffect(() => {
-    const sortDate = () => {
-      return request({
-        url: `/money/group`,
-        method: 'get',
-      }).then((res) => {
-        setsortedData([...res.data.groupLists])
-      })
-    }
-    sortDate()
-  }, [])
+  useEffect(() => {}, [navigate])
+  if (isLoading) {
+    return <Loading />
+  }
+
+  const groupData = data.data
+  console.log('groupData', groupData)
 
   return (
     <Wrapper>
@@ -119,7 +114,7 @@ function GroupBuzaDetail() {
           </GroupFriend>
           <DetailCharacter
             src={
-              data.data.groupNowPercent <= 20
+              data?.data.groupNowPercent <= 20
                 ? AllCharacters01
                 : data.data.groupNowPercent > 20
                 ? AllCharacters02
@@ -148,10 +143,16 @@ function GroupBuzaDetail() {
         <AccountTitle>내역</AccountTitle>
         <AccountSummaryWrapper>
           {data
-            ? sortedData.sort(dateDescending).map((acd, idx) => {
+            ? groupData.groupLists.sort(dateDescending).map((acd, idx) => {
                 return (
                   <AccountContent key={shortid.generate()}>
-                    <AccountDate>{acd.groupDate.slice(0, 10)}</AccountDate>
+                    <AccountDate>
+                      {idx > 0 &&
+                      groupData.groupLists[idx - 1].groupDate ===
+                        groupData.groupLists[idx].groupDate
+                        ? ''
+                        : acd.groupDate.slice(0, 10)}
+                    </AccountDate>
                     <AccountListsWrapper>
                       <AccountList>
                         <AccountImg src={coin} />
