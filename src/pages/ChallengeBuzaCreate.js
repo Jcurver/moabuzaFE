@@ -103,10 +103,10 @@ function ChallengeBuzaCreate() {
       <form onSubmit={handleSubmit(onValid, onError)}>
         <CreateMoveButton>생성</CreateMoveButton>
         <GoalInputBox>
-          <IconBox>💰 목표 금액</IconBox>
+          <IconBox>✏️ 목표명</IconBox>
           <Input
             height="52px"
-            placeholder="목표 금액을 입력해주세요."
+            placeholder="목표명을 입력해주세요."
             {...register('createChallengeAmount', {
               required: '이 부분을 채워부자!',
               pattern: {
@@ -123,10 +123,10 @@ function ChallengeBuzaCreate() {
         <MemoInputBox>
           <IconBox>
             <i className="fas fa-smile" />
-            ✏️ 메모
+            💰 목표 금액
           </IconBox>
           <Input
-            placeholder="메모를 입력해주세요."
+            placeholder="목표금액을 입력해주세요."
             height="52px"
             {...register('createChallengeName', {
               required: '이 부분을 채워부자!',
@@ -191,10 +191,22 @@ function ChallengeBuzaCreate() {
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
+            console.log('datalist::', datalist)
+            // if (da.challengeMemberCanInvite) {
+            //   return null
+            // }
             return (
               <Friends
+                style={{
+                  backgroundColor: da.challengeMemberCanInvite
+                    ? 'white'
+                    : 'F5F5F7',
+                }}
                 key={da.id}
                 onClick={() => {
+                  if (!da.challengeMemberCanInvite) {
+                    return
+                  }
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
@@ -239,7 +251,14 @@ function ChallengeBuzaCreate() {
                       : null
                   }
                 />
-                <FriendsText>{da.challengeMemberNickname}</FriendsText>
+                <FriendsText
+                  style={{
+                    color: da.challengeMemberCanInvite ? 'black' : '#8C939D',
+                  }}
+                >
+                  {da.challengeMemberNickname}
+                </FriendsText>
+                {da.challengeMemberCanInvite ? null : <Doing>진행중</Doing>}
               </Friends>
             )
           })}
@@ -327,8 +346,6 @@ const CancleMoveButton = styled.button`
 
   text-align: center;
   letter-spacing: -0.04em;
-
-
 `
 
 const CreateMoveButton = styled.button`
@@ -408,7 +425,7 @@ const FriendsList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+
   overflow: scroll;
   position: absolute;
   left: 1px;
@@ -445,11 +462,13 @@ const Friends = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  padding-left: 12px;
 
   position: static;
-  width: 328px;
-  height: 36px;
+  width: 330px;
+  height: 54px;
+  background: #f5f5f7;
+  border-radius: 8px;
 
   /* Inside auto layout */
 
@@ -481,10 +500,10 @@ const FriendsText = styled.div`
 
   /* Inside auto layout */
 
-  flex: none;
+  /* flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 0px 8px;
+  margin: 0px 8px; */
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
@@ -492,7 +511,7 @@ const CircleImg = styled.img`
   position: static;
   width: 36px;
   height: 36px;
-  margin-left: 12px;
+
   top: 0px;
 
   background: #f5f5f7;
@@ -635,5 +654,38 @@ const ErrorSpan = styled.span`
   letter-spacing: -0.04em;
 
   color: #ff3d00;
+`
+const Doing = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 13px;
+
+  position: static;
+  width: 59px;
+  height: 26px;
+  margin-left: 100px;
+  top: 6px;
+
+  /* color/text/Color-text-Gray1 */
+
+  background: #b9bfc8;
+  border-radius: 13px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  /* Rectangle 173 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  /* flex: none;
+  order: 0;
+  flex-grow: 0; */
+  /* margin: 0px 10px; */
 `
 export default ChallengeBuzaCreate
