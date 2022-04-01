@@ -78,12 +78,13 @@ const GlobalStyle = createGlobalStyle`
       overflow: hidden;
     }
     body {
+      width:100%;
       height: 100vh;
       /* height: calc(var(--vh, 1vh) * 100); */
       overflow: hidden;
       min-height: 100vh;
       height: -webkit-fill-available;
-      min-height: -webkit-fill-available;
+      /* min-height: -webkit-fill-available; */
 
       font-family: 'Noto Sans KR';
       -ms-overflow-style: none;
