@@ -25,7 +25,6 @@ function Friends() {
     setError,
   } = useForm()
   const { isLoading, data: friendList, error, isError } = useFriendsData()
-  console.log('friendList::', friendList)
 
   if (isLoading) {
     return <Loading />
