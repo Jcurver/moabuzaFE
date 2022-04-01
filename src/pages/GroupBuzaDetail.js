@@ -42,9 +42,7 @@ function GroupBuzaDetail() {
         request({
           url: `/group/doing`,
           method: 'post',
-          data: {
-            id: data.id,
-          },
+     
         }).then(() => {
           navigate('/groupbuza')
         })
