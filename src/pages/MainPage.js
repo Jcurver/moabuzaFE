@@ -589,7 +589,7 @@ const ProgressBarCharge = styled.div`
 
   background: #ffb000;
   border-radius: 11px;
-  font-family: Roboto-Medium;
+  font-family: 'Roboto-Medium';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -617,7 +617,7 @@ const BottomLine = styled.div`
 `
 
 const MyWallet = styled.span`
-  font-family: Roboto-Medium;
+  font-family: 'Roboto-Medium';
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -627,7 +627,7 @@ const MyWallet = styled.span`
 `
 
 const Won = styled.span`
-  font-family: Roboto-Medium;
+  font-family: 'Roboto-Medium';
   font-style: normal;
   /* font-weight: bold; */
   font-size: 18px;
