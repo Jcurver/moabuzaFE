@@ -114,6 +114,7 @@ function OnedayPost() {
             Swal.fire({
               title: '목표 완료!',
               text: '다시 한번 해부자!',
+              confirmButtonText: '확인!',
               imageUrl:
                 'https://user-images.githubusercontent.com/66179677/160414132-24f69bd6-0b83-4f14-b69c-ab29f79f6450.svg',
             }).then(() => {
@@ -123,19 +124,19 @@ function OnedayPost() {
             Swal.fire({
               title: '입력 완료!',
               text: '더 힘차게 모아부자!',
-              icon: 'success',
+              confirmButtonText: '확인!',
             }).then(() => {
               navigate('/onedaybuza')
             })
           }
         })
         .catch((error) => {
-          console.log("에러저장",error.response)
-           Swal.fire({
-             title: '금액 부족!',
-             text: '지갑에 돈이 부족해요ㅠㅠ',
-             icon: 'warning',
-           })
+          console.log('에러저장', error.response)
+          Swal.fire({
+            title: '금액 부족!',
+            text: '지갑에 돈이 부족해요ㅠㅠ',
+            confirmButtonText: '확인!',
+          })
         })
     }
     return null

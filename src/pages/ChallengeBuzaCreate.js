@@ -66,10 +66,18 @@ function ChallengeBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: '하루부자로 이동하자!',
+            text: '금액입력은 하루부자에서!',
+            confirmButtonText: '확인!',
+          }).then(() => {
+            navigate('/challengebuza')
+          })
+        }
         console.log(result)
-        navigate('/challengebuza')
       }),
     )
   }
@@ -210,9 +218,9 @@ function ChallengeBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }

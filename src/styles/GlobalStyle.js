@@ -110,7 +110,62 @@ const GlobalStyle = createGlobalStyle`
   div {
     white-space: nowrap;
   }
+  .swal2-confirm.swal2-styled{
+    width: 95px;
+    height: 41px;
+    background-color: #4675F0 !important;
+    border-radius: 8px;
+  }
+
+  .swal2-title{
+    margin-top:10px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    letter-spacing: -0.04em;
+
+    color: #000000;
+  }
+  .swal2-html-container{
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+
+    /* color/text/Color-text-Gray3 */
+
+    color: #60666F;
+  }
+  .swal2-styled.swal2-cancel {
+
+    width: 95px;
+    height: 41px;
+    background-color: #F5F5F7 !important;
+    border-radius: 8px;
     
+    /* Button / Noto Sans KR / Btn_Md */
+
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    /* identical to box height, or 14px */
+
+
+    /* color / text / Color-text-Gray2 */
+
+    color: #8C939D;
+  }
+  .swal2-image{
+    margin: 2em auto 0;
+  }
 
 }
 
