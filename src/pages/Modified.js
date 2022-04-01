@@ -22,6 +22,14 @@ function Modified() {
   console.log('hero:', hero)
   const onValid = async (data) => {
     if (hero === 'heor0') {
+      Swal.fire({
+        title: '캐릭터를 골라부자!',
+        confirmButtonText: '확인!',
+      })
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => console.log(err))
       return
     }
 
@@ -29,6 +37,7 @@ function Modified() {
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
+        confirmButtonText: '확인!',
         //  text: '열심히 모아부자!',
         // icon: 'success',
       }).then((result) => {
@@ -37,7 +46,18 @@ function Modified() {
       return
     }
 
-    await api.getUserInfo(data, hero)
+    await api.getUserInfo(data, hero).then(() =>
+      Swal.fire({
+        title: '변경완료!',
+        text: '이제부터 열심히 모아부자!',
+        confirmButtonText: '확인!',
+      })
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => console.log(err)),
+    )
+
     navigate('/')
   }
   const nicknameDup = () => {
@@ -58,6 +78,7 @@ function Modified() {
             Swal.fire({
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -68,6 +89,7 @@ function Modified() {
             Swal.fire({
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -80,6 +102,7 @@ function Modified() {
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
+          confirmButtonText: '확인!',
           // icon: 'success',
         }).then((result) => {
           console.log(result)
@@ -114,9 +137,17 @@ function Modified() {
               style={{ left: '0px' }}
               onClick={() => setHeroValue('bunny')}
             >
-              <Character src={BunnyFace} />
+              <Character
+                src={BunnyFace}
+                style={{
+                  border: hero === 'bunny' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'bunny' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'bunny' ? '800' : '400',
+                  color: hero === 'bunny' ? '#4675F0' : '#60666F',
+                }}
               >
                 버니
               </CharacterName>
@@ -125,9 +156,17 @@ function Modified() {
               style={{ left: '104px' }}
               onClick={() => setHeroValue('tongki')}
             >
-              <Character src={TongkiFace} />
+              <Character
+                src={TongkiFace}
+                style={{
+                  border: hero === 'tongki' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'tongki' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'tongki' ? '800' : '400',
+                  color: hero === 'tongki' ? '#4675F0' : '#60666F',
+                }}
               >
                 통키
               </CharacterName>
@@ -136,9 +175,17 @@ function Modified() {
               style={{ left: '208px' }}
               onClick={() => setHeroValue('tanni')}
             >
-              <Character src={TanniFace} />
+              <Character
+                src={TanniFace}
+                style={{
+                  border: hero === 'tanni' ? '2px solid #4675F0' : 'none',
+                }}
+              />
               <CharacterName
-                style={{ fontWeight: hero === 'tanni' ? '800' : '400' }}
+                style={{
+                  fontWeight: hero === 'tanni' ? '800' : '400',
+                  color: hero === 'tanni' ? '#4675F0' : '#60666F',
+                }}
               >
                 타니
               </CharacterName>
@@ -212,7 +259,8 @@ const ButtonSubmit = styled.button`
   position: absolute;
   width: 26px;
   height: 14px;
-  left: 318px;
+  /* right: 1.11%; */
+  left: 306px;
   top: 6.67%;
 
   /* Heading/Noto Sans KR/H6 */
@@ -301,6 +349,7 @@ const Character = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 40px;
+  /* border:2px solid blue; */
   left: 0px;
   top: 0px;
   /* color/Btn-basic1 */

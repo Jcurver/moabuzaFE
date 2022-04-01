@@ -4,8 +4,8 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import { ReactComponent as Menu } from '../assets/icons/navbar/menu.svg'
 import { ReactComponent as Dmenu } from '../assets/icons/navbar/dmenu.svg'
-import { ReactComponent as Pay } from '../assets/icons/navbar/pay.svg'
-import { ReactComponent as Dpay } from '../assets/icons/navbar/dpay.svg'
+import { ReactComponent as Pay } from '../assets/icons/navbar/pay_on.svg'
+import { ReactComponent as Dpay } from '../assets/icons/navbar/pay_off.svg'
 import { ReactComponent as Home } from '../assets/icons/navbar/home.svg'
 import { ReactComponent as Dhome } from '../assets/icons/navbar/dhome.svg'
 import { ReactComponent as Together } from '../assets/icons/navbar/together.svg'
@@ -31,7 +31,7 @@ function NavBar() {
         to="/menu"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -50,7 +50,7 @@ function NavBar() {
         }}
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
         // state={time:Date.now()}
@@ -70,7 +70,7 @@ function NavBar() {
         to="/"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -89,7 +89,7 @@ function NavBar() {
         to="/groupbuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -107,7 +107,7 @@ function NavBar() {
         to="/challengebuza"
         style={({ isActive }) => ({
           textDecoration: 'none',
-          color: isActive ? '#4675F0' : '#999999',
+          color: isActive ? '#4675F0' : '#D1D5DF',
           // fontWeight: isActive ? '800' : '400',
         })}
       >
@@ -152,5 +152,6 @@ const MenuText = styled.div`
   font-size: 10px;
   line-height: 14px;
   text-align: center;
+  color:#999999;
 `
 export default NavBar

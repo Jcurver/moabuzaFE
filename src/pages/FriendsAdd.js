@@ -91,19 +91,16 @@ function AddFriends() {
                 Swal.fire({
                   title: '친구로 추가하시겠어요?',
                   // text: '!',
-                  icon: 'question',
                   showCancelButton: true,
                   confirmButtonText: '추가',
                   cancelButtonText: '취소',
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
                   showLoaderOnConfirm: true,
                 }).then((result) => {
                   if (result.isConfirmed) {
                     requestFriend(findFriend.data.data.nickname)
                     Swal.fire({
                       title: '친구요청 완료!',
-                      icon: 'success',
+                      confirmButtonText: '확인!',
                     }).then(() => {
                       navigate(0)
                     })
