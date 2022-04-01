@@ -87,7 +87,7 @@ function ChallengeBuza() {
           ? data.data.goalStatus === 'noGoal' && (
               <ScrollWrapper height="44%">
                 <GoalWrapper>
-                  <GoalText>원하는 목표를 만들어보세요</GoalText>
+                  <GoalText>원하는 목표를 만들어보세요!</GoalText>
                   <GoalDescribe>
                     도전할 금액을 설정한 후 모아보세요.
                   </GoalDescribe>
