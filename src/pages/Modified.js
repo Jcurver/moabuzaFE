@@ -255,10 +255,13 @@ const Button = styled.div`
 `
 const ButtonSubmit = styled.button`
   position: absolute;
-  width: 26px;
-  height: 14px;
-  left: 318px;
-  top: 6.67%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  left: 308px;
+  top: 31px;
 
   /* Heading/Noto Sans KR/H6 */
 
