@@ -220,7 +220,7 @@ function OnedayBuza(state) {
           {mutation &&
             mutation?.data?.data?.dayRecordList.map((d) => (
               <SwipeableListItem
-                style={{ backgroundColor: 'red' }}
+                style={{ backgroundColor: 'red',opacity:'1' }}
                 key={d.id}
                 swipeLeft={{
                   content: (
@@ -494,6 +494,7 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
+  
   /* background-color: #EBF2FF; */
   /* background-color: var(--bg-primary); */
   /* background: red; */
