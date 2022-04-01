@@ -35,10 +35,12 @@ import {
   BunnyStep02,
   BunnyStep01,
 } from '../assets/character'
+import { setCookie } from '../utils/cookie';
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
+
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
   setItem('nowdate', new Date())

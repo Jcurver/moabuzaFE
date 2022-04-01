@@ -66,7 +66,7 @@ function ChallengeBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
         console.log(result)
         navigate('/challengebuza')
@@ -146,7 +146,7 @@ function ChallengeBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>}
+        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -198,9 +198,9 @@ function ChallengeBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
@@ -389,7 +389,7 @@ const FriendsList = styled.div`
   position: absolute;
   left: 1px;
   right: 0%;
-  top: 84px;
+  top: ${(props) => (props.friendslength === 0 ? '32px' : '84px')};
   bottom: 0%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

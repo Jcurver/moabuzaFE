@@ -46,6 +46,14 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
+  setCookie(
+    'A-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgzMjQ4NCwiZXhwIjoxNjQ4OTE4ODg0fQ.DxD0Fu_fd93Ib7IfcCWi-Fr6HY_QalLe2VHm3ek8OqE',
+  )
+  setCookie(
+    'R-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgzMjQ4NCwiZXhwIjoxNjQ4OTE4ODg0fQ.DxD0Fu_fd93Ib7IfcCWi-Fr6HY_QalLe2VHm3ek8OqE',
+  )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
@@ -144,7 +152,7 @@ instance.interceptors.response.use(
     )
     if (responseData.msg === 'Move to Login Page') {
       console.log('dddd')
-      setMoveToLoginPage()
+      // setMoveToLoginPage()
       return Promise.reject(error)
     }
 
