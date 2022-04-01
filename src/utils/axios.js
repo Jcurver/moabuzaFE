@@ -46,6 +46,14 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
+  setCookie(
+    'A-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgxNTMzMiwiZXhwIjoxNjQ4ODE4OTMyfQ.WXtyKAwfuFFRLM5-m9lISI0hTtGgCoHUP7RoAhdB7N4',
+  )
+  setCookie(
+    'R-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmZTAzZTk0YSIsImlhdCI6MTY0ODgxNTMzMiwiZXhwIjoxNjQ4OTAxNzMyfQ.LOPgrsWWmslQxUjhIXNjZwiJbQcYPqq_H-9dotkESdE',
+  )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
 
@@ -145,7 +153,7 @@ instance.interceptors.response.use(
     )
     if (responseData.msg === 'Move to Login Page') {
       console.log('dddd')
-      setMoveToLoginPage()
+      // setMoveToLoginPage()
       return Promise.reject(error)
     }
 
@@ -169,7 +177,7 @@ instance.interceptors.response.use(
             accept: 'application/json,',
           },
         }).catch(() => {
-         setMoveToLoginPage()
+        //  setMoveToLoginPage()
         })
 
         console.log('reissue데이터::', data)
