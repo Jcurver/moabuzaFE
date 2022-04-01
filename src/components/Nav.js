@@ -57,7 +57,7 @@ function NavBar() {
       >
         <Component style={{ marginTop: '2px' }}>
           {location.pathname === '/onedaybuza' ? (
-            <Pay style={{ width: '24px', height: '24px' }} />
+            <Pay style={{ width: '24px', height: '24px', color:'red' }} />
           ) : (
             <Dpay style={{ width: '24px', height: '24px' }} />
           )}
