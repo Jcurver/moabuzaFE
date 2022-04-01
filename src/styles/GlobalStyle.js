@@ -79,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
       width:100%;
-      height: 100vh;
+      height: 100%;
       /* height: calc(var(--vh, 1vh) * 100); */
       overflow: hidden;
       min-height: 100vh;
