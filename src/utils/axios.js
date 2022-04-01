@@ -46,14 +46,15 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
-  setCookie(
-    'A-AUTH-TOKEN',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGU2NzdjNCIsImlhdCI6MTY0ODgzNjAzMiwiZXhwIjoxNjQ4OTIyNDMyfQ.1Y_P98WBwhoZFBJdoCCTus6hMqc5_Ky-AoFXwN0Zuwk',
-  )
-  setCookie(
-    'R-AUTH-TOKEN',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGU2NzdjNCIsImlhdCI6MTY0ODgzNjAzMiwiZXhwIjoxNjQ4OTIyNDMyfQ.1Y_P98WBwhoZFBJdoCCTus6hMqc5_Ky-AoFXwN0Zuwk',
-  )
+  // setCookie(
+  //   'A-AUTH-TOKEN',
+  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGU2NzdjNCIsImlhdCI6MTY0ODgzNjAzMiwiZXhwIjoxNjQ4OTIyNDMyfQ.1Y_P98WBwhoZFBJdoCCTus6hMqc5_Ky-AoFXwN0Zuwk',
+  // )
+  // setCookie(
+  //   'R-AUTH-TOKEN',
+  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OGU2NzdjNCIsImlhdCI6MTY0ODgzNjAzMiwiZXhwIjoxNjQ4OTIyNDMyfQ.1Y_P98WBwhoZFBJdoCCTus6hMqc5_Ky-AoFXwN0Zuwk',
+  // )
+
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
@@ -176,9 +177,7 @@ instance.interceptors.response.use(
             accept: 'application/json,',
           },
         }).catch(() => {
-
           setMoveToLoginPage()
-
         })
 
         console.log('reissue데이터::', data)

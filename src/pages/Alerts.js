@@ -59,19 +59,16 @@ function AlertsFriend() {
     Swal.fire({
       title: '알람을 삭제하시겠어요?',
       text: '삭제하면 다시 못봐요!',
-      icon: 'question',
       showCancelButton: true,
       confirmButtonText: '삭제',
       cancelButtonText: '취소',
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       showLoaderOnConfirm: true,
     }).then((result) => {
       if (result.isConfirmed) {
         alarmDelete(id)
         Swal.fire({
           title: '삭제 되었습니다!',
-          icon: 'success',
+          confirmButtonText: '확인!',
         }).then(() => {
           navigate(0)
         })
@@ -161,19 +158,16 @@ function AlertsFriend() {
                         Swal.fire({
                           title: '친구초대를 수락하시겠어요?',
                           // text: '삭제하면 다시 못봐요!',
-                          icon: 'question',
                           showCancelButton: true,
                           confirmButtonText: '수락',
                           cancelButtonText: '취소',
-                          confirmButtonColor: '#3085d6',
-                          cancelButtonColor: '#d33',
                           showLoaderOnConfirm: true,
                         }).then((result) => {
                           if (result.isConfirmed) {
                             alarmFriendAccept(d.alarmId)
                             Swal.fire({
                               title: '수락 되었습니다!',
-                              icon: 'success',
+                              confirmButtonText: '확인!',
                             }).then(() => {
                               navigate(0)
                             })
@@ -189,19 +183,16 @@ function AlertsFriend() {
                         Swal.fire({
                           title: '친구초대를 거절하시겠어요?',
                           // text: '삭제하면 다시 못봐요!',
-                          icon: 'question',
                           showCancelButton: true,
                           confirmButtonText: '거절',
                           cancelButtonText: '취소',
-                          confirmButtonColor: '#3085d6',
-                          cancelButtonColor: '#d33',
                           showLoaderOnConfirm: true,
                         }).then((result) => {
                           if (result.isConfirmed) {
                             alarmFriendRefuse(d.alarmId)
                             Swal.fire({
                               title: '거절 되었습니다!',
-                              icon: 'success',
+                              confirmButtonText: '확인!',
                             }).then(() => {
                               navigate(0)
                             })

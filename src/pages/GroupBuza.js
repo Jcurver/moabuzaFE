@@ -22,16 +22,13 @@ function GroupBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useGroupData(navigate)
   const homeData = useMainPageData(navigate)
-  console.log("groupData:::",data)
+  console.log('groupData:::', data)
 
   const cancelGroup = (id) => {
     Swal.fire({
       title: '도전 포기!',
       text: '진짜 포기하시겠어요?!!',
-      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
@@ -88,7 +85,6 @@ function GroupBuza() {
                   >
                     + 목표 개설하기
                   </Button>
-                  
                 </GoalWrapper>
               </ScrollWrapper>
             )
@@ -174,29 +170,29 @@ function GroupBuza() {
 
         {data && data.data.goalStatus === 'waiting'
           ? data.data.waitingGoals.map((gStatus, idx) => {
-            return (
-              <ScrollWrapper height="44%">
-                <GoalWrapper>
-                  <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
-                  <GoalDescribe>
-                    모두 수락하면 같이해부자가 생성됩니다.
-                  </GoalDescribe>
+              return (
+                <ScrollWrapper height="44%">
+                  <GoalWrapper>
+                    <GoalText>{gStatus.waitingGoalName} 수락대기중</GoalText>
+                    <GoalDescribe>
+                      모두 수락하면 같이해부자가 생성됩니다.
+                    </GoalDescribe>
 
-                  <Button
-                    width="296px"
-                    height="52px"
-                    fontSize="14px"
-                    background="#4675F0"
-                    onClick={() => {
-                      console.log('gStatus:::', gStatus.id)
-                      cancelGroup(gStatus.id)
-                    }}
-                  >
-                    대기취소
-                  </Button>
-                </GoalWrapper>
-              </ScrollWrapper>
-            )
+                    <Button
+                      width="296px"
+                      height="52px"
+                      fontSize="14px"
+                      background="#4675F0"
+                      onClick={() => {
+                        console.log('gStatus:::', gStatus.id)
+                        cancelGroup(gStatus.id)
+                      }}
+                    >
+                      대기취소
+                    </Button>
+                  </GoalWrapper>
+                </ScrollWrapper>
+              )
             })
           : null}
       </GroupWaitingDiv>
