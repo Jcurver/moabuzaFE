@@ -20,7 +20,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { request } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
-import { setMoveToLoginPage } from '../utils/setMoveToLoginPage';
+import { setMoveToLoginPage } from '../utils/setMoveToLoginPage'
 
 function Menu() {
   const settings = {
@@ -39,10 +39,7 @@ function Menu() {
     Swal.fire({
       title: '로그아웃할 거지?',
       text: '꼭 다시 돌아와부자!',
-      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '나가부자',
       cancelButtonText: '있어부자',
     }).then((result) => {

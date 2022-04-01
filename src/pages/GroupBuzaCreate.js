@@ -17,7 +17,7 @@ function GroupBuzaCreate() {
   console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
 
-  console.log("friendLIst:::",friendsList)
+  console.log('friendLIst:::', friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -43,7 +43,7 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '친구를 선택해주세요!',
         text: '2인 이상만 가능해요!',
-        icon: 'warning',
+        confirmButtonText: '확인!',
       })
       return null
     }
@@ -61,10 +61,17 @@ function GroupBuzaCreate() {
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       }).then((result) => {
-        console.log(result)
-        navigate('/groupbuza')
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: '하루부자로 이동하자!',
+            text: '금액입력은 하루부자에서!',
+            confirmButtonText: '확인!',
+          }).then(() => {
+            navigate('/groupbuza')
+          })
+        }
       }),
     )
   }
@@ -201,9 +208,9 @@ function GroupBuzaCreate() {
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
-                      icon: 'error',
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
+                      confirmButtonText: '확인!',
                     })
                     return
                   }
@@ -326,7 +333,9 @@ const CancleMoveButton = styled.button`
   height: 48px;
   left: 4px;
   top: 31px;
+
   background-color: #fff;
+
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;

@@ -22,14 +22,12 @@ function Modified() {
   console.log('hero:', hero)
   const onValid = async (data) => {
     if (hero === 'heor0') {
-       Swal.fire({
+      Swal.fire({
         title: '캐릭터를 골라부자!',
-        // text: '이제부터 열심히 모아부자!',
-        icon: 'warning',
+        confirmButtonText: '확인!',
       })
         .then((result) => {
           console.log(result)
-          
         })
         .catch((err) => console.log(err))
       return
@@ -39,6 +37,7 @@ function Modified() {
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
+        confirmButtonText: '확인!',
         //  text: '열심히 모아부자!',
         // icon: 'success',
       }).then((result) => {
@@ -51,7 +50,7 @@ function Modified() {
       Swal.fire({
         title: '변경완료!',
         text: '이제부터 열심히 모아부자!',
-        icon: 'success',
+        confirmButtonText: '확인!',
       })
         .then((result) => {
           console.log(result)
@@ -79,6 +78,7 @@ function Modified() {
             Swal.fire({
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -89,6 +89,7 @@ function Modified() {
             Swal.fire({
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
+              confirmButtonText: '확인!',
               // icon: 'success',
             }).then((result) => {
               console.log(result)
@@ -101,6 +102,7 @@ function Modified() {
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
+          confirmButtonText: '확인!',
           // icon: 'success',
         }).then((result) => {
           console.log(result)
@@ -255,6 +257,7 @@ const Button = styled.div`
 `
 const ButtonSubmit = styled.button`
   position: absolute;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -262,6 +265,7 @@ const ButtonSubmit = styled.button`
   height: 48px;
   left: 308px;
   top: 31px;
+
 
   /* Heading/Noto Sans KR/H6 */
 
