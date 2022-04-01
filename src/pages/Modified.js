@@ -212,7 +212,8 @@ const ButtonSubmit = styled.button`
   position: absolute;
   width: 26px;
   height: 14px;
-  left: 318px;
+  /* right: 1.11%; */
+  left: 306px;
   top: 6.67%;
 
   /* Heading/Noto Sans KR/H6 */

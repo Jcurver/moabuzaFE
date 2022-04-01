@@ -15,6 +15,7 @@ function GroupBuzaCreate() {
   const [datalist, setDatalist] = useState([])
   console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
+  console.log('friendsList:::', friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -174,9 +175,7 @@ function GroupBuzaCreate() {
                   <DeleteFriendContent
                     onClick={() => {
                       const targetIndex = selectFriends.findIndex(
-                        (d) =>
-                          d.groupMemberNickname ===
-                          da.groupMemberNickname,
+                        (d) => d.groupMemberNickname === da.groupMemberNickname,
                       )
                       setDatalist([selectFriends[targetIndex], ...datalist])
                       setSelectFriends([
@@ -218,8 +217,7 @@ function GroupBuzaCreate() {
                   //   return
                   // }
                   const targetIndex = datalist.findIndex(
-                    (d) =>
-                      d.groupMemberNickname === da.groupMemberNickname,
+                    (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
                   setSelectFriends((prevList) => [
                     datalist[targetIndex],
