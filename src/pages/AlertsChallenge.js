@@ -337,10 +337,10 @@ function AlertsChallenge() {
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.goalName}</AlertTextTop>
-                          <AlertTextTopRight>목표가</AlertTextTopRight>
+                          <AlertTextTopRight>목표를</AlertTextTopRight>
                         </Flex>
                         <AlertTextBottom>
-                          {d.friendNickname} 님이 의해 취소되었습니다.
+                          {d.friendNickname} 님이 포기했습니다.
                         </AlertTextBottom>
                       </AlertTextDiv>
                     </Flex>
