@@ -128,7 +128,6 @@ const NavBars = styled.div`
   position: fixed;
   bottom: -20px;
   width: 100%;
-  max-width: 360px;
   height: 11.4vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);

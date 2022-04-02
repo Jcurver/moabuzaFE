@@ -124,7 +124,7 @@ const MainDiv = styled.div`
   left: 0;
   right: 0;
   overflow: hidden;
-  width: 720px;
+  width: 100%;
 
   -webkit-full-screen{
     width: 100%;

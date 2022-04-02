@@ -10,7 +10,6 @@ import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import { useFriendData } from '../apis/groupData'
 
-
 function GroupBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
@@ -104,28 +103,10 @@ function GroupBuzaCreate() {
       </Title>
       <form onSubmit={handleSubmit(onValid, onError)}>
         <CreateMoveButton>생성</CreateMoveButton>
-        <GoalInputBox>
-          <IconBox>✏️ 목표명</IconBox>
-          <Input
-            height="52px"
-            placeholder="목표명을 입력해주세요."
-            {...register('createGroupAmount', {
-              required: '이 부분을 채워부자!',
-              pattern: {
-                value: /^[0-9]+$/,
-                message: '숫자만 써부자',
-                shouldFocus: true,
-              },
-            })}
-          />
-          <ErrorSpan style={{ top: '91px' }}>
-            {errors?.createGroupAmount?.message}
-          </ErrorSpan>
-        </GoalInputBox>
         <MemoInputBox>
           <IconBox>
             <i className="fas fa-smile" />
-            💰 목표 금액
+            ✏️ 목표명
           </IconBox>
           <Input
             placeholder="목표금액을 입력해주세요."
@@ -142,6 +123,24 @@ function GroupBuzaCreate() {
             {errors?.createGroupName?.message}
           </ErrorSpan>
         </MemoInputBox>
+        <GoalInputBox>
+          <IconBox>💰 목표금액</IconBox>
+          <Input
+            height="52px"
+            placeholder="목표명을 입력해주세요."
+            {...register('createGroupAmount', {
+              required: '이 부분을 채워부자!',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '숫자만 써부자',
+                shouldFocus: true,
+              },
+            })}
+          />
+          <ErrorSpan style={{ top: '91px' }}>
+            {errors?.createGroupAmount?.message}
+          </ErrorSpan>
+        </GoalInputBox>
       </form>
 
       <FriendWrapper>
@@ -375,7 +374,7 @@ const GoalInputBox = styled.div`
   width: 328px;
   height: 87px;
   left: 16px;
-  top: 106px;
+  top: 209px;
 `
 const IconBox = styled.div`
   width: 328px;
@@ -401,7 +400,7 @@ const MemoInputBox = styled.div`
   width: 328px;
   height: 87px;
   left: 16px;
-  top: 209px;
+  top: 106px;
 `
 
 // Friends
