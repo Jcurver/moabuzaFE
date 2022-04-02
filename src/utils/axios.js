@@ -144,7 +144,7 @@ instance.interceptors.response.use(
     )
     if (responseData.msg === 'Move to Login Page') {
       console.log('dddd')
-      // setMoveToLoginPage()
+      setMoveToLoginPage()
       return Promise.reject(error)
     }
 
