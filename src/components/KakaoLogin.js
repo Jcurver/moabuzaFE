@@ -46,13 +46,6 @@ function KakaoLogin() {
 
   return (
     <Wrapper>
-      {/* <TextDiv>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <p style={{ fontWeight: '700' }}>모아부자</p>
-          <p>에</p>
-        </div>
-        <p>오신걸 환영합니다!</p>
-      </TextDiv> */}
       <LoadingIconBox
         src={LogoImg}
         style={{ position: 'absolute', top: '30%' }}
