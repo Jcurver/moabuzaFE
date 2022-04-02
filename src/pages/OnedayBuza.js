@@ -482,9 +482,11 @@ const TotalRight = styled.div`
 `
 const TodayListBigDiv = styled.div`
   position: absolute;
-  width: 360px;
+
+  width: 100%;
   height: 51%;
   left: 0px;
+  top:0px;
   top: 49%;
 
   /* background-color: #EBF2FF; */

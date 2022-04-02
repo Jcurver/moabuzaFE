@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
-import { useSetRecoilState } from 'recoil'
-import { globalWebViewWrapperState } from '../recoil/states/ui'
 
-import backgroundSrcs from '../assets/images/background'
+
+
+import backgroundSrcs from './assets/moabg.png'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01
@@ -44,7 +44,7 @@ function DeviceDetect({ children }) {
   ) : (
     <WebBackgroundWrapper>
       <ClayPhone>
-        <WebViewLayout ref={webViewWrapper}>{children}</WebViewLayout>
+        <WebViewLayout>{children}</WebViewLayout>
       </ClayPhone>
     </WebBackgroundWrapper>
   )
@@ -55,36 +55,32 @@ DeviceDetect.propTypes = {
 }
 
 const Layout = styled.div`
-  background: var(--bg-wrapper);
-  display: flex;
   position: relative;
-  margin: 0 auto;
   width: 100%;
-  max-width: 414px;
-  min-width: 280px;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
+  height: 100%;
 `
 
 const WebViewLayout = styled(Layout)`
   max-width: 360px;
-  border-radius: 18px;
-  height: 640px;
+
+  /* border-radius: 18px; */
+  max-height: 720px;
+
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: white;
 `
 
 const ClayPhone = styled.div`
-  width: 387px;
-  height: 739px;
+  width: 360px;
+  height: 720px;
   position: fixed;
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  background: url(${backgroundSrcs[2]}) no-repeat center center;
+  background: url(${backgroundSrcs}) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -101,16 +97,16 @@ const ClayPhone = styled.div`
 const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
 
-  background: url(${backgroundSrcs[4]}) no-repeat fixed;
+
+  background: url(${backgroundSrcs}) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 
   @media screen and (min-width: 1120px) {
-    background: url(${backgroundSrcs[1]}) no-repeat fixed;
+    background: url(${backgroundSrcs}) no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

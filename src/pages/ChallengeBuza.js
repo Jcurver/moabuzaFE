@@ -89,7 +89,7 @@ function ChallengeBuza() {
                   </GoalDescribe>
 
                   <Button
-                    width="82.22vw"
+                    width="91.11%"
                     height="52px"
                     fontSize="14px"
                     background="#4675F0"
@@ -153,7 +153,7 @@ function ChallengeBuza() {
                       }
                       animateOnRender
                       bgColor="#4675F0"
-                      width="84.44vw"
+                      width="91.11%"
                       height="20px"
                       margin="0 auto"
                       labelColor="white"
@@ -194,7 +194,7 @@ function ChallengeBuza() {
                     </GoalDescribe>
 
                     <Button
-                      width="82.22vw"
+                      width="91.11%"
                       height="52px"
                       fontSize="14px"
                       background="#4675F0"
@@ -316,7 +316,7 @@ const CompletedList = styled.div`
   padding: 0px;
 
   /* position: absolute; */
-  width: 91.1vw;
+  width: 95%;
   height: 256px;
   left: 4.44%;
   top: 44%;
