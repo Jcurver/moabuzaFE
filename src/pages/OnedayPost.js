@@ -26,6 +26,8 @@ import { request } from '../utils/axios'
 
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import Loading from './Loading'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton';
 
 registerLocale('ko', ko)
 
@@ -150,24 +152,28 @@ function OnedayPost() {
 
   return (
     <Wrapper>
-      <TopDiv>
-        <Title>입력</Title>
+      <TitleText>입력</TitleText>
 
-        <NavLink to="/onedaybuza">
-          <Backarr
-            style={{
-              position: 'absolute',
-              left: '4.44%',
-              top: '47.67%',
-              width: '24px',
-              height: '24px',
-            }}
-          />
-        </NavLink>
-      </TopDiv>
+      <Rightarr
+        onClick={() => navigate('/onedaybuza')}
+        style={{
+          position: 'absolute',
+          transform: 'rotate(180deg)',
+          width: '48px',
+          height: '48px',
+          left: '1.11%',
+          top: '4.305%',
+        }}
+      />
+
+      {/* <NavLink to="/onedaypost">
+        <LeftButton>입력</LeftButton>
+      </NavLink> */}
 
       <form onSubmit={handleSubmit(onValid)}>
-        <RightButton>저장</RightButton>
+        <RightButton>
+          <RightBtn>저장</RightBtn>
+        </RightButton>
         <OptionTitle style={{ top: '125px' }}>항목 선택</OptionTitle>
         <SelectDiv>
           <Select
@@ -185,7 +191,12 @@ function OnedayPost() {
               <option value="challenge">도전해부자</option>
             ) : null}
           </Select>
-          <Rightarr style={{ transform: 'rotate(90deg)' }} />
+          <Rightarr
+            style={{
+              transform: 'rotate(90deg)',
+              // marginLeft:'calc(5%)'
+            }}
+          />
         </SelectDiv>
         <ErrorSpan style={{ top: '201.6px' }}>
           {errors?.option?.message}
@@ -257,7 +268,8 @@ const Wrapper = styled.div`
   overflow: auto;
   position: relative;
   width: 100%;
-  height: 720px;
+  height: 100%;
+  /* height: 720px; */
 `
 const CalDiv = styled.div`
   width: 328px;
@@ -269,7 +281,7 @@ const CalDate = styled.div`
 `
 const CalBtn = styled.div`
   position: absolute;
-  left: 288px;
+  right: 19px;
 
   top: -6px;
   width: 24px;
@@ -281,11 +293,12 @@ const SelectDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
   })}
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 52px;
-  left: 16px;
+  left: 4.44%;
   top: 155px;
   background: #f5f5f7;
   border-radius: 8px;
@@ -296,7 +309,7 @@ const OptionTitle = styled.div`
   position: absolute;
   width: 53px;
   height: 14px;
-  left: 16px;
+  left: 4.44%;
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -317,10 +330,11 @@ const OptionDiv = styled.div`
     alignItems: 'center',
     justifyContent: 'space-between',
   })}
+
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 52px;
-  left: 16px;
+  left: 4.44%;
   top: 258px;
 
   background: #f5f5f7;
@@ -344,13 +358,14 @@ const LeftButtonDiv = styled.div`
 `
 const LeftButton = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 4.44%;
 
   top: 5.3%;
-  width: 24px;
-  height: 24px;
-
-  background: #c4c4c4;
+  width: 48px;
+  height: 48px;
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -360,12 +375,14 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
-const RightButton = styled.button`
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  left: 310px;
-  top: 46px;
+const RightBtn = styled.button`
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
 
   /* Heading/Noto Sans KR/H6 */
@@ -417,9 +434,9 @@ const TopLine = styled.div`
 `
 const Input = styled.input`
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 52px;
-  left: 16px;
+  left: 4.44%;
   border: none;
   background: #f5f5f7;
   border-radius: 8px;
@@ -448,7 +465,7 @@ const ErrorSpan = styled.span`
   position: absolute;
   width: 104px;
   height: 11px;
-  left: 32px;
+  left: 5.2%;
 
   font-family: 'Noto Sans KR';
   font-style: normal;

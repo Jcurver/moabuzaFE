@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { deleteCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import  LogoImg  from '../assets/icons/login/logo_start.gif'
+import LogoImg from '../assets/icons/login/logo_start.gif'
 import { ReactComponent as KakaoLoginBtn } from '../assets/icons/kakaoLoginBtn.svg'
 import { ReactComponent as MoabuzaText } from '../assets/icons/login/moabuza_logo.svg'
 import { loginBtnStyle } from '../styles/Mixin'
@@ -46,13 +46,6 @@ function KakaoLogin() {
 
   return (
     <Wrapper>
-      {/* <TextDiv>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <p style={{ fontWeight: '700' }}>모아부자</p>
-          <p>에</p>
-        </div>
-        <p>오신걸 환영합니다!</p>
-      </TextDiv> */}
       <LoadingIconBox
         src={LogoImg}
         style={{ position: 'absolute', top: '30%' }}
@@ -96,8 +89,8 @@ const LoadingIconBox = styled.img`
   position: absolute;
   width: 128px;
   height: 128px;
-  left: 116px;
-  top: 34.44%;
+  /* left: 116px;
+  top: 34.44%; */
 `
 const SocialTitle = styled.span`
   margin: 0 auto;
@@ -116,7 +109,7 @@ const Explain = styled.div`
   position: absolute;
   width: 221px;
   height: 18px;
-  left: 70px;
+  /* left: 70px; */
   top: 55.13%;
 
   font-family: 'Noto Sans KR';
