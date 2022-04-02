@@ -12,13 +12,17 @@ function Loading() {
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const LoadingIconBox = styled.img`
-  position: absolute;
+  /* position: absolute; */
   width: 60px;
   height: 60px;
-  left: 150px;
-  top: 308px;
+  /* left: 150px; */
+  /* top: 308px; */
 `
 export default Loading
