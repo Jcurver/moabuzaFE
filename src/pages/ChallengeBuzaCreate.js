@@ -12,7 +12,8 @@ import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import LeftButton from '../components/Header/LeftButton'
 import { useFriendData } from '../apis/challengeData'
-import RightButton from '../components/Header/RightButton';
+import RightButton from '../components/Header/RightButton'
+import TitleText from '../components/Header/TitleText'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
@@ -103,14 +104,14 @@ function ChallengeBuzaCreate() {
     <Wrapper>
       <LeftButton
         onClick={() => {
-          navigate('/')
+          navigate('/challengebuza')
         }}
       >
         취소
       </LeftButton>
-      <Title>
-        <Text>도전해부자</Text>
-      </Title>
+
+      <TitleText>도전해부자</TitleText>
+
       <form onSubmit={handleSubmit(onValid, onError)}>
         <RightButton>생성</RightButton>
         <MemoInputBox>
@@ -251,24 +252,26 @@ function ChallengeBuzaCreate() {
                   console.log('selectFriends', selectFriends)
                 }}
               >
-                <CircleImg
-                  src={
-                    da.hero === 'tanni'
-                      ? TanniFace
-                      : da.hero === 'tongki'
-                      ? TongkiFace
-                      : da.hero === 'bunny'
-                      ? BunnyFace
-                      : null
-                  }
-                />
-                <FriendsText
-                  style={{
-                    color: da.challengeMemberCanInvite ? 'black' : '#8C939D',
-                  }}
-                >
-                  {da.challengeMemberNickname}
-                </FriendsText>
+                <div style={{display:'flex',alignItems:'center'}}>
+                  <CircleImg
+                    src={
+                      da.hero === 'tanni'
+                        ? TanniFace
+                        : da.hero === 'tongki'
+                        ? TongkiFace
+                        : da.hero === 'bunny'
+                        ? BunnyFace
+                        : null
+                    }
+                  />
+                  <FriendsText
+                    style={{
+                      color: da.challengeMemberCanInvite ? 'black' : '#8C939D',
+                    }}
+                  >
+                    {da.challengeMemberNickname}
+                  </FriendsText>
+                </div>
                 {da.challengeMemberCanInvite ? null : <Doing>진행중</Doing>}
               </Friends>
             )
@@ -496,10 +499,13 @@ const Friends = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 12px;
+  justify-content: space-between;
+
+  padding-left: 3.333%;
+  padding-right: 3.333%;
 
   position: static;
-  width: 91.67%;
+  width: 100%;
   height: 54px;
   background: #f5f5f7;
   border-radius: 8px;
@@ -559,7 +565,7 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 53px;
+  width: 40px;
   height: 14px;
   margin-right: -5px;
   /* text-overflow: ellipsis; */
@@ -663,7 +669,7 @@ const SelectedFriendContent = styled.div`
   letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
-  width: 0px;
+  width: 20px;
   /* color / text / Color-text-Gray1 */
 
   background: white;
@@ -699,7 +705,7 @@ const Doing = styled.div`
   position: static;
   width: 59px;
   height: 26px;
-  margin-left: 100px;
+  /* margin-left: 50vw; */
   top: 6px;
 
   /* color/text/Color-text-Gray1 */
