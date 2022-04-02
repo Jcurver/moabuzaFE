@@ -164,69 +164,72 @@ function AlertsGroup() {
               <>
                 {d.alarmDetailType === 'invite' && (
                   <AlertList>
-                    <AlertCharacter src={Inviting} />
-                    <AlertTextDiv>
-                      <Flex>
-                        <AlertTextTop>{d.friendNickname}</AlertTextTop>
-                        <AlertTextTopRight>님이</AlertTextTopRight>
-                      </Flex>
-                      <Flex>
-                        <AlertTextBottom style={{ fontWeight: '700' }}>
-                          {d.goalName}
-                        </AlertTextBottom>
-                        <AlertTextBottom>에 초대했어요!</AlertTextBottom>
-                      </Flex>
-                    </AlertTextDiv>
-                    <AlertAcceptRefuse
-                      onClick={() => {
-                        Swal.fire({
-                          title: '초대를 수락하시겠어요?',
-                          text: '수락하면 그룹이 생성되요!',
-                          showCancelButton: true,
-                          confirmButtonText: '수락',
-                          cancelButtonText: '취소',
-                          showLoaderOnConfirm: true,
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            alarmGroupAccept(d.alarmId)
-                            Swal.fire({
-                              title: '수락 되었습니다!',
-                              confirmButtonText: '확인!',
-                            }).then(() => {
-                              navigate(0)
-                            })
-                          }
-                        })
-                      }}
-                      style={{ left: '232px' }}
-                    >
-                      수락
-                    </AlertAcceptRefuse>
-                    <AlertAcceptRefuse
-                      onClick={() => {
-                        Swal.fire({
-                          title: '초대를 거절하시겠어요?',
-                          text: '거절하면 그룹이 취소 되요!',
-                          showCancelButton: true,
-                          confirmButtonText: '거절',
-                          cancelButtonText: '취소',
-                          showLoaderOnConfirm: true,
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            alarmGroupRefuse(d.alarmId)
-                            Swal.fire({
-                              title: '거절 되었습니다!',
-                              confirmButtonText: '확인!',
-                            }).then(() => {
-                              navigate(0)
-                            })
-                          }
-                        })
-                      }}
-                      style={{ left: '312px' }}
-                    >
-                      거절
-                    </AlertAcceptRefuse>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <AlertCharacter src={Inviting} />
+                      <AlertTextDiv style={{ marginLeft: '8px' }}>
+                        <Flex>
+                          <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                          <AlertTextTopRight>님이</AlertTextTopRight>
+                        </Flex>
+                        <Flex>
+                          <AlertTextBottom style={{ fontWeight: '700' }}>
+                            {d.goalName}
+                          </AlertTextBottom>
+                          <AlertTextBottom>에 초대했어요!</AlertTextBottom>
+                        </Flex>
+                      </AlertTextDiv>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <AlertAcceptRefuse
+                        onClick={() => {
+                          Swal.fire({
+                            title: '초대를 수락하시겠어요?',
+                            text: '수락하면 그룹이 생성되요!',
+                            showCancelButton: true,
+                            confirmButtonText: '수락',
+                            cancelButtonText: '취소',
+                            showLoaderOnConfirm: true,
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              alarmGroupAccept(d.alarmId)
+                              Swal.fire({
+                                title: '수락 되었습니다!',
+                                confirmButtonText: '확인!',
+                              }).then(() => {
+                                navigate(0)
+                              })
+                            }
+                          })
+                        }}
+                        style={{ marginRight: '8px' }}
+                      >
+                        수락
+                      </AlertAcceptRefuse>
+                      <AlertAcceptRefuse
+                        onClick={() => {
+                          Swal.fire({
+                            title: '초대를 거절하시겠어요?',
+                            text: '거절하면 그룹이 취소 되요!',
+                            showCancelButton: true,
+                            confirmButtonText: '거절',
+                            cancelButtonText: '취소',
+                            showLoaderOnConfirm: true,
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              alarmGroupRefuse(d.alarmId)
+                              Swal.fire({
+                                title: '거절 되었습니다!',
+                                confirmButtonText: '확인!',
+                              }).then(() => {
+                                navigate(0)
+                              })
+                            }
+                          })
+                        }}
+                      >
+                        거절
+                      </AlertAcceptRefuse>
+                    </div>
                   </AlertList>
                 )}
                 {d.alarmDetailType === 'accept' && (
@@ -468,7 +471,7 @@ const AlertList = styled.div`
 const AlertCharacter = styled.img`
   width: 48px;
   height: 48px;
-  padding: 8px;
+
   /* background: gray; */
 `
 const AlertTextDiv = styled.div`
