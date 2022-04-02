@@ -13,6 +13,7 @@ import Loading from './Loading'
 import LeftButton from '../components/Header/LeftButton'
 import { useFriendData } from '../apis/challengeData'
 import RightButton from '../components/Header/RightButton';
+import TitleText from '../components/Header/TitleText';
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
@@ -103,14 +104,14 @@ function ChallengeBuzaCreate() {
     <Wrapper>
       <LeftButton
         onClick={() => {
-          navigate('/')
+          navigate('/challengebuza')
         }}
       >
         취소
       </LeftButton>
-      <Title>
-        <Text>도전해부자</Text>
-      </Title>
+
+        <TitleText>도전해부자</TitleText>
+
       <form onSubmit={handleSubmit(onValid, onError)}>
         <RightButton>생성</RightButton>
         <MemoInputBox>

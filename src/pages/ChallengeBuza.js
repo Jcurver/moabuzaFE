@@ -12,6 +12,7 @@ import { useChallengeData } from '../apis/challengeData'
 import { useMainPageData } from '../apis/mainpageData'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import Loading from './Loading'
+import TitleText from '../components/Header/TitleText';
 
 const shortid = require('shortid')
 
@@ -76,9 +77,7 @@ function ChallengeBuza() {
       >
         설정변경
       </button> */}
-      <Title>
-        <Text>도전해부자</Text>
-      </Title>{' '}
+      <TitleText>도전해부자</TitleText>
       <ChallengeWaitingDiv>
         {data
           ? data.data.goalStatus === 'noGoal' && (
