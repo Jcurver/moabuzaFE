@@ -165,7 +165,7 @@ function MainPage() {
                 borderRadius="11px"
                 labelAlignment={data.data.groupPercent > 9 ? 'center' : 'left'}
                 labelSize="14px"
-                width="500px"
+                width="91.1%"
               />
             </ProgressDiv>
           </>
