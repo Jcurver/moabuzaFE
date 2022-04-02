@@ -26,6 +26,8 @@ import {
   Inviting,
   MoneyDeposit,
 } from '../assets/icons/alarm'
+import TitleText from '../components/Header/TitleText'
+import LeftButton from '../components/Header/LeftButton';
 
 function AlertsFriend() {
   const adata = [
@@ -100,8 +102,9 @@ function AlertsFriend() {
             }}
           />
         </NavLink>
-        <Title>알림</Title>
       </TopDiv>
+
+      <TitleText>알림</TitleText>
       <TopLine />
       <NavLink to="/alerts">
         <SelectDiv
@@ -292,7 +295,7 @@ const Wrapper = styled.div`
 `
 const TopDiv = styled.div`
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 82px;
   left: 0px;
   top: 0px;
@@ -355,7 +358,7 @@ const Title = styled.div`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
-  width: 360px;
+  width: 100%;
   height: 1px;
   top: 82px;
 
@@ -366,7 +369,7 @@ const TopLine = styled.div`
 const IndexBottom = styled.div`
   position: absolute;
   left: 0px;
-  width: 360px;
+  width: 100%;
   top: 133px;
   height: 1px;
   background-color: #f2f2f2;
@@ -379,7 +382,7 @@ const SelectDiv = styled.div`
     justifyContent: 'center',
   })}
 
-  width: 120px;
+  width:33.333%;
   top: 82px;
   height: 50px;
   font-family: 'Noto Sans KR';
@@ -398,7 +401,7 @@ const SelectDiv = styled.div`
 const SelectLine = styled.div`
   position: absolute;
 
-  width: 120px;
+  width: 33.333%;
   top: 130px;
   height: 3px;
 
@@ -408,7 +411,7 @@ const SelectLine = styled.div`
 `
 const AlertListDiv = styled.div`
   position: absolute;
-  top: 20%;
+  top: 18%;
   bottom: 0%;
   width: 100%;
   overflow: scroll;
@@ -421,7 +424,7 @@ const AlertList = styled.div`
     justifyContent: 'space-between',
   })}
 
-  width: 336px;
+  width: 100%;
   height: 48px;
   margin-left: 8px;
   margin-top: 4%;
@@ -519,7 +522,7 @@ const AlertAcceptRefuse = styled.div`
 `
 const AlertHr = styled.div`
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 1px;
   left: 0px;
   margin-top: 2.22%;
