@@ -652,7 +652,7 @@ const SelectedFriendContent = styled.div`
   padding-left: 12px;
 
   position: static;
-  width: 140px;
+  width: 160px;
   height: 52px;
 
   border-radius: 8px;
