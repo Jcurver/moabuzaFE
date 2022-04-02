@@ -460,6 +460,7 @@ const AlertList = styled.div`
   })}
 
   width: 100%;
+  padding-right: 4.44%;
   height: 48px;
   margin-left: 8px;
   margin-top: 4%;
