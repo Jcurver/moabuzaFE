@@ -19,6 +19,9 @@ import {
   AllCharacters02,
   AllCharacters03,
 } from '../assets/character'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
 // import '../styles/SweetAlertButton.css'
 
 const shortid = require('shortid')
@@ -64,17 +67,25 @@ function GroupBuzaDetail() {
   return (
     <Wrapper>
       <ColorWrapper>
-        <CancleMoveButton
+        <LeftButton
+          style={{ background: '#ebf2ff' }}
           onClick={() => {
             navigate('/groupbuza')
           }}
         >
           <Backarr />
-        </CancleMoveButton>
-        <Title>
-          <Text>같이해부자</Text>
-        </Title>
-        <ForgiveMoveButton onClick={cancelGroup}>포기</ForgiveMoveButton>
+        </LeftButton>
+
+        <TitleText style={{ background: '#ebf2ff' }}>같이해부자</TitleText>
+
+        <RightButton
+          onClick={() => {
+            cancelGroup()
+          }}
+          style={{ background: '#ebf2ff' }}
+        >
+          포기
+        </RightButton>
       </ColorWrapper>
       <ScrollWrapper>
         <DetailWrapper>
@@ -126,7 +137,7 @@ function GroupBuzaDetail() {
             animateOnRender
             bgColor="#4675F0"
             baseBgColor="#ffffff"
-            width="328px"
+            width="91.1%"
             height="22px"
             margin="0 auto"
             borderRadius="11px"
@@ -150,18 +161,17 @@ function GroupBuzaDetail() {
                         ? ''
                         : acd.groupDate.slice(0, 10)}
                     </AccountDate>
-                    <AccountListsWrapper>
-                      <AccountList>
-                        <AccountImg src={coin} />
-                        <AccountListCenter>
-                          <AccountListTitle>{acd.nickname}</AccountListTitle>
-                          <AccountListText>{acd.groupMemo}</AccountListText>
-                        </AccountListCenter>
-                        <AccountNumber>
-                          {acd.groupAmount.toLocaleString('ko-KR')} 원
-                        </AccountNumber>
-                      </AccountList>
-                    </AccountListsWrapper>
+
+                    <AccountList>
+                      <AccountImg src={coin} />
+                      <AccountListCenter>
+                        <AccountListTitle>{acd.nickname}</AccountListTitle>
+                        <AccountListText>{acd.groupMemo}</AccountListText>
+                      </AccountListCenter>
+                      <AccountNumber>
+                        {acd.groupAmount.toLocaleString('ko-KR')} 원
+                      </AccountNumber>
+                    </AccountList>
                   </AccountContent>
                 )
               })
@@ -188,7 +198,8 @@ const ScrollWrapper = styled.div`
   }
 `
 const ColorWrapper = styled.div`
-  background: #f6f9fe;
+  /* background: #f6f9fe; */
+  background: #ebf2ff;
   box-sizing: border-box;
   height: 79px;
 `
@@ -231,18 +242,17 @@ const ForgiveMoveButton = styled.button`
 `
 
 const DetailWrapper = styled.div`
-  width: 360px;
-  background-color: #f6f9fe;
+  width: 100%;
+  background: #ebf2ff;
   margin: 0 auto;
   text-align: center;
   padding-bottom: 24px;
 `
 
 const DetailTitle = styled.div`
-  width: 360px;
+  width: 100%;
   height: 23px;
   /* Heading / Roboto / H3(B) */
-;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
@@ -303,7 +313,7 @@ const DetailCharacter = styled.img`
 `
 
 const AccountSummaryWrapper = styled.div`
-  width: 328px;
+  width: 91.1%;
   margin: 0 auto;
   height: 250px;
   top: 483px;
@@ -336,10 +346,10 @@ const GroupFriendIcon = styled.img`
 `
 
 const AccountTitle = styled.div`
-  margin: 24px 0px 8px 16px;
+  margin: 24px 0px 8px 4.44%;
 `
 const AccountContent = styled.div`
-  width: 328px;
+  width: 100%;
 `
 
 const AccountDate = styled.div`
@@ -374,7 +384,7 @@ const AccountList = styled.div`
   align-items: center;
   background: #f5f5f7;
   border-radius: 8px;
-  width: 328px;
+  width: 100%;
   height: 64px;
   margin-bottom: 8px;
 `
