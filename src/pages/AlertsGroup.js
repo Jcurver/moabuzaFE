@@ -316,7 +316,29 @@ function AlertsGroup() {
                     />
                   </AlertList>
                 )}
-
+                {d.alarmDetailType === 'talju' && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter
+                        src={GoalCancel}
+                        style={{ marginRight: '10px' }}
+                      />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.goalName}</AlertTextTop>
+                          <AlertTextTopRight>목표가</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>
+                          {d.friendNickname} 님이 의해 취소되었습니다.
+                        </AlertTextBottom>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
                 <AlertHr />
               </>
             )
