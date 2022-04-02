@@ -8,7 +8,8 @@ function TitleText({ children, ...rest }) {
 const Title = styled.div`
   position: absolute;
 
-  width: 100%;
+  width: 40%;
+  left:30%;
   height: 16px;
   top: 6.45%;
 
