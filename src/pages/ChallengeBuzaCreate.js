@@ -450,7 +450,7 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 91.11%;
+  width: 91.1%;
   height: 40%;
   left: 4.44%;
   top: 335px;

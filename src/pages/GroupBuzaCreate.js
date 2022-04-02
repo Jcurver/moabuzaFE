@@ -413,7 +413,7 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 91.11%;
+  width: 100%;
   height: 40%;
   left: 4.44%;
   top: 335px;
@@ -422,6 +422,7 @@ const FriendWrapper = styled.div`
 const FriendsList = styled.div`
   /* Auto layout */
   height: 350px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
