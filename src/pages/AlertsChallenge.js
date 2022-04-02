@@ -326,7 +326,7 @@ function AlertsChallenge() {
                   </AlertList>
                 )}
 
-                <AlertHr />
+
                 {d.alarmDetailType === 'talju' && (
                   <AlertList>
                     <Flex>
