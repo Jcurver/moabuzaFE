@@ -17,6 +17,9 @@ import {
   BunnyStep03,
   TongkiStep03,
 } from '../assets/character'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton';
+import LeftButton from '../components/Header/LeftButton';
 
 const shortid = require('shortid')
 
@@ -67,23 +70,25 @@ function ChallengeBuzaDetail() {
   return (
     <Wrapper>
       <ColorWrapper>
-        <CancleMoveButton
+        <LeftButton
+          style={{ background: '#ebf2ff' }}
           onClick={() => {
             navigate('/challengebuza')
           }}
         >
           <Backarr />
-        </CancleMoveButton>
-        <Title>
-          <Text>도전해부자</Text>
-        </Title>
-        <ForgiveMoveButton
+        </LeftButton>
+
+        <TitleText style={{ background: '#ebf2ff' }}>도전해부자</TitleText>
+
+        <RightButton
           onClick={() => {
             cancelChallenge()
           }}
+          style={{ background: '#ebf2ff' }}
         >
           포기
-        </ForgiveMoveButton>
+        </RightButton>
       </ColorWrapper>
       <ScrollWrapper>
         <DetailWrapper>
@@ -136,7 +141,7 @@ function ChallengeBuzaDetail() {
             animateOnRender
             bgColor="#4675F0"
             baseBgColor="#ffffff"
-            width="328px"
+            width="91.1%"
             height="22px"
             margin="0 auto"
             borderRadius="11px"
@@ -181,7 +186,7 @@ function ChallengeBuzaDetail() {
                       animateOnRender
                       bgColor="#4675F0"
                       baseBgColor="#ffffff"
-                      width="304px"
+                      width="84.4vw"
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
@@ -283,14 +288,14 @@ const ForgiveMoveButton = styled.button`
 `
 
 const DetailWrapper = styled.div`
-  width: 360px;
+  width: 100%;
   background-color: #ebf2ff;
   text-align: center;
   height: 340px;
 `
 
 const DetailTitle = styled.div`
-  width: 328px;
+  width: 100%;
   /* height: 23px; */
   /* Heading / Roboto / H3(B) */
 
@@ -370,12 +375,12 @@ const ScrollWrapper = styled.div`
 
 // ChallengeFriend
 const ChallengeFriendWrapper = styled.div`
-  width: 328px;
+  width: 91.1%;
   margin: 16px auto;
 `
 
 const ChallengeFriendList = styled.div`
-  width: 328px;
+  width: 100%;
   height: 92px;
   margin-bottom: 8px;
 
@@ -427,7 +432,7 @@ const ChallengeFriendAmount = styled.span`
 `
 // Account Summary
 const AccountSummaryWrapper = styled.div`
-  width: 328px;
+  width: 91.1%;
   /* border: 1px solid black; */
   margin: 0 auto;
   /* position: absolute; */
@@ -463,11 +468,11 @@ const GroupFriendIcon = styled.img`
 `
 
 const AccountTitle = styled.div`
-  margin: 24px 0px 8px 16px;
+  margin: 24px 0px 8px 4.44%;
 `
 const AccountContent = styled.div`
   /* border: 1px solid black; */
-  width: 328px;
+  width: 100%;
 `
 
 const AccountDate = styled.div`
@@ -507,7 +512,7 @@ const AccountList = styled.div`
   align-items: center;
   background: #f5f5f7;
   border-radius: 8px;
-  width: 328px;
+  width: 100%;
   height: 64px;
   margin-bottom: 8px;
 `

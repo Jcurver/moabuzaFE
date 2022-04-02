@@ -7,7 +7,7 @@ function ScrollWrapper({ children, ...rest }) {
 
 const MainWrapper = styled.div`
   height: ${(props) => props.height || '630px'};
-  margin: 0 0 0 16px;
+  margin: 0 0 0 4.444%;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

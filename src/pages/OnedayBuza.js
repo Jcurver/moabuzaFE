@@ -30,6 +30,9 @@ import { getItem, setItem } from '../utils/sessionStorage'
 import { nowDate } from '../hooks/nowDate'
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import { useOnedayBuzaData } from '../apis/onedayBuzaData'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
 
 registerLocale('ko', ko)
 
@@ -124,53 +127,57 @@ function OnedayBuza(state) {
   }
   return (
     <Wrapper>
-      <TopDiv>
-        <Title>하루부자</Title>
-        <NavLink to="/onedaypost">
-          <RightButton>입력</RightButton>
-        </NavLink>
-        <NavLink to="/">
-          <Backarr
+      <TitleText>하루부자</TitleText>
+      <LeftButton onClick={() => navigate('/')}>
+        <RightArrow
+          style={{ transform: 'rotate(180deg)', width: '48px', height: '48px' }}
+        />
+      </LeftButton>
+
+      <NavLink to="/onedaypost">
+        <RightButton>입력</RightButton>
+      </NavLink>
+
+
+      <TopLine />
+      <CalDiv>
+        <LeftArrowDiv onClick={() => yesterday()}>
+          <RightArrow
             style={{
-              position: 'absolute',
-              left: '4.44%',
-              top: '47.67%',
+              transform: 'rotate(180deg)',
               width: '24px',
               height: '24px',
             }}
           />
-        </NavLink>
-      </TopDiv>
-      <TopLine />
-      <CalDiv>
-        <LeftArrowDiv onClick={() => yesterday()}>
-          <RightArrow style={{ transform: 'rotate(180deg)' }} />
         </LeftArrowDiv>
-        <DatePicker
-          dateFormat="yyyy.MM.dd"
-          locale="ko"
-          selected={startDate}
-          onChange={(date) => setDateMutate(date)}
-          customInput={<ExampleCustomInput />}
-          maxDate={new Date()}
-          // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
-          popperModifiers={{ preventOverflow: { enabled: true } }}
-          popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
-          dayClassName={(date) => {
-            if (getDayName(createDate(date)) === '토') {
-              return 'saturday'
-            }
-            if (getDayName(createDate(date)) === '일') {
-              return 'sunday'
-            }
-            return null
-          }}
-        />
+        <div>
+          <DatePicker
+            dateFormat="yyyy.MM.dd"
+            locale="ko"
+            selected={startDate}
+            onChange={(date) => setDateMutate(date)}
+            customInput={<ExampleCustomInput />}
+            maxDate={new Date()}
+            // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
+            popperModifiers={{ preventOverflow: { enabled: true } }}
+            popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
+            dayClassName={(date) => {
+              if (getDayName(createDate(date)) === '토') {
+                return 'saturday'
+              }
+              if (getDayName(createDate(date)) === '일') {
+                return 'sunday'
+              }
+              return null
+            }}
+          />
+        </div>
         <RightArrowDiv onClick={() => nextday()}>
           <RightArrow />
         </RightArrowDiv>
       </CalDiv>
       <CalendarLine />
+
       <TotalLine style={{ top: '23.89%' }}>
         <TotalLeft>수입</TotalLeft>
         <TotalRight>
@@ -193,14 +200,28 @@ function OnedayBuza(state) {
       <TotalLine style={{ top: '40.97%' }}>
         <TotalLeft>도전해부자</TotalLeft>
         <TotalRight>
-          {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')}{' '}
-          원
+          {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
 
       <BottomLine />
       <TodayListBigDiv />
       <ZigZagDiv>
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
+        <ZigZag />
         <ZigZag />
         <ZigZag />
         <ZigZag />
@@ -221,7 +242,7 @@ function OnedayBuza(state) {
           {mutation &&
             mutation?.data?.data?.dayRecordList.map((d) => (
               <SwipeableListItem
-                style={{ backgroundColor: 'red' }}
+                style={{ backgroundColor: 'red', opacity: '1' }}
                 key={d.id}
                 swipeLeft={{
                   content: (
@@ -230,7 +251,14 @@ function OnedayBuza(state) {
                         padding: '10px',
                         marginLeft: '10px',
                         marginBottom: '10px',
-                        // background: "red",
+                        width: '91.11%',
+                        height: '64px',
+                        background: '#B9BFC8',
+                        borderRadius: '8px',
+                        color: 'white',
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
                       }}
                     >
                       밀어서 삭제
@@ -276,7 +304,7 @@ const Wrapper = styled.div`
 `
 const TopDiv = styled.div`
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 86px;
   left: 0px;
   top: 0px;
@@ -289,16 +317,16 @@ const LeftButtonDiv = styled.div`
   height: 48px;
   background: rgba(196, 196, 196, 0.3);
 `
-const LeftButton = styled.div`
-  position: absolute;
-  left: 4.44%;
+// const LeftButton = styled.div`
+//   position: absolute;
+//   left: 4.44%;
 
-  top: 5.3%;
-  width: 24px;
-  height: 24px;
+//   top: 5.3%;
+//   width: 24px;
+//   height: 24px;
 
-  background: #c4c4c4;
-`
+//   background: #c4c4c4;
+// `
 const RightButtonDiv = styled.div`
   position: absolute;
   left: 85.56%;
@@ -308,30 +336,6 @@ const RightButtonDiv = styled.div`
   height: 48px;
 
   background: rgba(196, 196, 196, 0.3);
-`
-
-const RightButton = styled.div`
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  left: 318px;
-  top: 46px;
-
-  /* Heading/Noto Sans KR/H6 */
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  /* color/Secondary */
-
-  color: #4675f0;
 `
 
 const Title = styled.div`
@@ -369,9 +373,9 @@ const TopLine = styled.div`
 `
 const MidLine = styled.div`
   position: absolute;
-  width: 325px;
+  width: 90%;
+  left: 5%;
   height: 1px;
-  left: 19px;
   top: 33.33%;
 
   /* color / gray / Gray50 */
@@ -381,9 +385,9 @@ const MidLine = styled.div`
 `
 const BottomLine = styled.div`
   position: absolute;
-  width: 325px;
+  width: 90%;
+  left: 5%;
   height: 1px;
-  left: 19px;
   top: 45.69%;
 
   /* color / gray / Gray50 */
@@ -395,12 +399,12 @@ const CalDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
+
     justifyContent: 'center',
   })}
   position: absolute;
-  width: 110px;
+  width: 100%;
   height: 23px;
-  left: 120px;
   top: 15.7%;
 `
 const LeftArrowDiv = styled.div`
@@ -436,9 +440,9 @@ const CalBtn = styled.button`
 `
 const CalendarLine = styled.hr`
   position: absolute;
-  width: 325px;
+  width: 90.2%;
   height: 1px;
-  left: 19px;
+  left: 4.9%;
   top: 20%;
   background-color: #cccccc;
   /* color / gray / Gray50 */
@@ -451,15 +455,16 @@ const TotalLine = styled.div`
     justifyContent: 'space-between',
   })}
   position: absolute;
-  width: 324px;
+  width: 90%;
   height: 14px;
-  left: 18px;
+  left: 5%;
 `
 const TotalLeft = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
+
   line-height: 100%;
   /* identical to box height, or 14px */
   ${setFlexStyles({
@@ -488,6 +493,7 @@ const TodayListBigDiv = styled.div`
   height: 51%;
   left: 0px;
   top: 49%;
+
   /* background-color: #EBF2FF; */
   /* background-color: var(--bg-primary); */
   /* background: red; */
@@ -496,7 +502,7 @@ const TodayListTitle = styled.div`
   position: absolute;
   width: 53px;
   height: 14px;
-  left: 16px;
+  left: 4.44%;
   top: 56.39%;
   /* Heading/Noto Sans KR/H6(B) */
   font-family: 'Noto Sans KR';
@@ -519,7 +525,8 @@ const TodayListDiv = styled.div`
   width: 100%;
   height: 28%;
   top: 60.56%;
-  padding: 0 16px;
+  
+  padding: 0 4.44%;
   overflow: scroll;
 
   -ms-overflow-style: none; /* IE and Edge */
@@ -536,7 +543,7 @@ const TodayListLine = styled.div`
   })}
   padding: 12px;
   position: relative;
-  width: 328px;
+  width: 100%;
   height: 31.75%;
 
   /* color/Btn-basic1 */
@@ -544,6 +551,7 @@ const TodayListLine = styled.div`
   background: #e5eaf2;
   /* background: red; */
   border-radius: 8px;
+  overflow: hidden;
   margin-bottom: 8px;
 `
 const TodayListLineLeft = styled.div``
@@ -615,7 +623,9 @@ const ZigZagDiv = styled.div`
   display: flex;
   top: calc(49% - 10px);
   height: 20px;
-  width: 360px;
+  width: 100%;
+  /* overflow-x: hidden; */
+
 `
 const ZigZag = styled.div`
   width: 26px;
@@ -626,4 +636,5 @@ const ZigZag = styled.div`
   top: -10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
 `
+
 export default OnedayBuza

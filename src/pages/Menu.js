@@ -21,6 +21,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import { request } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { setMoveToLoginPage } from '../utils/setMoveToLoginPage'
+import TitleText from '../components/Header/TitleText'
 
 function Menu() {
   const settings = {
@@ -65,23 +66,29 @@ function Menu() {
             }}
           />
         </NavLink>
-        <Title>메뉴</Title>
         <TopLine />
       </TopDiv>
+      <TitleText>메뉴</TitleText>
 
       <MenuSlideBox>
         <Slider {...settings}>
           <div>
-            <SlideImg src={BugReport} />
+            <SlideImg
+              src={BugReport}
+              style={{ width: '100%', height: '30%' }}
+            />
           </div>
           <div>
-            <SlideImg src={SlideReview} />
+            <SlideImg
+              src={SlideReview}
+              style={{ width: '100%', height: '30%' }}
+            />
           </div>
         </Slider>
       </MenuSlideBox>
 
       <NavLink to="/friends">
-        <TodayDiv style={{ top: '243px' }}>
+        <TodayDiv style={{ top: 'calc(83px + 45vw)' }}>
           <Friend
             style={{
               width: '24px',
@@ -98,7 +105,7 @@ function Menu() {
               position: 'absolute',
               width: '24px',
               height: '24px',
-              left: '320px',
+              right: '4.44%',
               top: '18px',
             }}
           />
@@ -129,7 +136,7 @@ function Menu() {
       </NavLink> */}
 
       <NavLink to="/modified">
-        <TodayDiv style={{ top: '303px' }}>
+        <TodayDiv style={{ top: 'calc(143px + 45vw)' }}>
           <TodayLogoDiv />
           <Edit
             style={{
@@ -146,7 +153,7 @@ function Menu() {
               position: 'absolute',
               width: '24px',
               height: '24px',
-              left: '320px',
+              right: '4.44%',
               top: '18px',
             }}
           />
@@ -154,7 +161,7 @@ function Menu() {
       </NavLink>
 
       <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
-        <TodayDiv style={{ top: '363px' }}>
+        <TodayDiv style={{ top: 'calc(203px + 45vw)' }}>
           <TodayLogoDiv />
           <Review
             style={{
@@ -171,13 +178,13 @@ function Menu() {
               position: 'absolute',
               width: '24px',
               height: '24px',
-              left: '320px',
+              right: '4.44%',
               top: '18px',
             }}
           />
         </TodayDiv>
       </a>
-      <TodayDiv onClick={() => logout()} style={{ top: '423px' }}>
+      <TodayDiv onClick={() => logout()} style={{ top: 'calc(263px + 45vw)' }}>
         <TodayLogoDiv />
         <Logout
           style={{
@@ -194,7 +201,7 @@ function Menu() {
             position: 'absolute',
             width: '24px',
             height: '24px',
-            left: '320px',
+            right: '4.44%',
             top: '18px',
           }}
         />
@@ -241,7 +248,7 @@ const TopDiv = styled.div`
 
 const MenuSlideBox = styled.div`
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 160px;
   left: 0px;
   top: 83px;
@@ -295,9 +302,8 @@ const TopLine = styled.div`
 
 const TodayDiv = styled.div`
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 8.333%;
-  left: 0px;
 `
 const TodayLogoDiv = styled.div`
   position: absolute;

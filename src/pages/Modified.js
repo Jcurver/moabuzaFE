@@ -10,6 +10,9 @@ import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
+
 function Modified() {
   const navigate = useNavigate()
   const [hero, setHero] = useState('heor0')
@@ -127,10 +130,10 @@ function Modified() {
         </ButtonDiv>
       </NavLink>
       <TopLine />
-
-      <Title>캐릭터/닉네임 수정</Title>
+      <TitleText>캐릭터/닉네임 수정</TitleText>
+      {/* <Title>캐릭터/닉네임 수정</Title> */}
       <form onSubmit={handleSubmit(onValid)}>
-        <ButtonSubmit>확인</ButtonSubmit>
+        <RightButton>확인</RightButton>
         <CharacterDiv>
           <CharacterCenterDiv>
             <CharacterOne
@@ -257,11 +260,14 @@ const Button = styled.div`
 `
 const ButtonSubmit = styled.button`
   position: absolute;
-  width: 26px;
-  height: 14px;
-  /* right: 1.11%; */
-  left: 306px;
-  top: 6.67%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  left: 308px;
+  top: 31px;
 
   /* Heading/Noto Sans KR/H6 */
 
@@ -318,7 +324,7 @@ const CharacterDiv = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 166px;
   /* left: calc(50% - 288px / 2); */
   top: 85px;
@@ -399,9 +405,10 @@ const NicknameText = styled.div`
 
 const NicknameSubmit = styled.div`
   position: absolute;
-  width: 104px;
+  width: 28.8%;
   height: 52px;
-  left: 240px;
+  /* left: 240px; */
+  right: 4.44%;
   top: 294px;
   ${setFlexStyles({
     display: 'flex',
@@ -433,7 +440,7 @@ const NicknameSubmit = styled.div`
 `
 const NicknameInput = styled.input`
   position: absolute;
-  width: 216px;
+  width: 60%;
   height: 52px;
   left: 16px;
   top: 294px;

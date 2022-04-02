@@ -203,7 +203,7 @@ function OnBoarding() {
 
 const Wrapper = styled.div`
   position: relative;
-  height: 720px;
+  /* height: 720px; */
 `
 
 const TextArea = styled.div`

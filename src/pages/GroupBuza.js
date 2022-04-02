@@ -75,7 +75,7 @@ function GroupBuza() {
                   </GoalDescribe>
 
                   <Button
-                    width="296px"
+                    width="82.22vw"
                     height="52px"
                     fontSize="14px"
                     background="#4675F0"
@@ -139,7 +139,7 @@ function GroupBuza() {
                       }
                       animateOnRender
                       bgColor="#4675F0"
-                      width="304px"
+                      width="84.4vw"
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
@@ -207,20 +207,20 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const Title = styled.div`
-  /* ${setFlexStyles({
+  ${setFlexStyles({
     display: 'flex',
     // flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   })}
-  margin-top: 19px;
+  /* margin-top: 19px;
   margin-bottom: 33px; */
 
   position: absolute;
-  width: 72px;
+  width: 100%;
   height: 22px;
-  left: 144px;
-  top: 43px;
+
+  top: 5.972%;
 `
 
 const MoveButton = styled.button`
@@ -238,7 +238,7 @@ const Text = styled.span`
 
 const GoalWrapper = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 156px;
   /* top: 13%; */
   margin-bottom: 10px;
@@ -284,7 +284,7 @@ const ConmpletedTitle = styled.span`
   position: absolute;
   width: 53px;
   height: 14px;
-  left: 16px;
+  left: 4.44%;
   top: 40.2%;
 
   font-size: 14px;

@@ -1,14 +1,19 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { setFlexStyles } from '../styles/Mixin'
 import { request } from '../utils/axios'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
+import LeftButton from '../components/Header/LeftButton'
 import { useFriendData } from '../apis/challengeData'
+import RightButton from '../components/Header/RightButton'
+import TitleText from '../components/Header/TitleText'
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
@@ -97,44 +102,25 @@ function ChallengeBuzaCreate() {
 
   return (
     <Wrapper>
-      <CancleMoveButton
-        type="button"
+      <LeftButton
         onClick={() => {
           navigate('/challengebuza')
         }}
       >
         취소
-      </CancleMoveButton>
-      <Title>
-        <Text>도전해부자</Text>
-      </Title>
+      </LeftButton>
+
+      <TitleText>도전해부자</TitleText>
+
       <form onSubmit={handleSubmit(onValid, onError)}>
-        <CreateMoveButton>생성</CreateMoveButton>
-        <GoalInputBox>
-          <IconBox>💰 목표 금액</IconBox>
-          <Input
-            height="52px"
-            placeholder="목표 금액을 입력해주세요."
-            {...register('createChallengeAmount', {
-              required: '이 부분을 채워부자!',
-              pattern: {
-                value: /^[0-9]+$/,
-                message: '숫자만 써부자',
-                shouldFocus: true,
-              },
-            })}
-          />
-          <ErrorSpan style={{ top: '91px' }}>
-            {errors?.createChallengeAmount?.message}
-          </ErrorSpan>
-        </GoalInputBox>
+        <RightButton>생성</RightButton>
         <MemoInputBox>
           <IconBox>
             <i className="fas fa-smile" />
-            ✏️ 메모
+            ✏️ 목표명
           </IconBox>
           <Input
-            placeholder="메모를 입력해주세요."
+            placeholder="목표금액을 입력해주세요."
             height="52px"
             {...register('createChallengeName', {
               required: '이 부분을 채워부자!',
@@ -148,6 +134,24 @@ function ChallengeBuzaCreate() {
             {errors?.createChallengeName?.message}
           </ErrorSpan>
         </MemoInputBox>
+        <GoalInputBox>
+          <IconBox>💰 목표 금액</IconBox>
+          <Input
+            height="52px"
+            placeholder="목표명을 입력해주세요."
+            {...register('createChallengeAmount', {
+              required: '이 부분을 채워부자!',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '숫자만 써부자',
+                shouldFocus: true,
+              },
+            })}
+          />
+          <ErrorSpan style={{ top: '91px' }}>
+            {errors?.createChallengeAmount?.message}
+          </ErrorSpan>
+        </GoalInputBox>
       </form>
 
       <FriendWrapper>
@@ -199,10 +203,22 @@ function ChallengeBuzaCreate() {
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
+            console.log('datalist::', datalist)
+            // if (da.challengeMemberCanInvite) {
+            //   return null
+            // }
             return (
               <Friends
+                style={{
+                  backgroundColor: da.challengeMemberCanInvite
+                    ? 'white'
+                    : 'F5F5F7',
+                }}
                 key={da.id}
                 onClick={() => {
+                  if (!da.challengeMemberCanInvite) {
+                    return
+                  }
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
@@ -236,18 +252,27 @@ function ChallengeBuzaCreate() {
                   console.log('selectFriends', selectFriends)
                 }}
               >
-                <CircleImg
-                  src={
-                    da.hero === 'tanni'
-                      ? TanniFace
-                      : da.hero === 'tongki'
-                      ? TongkiFace
-                      : da.hero === 'bunny'
-                      ? BunnyFace
-                      : null
-                  }
-                />
-                <FriendsText>{da.challengeMemberNickname}</FriendsText>
+                <div style={{display:'flex',alignItems:'center'}}>
+                  <CircleImg
+                    src={
+                      da.hero === 'tanni'
+                        ? TanniFace
+                        : da.hero === 'tongki'
+                        ? TongkiFace
+                        : da.hero === 'bunny'
+                        ? BunnyFace
+                        : null
+                    }
+                  />
+                  <FriendsText
+                    style={{
+                      color: da.challengeMemberCanInvite ? 'black' : '#8C939D',
+                    }}
+                  >
+                    {da.challengeMemberNickname}
+                  </FriendsText>
+                </div>
+                {da.challengeMemberCanInvite ? null : <Doing>진행중</Doing>}
               </Friends>
             )
           })}
@@ -263,11 +288,19 @@ const Wrapper = styled.div`
   height: 100%;
 `
 const Title = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    // flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  })}
+  /* margin-top: 19px;
+  margin-bottom: 33px; */
+
   position: absolute;
-  width: 72px;
-  height: 23px;
-  left: 144px;
-  top: 43px;
+  width: 100%;
+  height: 22px;
+  top: 5.972%;
 `
 const Input = styled.input`
   width: 100%;
@@ -319,12 +352,18 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.button`
+const CancleMoveButton = styled.div`
   position: absolute;
+  ${setFlexStyles({
+    display: 'flex',
+    // flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  })}
   width: 48px;
   height: 48px;
-  left: 4px;
-  top: 31px;
+  left: 1.11%;
+  top: 4.305%;
   background-color: #fff;
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -337,14 +376,22 @@ const CancleMoveButton = styled.button`
   letter-spacing: -0.04em;
 `
 
-const CreateMoveButton = styled.button`
+const CreateMoveButton = styled.div`
   position: absolute;
+
+  right: 1.111%;
+  top: 4.305%;
   width: 48px;
   height: 48px;
-  left: 308px;
-  top: 31px;
-  background-color: #fff;
-  color: #4675f0;
+  ${setFlexStyles({
+    display: 'flex',
+    // flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  })}
+
+  /* Heading/Noto Sans KR/H6 */
+
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 400;
@@ -358,14 +405,15 @@ const CreateMoveButton = styled.button`
   /* color/Secondary */
 
   color: #4675f0;
+  /* identical to box height, or 14px */
 `
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
-  top: 106px;
+  left: 4.44%;
+  top: 209px;
 `
 const IconBox = styled.div`
   width: 328px;
@@ -388,10 +436,10 @@ const IconBox = styled.div`
 
 const MemoInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
-  top: 209px;
+  left: 4.44%;
+  top: 106px;
 `
 
 // Friends
@@ -402,9 +450,9 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 40%;
-  left: 16px;
+  left: 4.44%;
   top: 335px;
 `
 
@@ -414,7 +462,7 @@ const FriendsList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+
   overflow: scroll;
   position: absolute;
   left: 1px;
@@ -434,7 +482,7 @@ const FriendEmptyBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 328px;
+  width: 91.11%;
   height: 52px;
   color: #cccccc;
   /* color / gray / Gray30 */
@@ -451,11 +499,16 @@ const Friends = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  justify-content: space-between;
+
+  padding-left: 3.333%;
+  padding-right: 3.333%;
 
   position: static;
-  width: 328px;
-  height: 36px;
+  width: 100%;
+  height: 54px;
+  background: #f5f5f7;
+  border-radius: 8px;
 
   /* Inside auto layout */
 
@@ -487,10 +540,10 @@ const FriendsText = styled.div`
 
   /* Inside auto layout */
 
-  flex: none;
+  /* flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 0px 8px;
+  margin: 0px 8px; */
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
@@ -498,7 +551,7 @@ const CircleImg = styled.img`
   position: static;
   width: 36px;
   height: 36px;
-  margin-left: 12px;
+
   top: 0px;
 
   background: #f5f5f7;
@@ -512,7 +565,7 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 53px;
+  width: 40px;
   height: 14px;
   margin-right: -5px;
   /* text-overflow: ellipsis; */
@@ -616,7 +669,7 @@ const SelectedFriendContent = styled.div`
   letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
-  width: 0px;
+  width: 20px;
   /* color / text / Color-text-Gray1 */
 
   background: white;
@@ -641,5 +694,38 @@ const ErrorSpan = styled.span`
   letter-spacing: -0.04em;
 
   color: #ff3d00;
+`
+const Doing = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 13px;
+
+  position: static;
+  width: 59px;
+  height: 26px;
+  /* margin-left: 50vw; */
+  top: 6px;
+
+  /* color/text/Color-text-Gray1 */
+
+  background: #b9bfc8;
+  border-radius: 13px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  /* Rectangle 173 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  /* flex: none;
+  order: 0;
+  flex-grow: 0; */
+  /* margin: 0px 10px; */
 `
 export default ChallengeBuzaCreate

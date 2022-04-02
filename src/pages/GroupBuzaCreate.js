@@ -9,6 +9,9 @@ import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import { useFriendData } from '../apis/groupData'
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
+import TitleText from '../components/Header/TitleText'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
@@ -90,44 +93,22 @@ function GroupBuzaCreate() {
 
   return (
     <Wrapper>
-      <CancleMoveButton
-        type="button"
+      <LeftButton
         onClick={() => {
           navigate('/groupbuza')
         }}
       >
         취소
-      </CancleMoveButton>
-      <Title>
-        <Text>같이해부자</Text>
-      </Title>
+      </LeftButton>
+
+      <TitleText>같이해부자</TitleText>
+
       <form onSubmit={handleSubmit(onValid, onError)}>
-        <CreateMoveButton>생성</CreateMoveButton>
+        <RightButton>생성</RightButton>
         <GoalInputBox>
-          <IconBox>💰 목표 금액</IconBox>
+          <IconBox>✏️ 목표명</IconBox>
           <Input
-            height="52px"
-            placeholder="목표 금액을 입력해주세요."
-            {...register('createGroupAmount', {
-              required: '이 부분을 채워부자!',
-              pattern: {
-                value: /^[0-9]+$/,
-                message: '숫자만 써부자',
-                shouldFocus: true,
-              },
-            })}
-          />
-          <ErrorSpan style={{ top: '91px' }}>
-            {errors?.createGroupAmount?.message}
-          </ErrorSpan>
-        </GoalInputBox>
-        <MemoInputBox>
-          <IconBox>
-            <i className="fas fa-smile" />
-            ✏️ 메모
-          </IconBox>
-          <Input
-            placeholder="메모를 입력해주세요."
+            placeholder="목표명을 입력해주세요."
             height="52px"
             {...register('createGroupName', {
               required: '이 부분을 채워부자!',
@@ -139,6 +120,27 @@ function GroupBuzaCreate() {
           />
           <ErrorSpan style={{ top: '90px' }}>
             {errors?.createGroupName?.message}
+          </ErrorSpan>
+        </GoalInputBox>
+        <MemoInputBox>
+          <IconBox>
+            <i className="fas fa-smile" />
+            💰 목표금액
+          </IconBox>
+          <Input
+            height="52px"
+            placeholder="목표금액을 입력해주세요."
+            {...register('createGroupAmount', {
+              required: '이 부분을 채워부자!',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '숫자만 써부자',
+                shouldFocus: true,
+              },
+            })}
+          />
+          <ErrorSpan style={{ top: '91px' }}>
+            {errors?.createGroupAmount?.message}
           </ErrorSpan>
         </MemoInputBox>
       </form>
@@ -190,10 +192,20 @@ function GroupBuzaCreate() {
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
+            console.log('datalist::', datalist)
+            if (datalist.groupMemberCanInvite) {
+              return null
+            }
             return (
               <Friends
+                style={{
+                  backgroundColor: da.groupMemberCanInvite ? 'white' : 'F5F5F7',
+                }}
                 key={da.id}
                 onClick={() => {
+                  if (!da.groupMemberCanInvite) {
+                    return
+                  }
                   if (selectFriends.length > 2) {
                     // eslint-disable-next-line no-alert
                     Swal.fire({
@@ -203,6 +215,14 @@ function GroupBuzaCreate() {
                     })
                     return
                   }
+                  // if (selectFriends.challengeMemberCanInvite) {
+                  //   Swal.fire({
+                  //     icon: 'error',
+                  //     title: '이미 선택!',
+                  //     text: '이미 진행중이에요!',
+                  //   })
+                  //   return
+                  // }
                   const targetIndex = datalist.findIndex(
                     (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
@@ -229,7 +249,14 @@ function GroupBuzaCreate() {
                       : null
                   }
                 />
-                <FriendsText>{da.groupMemberNickname}</FriendsText>
+                <FriendsText
+                  style={{
+                    color: da.groupMemberCanInvite ? 'black' : '#8C939D',
+                  }}
+                >
+                  {da.groupMemberNickname}
+                </FriendsText>
+                {da.groupMemberCanInvite ? null : <Doing>진행중</Doing>}
               </Friends>
             )
           })}
@@ -301,18 +328,14 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.div`
+const CancleMoveButton = styled.button`
   position: absolute;
-  left: 4px;
-
-  top: 31px;
   width: 48px;
   height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  left: 4px;
+  top: 31px;
 
-  /* Heading/Noto Sans KR/H6 */
+  background-color: #fff;
 
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -323,8 +346,6 @@ const CancleMoveButton = styled.div`
 
   text-align: center;
   letter-spacing: -0.04em;
-
-  color: #000000;
 `
 
 const CreateMoveButton = styled.button`
@@ -352,9 +373,9 @@ const CreateMoveButton = styled.button`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
+  left: 4.44%;
   top: 106px;
 `
 const IconBox = styled.div`
@@ -378,9 +399,9 @@ const IconBox = styled.div`
 
 const MemoInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
+  left: 4.44%;
   top: 209px;
 `
 
@@ -392,9 +413,9 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 40%;
-  left: 16px;
+  left: 4.44%;
   top: 335px;
 `
 
@@ -404,7 +425,7 @@ const FriendsList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+
   overflow: scroll;
   position: absolute;
   left: 1px;
@@ -441,11 +462,13 @@ const Friends = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  padding-left: 12px;
 
   position: static;
-  width: 328px;
-  height: 36px;
+  width: 91.67%;
+  height: 54px;
+  background: #f5f5f7;
+  border-radius: 8px;
 
   /* Inside auto layout */
 
@@ -477,10 +500,10 @@ const FriendsText = styled.div`
 
   /* Inside auto layout */
 
-  flex: none;
+  /* flex: none;
   order: 1;
   flex-grow: 0;
-  margin: 0px 8px;
+  margin: 0px 8px; */
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
@@ -488,7 +511,7 @@ const CircleImg = styled.img`
   position: static;
   width: 36px;
   height: 36px;
-  margin-left: 12px;
+
   top: 0px;
 
   background: #f5f5f7;
@@ -504,8 +527,7 @@ const SelectFriendNameDiv = styled.div`
   display: block;
   width: 40px;
   height: 14px;
-  text-overflow: ellipsis;
-  /* margin-right: -15px; */
+  margin-right: -5px;
   /* text-overflow: ellipsis; */
 
   /* Heading/Noto Sans KR/H6 */
@@ -607,7 +629,7 @@ const SelectedFriendContent = styled.div`
   letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
-  width: 0px;
+  width: 20px;
   /* color / text / Color-text-Gray1 */
 
   background: white;
@@ -632,5 +654,38 @@ const ErrorSpan = styled.span`
   letter-spacing: -0.04em;
 
   color: #ff3d00;
+`
+const Doing = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 13px;
+
+  position: static;
+  width: 59px;
+  height: 26px;
+  margin-left: 100px;
+  top: 6px;
+
+  /* color/text/Color-text-Gray1 */
+
+  background: #b9bfc8;
+  border-radius: 13px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  /* Rectangle 173 */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  /* flex: none;
+  order: 0;
+  flex-grow: 0; */
+  /* margin: 0px 10px; */
 `
 export default GroupBuzaCreate
