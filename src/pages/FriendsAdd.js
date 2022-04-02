@@ -13,6 +13,8 @@ import {
   useSearchFriend,
   requestFriend,
 } from '../apis/friendsData.js'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
 
 function AddFriends() {
   const navigate = useNavigate()
@@ -40,22 +42,21 @@ function AddFriends() {
   // }
   return (
     <Wrapper>
-      <TopDiv>
-        <NavLink to="/friends">
-          <Backarr
-            style={{
-              position: 'absolute',
-              left: '4.44%',
-              top: '47.67%',
-              width: '24px',
-              height: '24px',
-            }}
-          />
-        </NavLink>
-        <Title>친구 추가</Title>
+      <NavLink to="/friends">
+        <Backarr
+          style={{
+            position: 'absolute',
+            left: '4.44%',
+            top: '6.45%',
+            width: '24px',
+            height: '24px',
+          }}
+        />
+      </NavLink>
+      <TitleText>친구 추가</TitleText>
 
-        <TopLine />
-      </TopDiv>
+      <TopLine />
+
       <NicknameText>닉네임</NicknameText>
       <NicknameInput
         placeholder="닉네임을 입력해주세요"
@@ -220,7 +221,7 @@ const NicknameText = styled.div`
 `
 const NicknameInput = styled.input`
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 52px;
   left: 16px;
   top: 132px;
@@ -253,7 +254,7 @@ const NicknameButton = styled.div`
   width: 24px;
   height: 24px;
   top: 146px;
-  left: 304px;
+  right: 10%;
 `
 const FriendLine = styled.div`
   ${setFlexStyles({
@@ -264,7 +265,7 @@ const FriendLine = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 48px;
   left: 16px;
   top: 216px;
@@ -338,7 +339,8 @@ const FriendAddButton = styled.button`
   position: absolute;
   width: 48px;
   height: 26px;
-  left: 259px;
+  /* left: 259px; */
+  right: 10%;
   top: 11px;
 
   /* color / gray / Gray30 */
