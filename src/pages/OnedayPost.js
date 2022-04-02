@@ -26,8 +26,8 @@ import { request } from '../utils/axios'
 
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import Loading from './Loading'
-import TitleText from '../components/TitleText'
-import RightButton from '../components/RightButton';
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton';
 
 registerLocale('ko', ko)
 
@@ -379,7 +379,7 @@ const RightBtn = styled.button`
 
   width: 48px;
   height: 48px;
-  right: 1.11%;
+
   display: flex;
   justify-content: center;
   align-items: center;

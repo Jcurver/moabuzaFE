@@ -30,9 +30,9 @@ import { getItem, setItem } from '../utils/sessionStorage'
 import { nowDate } from '../hooks/nowDate'
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import { useOnedayBuzaData } from '../apis/onedayBuzaData'
-import TitleText from '../components/TitleText'
-import RightButton from '../components/RightButton'
-import LeftButton from '../components/LeftButton'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
 
 registerLocale('ko', ko)
 
