@@ -179,7 +179,7 @@ function GroupBuza() {
                     </GoalDescribe>
 
                     <Button
-                      width="296px"
+                      width="82.22vw"
                       height="52px"
                       fontSize="14px"
                       background="#4675F0"
