@@ -26,8 +26,8 @@ import { request } from '../utils/axios'
 
 import { onedayBuzaDate } from '../recoil/setDateToday'
 import Loading from './Loading'
-import TitleText from '../components/TitleText';
-
+import TitleText from '../components/TitleText'
+import RightButton from '../components/RightButton';
 
 registerLocale('ko', ko)
 
@@ -153,18 +153,27 @@ function OnedayPost() {
   return (
     <Wrapper>
       <TitleText>입력</TitleText>
-      <LeftButton onClick={() => navigate('/onedaybuza')}>
-        <Rightarr
-          style={{ transform: 'rotate(180deg)', width: '48px', height: '48px' }}
-        />
-      </LeftButton>
+
+      <Rightarr
+        onClick={() => navigate('/onedaybuza')}
+        style={{
+          position: 'absolute',
+          transform: 'rotate(180deg)',
+          width: '48px',
+          height: '48px',
+          left: '1.11%',
+          top: '4.305%',
+        }}
+      />
 
       {/* <NavLink to="/onedaypost">
         <LeftButton>입력</LeftButton>
       </NavLink> */}
 
       <form onSubmit={handleSubmit(onValid)}>
-        <RightButton>저장</RightButton>
+        <RightButton>
+          <RightBtn>저장</RightBtn>
+        </RightButton>
         <OptionTitle style={{ top: '125px' }}>항목 선택</OptionTitle>
         <SelectDiv>
           <Select
@@ -182,10 +191,12 @@ function OnedayPost() {
               <option value="challenge">도전해부자</option>
             ) : null}
           </Select>
-          <Rightarr style={{
-            transform: 'rotate(90deg)',
-            // marginLeft:'calc(5%)'
-          }} />
+          <Rightarr
+            style={{
+              transform: 'rotate(90deg)',
+              // marginLeft:'calc(5%)'
+            }}
+          />
         </SelectDiv>
         <ErrorSpan style={{ top: '201.6px' }}>
           {errors?.option?.message}
@@ -270,7 +281,7 @@ const CalDate = styled.div`
 `
 const CalBtn = styled.div`
   position: absolute;
-  right:19px;
+  right: 19px;
 
   top: -6px;
   width: 24px;
@@ -282,7 +293,7 @@ const SelectDiv = styled.div`
   ${setFlexStyles({
     display: 'flex',
     alignItems: 'center',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
   })}
   position: absolute;
   width: 91.1%;
@@ -347,13 +358,14 @@ const LeftButtonDiv = styled.div`
 `
 const LeftButton = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 4.44%;
 
   top: 5.3%;
-  width: 24px;
-  height: 24px;
-
-  background: #c4c4c4;
+  width: 48px;
+  height: 48px;
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -363,15 +375,14 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
-const RightButton = styled.button`
-  position: absolute;
+const RightBtn = styled.button`
+
   width: 48px;
   height: 48px;
   right: 1.11%;
   display: flex;
   justify-content: center;
-  align-items:center;
-  top: 37px;
+  align-items: center;
   background-color: white;
 
   /* Heading/Noto Sans KR/H6 */
