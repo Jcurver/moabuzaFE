@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import Slider from 'react-slick'
 import Swal from 'sweetalert2'
+import { isMobile } from 'react-device-detect'
 import { ReactComponent as Challenge } from '../assets/icons/menu/challenge.svg'
 import { ReactComponent as Asset } from '../assets/icons/menu/Asset28.svg'
 import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
@@ -88,7 +89,9 @@ function Menu() {
       </MenuSlideBox>
 
       <NavLink to="/friends">
-        <TodayDiv style={{ top: 'calc(83px + 45vw)' }}>
+        <TodayDiv
+          style={{ top: isMobile ? 'calc(83px + 45vw)' : '243px' }}
+        >
           <Friend
             style={{
               width: '24px',
@@ -136,7 +139,9 @@ function Menu() {
       </NavLink> */}
 
       <NavLink to="/modified">
-        <TodayDiv style={{ top: 'calc(143px + 45vw)' }}>
+        <TodayDiv
+          style={{ top: isMobile ? 'calc(143px + 45vw)' : '303px ' }}
+        >
           <TodayLogoDiv />
           <Edit
             style={{
@@ -161,7 +166,9 @@ function Menu() {
       </NavLink>
 
       <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
-        <TodayDiv style={{ top: 'calc(203px + 45vw)' }}>
+        <TodayDiv
+          style={{ top: isMobile ? 'calc(203px + 45vw)' : '363px' }}
+        >
           <TodayLogoDiv />
           <Review
             style={{
@@ -184,7 +191,10 @@ function Menu() {
           />
         </TodayDiv>
       </a>
-      <TodayDiv onClick={() => logout()} style={{ top: 'calc(263px + 45vw)' }}>
+      <TodayDiv
+        onClick={() => logout()}
+        style={{ top: isMobile ? 'calc(263px + 45vw)' : '423px' }}
+      >
         <TodayLogoDiv />
         <Logout
           style={{
