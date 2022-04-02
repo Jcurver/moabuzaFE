@@ -9,6 +9,9 @@ import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
 import { useFriendData } from '../apis/groupData'
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
+import TitleText from '../components/Header/TitleText'
 
 function GroupBuzaCreate() {
   const navigate = useNavigate()
@@ -90,41 +93,20 @@ function GroupBuzaCreate() {
 
   return (
     <Wrapper>
-      <CancleMoveButton
-        type="button"
+      <LeftButton
         onClick={() => {
           navigate('/groupbuza')
         }}
       >
         취소
-      </CancleMoveButton>
-      <Title>
-        <Text>같이해부자</Text>
-      </Title>
+      </LeftButton>
+
+      <TitleText>같이해부자</TitleText>
+
       <form onSubmit={handleSubmit(onValid, onError)}>
-        <CreateMoveButton>생성</CreateMoveButton>
-        <MemoInputBox>
-          <IconBox>
-            <i className="fas fa-smile" />
-            ✏️ 목표명
-          </IconBox>
-          <Input
-            placeholder="목표금액을 입력해주세요."
-            height="52px"
-            {...register('createGroupName', {
-              required: '이 부분을 채워부자!',
-              maxLength: {
-                value: 10,
-                message: '10글자 이하로 입력해부자!',
-              },
-            })}
-          />
-          <ErrorSpan style={{ top: '90px' }}>
-            {errors?.createGroupName?.message}
-          </ErrorSpan>
-        </MemoInputBox>
+        <RightButton>생성</RightButton>
         <GoalInputBox>
-          <IconBox>💰 목표금액</IconBox>
+          <IconBox>💰 목표명</IconBox>
           <Input
             height="52px"
             placeholder="목표명을 입력해주세요."
@@ -141,6 +123,26 @@ function GroupBuzaCreate() {
             {errors?.createGroupAmount?.message}
           </ErrorSpan>
         </GoalInputBox>
+        <MemoInputBox>
+          <IconBox>
+            <i className="fas fa-smile" />
+            ✏️ 목표금액
+          </IconBox>
+          <Input
+            placeholder="목표금액을 입력해주세요."
+            height="52px"
+            {...register('createGroupName', {
+              required: '이 부분을 채워부자!',
+              maxLength: {
+                value: 10,
+                message: '10글자 이하로 입력해부자!',
+              },
+            })}
+          />
+          <ErrorSpan style={{ top: '90px' }}>
+            {errors?.createGroupName?.message}
+          </ErrorSpan>
+        </MemoInputBox>
       </form>
 
       <FriendWrapper>
@@ -371,10 +373,10 @@ const CreateMoveButton = styled.button`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
-  top: 209px;
+  left: 4.44%;
+  top: 106px;
 `
 const IconBox = styled.div`
   width: 328px;
@@ -397,10 +399,10 @@ const IconBox = styled.div`
 
 const MemoInputBox = styled.div`
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 87px;
-  left: 16px;
-  top: 106px;
+  left: 4.44%;
+  top: 209px;
 `
 
 // Friends
@@ -411,9 +413,9 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 328px;
+  width: 91.11%;
   height: 40%;
-  left: 16px;
+  left: 4.44%;
   top: 335px;
 `
 
@@ -463,7 +465,7 @@ const Friends = styled.div`
   padding-left: 12px;
 
   position: static;
-  width: 330px;
+  width: 91.67%;
   height: 54px;
   background: #f5f5f7;
   border-radius: 8px;

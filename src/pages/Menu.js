@@ -21,7 +21,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import { request } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { setMoveToLoginPage } from '../utils/setMoveToLoginPage'
-import TitleText from '../components/TitleText'
+import TitleText from '../components/Header/TitleText'
 
 function Menu() {
   const settings = {
