@@ -186,7 +186,7 @@ function ChallengeBuzaDetail() {
                       animateOnRender
                       bgColor="#4675F0"
                       baseBgColor="#ffffff"
-                      width="84.4vw"
+                      width="91.11%"
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"

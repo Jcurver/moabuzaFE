@@ -75,7 +75,7 @@ function GroupBuza() {
                   </GoalDescribe>
 
                   <Button
-                    width="82.22vw"
+                    width="91.11%"
                     height="52px"
                     fontSize="14px"
                     background="#4675F0"
@@ -139,7 +139,7 @@ function GroupBuza() {
                       }
                       animateOnRender
                       bgColor="#4675F0"
-                      width="84.4vw"
+                      width="91.11%"
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
@@ -179,7 +179,7 @@ function GroupBuza() {
                     </GoalDescribe>
 
                     <Button
-                      width="296px"
+                      width="91.11%"
                       height="52px"
                       fontSize="14px"
                       background="#4675F0"
@@ -301,15 +301,15 @@ const CompletedList = styled.div`
   padding: 0px;
 
   /* position: absolute; */
-  width: 328px;
+  width: 95%;
   height: 256px;
-  left: 16px;
+
   top: 44%;
 `
 
 const CompletedContent = styled.div`
   position: static;
-  width: 328px;
+  width: 100%;
   height: 52px;
 
   background: #f5f5f7;
@@ -327,7 +327,7 @@ const CompletedContent = styled.div`
 `
 
 const CompletedText = styled.div`
-  width: 208px;
+  width: 80%;
   height: 14px;
   /* Heading/Noto Sans KR/H6 */
 

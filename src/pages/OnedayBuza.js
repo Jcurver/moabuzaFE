@@ -33,6 +33,9 @@ import { useOnedayBuzaData } from '../apis/onedayBuzaData'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
 import LeftButton from '../components/Header/LeftButton'
+import receipt from '../assets/icons/onedaybuza/receipt.png'
+
+
 
 registerLocale('ko', ko)
 
@@ -207,6 +210,7 @@ function OnedayBuza(state) {
       <BottomLine />
       <TodayListBigDiv />
       <ZigZagDiv>
+            <Receipt src={receipt} />
         <ZigZag />
         <ZigZag />
         <ZigZag />
@@ -214,19 +218,7 @@ function OnedayBuza(state) {
         <ZigZag />
         <ZigZag />
         <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
-        <ZigZag />
+
         <ZigZag />
         <ZigZag />
         <ZigZag />
@@ -301,6 +293,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -489,9 +482,11 @@ const TotalRight = styled.div`
 `
 const TodayListBigDiv = styled.div`
   position: absolute;
-  width: 360px;
+
+  width: 100%;
   height: 51%;
   left: 0px;
+  top:0px;
   top: 49%;
 
   /* background-color: #EBF2FF; */
@@ -635,6 +630,14 @@ const ZigZag = styled.div`
   margin-left: 6px;
   top: -10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
+`
+const Receipt = styled.div`
+position: absolute;
+width:100%;
+height:10%;
+top:0;
+left:0;
+
 `
 
 export default OnedayBuza
