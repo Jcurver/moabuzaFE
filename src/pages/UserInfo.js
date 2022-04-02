@@ -11,6 +11,8 @@ import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
 import { fcmToken } from '../utils/fcm'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -147,9 +149,9 @@ function UserInfo() {
     <Wrapper>
       <TopLine />
 
-      <Title>캐릭터/닉네임 설정</Title>
+      <TitleText>캐릭터/닉네임 설정</TitleText>
       <form onSubmit={handleSubmit(onValid)}>
-        <ButtonSubmit>확인</ButtonSubmit>
+        <RightButton>확인</RightButton>
         <CharacterDiv>
           <CharacterCenterDiv>
             <CharacterOne
@@ -389,7 +391,7 @@ const NicknameText = styled.div`
 `
 const NicknameInput = styled.input`
   position: absolute;
-  width: 216px;
+  width: 60%;
   height: 52px;
   left: 16px;
   top: 294px;
@@ -418,9 +420,9 @@ const NicknameInput = styled.input`
 `
 const NicknameSubmit = styled.div`
   position: absolute;
-  width: 104px;
+  width: 28.8%;
   height: 52px;
-  left: 240px;
+  right: 4.44%;
   top: 294px;
   ${setFlexStyles({
     display: 'flex',
