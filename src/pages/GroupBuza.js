@@ -301,7 +301,7 @@ const CompletedList = styled.div`
   padding: 0px;
 
   /* position: absolute; */
-  width: 328px;
+  width: 91.1vw;
   height: 256px;
   left: 16px;
   top: 44%;
@@ -309,7 +309,7 @@ const CompletedList = styled.div`
 
 const CompletedContent = styled.div`
   position: static;
-  width: 328px;
+  width: 91.1vw;
   height: 52px;
 
   background: #f5f5f7;
@@ -327,7 +327,7 @@ const CompletedContent = styled.div`
 `
 
 const CompletedText = styled.div`
-  width: 208px;
+  width: 80vw;
   height: 14px;
   /* Heading/Noto Sans KR/H6 */
 
