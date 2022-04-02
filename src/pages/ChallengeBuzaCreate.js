@@ -628,7 +628,7 @@ const SelectedFriendWrapper = styled.div`
   align-items: flex-start;
   padding: 0px;
   overflow-y: scroll;
-  width: 328px;
+  width: 91.1vw;
   height: 140px;
   margin-top: 8px;
   -ms-overflow-style: none; /* IE and Edge */
@@ -652,7 +652,7 @@ const SelectedFriendContent = styled.div`
   padding-left: 12px;
 
   position: static;
-  width: 142px;
+  width: 42vw;
   height: 52px;
 
   border-radius: 8px;
