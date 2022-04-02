@@ -10,9 +10,9 @@ import { request } from '../utils/axios'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
 import Loading from './Loading'
-import LeftButton from '../components/LeftButton'
+import LeftButton from '../components/Header/LeftButton'
 import { useFriendData } from '../apis/challengeData'
-import RightButton from '../components/RightButton';
+import RightButton from '../components/Header/RightButton';
 
 function ChallengeBuzaCreate() {
   const navigate = useNavigate()
@@ -103,7 +103,7 @@ function ChallengeBuzaCreate() {
     <Wrapper>
       <LeftButton
         onClick={() => {
-          navigate('/challengebuza')
+          navigate('/')
         }}
       >
         취소
