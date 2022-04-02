@@ -106,30 +106,9 @@ function GroupBuzaCreate() {
       <form onSubmit={handleSubmit(onValid, onError)}>
         <RightButton>생성</RightButton>
         <GoalInputBox>
-          <IconBox>💰 목표명</IconBox>
+          <IconBox>✏️ 목표명</IconBox>
           <Input
-            height="52px"
             placeholder="목표명을 입력해주세요."
-            {...register('createGroupAmount', {
-              required: '이 부분을 채워부자!',
-              pattern: {
-                value: /^[0-9]+$/,
-                message: '숫자만 써부자',
-                shouldFocus: true,
-              },
-            })}
-          />
-          <ErrorSpan style={{ top: '91px' }}>
-            {errors?.createGroupAmount?.message}
-          </ErrorSpan>
-        </GoalInputBox>
-        <MemoInputBox>
-          <IconBox>
-            <i className="fas fa-smile" />
-            ✏️ 목표금액
-          </IconBox>
-          <Input
-            placeholder="목표금액을 입력해주세요."
             height="52px"
             {...register('createGroupName', {
               required: '이 부분을 채워부자!',
@@ -141,6 +120,27 @@ function GroupBuzaCreate() {
           />
           <ErrorSpan style={{ top: '90px' }}>
             {errors?.createGroupName?.message}
+          </ErrorSpan>
+        </GoalInputBox>
+        <MemoInputBox>
+          <IconBox>
+            <i className="fas fa-smile" />
+            💰 목표금액
+          </IconBox>
+          <Input
+            height="52px"
+            placeholder="목표금액을 입력해주세요."
+            {...register('createGroupAmount', {
+              required: '이 부분을 채워부자!',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '숫자만 써부자',
+                shouldFocus: true,
+              },
+            })}
+          />
+          <ErrorSpan style={{ top: '91px' }}>
+            {errors?.createGroupAmount?.message}
           </ErrorSpan>
         </MemoInputBox>
       </form>
@@ -525,7 +525,7 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 53px;
+  width: 40px;
   height: 14px;
   margin-right: -5px;
   /* text-overflow: ellipsis; */
@@ -629,7 +629,7 @@ const SelectedFriendContent = styled.div`
   letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
-  width: 0px;
+  width: 20px;
   /* color / text / Color-text-Gray1 */
 
   background: white;

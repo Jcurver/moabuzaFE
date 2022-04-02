@@ -139,7 +139,7 @@ function GroupBuza() {
                       }
                       animateOnRender
                       bgColor="#4675F0"
-                      width="304px"
+                      width="84.4vw"
                       height="20px"
                       margin="0 auto"
                       borderRadius="11px"
@@ -284,7 +284,7 @@ const ConmpletedTitle = styled.span`
   position: absolute;
   width: 53px;
   height: 14px;
-  left: 16px;
+  left: 4.44%;
   top: 40.2%;
 
   font-size: 14px;

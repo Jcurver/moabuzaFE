@@ -316,15 +316,15 @@ const CompletedList = styled.div`
   padding: 0px;
 
   /* position: absolute; */
-  width: 328px;
+  width: 91.1vw;
   height: 256px;
-  left: 16px;
+  left: 4.44%;
   top: 44%;
 `
 
 const CompletedContent = styled.div`
   position: static;
-  width: 328px;
+  width: 100%;
   height: 52px;
 
   background: #f5f5f7;
