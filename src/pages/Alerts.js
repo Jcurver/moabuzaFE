@@ -148,64 +148,67 @@ function AlertsFriend() {
               <>
                 {d.alarmDetailType === 'request' && (
                   <AlertList>
-                    <AlertCharacter src={Inviting} />
-                    <AlertTextDiv>
-                      <Flex>
-                        <AlertTextTop>{d.friendNickname}</AlertTextTop>
-                        <AlertTextTopRight>님이</AlertTextTopRight>
-                      </Flex>
-                      <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
-                    </AlertTextDiv>
-                    <AlertAcceptRefuse
-                      onClick={() =>
-                        Swal.fire({
-                          title: '친구초대를 수락하시겠어요?',
-                          // text: '삭제하면 다시 못봐요!',
-                          showCancelButton: true,
-                          confirmButtonText: '수락',
-                          cancelButtonText: '취소',
-                          showLoaderOnConfirm: true,
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            alarmFriendAccept(d.alarmId)
-                            Swal.fire({
-                              title: '수락 되었습니다!',
-                              confirmButtonText: '확인!',
-                            }).then(() => {
-                              navigate(0)
-                            })
-                          }
-                        })
-                      }
-                      style={{ left: '232px' }}
-                    >
-                      수락
-                    </AlertAcceptRefuse>
-                    <AlertAcceptRefuse
-                      onClick={() => {
-                        Swal.fire({
-                          title: '친구초대를 거절하시겠어요?',
-                          // text: '삭제하면 다시 못봐요!',
-                          showCancelButton: true,
-                          confirmButtonText: '거절',
-                          cancelButtonText: '취소',
-                          showLoaderOnConfirm: true,
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            alarmFriendRefuse(d.alarmId)
-                            Swal.fire({
-                              title: '거절 되었습니다!',
-                              confirmButtonText: '확인!',
-                            }).then(() => {
-                              navigate(0)
-                            })
-                          }
-                        })
-                      }}
-                      style={{ left: '312px' }}
-                    >
-                      거절
-                    </AlertAcceptRefuse>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <AlertCharacter src={Inviting} />
+                      <AlertTextDiv style={{ marginLeft: '8px' }}>
+                        <Flex>
+                          <AlertTextTop>{d.friendNickname}</AlertTextTop>
+                          <AlertTextTopRight>님이</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
+                      </AlertTextDiv>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <AlertAcceptRefuse
+                        onClick={() =>
+                          Swal.fire({
+                            title: '친구초대를 수락하시겠어요?',
+                            // text: '삭제하면 다시 못봐요!',
+                            showCancelButton: true,
+                            confirmButtonText: '수락',
+                            cancelButtonText: '취소',
+                            showLoaderOnConfirm: true,
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              alarmFriendAccept(d.alarmId)
+                              Swal.fire({
+                                title: '수락 되었습니다!',
+                                confirmButtonText: '확인!',
+                              }).then(() => {
+                                navigate(0)
+                              })
+                            }
+                          })
+                        }
+                        style={{ marginRight: '8px' }}
+                      >
+                        수락
+                      </AlertAcceptRefuse>
+                      <AlertAcceptRefuse
+                        onClick={() => {
+                          Swal.fire({
+                            title: '친구초대를 거절하시겠어요?',
+                            // text: '삭제하면 다시 못봐요!',
+                            showCancelButton: true,
+                            confirmButtonText: '거절',
+                            cancelButtonText: '취소',
+                            showLoaderOnConfirm: true,
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              alarmFriendRefuse(d.alarmId)
+                              Swal.fire({
+                                title: '거절 되었습니다!',
+                                confirmButtonText: '확인!',
+                              }).then(() => {
+                                navigate(0)
+                              })
+                            }
+                          })
+                        }}
+                      >
+                        거절
+                      </AlertAcceptRefuse>
+                    </div>
                   </AlertList>
                 )}
                 {d.alarmDetailType !== 'request' && (
@@ -433,7 +436,7 @@ const AlertList = styled.div`
 const AlertCharacter = styled.img`
   width: 48px;
   height: 48px;
-  padding: 8px;
+
   /* background: gray; */
 `
 const AlertTextDiv = styled.div`
