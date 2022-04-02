@@ -35,12 +35,11 @@ import {
   BunnyStep02,
   BunnyStep01,
 } from '../assets/character'
-import { setCookie } from '../utils/cookie';
+import { setCookie } from '../utils/cookie'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
 function MainPage() {
-
   const [toggle, setToggle] = useRecoilState(toggleGroupChallenge)
   const navigate = useNavigate()
   setItem('nowdate', new Date())
@@ -161,12 +160,12 @@ function MainPage() {
                 animateOnRender
                 bgColor="#4675F0"
                 baseBgColor="#E5EAF2"
-                width="328px"
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
                 labelAlignment={data.data.groupPercent > 9 ? 'center' : 'left'}
                 labelSize="14px"
+                width="500px"
               />
             </ProgressDiv>
           </>
@@ -248,7 +247,7 @@ function MainPage() {
                 animateOnRender
                 bgColor="#4675F0"
                 baseBgColor="#E5EAF2"
-                width="328px"
+                width="91.11vw"
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
@@ -338,7 +337,7 @@ const CharacterWrapper = styled.img`
   position: absolute;
   width: 287px;
   height: 168px;
-  left: 36.5px;
+  left: calc(50% - 143.5px);
   top: 31.52%;
 `
 const RightButtonDiv = styled.div`
@@ -376,9 +375,9 @@ const TopDiv = styled.div`
 const Toggle = styled.div`
   border-radius: 20px;
   position: absolute;
-  width: 182px;
+  width: 50.5%;
   height: 34px;
-  left: 89px;
+  left: 24.7%;
   top: 7.78%;
   background-color: #e5eaf2;
   padding: 2px 2.55px;
@@ -387,7 +386,7 @@ const Toggle = styled.div`
 `
 
 const LeftBtn = styled.button`
-  width: 92px;
+  width: 25.55vw;
   height: 30px;
   background-color: ${(props) =>
     props.toggle === 'challenge' ? ' #e5eaf2' : '#FFB000'};
@@ -400,7 +399,7 @@ const LeftBtn = styled.button`
 `
 
 const RightBtn = styled.button`
-  width: 92px;
+  width: 25.55vw;
   height: 30px;
   background-color: ${(props) =>
     props.toggle === 'group' ? ' #e5eaf2' : '#FFB000'};
@@ -416,9 +415,8 @@ const ContentGoalName = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
-  width: 253px;
+  width: 100%;
   height: 31px;
-  left: 57px;
   top: 18.06%;
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -439,7 +437,7 @@ const ContentUnderDiv = styled.div`
   justify-content: center;
   align-items: center;
   top: 23.47%;
-  width: 360px;
+  width: 100%;
   height: 29px;
 `
 const ContentWon = styled.div`
@@ -464,9 +462,11 @@ const ContentNeed = styled.div`
 `
 const ContentDiv = styled.div`
   position: absolute;
-  width: 197px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 31px;
-  left: 81px;
+
   top: 18.06%;
   font-family: 'Noto Sans KR';
   font-style: normal;
@@ -490,7 +490,7 @@ const SetAmountButton = styled.div`
   position: absolute;
   width: 171px;
   height: 48px;
-  left: 95px;
+  left: calc(50% - 85.5px);
   top: 56.25%;
   background: #ffffff;
   box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
@@ -549,9 +549,9 @@ const CharacterNickname = styled.div`
 
 const ProgressDiv = styled.div`
   position: absolute;
-  width: 328px;
+  width: 100%;
   height: 60px;
-  left: 16px;
+
   top: 62.08%;
 `
 // const ProgressBar = styled.div`
