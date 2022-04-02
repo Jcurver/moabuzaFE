@@ -247,7 +247,7 @@ function MainPage() {
                 animateOnRender
                 bgColor="#4675F0"
                 baseBgColor="#E5EAF2"
-                width="91.11vw"
+                width="91.11%"
                 height="20px"
                 margin="0 auto"
                 borderRadius="11px"
@@ -386,7 +386,7 @@ const Toggle = styled.div`
 `
 
 const LeftBtn = styled.button`
-  width: 25.55vw;
+  width: 51%;
   height: 30px;
   background-color: ${(props) =>
     props.toggle === 'challenge' ? ' #e5eaf2' : '#FFB000'};
@@ -399,7 +399,7 @@ const LeftBtn = styled.button`
 `
 
 const RightBtn = styled.button`
-  width: 25.55vw;
+  width: 51%;
   height: 30px;
   background-color: ${(props) =>
     props.toggle === 'group' ? ' #e5eaf2' : '#FFB000'};
