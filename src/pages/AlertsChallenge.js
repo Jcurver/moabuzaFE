@@ -175,7 +175,7 @@ function AlertsChallenge() {
                   <AlertList key={Date.now()}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                       <AlertCharacter src={Inviting} />
-                      <AlertTextDiv style={{marginLeft:'8px'}}>
+                      <AlertTextDiv style={{ marginLeft: '8px' }}>
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
                           <AlertTextTopRight>님이</AlertTextTopRight>
@@ -210,7 +210,7 @@ function AlertsChallenge() {
                             }
                           })
                         }}
-                        style={{ marginRight:'8px' }}
+                        style={{ marginRight: '8px' }}
                       >
                         수락
                       </AlertAcceptRefuse>
@@ -235,7 +235,6 @@ function AlertsChallenge() {
                             }
                           })
                         }}
-
                       >
                         거절
                       </AlertAcceptRefuse>
@@ -327,6 +326,30 @@ function AlertsChallenge() {
                   </AlertList>
                 )}
 
+
+                {d.alarmDetailType === 'talju' && (
+                  <AlertList>
+                    <Flex>
+                      <AlertCharacter
+                        src={GoalCancel}
+                        style={{ marginRight: '10px' }}
+                      />
+                      <AlertTextDiv>
+                        <Flex>
+                          <AlertTextTop>{d.goalName}</AlertTextTop>
+                          <AlertTextTopRight>목표를</AlertTextTopRight>
+                        </Flex>
+                        <AlertTextBottom>
+                          {d.friendNickname} 님이 포기했습니다.
+                        </AlertTextBottom>
+                      </AlertTextDiv>
+                    </Flex>
+                    <Close
+                      onClick={() => alarmDeleteAndRender(d.alarmId)}
+                      style={{ color: 'red', marginRight: '11px' }}
+                    />
+                  </AlertList>
+                )}
                 <AlertHr />
               </>
             )

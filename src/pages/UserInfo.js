@@ -323,7 +323,7 @@ const CharacterDiv = styled.div`
   })}
   padding: 0px;
   position: absolute;
-  width: 360px;
+  width: 100%;
   height: 166px;
   top: 85px;
   background-color: #f6f9fe;
