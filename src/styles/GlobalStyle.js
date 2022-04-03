@@ -117,6 +117,10 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
   }
 
+  .swal2-styled {
+    box-shadow: none !important;
+}
+
   .swal2-title{
     margin-top:10px;
     font-family: 'Noto Sans KR';
