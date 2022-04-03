@@ -6,7 +6,7 @@
   "start_url": "./",
   "display": "fullscreen",
   "orientation":"portrait",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff",
 
   "icons": [
@@ -20,21 +20,6 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "shortcuts": [
-    {
-      "name": "새 창 열어부자",
-      "short_name": "열어부자",
-      "description": "새창을 열어보세보세보세",
-      "url": "./",
-      "icons": [{ "src": "./moabuza192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "새창",
-      "short_name": "새",
-      "description": "열어부자",
-      "url": "./",
-      "icons": [{ "src": "./moabuza512.png", "sizes": "512x512" }]
-    }
   ]
+
 }
