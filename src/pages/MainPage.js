@@ -67,12 +67,12 @@ function MainPage() {
       setToggle('challenge')
     }
   }
-  // useEffect(() => {
-  //   const accessToken = getCookie('A-AUTH-TOKEN')
-  //   if (!accessToken && !isLoading) {
-  //     setMoveToLoginPage()
-  //   }
-  // }, [isLoading])
+  useEffect(() => {
+    const accessToken = getCookie('A-AUTH-TOKEN')
+    if (!accessToken && !isLoading) {
+      setMoveToLoginPage()
+    }
+  }, [isLoading])
 
   if (isLoading) {
     return <Loading />
