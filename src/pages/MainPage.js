@@ -20,7 +20,7 @@ import { api } from '../utils/axios'
 import '../styles/MenuTransition.css'
 import { nowDate } from '../hooks/nowDate'
 import { onedayBuzaDate } from '../recoil/setDateToday'
-import { setItem } from '../utils/sessionStorage'
+import { setItem, getItem } from '../utils/sessionStorage'
 import {
   BunnyGG,
   TongkiGG,
@@ -36,6 +36,7 @@ import {
   BunnyStep01,
 } from '../assets/character'
 import { setCookie } from '../utils/cookie'
+import { setMoveToLoginPage } from '../utils/setMoveToLoginPage';
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -65,6 +66,14 @@ function MainPage() {
       setToggle('challenge')
     }
   }
+  useEffect(() => {
+    const accessToken = getItem('A-AUTH-TOKEN')
+    if (!accessToken && !isLoading) {
+      setMoveToLoginPage()
+    }
+
+
+  },[isLoading])
 
   if (isLoading) {
     return <Loading />
@@ -81,7 +90,6 @@ function MainPage() {
   console.log('nowChallengePercent', nowChallengePercent)
   console.log('nowGroupPercent', nowGroupPercent)
   // if(data && data.data.nickname )
-
   return (
     <Wrapper>
       <ColorWrapper>
