@@ -6,6 +6,7 @@ import { isMobile } from 'react-device-detect'
 
 
 import backgroundSrcs from './assets/moabg.png'
+import background from './back.jpeg'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01
@@ -71,6 +72,7 @@ const WebViewLayout = styled(Layout)`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+
 `
 
 const ClayPhone = styled.div`
@@ -80,7 +82,7 @@ const ClayPhone = styled.div`
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  background: url(${backgroundSrcs}) no-repeat center center;
+  /* background: url(${background}) no-repeat center center; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -99,14 +101,14 @@ const WebBackgroundWrapper = styled.div`
   height: 100vh;
 
 
-  background: url(${backgroundSrcs}) no-repeat fixed;
+  background: url(${background}) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 
   @media screen and (min-width: 1120px) {
-    background: url(${backgroundSrcs}) no-repeat fixed;
+    background: url(${background}) no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
