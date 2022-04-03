@@ -265,7 +265,7 @@ function AlertsGroup() {
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
                           <AlertTextTopRight>님이 </AlertTextTopRight>
-                          <AlertTextTopRight>{d.goalName}</AlertTextTopRight>
+                          <AlertTextTopRight style={{fontWeight:700}}>{d.goalName}</AlertTextTopRight>
                           <AlertTextTopRight> 목표에</AlertTextTopRight>
                         </Flex>
                         <Flex>
