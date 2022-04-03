@@ -46,14 +46,14 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
-  setCookie(
-    'A-AUTH-TOKEN',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OWM5NGEwNCIsImlhdCI6MTY0ODk5NjUzMCwiZXhwIjoxNjQ5MDgyOTMwfQ.NlwVerZqicBqAbZ8w3W06JGipCKlWwm7nETpcjXmfnw',
-  )
-    setCookie(
-      'R-AUTH-TOKEN',
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OWM5NGEwNCIsImlhdCI6MTY0ODk5NjUzMCwiZXhwIjoxNjQ5MDgyOTMwfQ.NlwVerZqicBqAbZ8w3W06JGipCKlWwm7nETpcjXmfnw',
-    )
+  // setCookie(
+  //   'A-AUTH-TOKEN',
+  //   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OWM5NGEwNCIsImlhdCI6MTY0ODk5NjUzMCwiZXhwIjoxNjQ5MDgyOTMwfQ.NlwVerZqicBqAbZ8w3W06JGipCKlWwm7nETpcjXmfnw',
+  // )
+  //   setCookie(
+  //     'R-AUTH-TOKEN',
+  //     'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4OWM5NGEwNCIsImlhdCI6MTY0ODk5NjUzMCwiZXhwIjoxNjQ5MDgyOTMwfQ.NlwVerZqicBqAbZ8w3W06JGipCKlWwm7nETpcjXmfnw',
+  //   )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
