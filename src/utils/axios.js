@@ -46,15 +46,6 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
-  setCookie(
-    'A-AUTH-TOKEN',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMGI4NGFiMyIsImlhdCI6MTY0ODk2NzU1MCwiZXhwIjoxNjQ5MDUzOTUwfQ.5EpMVTGMb_7p4BfLJ-HFY4psgg9eOtj6_T81PqxySXc',
-  )
-  setCookie(
-    'R-AUTH-TOKEN',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwMGI4NGFiMyIsImlhdCI6MTY0ODk2NzU1MCwiZXhwIjoxNjQ5MDUzOTUwfQ.5EpMVTGMb_7p4BfLJ-HFY4psgg9eOtj6_T81PqxySXc',
-  )
-
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
