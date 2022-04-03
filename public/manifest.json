@@ -2,10 +2,10 @@
   "name": "모아부자!",
   "short_name": "모아부자!",
   "discription": "pwa by moabuza",
-  "scope":".",
+  "scope": ".",
   "start_url": "./",
   "display": "fullscreen",
-  "orientation":"portrait",
+  "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#ffffff",
 
