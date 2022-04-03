@@ -2,7 +2,7 @@
   display: none;
 }
 .slider-wrapper {
-  height: 580px;
+  height: 700px;
 }
 
 .carousel .control-next.control-arrow:before {
@@ -27,9 +27,14 @@
 } */
 .carousel .control-dots .dot {
   margin: 0 4px;
+  box-shadow: none;
 }
 .control-dots {
-  top: 488px;
+  height: 20px;
+  top: 72%;
+  /* bottom: 100%; */
+  /* margin-top: 70%; */
+  /* z-index: none !important; */
 }
 .carousel .control-dots .dot {
   background: #8c939d;
