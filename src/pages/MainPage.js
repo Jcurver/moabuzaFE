@@ -9,7 +9,7 @@ import axios from 'axios'
 import { getToken, onMessage } from 'firebase/messaging'
 
 import { setFlexStyles } from '../styles/Mixin'
-import { getCookie } from '../utils/cookie'
+import { getCookie, setCookie } from '../utils/cookie'
 
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../apis/mainpageData'
@@ -37,8 +37,7 @@ import {
   BunnyStep02,
   BunnyStep01,
 } from '../assets/character'
-import { setCookie } from '../utils/cookie'
-import { setMoveToLoginPage } from '../utils/setMoveToLoginPage';
+import { setMoveToLoginPage } from '../utils/setMoveToLoginPage'
 
 // 홈에 있는 주석을 절대 삭제하지 말아주세요
 
@@ -73,9 +72,7 @@ function MainPage() {
     if (!accessToken && !isLoading) {
       setMoveToLoginPage()
     }
-
-
-  },[isLoading])
+  }, [isLoading])
 
   if (isLoading) {
     return <Loading />
