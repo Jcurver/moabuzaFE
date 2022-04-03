@@ -4,7 +4,7 @@
   "discription": "pwa by moabuza",
 
   "scope":".",
-  "start_url": "https://moabuza.com",
+  "start_url": "/",
 
   "display": "fullscreen",
   "orientation": "portrait",

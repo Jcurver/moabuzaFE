@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import img1 from '../assets/login.png'
 import Button from '../components/Button'
-import { ReactComponent as LeftArr } from '../assets/icons/arrow/left_arrow.svg'
+import { ReactComponent as LeftArr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as RightArr } from '../assets/icons/arrow/right_arrow.svg'
 
 import '../styles/OnBoarding.css'
@@ -53,30 +53,28 @@ function OnBoarding() {
           </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
-          <Link to="/">
-            <JumpButton
-              type="button"
-              onClick={() => {
-                navigate('/')
 
-                Swal.fire({
-                  title: '환영합니다!',
-                  text: '이제부터 열심히 모아부자!',
+          <JumpButton
+            type="button"
+            onClick={() => {
+              Swal.fire({
+                title: '환영합니다!',
+                text: '이제부터 열심히 모아부자!',
+              })
+                .then((result) => {
+                  // navigate('/')
+                  console.log(result)
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
-                  .catch((err) => console.log(err))
-              }}
-              boarderRadius="8px"
-              width="328px"
-              height="52px"
-              background="#4675F0"
-              // marginTop="60px"
-            >
-              건너뛰기!
-            </JumpButton>
-          </Link>
+                .catch((err) => console.log(err))
+            }}
+            boarderRadius="8px"
+            width="328px"
+            height="52px"
+            background="#4675F0"
+            // marginTop="60px"
+          >
+            건너뛰기!
+          </JumpButton>
         </div>
         <div>
           <TextDiv>
@@ -92,30 +90,29 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
-            <JumpButton
-              type="button"
-              onClick={() => {
-                navigate('/')
 
-                Swal.fire({
-                  title: '환영합니다!',
-                  text: '이제부터 열심히 모아부자!',
+          <JumpButton
+            type="button"
+            onClick={() => {
+              Swal.fire({
+                title: '환영합니다!',
+                text: '이제부터 열심히 모아부자!',
+              })
+                .then((result) => {
+                  navigate('/')
+                  console.log(result)
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
-                  .catch((err) => console.log(err))
-              }}
-              boarderRadius="8px"
-              width="328px"
-              height="52px"
-              background="#4675F0"
-              // marginTop="60px"
-            >
-              건너뛰기!
-            </JumpButton>
-          </Link>
+                .catch((err) => console.log(err))
+            }}
+            boarderRadius="8px"
+            width="328px"
+            height="52px"
+            background="#4675F0"
+            // marginTop="60px"
+          >
+            건너뛰기!
+          </JumpButton>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -145,30 +142,29 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
-            <JumpButton
-              type="button"
-              onClick={() => {
-                navigate('/')
 
-                Swal.fire({
-                  title: '환영합니다!',
-                  text: '이제부터 열심히 모아부자!',
+          <JumpButton
+            type="button"
+            onClick={() => {
+              Swal.fire({
+                title: '환영합니다!',
+                text: '이제부터 열심히 모아부자!',
+              })
+                .then((result) => {
+                  navigate('/')
+                  console.log(result)
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
-                  .catch((err) => console.log(err))
-              }}
-              boarderRadius="8px"
-              width="328px"
-              height="52px"
-              background="#4675F0"
-              // marginTop="60px"
-            >
-              건너뛰기!
-            </JumpButton>
-          </Link>
+                .catch((err) => console.log(err))
+            }}
+            boarderRadius="8px"
+            width="328px"
+            height="52px"
+            background="#4675F0"
+            // marginTop="60px"
+          >
+            건너뛰기!
+          </JumpButton>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -198,30 +194,29 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
-            <JumpButton
-              type="button"
-              onClick={() => {
-                navigate('/')
 
-                Swal.fire({
-                  title: '환영합니다!',
-                  text: '이제부터 열심히 모아부자!',
+          <JumpButton
+            type="button"
+            onClick={() => {
+              Swal.fire({
+                title: '환영합니다!',
+                text: '이제부터 열심히 모아부자!',
+              })
+                .then((result) => {
+                  navigate('/')
+                  console.log(result)
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
-                  .catch((err) => console.log(err))
-              }}
-              boarderRadius="8px"
-              width="328px"
-              height="52px"
-              background="#4675F0"
-              // marginTop="60px"
-            >
-              건너뛰기!
-            </JumpButton>
-          </Link>
+                .catch((err) => console.log(err))
+            }}
+            boarderRadius="8px"
+            width="328px"
+            height="52px"
+            background="#4675F0"
+            // marginTop="60px"
+          >
+            건너뛰기!
+          </JumpButton>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -251,30 +246,29 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
-            <JumpButton
-              type="button"
-              onClick={() => {
-                navigate('/')
 
-                Swal.fire({
-                  title: '환영합니다!',
-                  text: '이제부터 열심히 모아부자!',
+          <JumpButton
+            type="button"
+            onClick={() => {
+              Swal.fire({
+                title: '환영합니다!',
+                text: '이제부터 열심히 모아부자!',
+              })
+                .then((result) => {
+                  console.log(result)
+                  navigate('/')
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
-                  .catch((err) => console.log(err))
-              }}
-              boarderRadius="8px"
-              width="328px"
-              height="52px"
-              background="#4675F0"
-              // marginTop="60px"
-            >
-              건너뛰기!
-            </JumpButton>
-          </Link>
+                .catch((err) => console.log(err))
+            }}
+            boarderRadius="8px"
+            width="328px"
+            height="52px"
+            background="#4675F0"
+            // marginTop="60px"
+          >
+            열심히 모아부자!
+          </JumpButton>
+
           {/* <JumpButton
             type="button"
             onClick={() => {
