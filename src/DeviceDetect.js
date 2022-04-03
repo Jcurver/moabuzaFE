@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 
-
-
 import backgroundSrcs from './assets/moabg.png'
 import background from './back.jpeg'
+import phone from './phone.png'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01
@@ -72,21 +71,21 @@ const WebViewLayout = styled(Layout)`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-
 `
 
 const ClayPhone = styled.div`
-  width: 360px;
-  height: 720px;
+  width: 390px;
+  height: 822px;
   position: fixed;
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  /* background: url(${background}) no-repeat center center; */
+  background: url(${phone}) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  /* background-color: red; */
 
   @media screen and (min-width: 1120px) {
     right: 10%;
@@ -100,8 +99,7 @@ const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 
-
-  background: url(${background}) no-repeat fixed;
+  background: url(${backgroundSrcs}) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
