@@ -9,6 +9,8 @@ import axios from 'axios'
 import { getToken, onMessage } from 'firebase/messaging'
 
 import { setFlexStyles } from '../styles/Mixin'
+import { getCookie } from '../utils/cookie'
+
 import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../apis/mainpageData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
@@ -67,7 +69,7 @@ function MainPage() {
     }
   }
   useEffect(() => {
-    const accessToken = sessionStorage.getItem('A-AUTH-TOKEN')
+    const accessToken = getCookie('A-AUTH-TOKEN')
     if (!accessToken && !isLoading) {
       setMoveToLoginPage()
     }
