@@ -62,7 +62,7 @@ function OnBoarding() {
                 text: '이제부터 열심히 모아부자!',
               })
                 .then((result) => {
-                  // navigate('/')
+                  navigate('/')
                   console.log(result)
                 })
                 .catch((err) => console.log(err))
