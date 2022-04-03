@@ -67,7 +67,7 @@ function MainPage() {
     }
   }
   useEffect(() => {
-    const accessToken = getItem('A-AUTH-TOKEN')
+    const accessToken = sessionStorage.getItem('A-AUTH-TOKEN')
     if (!accessToken && !isLoading) {
       setMoveToLoginPage()
     }
