@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 
 import backgroundSrcs from './assets/moabg.png'
-import background from './back.jpeg'
+import moabuzaBg from './moabuzaBg.jpeg'
 import phone from './phone.png'
 
 export const setVh = () => {
@@ -106,7 +106,7 @@ const WebBackgroundWrapper = styled.div`
   background-size: cover;
 
   @media screen and (min-width: 1120px) {
-    background: url(${background}) no-repeat fixed;
+    background: url(${moabuzaBg}) no-repeat fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
