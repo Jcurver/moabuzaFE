@@ -222,7 +222,7 @@ const TextDiv = styled.div`
   /* position: absolute; */
   /* top: 30px;
   left: 74px; */
-  margin-top: 20px;
+  margin-top: 80px;
 `
 const JumpButton = styled.button`
   position: absolute;
