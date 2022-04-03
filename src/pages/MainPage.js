@@ -67,13 +67,13 @@ function MainPage() {
     }
   }
   useEffect(() => {
-    getItem('A-AUTH-TOKEN')
-    if (!getItem && !isLoading) {
+    const accessToken = getItem('A-AUTH-TOKEN')
+    if (!accessToken && !isLoading) {
       setMoveToLoginPage()
     }
 
 
-  },[])
+  },[isLoading])
 
   if (isLoading) {
     return <Loading />
