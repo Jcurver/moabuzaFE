@@ -219,16 +219,17 @@ const TextArea = styled.div`
   color: #000000;
 `
 const TextDiv = styled.div`
-  position: absolute;
-  top: 30px;
-  left: 74px;
+  /* position: absolute; */
+  /* top: 30px;
+  left: 74px; */
+  margin-top: 80px;
 `
 const JumpButton = styled.button`
   position: absolute;
-  width: 328px;
+  width: 91.2%;
   height: 52px;
   left: 16px;
-  top: 75%;
+  top: 90%;
   /* color/Secondary */
   background: #4675f0;
   border-radius: 8px;

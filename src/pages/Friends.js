@@ -11,6 +11,8 @@ import { BunnyFace, TongkiFace, TanniFace } from '../assets/character/index'
 
 import ErrorLog from './ErrorLog'
 import { useFriendsData, useSearchFriend } from '../apis/friendsData'
+import TitleText from '../components/Header/TitleText'
+import RightButton from '../components/Header/RightButton'
 
 function Friends() {
   const inputFriend = useRef('')
@@ -37,25 +39,23 @@ function Friends() {
 
   return (
     <Wrapper>
-      <TopDiv>
-        <NavLink to="/menu">
-          <Backarr
-            style={{
-              position: 'absolute',
-              left: '4.44%',
-              top: '47.67%',
-              width: '24px',
-              height: '24px',
-            }}
-          />
-        </NavLink>
-        <Title>친구</Title>
+      <NavLink to="/menu">
+        <Backarr
+          style={{
+            position: 'absolute',
+            left: '4.44%',
+            top: '6.45%',
+            width: '24px',
+            height: '24px',
+          }}
+        />
+      </NavLink>
+      <TitleText>친구</TitleText>
 
-        <NavLink to="/friends/add">
-          <AddFriendText>추가</AddFriendText>
-        </NavLink>
-        <TopLine />
-      </TopDiv>
+      <NavLink to="/friends/add">
+        <RightButton>추가</RightButton>
+      </NavLink>
+      <TopLine />
 
       <FriendInput
         id="nickname"
@@ -221,7 +221,7 @@ const TopLine = styled.div`
 `
 const FriendInput = styled.input`
   position: absolute;
-  width: 328px;
+  width: 91.1%;
   height: 52px;
   left: 16px;
   top: 102px;
@@ -254,7 +254,8 @@ const FriendSearch = styled.div`
   width: 24px;
   height: 24px;
   top: 116px;
-  left: 304px;
+  right: 10%;
+  /* left: 304px; */
 `
 const FriendsDiv = styled.div`
   position: absolute;
@@ -271,7 +272,7 @@ const FriendsLine = styled.div`
     justifyContent: 'space-between',
   })}
   padding: 0px;
-  width: 328px;
+  width: 91.1%;
   height: 48px;
   margin-bottom: 1.11%;
 `
@@ -301,7 +302,8 @@ const AddButton = styled.div`
 
   width: 69px;
   height: 26px;
-  left: 259px;
+  /* left: 259px; */
+  right: 10%;
   top: 11px;
 
   /* color / gray / Gray30 */
