@@ -53,17 +53,17 @@ function OnBoarding() {
           </JumpButton> */}
 
           {/* <p className="legend">Legend 1</p> */}
-          <Link to="/">
+
             <JumpButton
               type="button"
               onClick={() => {
-                navigate('/')
-
+                
                 Swal.fire({
                   title: '환영합니다!',
                   text: '이제부터 열심히 모아부자!',
                 })
-                  .then((result) => {
+                .then((result) => {
+                    navigate('/')
                     console.log(result)
                   })
                   .catch((err) => console.log(err))
@@ -76,7 +76,7 @@ function OnBoarding() {
             >
               건너뛰기!
             </JumpButton>
-          </Link>
+
         </div>
         <div>
           <TextDiv>
@@ -92,18 +92,18 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
+
             <JumpButton
               type="button"
               onClick={() => {
-                navigate('/')
-
+                
                 Swal.fire({
                   title: '환영합니다!',
                   text: '이제부터 열심히 모아부자!',
                 })
-                  .then((result) => {
-                    console.log(result)
+                .then((result) => {
+                  navigate('/')
+                  console.log(result)
                   })
                   .catch((err) => console.log(err))
               }}
@@ -115,7 +115,7 @@ function OnBoarding() {
             >
               건너뛰기!
             </JumpButton>
-          </Link>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -145,17 +145,17 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
+
             <JumpButton
               type="button"
               onClick={() => {
-                navigate('/')
-
+                
                 Swal.fire({
                   title: '환영합니다!',
                   text: '이제부터 열심히 모아부자!',
                 })
-                  .then((result) => {
+                .then((result) => {
+                    navigate('/')
                     console.log(result)
                   })
                   .catch((err) => console.log(err))
@@ -168,7 +168,7 @@ function OnBoarding() {
             >
               건너뛰기!
             </JumpButton>
-          </Link>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -198,17 +198,17 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
+
             <JumpButton
               type="button"
               onClick={() => {
-                navigate('/')
-
+                
                 Swal.fire({
                   title: '환영합니다!',
                   text: '이제부터 열심히 모아부자!',
                 })
-                  .then((result) => {
+                .then((result) => {
+                    navigate('/')
                     console.log(result)
                   })
                   .catch((err) => console.log(err))
@@ -221,7 +221,7 @@ function OnBoarding() {
             >
               건너뛰기!
             </JumpButton>
-          </Link>
+
           {/* <JumpButton
             onClick={() => {
               navigate('/kakaologin')
@@ -251,19 +251,19 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          <Link to="/">
+
             <JumpButton
               type="button"
               onClick={() => {
-                navigate('/')
-
+                
                 Swal.fire({
                   title: '환영합니다!',
                   text: '이제부터 열심히 모아부자!',
                 })
-                  .then((result) => {
-                    console.log(result)
-                  })
+                .then((result) => {
+                  console.log(result)
+                  navigate('/')
+                })
                   .catch((err) => console.log(err))
               }}
               boarderRadius="8px"
@@ -274,7 +274,7 @@ function OnBoarding() {
             >
               건너뛰기!
             </JumpButton>
-          </Link>
+
           {/* <JumpButton
             type="button"
             onClick={() => {
