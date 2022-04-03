@@ -272,7 +272,7 @@ function OnBoarding() {
               background="#4675F0"
               // marginTop="60px"
             >
-              건너뛰기!
+              열심히 모아부자!
             </JumpButton>
 
           {/* <JumpButton
