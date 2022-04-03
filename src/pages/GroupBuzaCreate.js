@@ -413,7 +413,7 @@ const FriendWrapper = styled.div`
   padding: 0px;
 
   position: absolute;
-  width: 91.11%;
+  width: 100%;
   height: 40%;
   left: 4.44%;
   top: 335px;
@@ -422,6 +422,7 @@ const FriendWrapper = styled.div`
 const FriendsList = styled.div`
   /* Auto layout */
   height: 350px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -525,7 +526,7 @@ const CircleImg = styled.img`
 `
 const SelectFriendNameDiv = styled.div`
   display: block;
-  width: 40px;
+  width: 50px;
   height: 14px;
   margin-right: -5px;
   /* text-overflow: ellipsis; */
@@ -612,7 +613,7 @@ const SelectedFriendContent = styled.div`
   padding-left: 12px;
   overflow: scroll;
   position: static;
-  width: 140px;
+  width: 160px;
   height: 52px;
 
   border-radius: 8px;
@@ -629,10 +630,12 @@ const SelectedFriendContent = styled.div`
   letter-spacing: -0.04em;
 `
 const DeleteFriendContent = styled.button`
-  width: 20px;
+  width: 40px;
+  height:30px;
+  background: white;
   /* color / text / Color-text-Gray1 */
 
-  background: white;
+
 `
 
 const ErrorSpan = styled.span`
