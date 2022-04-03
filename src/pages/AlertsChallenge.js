@@ -273,7 +273,9 @@ function AlertsChallenge() {
                       <AlertTextDiv>
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
-                          <AlertTextTopRight>님이</AlertTextTopRight>
+                          <AlertTextTopRight>님이 </AlertTextTopRight>
+                          <AlertTextTopRight>{d.goalName}</AlertTextTopRight>
+                          <AlertTextTopRight> 목표에</AlertTextTopRight>
                         </Flex>
                         <Flex>
                           <AlertTextBottom>
@@ -325,7 +327,6 @@ function AlertsChallenge() {
                     />
                   </AlertList>
                 )}
-
 
                 {d.alarmDetailType === 'talju' && (
                   <AlertList>
