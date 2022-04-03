@@ -2,14 +2,21 @@
   "name": "모아부자!",
   "short_name": "모아부자!",
   "discription": "pwa by moabuza",
-  "scope": ".",
-  "start_url": "./",
+
+  "scope":".",
+  "start_url": "https://moabuza.com",
+
   "display": "fullscreen",
   "orientation": "portrait",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
 
   "icons": [
+      {
+      "src": "moabuza64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
     {
       "src": "moabuza192.png",
       "type": "image/png",
