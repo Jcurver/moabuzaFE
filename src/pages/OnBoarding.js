@@ -351,7 +351,7 @@ const JumpButton = styled.button`
   height: 52px;
   left: 16px;
   /* top: 110%; */
-  bottom: -30%;
+  bottom: -20%;
   /* color/Secondary */
   background: #4675f0;
   border-radius: 8px;
