@@ -70,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
       overscroll-behavior-y: contain;
       margin: 0px;
       padding: 0px;
+
     }
     html {
       position: fixed;
@@ -86,7 +87,6 @@ const GlobalStyle = createGlobalStyle`
       min-height: 100vh;
       height: -webkit-fill-available;
       /* min-height: -webkit-fill-available; */
-
       font-family: 'Noto Sans KR';
       -ms-overflow-style: none;
 

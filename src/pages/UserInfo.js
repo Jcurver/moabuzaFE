@@ -9,21 +9,24 @@ import { request, api } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { fcmToken } from '../utils/fcm'
+// import { fcmToken } from '../utils/fcm'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
+import { getItem } from '../utils/sessionStorage';
+// import { fcmToken } from '../utils/ec2';
 
 function UserInfo() {
   const navigate = useNavigate()
   const [nickNameDup, setNickNameDup] = useState(false)
-
   const [hero, setHero] = useState('hero0')
   function setHeroValue(i) {
     setHero(i)
     setValue('character', i)
   }
-
+  // let fcmUserToken
+  // console.log('fcmToken:::',fcmUserToken)
+  const fcmToken = getItem('fcmToken')
   const onValid = async (data) => {
     if (hero === 'hero0') {
       Swal.fire({
@@ -37,7 +40,6 @@ function UserInfo() {
         .catch((err) => console.log(err))
       return
     }
-    console.log('fcmToken:::', fcmToken)
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
@@ -123,7 +125,9 @@ function UserInfo() {
   console.log(watch())
 
   useEffect(() => {
+
     setNickNameDup(false)
+
     console.log(nickNameDup)
     if (!window.location.search) {
       return
@@ -142,6 +146,13 @@ function UserInfo() {
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
     }
     getTokenWithKakao()
+
+    // async function getFCM() {
+    //   const FCM = await Promise.all(fcmToken)
+    //   return FCM
+    // }
+    // fcmUserToken = getFCM()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate])
 
