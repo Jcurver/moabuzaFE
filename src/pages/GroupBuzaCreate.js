@@ -16,10 +16,8 @@ import TitleText from '../components/Header/TitleText'
 function GroupBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
-  console.log('data:::', datalist)
   const { data: friendsList, isLoading } = useFriendData(navigate)
 
-  console.log('friendLIst:::', friendsList)
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
@@ -27,7 +25,6 @@ function GroupBuzaCreate() {
     }
   }, [friendsList])
 
-  console.log('selectFriends', selectFriends)
   let selectFriendNickName = selectFriends.map(
     (data) => data.groupMemberNickname,
   )
@@ -36,10 +33,7 @@ function GroupBuzaCreate() {
     console.log(error)
   }
 
-  // console.log('selectFriends', selectFriends)
   const onValid = (groupData) => {
-    console.log('groupData::', groupData)
-    console.log(' selectFriendNickName', selectFriendNickName)
     if (selectFriendNickName.length === 0) {
       selectFriendNickName = null
       Swal.fire({
@@ -77,9 +71,6 @@ function GroupBuzaCreate() {
       }),
     )
   }
-  // useEffect(() => {
-  //   friendData()
-  // }, [])
 
   const {
     control,
@@ -149,7 +140,6 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -215,14 +205,7 @@ function GroupBuzaCreate() {
                     })
                     return
                   }
-                  // if (selectFriends.challengeMemberCanInvite) {
-                  //   Swal.fire({
-                  //     icon: 'error',
-                  //     title: '이미 선택!',
-                  //     text: '이미 진행중이에요!',
-                  //   })
-                  //   return
-                  // }
+
                   const targetIndex = datalist.findIndex(
                     (d) => d.groupMemberNickname === da.groupMemberNickname,
                   )
@@ -234,8 +217,6 @@ function GroupBuzaCreate() {
                     ...datalist.slice(0, targetIndex),
                     ...datalist.slice(targetIndex + 1),
                   ])
-                  console.log(selectFriends.length)
-                  console.log('selectFriends', selectFriends)
                 }}
               >
                 <CircleImg
@@ -271,13 +252,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const Title = styled.div`
-  position: absolute;
-  width: 72px;
-  height: 23px;
-  left: 144px;
-  top: 43px;
-`
+
 const Input = styled.input`
   width: 100%;
   height: ${(props) => props.height};
@@ -328,48 +303,6 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 4px;
-  top: 31px;
-
-  background-color: #fff;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-`
-
-const CreateMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-  background-color: #fff;
-  color: #4675f0;
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  /* color/Secondary */
-
-  color: #4675f0;
-`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
@@ -439,24 +372,7 @@ const FriendsList = styled.div`
     display: none; /* Chrome , Safari , Opera */
   }
 `
-const FriendEmptyBox = styled.div`
-  /* Auto layout */
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 328px;
-  height: 52px;
-  color: #cccccc;
-  /* color / gray / Gray30 */
-  margin-top: 8px;
-  border: 1px solid #cccccc;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 600;
-`
 const Friends = styled.div`
   /* Auto layout */
 
@@ -498,17 +414,8 @@ const FriendsText = styled.div`
   letter-spacing: -0.04em;
 
   color: #000000;
-
-  /* Inside auto layout */
-
-  /* flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 0px 8px; */
 `
 const CircleImg = styled.img`
-  /* Ellipse 20 */
-
   position: static;
   width: 36px;
   height: 36px;
@@ -529,57 +436,6 @@ const SelectFriendNameDiv = styled.div`
   width: 50px;
   height: 14px;
   margin-right: -5px;
-  /* text-overflow: ellipsis; */
-
-  /* Heading/Noto Sans KR/H6 */
-
-  /* Inside auto layout */
-
-  /* margin: 0px 3px; */
-`
-const CreateButtonWrapper = styled.div`
-  position: absolute;
-  /* text-align: center; */
-  width: 328px;
-  height: 60px;
-  color: #000000;
-  /* background-color: white; */
-  top: 82.5%;
-  left: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  /* z-index: 99; */
-`
-const CreateButton = styled.button`
-  /* 공통 스타일 */
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: 400;
-  cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  width: 328px;
-  height: 36px;
-  margin: 16px 0px;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 6;
-  flex-grow: 0;
-
-  /* 색상 */
-  background: #5f5f77;
-  &:hover {
-    background: #339af0;
-  }
-  &:active {
-    background: #1c7ed6;
-  }
 `
 
 const SelectedFriendWrapper = styled.div`
@@ -608,7 +464,6 @@ const SelectedFriendContent = styled.div`
   display: flex;
 
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   padding-left: 12px;
   overflow: scroll;
@@ -633,7 +488,6 @@ const DeleteFriendContent = styled.button`
   width: 40px;
   height: 30px;
   background: white;
-  /* color / text / Color-text-Gray1 */
 `
 
 const ErrorSpan = styled.span`
@@ -681,12 +535,5 @@ const Doing = styled.div`
   /* Rectangle 173 */
 
   color: #ffffff;
-
-  /* Inside auto layout */
-
-  /* flex: none;
-  order: 0;
-  flex-grow: 0; */
-  /* margin: 0px 10px; */
 `
 export default GroupBuzaCreate

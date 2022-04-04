@@ -29,9 +29,7 @@ function Modified() {
         title: '캐릭터를 골라부자!',
         confirmButtonText: '확인!',
       })
-        .then((result) => {
-          console.log(result)
-        })
+        .then((result) => {})
         .catch((err) => console.log(err))
       return
     }
@@ -41,11 +39,7 @@ function Modified() {
       Swal.fire({
         title: '닉네임 중복확인해부자',
         confirmButtonText: '확인!',
-        //  text: '열심히 모아부자!',
-        // icon: 'success',
-      }).then((result) => {
-        console.log(result)
-      })
+      }).then((result) => {})
       return
     }
 
@@ -55,16 +49,13 @@ function Modified() {
         text: '이제부터 열심히 모아부자!',
         confirmButtonText: '확인!',
       })
-        .then((result) => {
-          console.log(result)
-        })
+        .then((result) => {})
         .catch((err) => console.log(err)),
     )
 
     navigate('/')
   }
   const nicknameDup = () => {
-    console.log('닉네임::', watch().nickname)
     if (watch().nickname === '') {
       return null
     }
@@ -74,7 +65,6 @@ function Modified() {
       data: { nickname: watch().nickname },
     })
       .then((res) => {
-        console.log('중복확인 response::', res)
         if (res.status === 200) {
           if (res.data.msg === '해당 닉네임은 사용이 가능합니다.') {
             setNickNameDup(true)
@@ -82,10 +72,7 @@ function Modified() {
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
               confirmButtonText: '확인!',
-              // icon: 'success',
-            }).then((result) => {
-              console.log(result)
-            })
+            }).then((result) => {})
           }
           if (res.data.msg === '해당 닉네임은 사용 중 입니다.') {
             setNickNameDup(false)
@@ -93,23 +80,16 @@ function Modified() {
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
               confirmButtonText: '확인!',
-              // icon: 'success',
-            }).then((result) => {
-              console.log(result)
-            })
+            }).then((result) => {})
           }
         }
       })
       .catch((error) => {
-        console.log('중복확인 catch에러::::', error.response)
         Swal.fire({
           title: '이미 사용중인 닉네임',
           text: '다른걸로 해부자 ㅜㅜ',
           confirmButtonText: '확인!',
-          // icon: 'success',
-        }).then((result) => {
-          console.log(result)
-        })
+        }).then((result) => {})
       })
   }
 
@@ -131,7 +111,6 @@ function Modified() {
       </NavLink>
       <TopLine />
       <TitleText>캐릭터/닉네임 수정</TitleText>
-      {/* <Title>캐릭터/닉네임 수정</Title> */}
       <form onSubmit={handleSubmit(onValid)}>
         <RightButton>확인</RightButton>
         <CharacterDiv>
@@ -226,13 +205,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const TopDiv = styled.div`
-  position: absolute;
-  width: 360px;
-  height: 86px;
-  left: 0px;
-  top: 0px;
-`
 const BackarrButton = styled(Backarr)``
 const ButtonDiv = styled.div`
   display: flex;
@@ -244,66 +216,8 @@ const ButtonDiv = styled.div`
   top: 4.5%;
   width: 48px;
   height: 48px;
-
-  /* background: rgba(196, 196, 196, 0.3); */
 `
 
-const Button = styled.div`
-  /* position: absolute; */
-  left: 4.44%;
-
-  top: 5.97%;
-  width: 24px;
-  height: 24px;
-
-  background: #c4c4c4;
-`
-const ButtonSubmit = styled.button`
-  position: absolute;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* Heading/Noto Sans KR/H6 */
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-  background-color: #fff;
-  color: #000000;
-`
-const Title = styled.div`
-  position: absolute;
-  width: 122px;
-  height: 23px;
-  left: 119px;
-  top: 5.97%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-  letter-spacing: -0.04em;
-
-  color: #000000;
-`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
@@ -326,7 +240,6 @@ const CharacterDiv = styled.div`
   position: absolute;
   width: 100%;
   height: 166px;
-  /* left: calc(50% - 288px / 2); */
   top: 85px;
   background-color: #f6f9fe;
 `
@@ -355,7 +268,6 @@ const Character = styled.img`
   width: 80px;
   height: 80px;
   border-radius: 40px;
-  /* border:2px solid blue; */
   left: 0px;
   top: 0px;
   /* color/Btn-basic1 */
@@ -407,7 +319,6 @@ const NicknameSubmit = styled.div`
   position: absolute;
   width: 28.8%;
   height: 52px;
-  /* left: 240px; */
   right: 4.44%;
   top: 294px;
   ${setFlexStyles({

@@ -1,30 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import 'react-calendar/dist/Calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
-// import Moment from 'react-moment'
 import '../styles/CalendarStyle.css'
 import '../styles/Dropdown.css'
 import ko from 'date-fns/locale/ko'
 import '../styles/SelectStyle.css'
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { useMainPageData } from '../apis/mainpageData'
 import { setFlexStyles } from '../styles/Mixin'
 import { getDate } from '../hooks/getDate'
 import { getItem, setItem } from '../utils/sessionStorage'
 
-import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
-import { ReactComponent as success } from '../assets/icons/onedaybuza/popup.svg'
 
 import Nav from '../components/Nav'
 import { request } from '../utils/axios'
 
-import { onedayBuzaDate } from '../recoil/setDateToday'
 import Loading from './Loading'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
@@ -63,11 +58,7 @@ function OnedayPost() {
     setError,
   } = useForm()
 
-  console.log(watch())
-  const handleChange = (e) => {
-    // event handler
-    console.log(e.target.value)
-  }
+  const handleChange = (e) => {}
 
   // 월/일
   const getFormattedDate = (date) => {
@@ -88,10 +79,6 @@ function OnedayPost() {
   }
 
   const onValid = (data) => {
-    console.log('getDate:::', getDate(selectDate))
-    console.log('parseInt:::', parseInt(data.amount, 10))
-    // setError("memo", { message: "Server offline." });
-    console.log('onValiddata:', data)
     if (data.option === '0') {
       setError(
         'option',
@@ -110,8 +97,6 @@ function OnedayPost() {
         },
       })
         .then((res) => {
-          console.log('입력저장::', res)
-          console.log(res.data.complete)
           if (res.data.complete) {
             Swal.fire({
               title: '목표 완료!',
@@ -142,12 +127,10 @@ function OnedayPost() {
         })
     }
     return null
-    // setError("extraError", { message: "Server offline." });
   }
   if (isLoading) {
     return <Loading />
   }
-  console.log(data.data)
   const homeData = data.data
 
   return (
@@ -165,10 +148,6 @@ function OnedayPost() {
           top: '4.305%',
         }}
       />
-
-      {/* <NavLink to="/onedaypost">
-        <LeftButton>입력</LeftButton>
-      </NavLink> */}
 
       <form onSubmit={handleSubmit(onValid)}>
         <RightButton>
@@ -194,7 +173,6 @@ function OnedayPost() {
           <Rightarr
             style={{
               transform: 'rotate(90deg)',
-              // marginLeft:'calc(5%)'
             }}
           />
         </SelectDiv>
@@ -269,13 +247,8 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  /* height: 720px; */
 `
-const CalDiv = styled.div`
-  width: 328px;
-  height: 87px;
-  left: 16px;
-`
+
 const CalDate = styled.div`
   margin-left: 16px;
 `
@@ -287,7 +260,6 @@ const CalBtn = styled.div`
   width: 24px;
   height: 24px;
   background-color: inherit;
-  /* background: #c4c4c4; */
 `
 const SelectDiv = styled.div`
   ${setFlexStyles({
@@ -340,40 +312,6 @@ const OptionDiv = styled.div`
   background: #f5f5f7;
   border-radius: 8px;
 `
-const OptionRightButton = styled.div`
-  position: absolute;
-  left: 84.44%;
-  right: 8.89%;
-  z-index: 1;
-  background: #c4c4c4;
-`
-
-const LeftButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  top: 3.75%;
-  width: 48px;
-  height: 48px;
-  background: rgba(196, 196, 196, 0.3);
-`
-const LeftButton = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 4.44%;
-
-  top: 5.3%;
-  width: 48px;
-  height: 48px;
-`
-const TopDiv = styled.div`
-  position: absolute;
-  width: 360px;
-  height: 86px;
-  left: 0px;
-  top: 0px;
-`
 
 const RightBtn = styled.button`
   width: 48px;
@@ -401,36 +339,6 @@ const RightBtn = styled.button`
   color: #4675f0;
 `
 
-const Title = styled.div`
-  position: absolute;
-  left: 46.11%;
-  right: 45.83%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-`
-const TopLine = styled.div`
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 98.84%;
-  bottom: 0%;
-
-  /* color/Btn-basic2 */
-
-  background: #f5f5f7;
-`
 const Input = styled.input`
   position: absolute;
   width: 91.1%;
