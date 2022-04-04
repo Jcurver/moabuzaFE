@@ -9,10 +9,12 @@ import { request, api } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { getCookie, setCookie } from '../utils/cookie'
 import { KAKAO_AUTH_URL } from '../utils/OAuth'
-import { fcmToken } from '../utils/fcm'
+// import { fcmToken } from '../utils/fcm'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
+import { getItem } from '../utils/sessionStorage';
+// import { fcmToken } from '../utils/ec2';
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -22,8 +24,9 @@ function UserInfo() {
     setHero(i)
     setValue('character', i)
   }
-  console.log('fcmToken:::', fcmToken)
-
+  // let fcmUserToken
+  // console.log('fcmToken:::',fcmUserToken)
+  const fcmToken = getItem('fcmToken')
   const onValid = async (data) => {
     if (hero === 'hero0') {
       Swal.fire({
@@ -124,6 +127,7 @@ function UserInfo() {
   useEffect(() => {
 
     setNickNameDup(false)
+
     console.log(nickNameDup)
     if (!window.location.search) {
       return
@@ -142,6 +146,13 @@ function UserInfo() {
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
     }
     getTokenWithKakao()
+
+    // async function getFCM() {
+    //   const FCM = await Promise.all(fcmToken)
+    //   return FCM
+    // }
+    // fcmUserToken = getFCM()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate])
 
