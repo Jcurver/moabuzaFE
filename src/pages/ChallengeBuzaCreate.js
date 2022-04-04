@@ -252,7 +252,7 @@ function ChallengeBuzaCreate() {
                   console.log('selectFriends', selectFriends)
                 }}
               >
-                <div style={{display:'flex',alignItems:'center'}}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                   <CircleImg
                     src={
                       da.hero === 'tanni'
