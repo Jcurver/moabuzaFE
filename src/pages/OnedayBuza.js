@@ -5,7 +5,6 @@ import DatePicker, { registerLocale } from 'react-datepicker'
 
 import 'react-calendar/dist/Calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
-// import Moment from 'react-moment'
 import '../styles/CalendarStyle.css'
 import ko from 'date-fns/locale/ko'
 import { useMutation } from 'react-query'
@@ -13,23 +12,15 @@ import {
   SwipeableList,
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { setFlexStyles } from '../styles/Mixin'
-import { selectDate } from '../recoil/todayState'
 import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
 import '../styles/OneDaySlide.css'
-import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
-import { ReactComponent as LeftArrow } from '../assets/icons/arrow/arrowleftgray.svg'
 import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
 
 import { getItem, setItem } from '../utils/sessionStorage'
-// import { setDateInOnedayList } from '../hooks/useUserData';
-import { nowDate } from '../hooks/nowDate'
-import { onedayBuzaDate } from '../recoil/setDateToday'
-import { useOnedayBuzaData } from '../apis/onedayBuzaData'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
 import LeftButton from '../components/Header/LeftButton'
@@ -47,7 +38,6 @@ function ExampleCustomInput({ value, onClick }) {
 
 function OnedayBuza(state) {
   const location = useLocation()
-  // const [oneDayBuzaDate, setOneDayBuzaDate] = useRecoilState(onedayBuzaDate)
 
   console.log('OnedayProps:::', location)
 
@@ -59,13 +49,8 @@ function OnedayBuza(state) {
   const [startDate, setStartDate] = useState(new Date(getItem('nowdate')))
 
   async function setDateMutate(date) {
-    const newdate = getDate(date)
     setItem('nowdate', date)
-    // console.log("date",date)
     setStartDate(date)
-    // console.log('newdate:', newdate)
-    // const res = await mutateAsync(newdate)
-    // console.log("res::",res)
   }
 
   const mutation = useMutation((date) => {
@@ -76,11 +61,8 @@ function OnedayBuza(state) {
     })
   })
 
-  // console.log("M",mutation)
-
   useEffect(() => {
     const selectDate = getDate(startDate)
-    // setDaylist(mutation?.data?.data?.dayRecordList)
 
     mutation.mutate(selectDate)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,14 +77,6 @@ function OnedayBuza(state) {
     )}`
   }
   const removeTodayList = (id) => {
-    // const d = mutation.data.data.dayRecordList.findIndex((a) => a.id === id)
-    // console.log('mmm', mutation.data.data.dayRecordList, d)
-    // // console.log("idx::",d)
-    // setDaylist([
-    //   ...mutation.data.data.dayRecordList.silce(0, d),
-    //   ...mutation.data.data.dayRecordList.silce(d + 1),
-    // ])
-
     return request({
       url: `/daylist/${id}`,
       method: 'delete',
@@ -271,8 +245,6 @@ function OnedayBuza(state) {
                   <TodayListLineRight>
                     {d.recordType === 'income' ? '+' : ''}
                     {d.recordType === 'expense' ? '-' : ''}
-                    {/* {d.recordType === 'group' ? '+' : ''} */}
-                    {/* {d.recordType === 'challenge' ? '+' : ''} */}
                     {d.recordAmount.toLocaleString('en-US')} 원
                   </TodayListLineRight>
                 </TodayListLine>
@@ -290,64 +262,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`
-const TopDiv = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 86px;
-  left: 0px;
-  top: 0px;
-`
-const LeftButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  top: 3.75%;
-  width: 48px;
-  height: 48px;
-  background: rgba(196, 196, 196, 0.3);
-`
-// const LeftButton = styled.div`
-//   position: absolute;
-//   left: 4.44%;
-
-//   top: 5.3%;
-//   width: 24px;
-//   height: 24px;
-
-//   background: #c4c4c4;
-// `
-const RightButtonDiv = styled.div`
-  position: absolute;
-  left: 85.56%;
-
-  top: 4.03%;
-  width: 48px;
-  height: 48px;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Title = styled.div`
-  position: absolute;
-  left: 42.22%;
-  right: 41.94%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
 `
 const TopLine = styled.div`
   position: absolute;
@@ -411,11 +325,6 @@ const RightArrowDiv = styled.div`
   })}
 `
 const CalBtn = styled.button`
-  /* position: absolute;
-  width: 97px;
-  height: 23px;
-  left: 132px;
-  top: 113px; */
   /* Heading / Roboto / H3(B) */
   font-family: 'Roboto';
   font-style: normal;
@@ -435,7 +344,6 @@ const CalendarLine = styled.hr`
   top: 20%;
   background-color: #cccccc;
   /* color / gray / Gray50 */
-  /* border: 0.5px solid #cccccc; */
   box-sizing: border-box;
 `
 const TotalLine = styled.div`
@@ -485,9 +393,7 @@ const TodayListBigDiv = styled.div`
   top: 0px;
   top: 49%;
 
-  /* background-color: #EBF2FF; */
   background-color: #ebf2ff;
-  /* background: red; */
 `
 const TodayListTitle = styled.div`
   position: absolute;
@@ -540,7 +446,6 @@ const TodayListLine = styled.div`
   /* color/Btn-basic1 */
 
   background: #e5eaf2;
-  /* background: red; */
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 8px;
@@ -554,7 +459,6 @@ const TodayListLineRight = styled.div`
   })}
   padding: 6px 12px;
   white-space: nowrap;
-  /* position: absolute; */
   width: 92px;
   height: 28px;
 
@@ -615,7 +519,6 @@ const ZigZagDiv = styled.div`
   top: calc(49% - 10px);
   height: 20px;
   width: 100%;
-  /* overflow-x: hidden; */
 `
 const ZigZag = styled.div`
   width: 26px;

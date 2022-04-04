@@ -4,12 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Slider from 'react-slick'
 import Swal from 'sweetalert2'
 import { isMobile } from 'react-device-detect'
-import { ReactComponent as Challenge } from '../assets/icons/menu/challenge.svg'
-import { ReactComponent as Asset } from '../assets/icons/menu/Asset28.svg'
 import { ReactComponent as Friend } from '../assets/icons/menu/friend.svg'
-import { ReactComponent as Setting } from '../assets/icons/menu/setting.svg'
-import { ReactComponent as Together } from '../assets/icons/menu/together.svg'
-import { ReactComponent as Vector } from '../assets/icons/menu/Vector.svg'
 import { ReactComponent as Rightarr } from '../assets/icons/arrow/rightarr.svg'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Edit } from '../assets/icons/settings/edit1.svg'
@@ -26,7 +21,6 @@ import TitleText from '../components/Header/TitleText'
 
 function Menu() {
   const settings = {
-    // dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -37,7 +31,6 @@ function Menu() {
   }
 
   function logout() {
-    console.log('gkgk')
     Swal.fire({
       title: '로그아웃할 거지?',
       text: '꼭 다시 돌아와부자!',
@@ -48,7 +41,6 @@ function Menu() {
       if (result.isConfirmed) {
         request({ url: 'member/login', method: 'get' })
         setMoveToLoginPage()
-        // this.props.submitUser(this.state)
       }
     })
   }
@@ -74,16 +66,21 @@ function Menu() {
       <MenuSlideBox>
         <Slider {...settings}>
           <div>
-            <SlideImg
-              src={BugReport}
-              style={{ width: '100%', height: '30%' }}
-            />
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScg9H1bTpzJfb9r6eby8hAjKaNGscTfDhUi3zvWkpRaUFj-DA/viewform">
+              <SlideImg
+                src={BugReport}
+                style={{ width: '100%', height: '30%' }}
+              />
+            </a>
           </div>
+
           <div>
-            <SlideImg
-              src={SlideReview}
-              style={{ width: '100%', height: '30%' }}
-            />
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhtX5e7Xpzn2pwnLxtFYJecxKugNq0k0bzrgGKCXo32rcX3Q/viewform">
+              <SlideImg
+                src={SlideReview}
+                style={{ width: '100%', height: '30%' }}
+              />
+            </a>
           </div>
         </Slider>
       </MenuSlideBox>
@@ -99,7 +96,6 @@ function Menu() {
               position: 'absolute',
             }}
           />
-          {/* <TodayLogo /> */}
           <TodayText>친구</TodayText>
           <Rightarr
             style={{
@@ -112,30 +108,6 @@ function Menu() {
           />
         </TodayDiv>
       </NavLink>
-      {/* <NavLink to="/menu">
-        <TodayDiv style={{ top: '303px' }}>
-          <Asset
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          <TodayText>뱃지</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink> */}
-
       <NavLink to="/modified">
         <TodayDiv style={{ top: isMobile ? 'calc(143px + 45vw)' : '303px ' }}>
           <TodayLogoDiv />
@@ -161,7 +133,7 @@ function Menu() {
         </TodayDiv>
       </NavLink>
 
-      <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
+      <a href="https://forms.gle/N9y6NaMCAccQc2pF7">
         <TodayDiv style={{ top: isMobile ? 'calc(203px + 45vw)' : '363px' }}>
           <TodayLogoDiv />
           <Review
@@ -210,29 +182,6 @@ function Menu() {
           }}
         />
       </TodayDiv>
-      {/* <NavLink to="/settings">
-        <TodayDiv style={{ top: '543px' }}>
-          <Setting
-            style={{
-              width: '24px',
-              height: '24px',
-              left: '16px',
-              top: '18px',
-              position: 'absolute',
-            }}
-          />
-          <TodayText>설정</TodayText>
-          <Rightarr
-            style={{
-              position: 'absolute',
-              width: '24px',
-              height: '24px',
-              left: '320px',
-              top: '18px',
-            }}
-          />
-        </TodayDiv>
-      </NavLink> */}
     </Wrapper>
   )
 }
@@ -271,27 +220,6 @@ const ButtonDiv = styled.div`
   bottom: 10.47%;
 `
 
-const Title = styled.div`
-  position: absolute;
-  left: 46.11%;
-  right: 45.83%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
-`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
@@ -318,15 +246,7 @@ const TodayLogoDiv = styled.div`
 
   /* background: rgba(196, 196, 196, 0.3); */
 `
-const TodayLogo = styled.div`
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 16px;
-  top: 18px;
 
-  /* background: #c4c4c4; */
-`
 const TodayText = styled.div`
   position: absolute;
   width: 150px;

@@ -152,6 +152,6 @@ const MenuText = styled.div`
   font-size: 10px;
   line-height: 14px;
   text-align: center;
-  color:#999999;
+  color: #999999;
 `
 export default NavBar
