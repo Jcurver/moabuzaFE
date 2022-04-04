@@ -9,6 +9,7 @@ import { ReactComponent as MoabuzaText } from '../assets/icons/login/moabuza_log
 function KakaoLogin() {
   deleteCookie('A-AUTH-TOKEN')
   deleteCookie('R-AUTH-TOKEN')
+
   const loginWithKakao = () => {
     window.location.href = `${KAKAO_AUTH_URL}`
   }
