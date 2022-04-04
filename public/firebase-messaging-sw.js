@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js'
 
 // importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
