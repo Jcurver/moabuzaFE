@@ -2,9 +2,10 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { getToken, onMessage } from 'firebase/messaging'
+import { getToken, onMessage, getMessaging } from 'firebase/messaging'
 import styled from 'styled-components'
-
+import { initializeApp } from 'firebase/app'
+import { setItem } from '../utils/sessionStorage'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
 import Fcmprac from './Fcmprac'
@@ -61,6 +62,55 @@ function App() {
   // useEffect(() => {
   //   firebaseMessageToken()
   // }, [])
+
+  // importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
+
+  // importScripts(
+  //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
+  // )
+
+  const config = {
+    apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
+    authDomain: 'moabuza.firebaseapp.com',
+    projectId: 'moabuza',
+    storageBucket: 'moabuza.appspot.com',
+    messagingSenderId: '702007017171',
+    appId: '1:702007017171:web:3584da8cde95f03eedde26',
+    measurementId: 'G-3PZP7TQ54Y',
+  }
+
+  const firebaseApp = initializeApp(config)
+
+  const messaging = getMessaging(firebaseApp)
+
+  // 토큰값 얻기
+  getToken(messaging, {
+    vapidKey: process.env.REACT_APP_VAPID_KEY,
+  })
+    .then((currentToken) => {
+      if (currentToken) {
+        // Send the token to your server and update the UI if necessary
+        // ...
+        console.log('FCM User Token 최초 수신:::', currentToken)
+        setItem('fcmToken', currentToken)
+      } else {
+        // Show permission request UI
+        console.log(
+          'No registration token available. Request permission to generate one.',
+        )
+        // ...
+      }
+      return currentToken
+    })
+    .catch((err) => {
+      console.log('An error occurred while retrieving token. ', err)
+      // ...
+    })
+
+  onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload)
+    // ...
+  })
 
   return (
     <ErrorBoundary FallbackComponent={KakaoLogin}>
