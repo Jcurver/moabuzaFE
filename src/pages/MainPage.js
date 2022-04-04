@@ -339,8 +339,8 @@ const Wrapper = styled.div`
 const ColorWrapper = styled.div`
   height: 66%;
   background-color: #f6f9fe;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
 `
 
 const CharacterWrapper = styled.img`
