@@ -75,13 +75,21 @@ export const request = async ({ ...options }) => {
   return instance(options).then(onSuccess).catch(onError)
 }
 
+let token
+
+if (getItem('fcmtoken')) {
+  token = getItem('fcmtoken')
+} else {
+  token = 'token'
+}
+
 export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
-        fcmToken: getItem('fcmToken'),
+        // fcmToken: getItem('fcmToken'),
 
-        // fcmToken:'fcmToken',
+        fcmToken: token,
         nickname: data.nickname,
         hero,
       })
