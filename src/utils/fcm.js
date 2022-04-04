@@ -31,7 +31,7 @@ export const fcmToken = getToken(messaging, {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
-      console.log('currentToken:::', currentToken)
+      console.log('FCM Token:::', currentToken)
       setItem("fcmToken",currentToken)
     } else {
       // Show permission request UI
