@@ -5,6 +5,13 @@ import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
 
+// eslint-disable-next-line no-undef
+importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
+// eslint-disable-next-line no-undef
+importScripts(
+  'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
+)
+
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
   authDomain: 'moabuza.firebaseapp.com',
