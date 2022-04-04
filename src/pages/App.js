@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Routes, Route } from 'react-router'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { getToken, onMessage } from 'firebase/messaging'
+import { getToken, onMessage,getMessaging } from 'firebase/messaging'
 import styled from 'styled-components'
 
 import ErrorLog from './ErrorLog'
