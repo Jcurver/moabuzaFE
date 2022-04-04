@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { isMobile } from 'react-device-detect'
 import { useChallengeData } from '../apis/challengeData'
 import { useMainPageData } from '../apis/mainpageData'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
@@ -18,8 +19,8 @@ import {
   TongkiStep03,
 } from '../assets/character'
 import TitleText from '../components/Header/TitleText'
-import RightButton from '../components/Header/RightButton';
-import LeftButton from '../components/Header/LeftButton';
+import RightButton from '../components/Header/RightButton'
+import LeftButton from '../components/Header/LeftButton'
 
 const shortid = require('shortid')
 
@@ -249,8 +250,8 @@ const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
   height: 82px;
-  border-top-left-radius: 31.4px;
-  border-top-right-radius: 31.4px;
+  border-top-left-radius: ${isMobile ? '0px' : '31.4px'};
+  border-top-right-radius: ${isMobile ? '0px' : '31.4px'};
 `
 const Title = styled.div`
   position: absolute;
