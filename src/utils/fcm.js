@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
+
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
   authDomain: 'moabuza.firebaseapp.com',
@@ -29,9 +30,10 @@ export const fcmToken = getToken(messaging, {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
-      console.log('FCM User Token 최초 수신:::', currentToken)
-      setItem('fcmToken', currentToken)
-    } else {
+      console.log('FCM User Token 최초 수신:::', currentToken);
+      setItem('fcmToken', currentToken);
+      
+    } else { 
       // Show permission request UI
       console.log(
         'No registration token available. Request permission to generate one.',
