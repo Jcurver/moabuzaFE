@@ -4,9 +4,6 @@ import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
-
-
-
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
   authDomain: 'moabuza.firebaseapp.com',
@@ -35,7 +32,7 @@ export const fcmToken = getToken(messaging, {
       // Send the token to your server and update the UI if necessary
       // ...
       console.log('FCM User Token 최초 수신:::', currentToken)
-      setItem("fcmToken",currentToken)
+      setItem('fcmToken', currentToken)
     } else {
       // Show permission request UI
       console.log(
@@ -49,8 +46,14 @@ export const fcmToken = getToken(messaging, {
     console.log('An error occurred while retrieving token. ', err)
     // ...
   })
-
-
+  
+Notification.requestPermission().then((permission) => {
+  if (permission === 'granted') {
+    console.log('Notification permission granted.')
+  } else {
+    console.log('Unable to get permission to notify.')
+  }
+})
 
 // 포그라운드 메시지 수신
 onMessage(messaging, (payload) => {
