@@ -21,7 +21,7 @@ const AlertsGroup = lazy(() => import('./AlertsGroup'))
 const AlertsChallenge = lazy(() => import('./AlertsChallenge'))
 const Login = lazy(() => import('./Login'))
 const Register = lazy(() => import('./Register'))
-const Detail = lazy(() => import('./Detail'))
+
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
@@ -37,7 +37,7 @@ const FriendsAdd = lazy(() => import('./FriendsAdd.js'))
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
-const Bedge = lazy(() => import('./Bedge'))
+
 const UserInfo = lazy(() => import('./UserInfo'))
 const OnBoarding = lazy(() => import('./OnBoarding'))
 
@@ -92,7 +92,7 @@ function App() {
             <Route path="/kakaologin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/detail" element={<Detail />} />
+
             <Route path="/calendar" element={<CalendarMain />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/modified" element={<Modified />} />
@@ -101,7 +101,7 @@ function App() {
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
-            <Route path="/bedge" element={<Bedge />} />
+
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
             <Route path="/onboarding" element={<OnBoarding />} />
