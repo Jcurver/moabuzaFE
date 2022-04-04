@@ -13,7 +13,7 @@ import { KAKAO_AUTH_URL } from '../utils/OAuth'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
-import { getItem } from '../utils/sessionStorage';
+import { getItem } from '../utils/sessionStorage'
 // import { fcmToken } from '../utils/ec2';
 
 function UserInfo() {
@@ -125,7 +125,6 @@ function UserInfo() {
   console.log(watch())
 
   useEffect(() => {
-
     setNickNameDup(false)
 
     console.log(nickNameDup)
