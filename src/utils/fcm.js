@@ -15,7 +15,7 @@ const config = {
 }
 
 
-const firebaseApp = firebase.initializeApp(config)
+const firebaseApp = initializeApp(config)
 
 
 // const app = initializeApp(config)
