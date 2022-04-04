@@ -70,12 +70,11 @@ const WebViewLayout = styled(Layout)`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border-radius: 30px;
+  border-radius: 36px;
 `
 
 const ClayPhone = styled.div`
-position:relative;
-  z-index: 5;
+
   width: 400px;
   height: 760px;
   position: fixed;
