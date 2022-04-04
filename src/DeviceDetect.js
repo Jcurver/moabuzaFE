@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
-import moabuzaBg from '../assets/webview/moabuzabg.jpeg'
-import iphone from '../assets/webview/iphone.png'
+import moabuzaBg from './assets/moabuzabg.jpeg'
+import iphone from './assets/iphone.png'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01

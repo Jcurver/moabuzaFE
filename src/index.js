@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import App from './pages/App'
-import DeviceDetect from './utils/DeviceDetect'
+import DeviceDetect from './DeviceDetect'
 
 import reportWebVitals from './reportWebVitals'
 import GlobalStyle from './styles/GlobalStyle'
