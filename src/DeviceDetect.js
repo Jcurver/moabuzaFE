@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
-
-
 import moabuzaBg from './assets/webview/moabuzaBg.jpeg'
 import iphone from './assets/webview/iphone.png'
 
@@ -62,7 +60,6 @@ const Layout = styled.div`
 
 const WebViewLayout = styled(Layout)`
   max-width: 360px;
-
   max-height: 720px;
 
   position: absolute;
@@ -74,7 +71,6 @@ const WebViewLayout = styled(Layout)`
 `
 
 const ClayPhone = styled.div`
-
   width: 400px;
   height: 760px;
   position: fixed;
