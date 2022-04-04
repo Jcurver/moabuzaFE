@@ -1,10 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
@@ -16,9 +14,6 @@ import {
 } from '../apis/alertsData'
 
 import {
-  FriendAccept,
-  FriendAdd,
-  FriendReject,
   GoalCancel,
   GoalCreate,
   GoalSuccess,
@@ -29,51 +24,6 @@ import {
 import TitleText from '../components/Header/TitleText'
 
 function AlertsGroup() {
-  const cdata = [
-    {
-      AlarmId: 1,
-      alarmDetailType: 'invite',
-      friendNickname: 'bunny11',
-      goalName: '아이패드내놔',
-      goalAmount: 500000,
-    },
-    {
-      AlarmId: 2,
-      alarmDetailType: 'accept',
-      friendNickname: 'bunny22',
-      goalName: '아이패드내놔',
-      goalAmount: 500000,
-    },
-    {
-      AlarmId: 3,
-      alarmDetailType: 'create',
-      friendNickname: 'bunny33',
-      goalName: '수능잘볼래',
-      goalAmount: 50000,
-    },
-    {
-      AlarmId: 4,
-      alarmDetailType: 'record',
-      friendNickname: 'bunny44',
-      goalName: '갤럭시탭내놔',
-      goalAmount: 10000,
-    },
-    {
-      AlarmId: 5,
-      alarmDetailType: 'success',
-      friendNickname: 'bunny55',
-      goalName: '맥북내놔',
-      goalAmount: 3300200,
-    },
-    {
-      AlarmId: 6,
-      alarmDetailType: 'boom',
-      friendNickname: 'bunny66',
-      goalName: '아이패드살래',
-      goalAmount: 440000,
-    },
-  ]
-
   const navigate = useNavigate()
   const {
     isLoading,
@@ -81,10 +31,8 @@ function AlertsGroup() {
     isError,
     error,
   } = useAlertsGroupData(navigate)
-  console.log('알람데이터챌린지 : ', isLoading, AlertGroupList, isError, error)
 
   function alarmDeleteAndRender(id) {
-    console.log('알람아이디:', id)
     Swal.fire({
       title: '알람을 삭제하시겠어요?',
       text: '삭제하면 다시 못봐요!',
@@ -265,7 +213,9 @@ function AlertsGroup() {
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
                           <AlertTextTopRight>님이 </AlertTextTopRight>
-                          <AlertTextTopRight style={{fontWeight:700}}>{d.goalName}</AlertTextTopRight>
+                          <AlertTextTopRight style={{ fontWeight: 700 }}>
+                            {d.goalName}
+                          </AlertTextTopRight>
                           <AlertTextTopRight> 목표에</AlertTextTopRight>
                         </Flex>
                         <Flex>
@@ -361,39 +311,6 @@ const TopDiv = styled.div`
   height: 82px;
   left: 0px;
   top: 0px;
-`
-
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  right: 85.56%;
-  top: 33.72%;
-  bottom: 10.47%;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
-`
-
-const AddFriend = styled.div`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* color/Btn-basic1 */
-
-  background: #e5eaf2;
-  opacity: 0.5;
 `
 
 const Title = styled.div`

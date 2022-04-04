@@ -19,10 +19,7 @@ const Wrapper = styled.div`
 `
 
 const LoadingIconBox = styled.img`
-  /* position: absolute; */
   width: 60px;
   height: 60px;
-  /* left: 150px; */
-  /* top: 308px; */
 `
 export default Loading

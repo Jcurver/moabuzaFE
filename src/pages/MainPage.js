@@ -1,12 +1,9 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useRecoilState, atom } from 'recoil'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import ProgressBar from '@ramonak/react-progress-bar'
-import axios from 'axios'
-import { getToken, onMessage } from 'firebase/messaging'
 
 import { isMobile } from 'react-device-detect'
 import { setFlexStyles } from '../styles/Mixin'
@@ -20,11 +17,8 @@ import { ReactComponent as Plus } from '../assets/icons/plus/akar-icons_plus.svg
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
-import { api } from '../utils/axios'
 import '../styles/MenuTransition.css'
-import { nowDate } from '../hooks/nowDate'
-import { onedayBuzaDate } from '../recoil/setDateToday'
-import { setItem, getItem } from '../utils/sessionStorage'
+import { setItem } from '../utils/sessionStorage'
 import {
   BunnyGG,
   TongkiGG,
@@ -80,18 +74,13 @@ function MainPage() {
     return <Loading />
   }
   if (isError) {
-    console.log('error : ', error)
     return <ErrorLog error={error} />
   }
-  console.log('데이터확인 : ', isLoading, data, isError, error)
 
   const nowChallengePercent = data.data.challengePercent
   const nowGroupPercent = data.data.groupPercent
   const userNickName = data.data.nickname
 
-  console.log('nowChallengePercent', nowChallengePercent)
-  console.log('nowGroupPercent', nowGroupPercent)
-  // if(data && data.data.nickname )
   return (
     <Wrapper>
       <ColorWrapper>
@@ -163,13 +152,9 @@ function MainPage() {
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
             </ContentUnderDiv>
-            {/* <CharacterInfo>
-            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo> */}
+
             <ProgressDiv>
               <ProgressBar
-                // completed={60}
                 completed={data.data.groupPercent}
                 animateOnRender
                 bgColor="#4675F0"
@@ -223,38 +208,7 @@ function MainPage() {
               </ContentWon>
               <ContentNeed>남았어요!</ContentNeed>
             </ContentUnderDiv>
-            {/* <CharacterInfo>
-            <CharacterLevel>Lv.{data.data.heroLevel}</CharacterLevel>
-            <CharacterNickname>{data.data.hero}</CharacterNickname>
-          </CharacterInfo> */}
-            {/* <ProgressDiv />
-          <div
-            style={{
-              width: '100%',
-              height: '20px',
-              position: 'absolute',
-              marginTop: '130%',
-            }}
-          >
-            <ProgressBar
-              completed={data ? data.data.challengePercent : ''}
-              // completed={data ? data.data.groupNowPercent : 50}
-              animateOnRender="true"
-              bgColor="#FFB000"
-              width="328px"
-              height="20px"
-              margin="0 auto"
-              borderRadius="11px"
-              labelAlignment="center"
-              labelSize="14px"
-            />
-            <ProgressBarCharge
-              percent={data ? data.data.challengePercent : '0'}
-            >
-              {data ? data.data.challengePercent : '0'}%
-              {data && data.data.challengePercent > 5 ? "%":''}
-            </ProgressBarCharge>
-          </div> */}
+
             <ProgressDiv>
               <ProgressBar
                 completed={data.data.challengePercent}
@@ -331,14 +285,12 @@ function MainPage() {
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
         <Won>{data ? data.data.wallet.toLocaleString('en-US') : '0'}원</Won>
-        {/* <ChartBtn>분석해부자</ChartBtn> */}
       </BottomLine>
       <BottomLine style={{ top: '79.03%' }}>
         <MyWallet>나의 자산은</MyWallet>
         <Won>
           {data ? data.data.totalAmount.toLocaleString('en-US') : '0'}원
         </Won>
-        {/* <ChartBtn>분석해부자</ChartBtn> */}
       </BottomLine>
 
       <Nav />
@@ -370,7 +322,6 @@ const RightButtonDiv = styled.div`
   top: 4.03%;
   width: 48px;
   height: 48px;
-  /* background: rgba(196, 196, 196, 0.3); */
 `
 
 const RightButton = styled.div`
@@ -381,19 +332,6 @@ const RightButton = styled.div`
   height: 24px;
 
   background: #c4c4c4;
-`
-const TopDiv = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  })}
-  position: absolute;
-  width: 360px;
-  left: 0px;
-  top: 0px;
-  background: #f6f9fe;
-  height: 67.4%;
 `
 
 const Toggle = styled.div`
@@ -541,112 +479,12 @@ const SetAmountButton = styled.div`
   box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
   border-radius: 24px;
 `
-const MakeChallenge = styled.button`
-  /* home_입력전_자산설정Btn */
-
-  /* Auto layout */
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 20px;
-  border: none;
-  position: absolute;
-  width: 171px;
-  height: 48px;
-  left: 95px;
-
-  top: 56.25%;
-  background: #ffffff;
-  box-shadow: 0px 6px 8px rgba(205, 218, 240, 0.8);
-  border-radius: 24px;
-`
-const CharacterInfo = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 55.69%;
-  width: 360px;
-  height: 20px;
-`
-const CharacterLevel = styled.div`
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.04em;
-  color: #999999;
-  margin-right: 4px;
-`
-const CharacterNickname = styled.div`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.04em;
-
-  color: #333333;
-`
 
 const ProgressDiv = styled.div`
   position: absolute;
   width: 100%;
   height: 60px;
-
   top: 62.08%;
-`
-// const ProgressBar = styled.div`
-//   position: absolute;
-//   width: 328px;
-//   height: 22px;
-//   left: 16px;
-//   top: 62.1%;
-
-//   /* color/Btn-basic1 */
-
-//   /* background: yellow; */
-//   background: #e5eaf2;
-//   border-radius: 11px;
-// `
-
-const ProgressBarCharge = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  })}
-
-  position: absolute;
-  width: ${(props) => props.percent * 3.28}px;
-  height: 20px;
-  left: 16px;
-  top: 0px;
-  /* top: 62.1%; */
-
-  /* color / Accent */
-
-  background: #ffb000;
-  border-radius: 11px;
-
-  /* color / Accent */
-
-  background: #ffb000;
-  border-radius: 11px;
-  font-family: 'Roboto-Medium';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-
-  /* color/gray/White */
-
-  color: #ffffff;
 `
 
 const BottomLine = styled.div`
@@ -655,7 +493,6 @@ const BottomLine = styled.div`
     alignItems: 'center',
   })}
   position: absolute;
-
   width: 91.1%;
   height: 6.7%;
   background: #f5f5f7;
@@ -676,7 +513,6 @@ const MyWallet = styled.span`
 const Won = styled.span`
   font-family: 'Roboto-Medium';
   font-style: normal;
-  /* font-weight: bold; */
   font-size: 18px;
   line-height: 21px;
 `
