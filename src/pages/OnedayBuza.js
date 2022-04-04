@@ -35,8 +35,6 @@ import RightButton from '../components/Header/RightButton'
 import LeftButton from '../components/Header/LeftButton'
 import receipt from '../assets/icons/onedaybuza/receipt.png'
 
-
-
 registerLocale('ko', ko)
 
 function ExampleCustomInput({ value, onClick }) {
@@ -141,7 +139,6 @@ function OnedayBuza(state) {
         <RightButton>입력</RightButton>
       </NavLink>
 
-
       <TopLine />
       <CalDiv>
         <LeftArrowDiv onClick={() => yesterday()}>
@@ -210,7 +207,7 @@ function OnedayBuza(state) {
       <BottomLine />
       <TodayListBigDiv />
       <ZigZagDiv>
-            <Receipt src={receipt} />
+        <Receipt src={receipt} />
         <ZigZag />
         <ZigZag />
         <ZigZag />
@@ -293,7 +290,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-
 `
 const TopDiv = styled.div`
   position: absolute;
@@ -484,13 +480,13 @@ const TodayListBigDiv = styled.div`
   position: absolute;
 
   width: 100%;
-  height: 51%;
+  height: 40%;
   left: 0px;
-  top:0px;
+  top: 0px;
   top: 49%;
 
   /* background-color: #EBF2FF; */
-  /* background-color: var(--bg-primary); */
+  background-color: #ebf2ff;
   /* background: red; */
 `
 const TodayListTitle = styled.div`
@@ -520,7 +516,7 @@ const TodayListDiv = styled.div`
   width: 100%;
   height: 28%;
   top: 60.56%;
-  
+
   padding: 0 4.44%;
   overflow: scroll;
 
@@ -620,7 +616,6 @@ const ZigZagDiv = styled.div`
   height: 20px;
   width: 100%;
   /* overflow-x: hidden; */
-
 `
 const ZigZag = styled.div`
   width: 26px;
@@ -632,12 +627,11 @@ const ZigZag = styled.div`
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.08);
 `
 const Receipt = styled.div`
-position: absolute;
-width:100%;
-height:10%;
-top:0;
-left:0;
-
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  top: 0;
+  left: 0;
 `
 
 export default OnedayBuza
