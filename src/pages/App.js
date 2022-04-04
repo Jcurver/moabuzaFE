@@ -63,7 +63,7 @@ function App() {
   // }, [])
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorLog}>
+    <ErrorBoundary FallbackComponent={KakaoLogin}>
       <Suspense fallback={<Loading />}>
         <MainDiv>
           <Routes>
