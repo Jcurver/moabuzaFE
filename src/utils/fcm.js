@@ -31,7 +31,7 @@ export const fcmToken = getToken(messaging, {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
-      console.log('currentToken:::', currentToken)
+      console.log('FCM User Token 최초 수신:::', currentToken)
       setItem("fcmToken",currentToken)
     } else {
       // Show permission request UI
@@ -40,6 +40,7 @@ export const fcmToken = getToken(messaging, {
       )
       // ...
     }
+    return currentToken
   })
   .catch((err) => {
     console.log('An error occurred while retrieving token. ', err)

@@ -20,7 +20,7 @@ ReactDOM.render(
         <Router>
           <GlobalStyle />
           <DeviceDetect>
-            <App />
+            <App/>
           </DeviceDetect>
 
         </Router>

@@ -13,15 +13,13 @@ import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
 import '../utils/fcm'
-import Nav from '../components/Nav'
 
 const MainPage = lazy(() => import('./MainPage'))
 const Alerts = lazy(() => import('./Alerts'))
 const AlertsGroup = lazy(() => import('./AlertsGroup'))
 const AlertsChallenge = lazy(() => import('./AlertsChallenge'))
 const Login = lazy(() => import('./Login'))
-const Register = lazy(() => import('./Register'))
-const Detail = lazy(() => import('./Detail'))
+
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
 const Group = lazy(() => import('./Group'))
@@ -29,7 +27,6 @@ const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 const ChallengeBuzaCreate = lazy(() => import('./ChallengeBuzaCreate'))
 const ChallengeBuzaDetail = lazy(() => import('./ChallengeBuzaDetail'))
 
-const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
 const Friends = lazy(() => import('./Friends'))
 const FriendsAdd = lazy(() => import('./FriendsAdd.js'))
@@ -37,7 +34,7 @@ const FriendsAdd = lazy(() => import('./FriendsAdd.js'))
 const GroupBuza = lazy(() => import('./GroupBuza'))
 const GroupBuzaCreate = lazy(() => import('./GroupBuzaCreate'))
 const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
-const Bedge = lazy(() => import('./Bedge'))
+
 const UserInfo = lazy(() => import('./UserInfo'))
 const OnBoarding = lazy(() => import('./OnBoarding'))
 
@@ -91,9 +88,7 @@ function App() {
             />
             <Route path="/kakaologin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/detail" element={<Detail />} />
-            <Route path="/calendar" element={<CalendarMain />} />
+
             <Route path="/settings" element={<Settings />} />
             <Route path="/modified" element={<Modified />} />
             <Route path="/friends" element={<Friends />} />
@@ -101,7 +96,7 @@ function App() {
             <Route path="/groupbuza" element={<GroupBuza />} />
             <Route path="/groupbuzacreate" element={<GroupBuzaCreate />} />
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
-            <Route path="/bedge" element={<Bedge />} />
+
             {/* <Route path="/login" element={<Login />} /> */}
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
             <Route path="/onboarding" element={<OnBoarding />} />
@@ -126,10 +121,9 @@ const MainDiv = styled.div`
   overflow: hidden;
   width: 100%;
 
-  -webkit-full-screen{
+  -webkit-full-screen {
     width: 100%;
-    height:100%;
-    
+    height: 100%;
   }
 `
 
