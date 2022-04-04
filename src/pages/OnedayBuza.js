@@ -19,6 +19,10 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css'
 import { getDate } from '../hooks/getDate'
 import '../styles/OneDaySlide.css'
 import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
+import { ReactComponent as Challenge } from '../assets/icons/onedaybuza/challenge.svg'
+import { ReactComponent as Minus } from '../assets/icons/onedaybuza/minus.svg'
+import { ReactComponent as Plus } from '../assets/icons/onedaybuza/plus.svg'
+import { ReactComponent as Together } from '../assets/icons/onedaybuza/together.svg'
 
 import { getItem, setItem } from '../utils/sessionStorage'
 import TitleText from '../components/Header/TitleText'
@@ -243,8 +247,8 @@ function OnedayBuza(state) {
                     <TodayListLineMemo>{d.memos}</TodayListLineMemo>
                   </TodayListLineLeft>
                   <TodayListLineRight>
-                    {d.recordType === 'income' ? '+' : ''}
-                    {d.recordType === 'expense' ? '-' : ''}
+                    {d.recordType === 'income' ? <Plus /> : ''}
+                    {d.recordType === 'expense' ? <Minus /> : ''}
                     {d.recordAmount.toLocaleString('en-US')} 원
                   </TodayListLineRight>
                 </TodayListLine>
@@ -459,7 +463,8 @@ const TodayListLineRight = styled.div`
   })}
   padding: 6px 12px;
   white-space: nowrap;
-  width: 92px;
+  min-width: 92px;
+  width: auto;
   height: 28px;
 
   /* color / text / Color-text-Gray3 */
