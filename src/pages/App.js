@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { getToken, onMessage, getMessaging } from 'firebase/messaging'
 import styled from 'styled-components'
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js'
+import { initializeApp } from 'firebase/app'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
 import Fcmprac from './Fcmprac'
