@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
 
-import backgroundSrcs from './assets/moabg.png'
+
 import moabuzaBg from './moabuzaBg.jpeg'
 import iphone from './iphone.png'
 
@@ -101,7 +101,7 @@ const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: url(${backgroundSrcs}) no-repeat fixed;
+  background: url(${moabuzaBg}) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
