@@ -68,25 +68,44 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"
+    ></script>
     <script
       type="module"
       src="https://moabuza.com/firebase-messaging-sw.js"
     ></script>
     <script>
+      // if ('serviceWorker' in navigator) {
+      //   window.addEventListener('load', () => {
+      //     navigator.serviceWorker
+      //       .register('./firebase-messaging-sw.js')
+      //       .then((res) => {
+      //         console.log('서비스 워커가 등록됨!!:::', res)
+      //       })
+      //       .catch((err) => {
+      //         console.log('서비스워커 등록이 안됨 ㅠㅠ:::', err)
+      //       })
+      //   })
+      // }
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('./firebase-messaging-sw.js')
-            .then((res) => {
-              console.log('서비스 워커가 등록됨!!:::', res)
-            })
-            .catch((err) => {
-              console.log('서비스워커 등록이 안됨 ㅠㅠ:::', err)
-            })
-        })
+        navigator.serviceWorker
+          .register('./firebase-messaging-sw.js')
+          .then(function (registration) {
+            console.log(
+              'Registration successful, scope is:',
+              registration.scope,
+            )
+          })
+          .catch(function (err) {
+            console.log('Service worker registration failed, error:', err)
+          })
       }
     </script>
   </body>
