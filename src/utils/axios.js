@@ -75,6 +75,14 @@ export const request = async ({ ...options }) => {
   return instance(options).then(onSuccess).catch(onError)
 }
 
+let token
+
+if (getItem('fcmtoken')) {
+  token = getItem('fcmtoken')
+} else {
+  token = 'token'
+}
+
 export const api = {
   getUserInfo: (data, hero) =>
     instance
