@@ -7,6 +7,7 @@ import LogoImg from '../assets/icons/login/logo_start.gif'
 import { ReactComponent as KakaoLoginBtn } from '../assets/icons/kakaoLoginBtn.svg'
 import { ReactComponent as MoabuzaText } from '../assets/icons/login/moabuza_logo.svg'
 import { loginBtnStyle } from '../styles/Mixin'
+import {getItem} from '../utils/sessionStorage'
 
 function KakaoLogin() {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ function KakaoLogin() {
   //   }
   //   getTokenWithKakao()
   // }, [navigate])
-
+  console.log(getItem('fcmToken'))
   const loginWithKakao = () => {
     window.location.href = `${KAKAO_AUTH_URL}`
   }
