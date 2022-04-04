@@ -14,13 +14,11 @@ import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
 import '../utils/fcm'
 
-
 const MainPage = lazy(() => import('./MainPage'))
 const Alerts = lazy(() => import('./Alerts'))
 const AlertsGroup = lazy(() => import('./AlertsGroup'))
 const AlertsChallenge = lazy(() => import('./AlertsChallenge'))
 const Login = lazy(() => import('./Login'))
-
 
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
@@ -29,7 +27,6 @@ const ChallengeBuza = lazy(() => import('./ChallengeBuza'))
 const ChallengeBuzaCreate = lazy(() => import('./ChallengeBuzaCreate'))
 const ChallengeBuzaDetail = lazy(() => import('./ChallengeBuzaDetail'))
 
-const CalendarMain = lazy(() => import('./CalendarMain'))
 const KakaoAuthHandle = lazy(() => import('../components/KakaoLogin'))
 const Friends = lazy(() => import('./Friends'))
 const FriendsAdd = lazy(() => import('./FriendsAdd.js'))
@@ -92,8 +89,6 @@ function App() {
             <Route path="/kakaologin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
 
-
-            <Route path="/calendar" element={<CalendarMain />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/modified" element={<Modified />} />
             <Route path="/friends" element={<Friends />} />
@@ -126,10 +121,9 @@ const MainDiv = styled.div`
   overflow: hidden;
   width: 100%;
 
-  -webkit-full-screen{
+  -webkit-full-screen {
     width: 100%;
-    height:100%;
-    
+    height: 100%;
   }
 `
 
