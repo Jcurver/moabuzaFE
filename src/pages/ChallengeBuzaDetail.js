@@ -135,7 +135,9 @@ function ChallengeBuzaDetail() {
               }
             />
           </DetailImgWrapper>
-
+          <GoalAmount>
+            목표 금액 : {challengeData.challengeGoalAmount} 원
+          </GoalAmount>
           <ProgressBar
             completed={homeData ? homeData.data.data.challengePercent : 0}
             // completed={70}
@@ -144,7 +146,7 @@ function ChallengeBuzaDetail() {
             baseBgColor="#ffffff"
             width="91.1%"
             height="22px"
-            margin="0 auto"
+            margin="0 auto 20px auto"
             borderRadius="11px"
             labelAlignment={
               homeData && homeData.data.data.challengePercent > 9
@@ -182,6 +184,7 @@ function ChallengeBuzaDetail() {
                         <span> 원 남았어요!</span>
                       </ChallengeFriendAmount>
                     </ChallengeFriendContents>
+
                     <ProgressBar
                       completed={member.challengeMemberNowPercent}
                       animateOnRender
@@ -290,11 +293,33 @@ const ForgiveMoveButton = styled.button`
   color: #4675f0;
 `
 
+const GoalAmount = styled.div`
+  /* position: absolute; */
+  width: 91.1%;
+  height: 24px;
+  margin: 0 auto 8px auto;
+  display: flex;
+  justify-content: flex-start;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 170%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: -0.04em;
+
+  /* color/text/Color-text-Gray2 */
+
+  color: #8c939d;
+`
+
 const DetailWrapper = styled.div`
   width: 100%;
   background-color: #ebf2ff;
   text-align: center;
-  height: 340px;
+  height: 355px;
 `
 
 const DetailTitle = styled.div`
@@ -363,7 +388,7 @@ const DetailImgWrapper = styled.div`
 const DetailCharacter = styled.img`
   width: 287px;
   height: 168px;
-  margin: 0px auto 28px auto;
+  margin: 0px auto 16px auto;
 `
 // Scroll
 const ScrollWrapper = styled.div`

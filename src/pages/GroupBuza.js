@@ -132,6 +132,9 @@ function GroupBuza() {
                       </GroupFriendGoalAmount>
                       <span> 원 남았습니다.</span>
                     </GroupFriendGoal>
+                    <GoalAmount>
+                      목표 금액 : {data.data.challengeGoalAmount} 원
+                    </GoalAmount>
                     <ProgressBar
                       // completed={60}
                       completed={
@@ -239,7 +242,7 @@ const Text = styled.span`
 const GoalWrapper = styled.div`
   position: absolute;
   width: 91.11%;
-  height: 156px;
+  height: 181px;
   /* top: 13%; */
   margin-bottom: 10px;
   padding-top: 0.01px;
@@ -248,6 +251,27 @@ const GoalWrapper = styled.div`
 
   background: #f5f5f7;
   border-radius: 8px;
+`
+const GoalAmount = styled.div`
+  /* position: absolute; */
+  width: 91.1%;
+  height: 24px;
+  margin: 0 auto 4px auto;
+  display: flex;
+  justify-content: flex-start;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 170%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: -0.04em;
+
+  /* color/text/Color-text-Gray2 */
+
+  color: #8c939d;
 `
 
 const GoalText = styled.div`
@@ -405,7 +429,7 @@ const GroupFriendTitle = styled.div`
 const GroupFriendGoal = styled.div`
   width: 300px;
   height: 21px;
-  margin: 8px 0px 15px 12px;
+  margin: 8px 0px 8px 12px;
 `
 
 const GroupFriendGoalAmount = styled.span`
