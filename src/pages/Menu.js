@@ -89,9 +89,7 @@ function Menu() {
       </MenuSlideBox>
 
       <NavLink to="/friends">
-        <TodayDiv
-          style={{ top: isMobile ? 'calc(83px + 45vw)' : '243px' }}
-        >
+        <TodayDiv style={{ top: isMobile ? 'calc(83px + 45vw)' : '243px' }}>
           <Friend
             style={{
               width: '24px',
@@ -139,9 +137,7 @@ function Menu() {
       </NavLink> */}
 
       <NavLink to="/modified">
-        <TodayDiv
-          style={{ top: isMobile ? 'calc(143px + 45vw)' : '303px ' }}
-        >
+        <TodayDiv style={{ top: isMobile ? 'calc(143px + 45vw)' : '303px ' }}>
           <TodayLogoDiv />
           <Edit
             style={{
@@ -166,9 +162,7 @@ function Menu() {
       </NavLink>
 
       <a href="https://docs.google.com/forms/d/1_cBHl1ipChUCLiiCS7phFPuFQbiEPds4cjmKW41Q0g0/edit">
-        <TodayDiv
-          style={{ top: isMobile ? 'calc(203px + 45vw)' : '363px' }}
-        >
+        <TodayDiv style={{ top: isMobile ? 'calc(203px + 45vw)' : '363px' }}>
           <TodayLogoDiv />
           <Review
             style={{

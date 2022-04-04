@@ -631,11 +631,9 @@ const SelectedFriendContent = styled.div`
 `
 const DeleteFriendContent = styled.button`
   width: 40px;
-  height:30px;
+  height: 30px;
   background: white;
   /* color / text / Color-text-Gray1 */
-
-
 `
 
 const ErrorSpan = styled.span`
