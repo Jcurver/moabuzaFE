@@ -46,7 +46,6 @@ const addRefreshSubscriber = (callback) => {
 }
 
 instance.interceptors.request.use((config) => {
-
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
   console.log('A_AUTH_TOKEN : ', A_AUTH_TOKEN)
@@ -76,8 +75,10 @@ export const request = async ({ ...options }) => {
   return instance(options).then(onSuccess).catch(onError)
 }
 
+const fcmToken = getItem('fcmToken')
+
 export const api = {
-  getUserInfo: (data, hero, fcmToken) =>
+  getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
         // fcmToken: getItem('fcmToken'),
