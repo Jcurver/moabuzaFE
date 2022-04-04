@@ -14,14 +14,12 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(config)
-} else {
-  firebase.app()
-}
+
+const firebaseApp = firebase.initializeApp(config)
+
 
 // const app = initializeApp(config)
-const messaging = getMessaging()
+const messaging = getMessaging(firebaseApp)
 
 // 토큰값 얻기
 export const fcmToken = getToken(messaging, {
@@ -46,14 +44,14 @@ export const fcmToken = getToken(messaging, {
     console.log('An error occurred while retrieving token. ', err)
     // ...
   })
-  
-Notification.requestPermission().then((permission) => {
-  if (permission === 'granted') {
-    console.log('Notification permission granted.')
-  } else {
-    console.log('Unable to get permission to notify.')
-  }
-})
+
+// Notification.requestPermission().then((permission) => {
+//   if (permission === 'granted') {
+//     console.log('Notification permission granted.')
+//   } else {
+//     console.log('Unable to get permission to notify.')
+//   }
+// })
 
 // 포그라운드 메시지 수신
 onMessage(messaging, (payload) => {
