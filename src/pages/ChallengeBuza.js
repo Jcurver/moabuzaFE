@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
-import { api, request } from '../utils/axios'
+import { request } from '../utils/axios'
 import ScrollWrapper from '../components/ScrollWrapper'
 import { useChallengeData } from '../apis/challengeData'
 import { useMainPageData } from '../apis/mainpageData'
@@ -22,10 +22,7 @@ function ChallengeBuza() {
   // 홈데이터 부르는 부분 수정사항 -----------
   const { data, isLoading } = useChallengeData(navigate)
   const homeData = useMainPageData(navigate)
-  if (data) {
-    console.log('데이터ㅣㅣ', data)
-    console.log('웨이팅골', data.data.waitingGoals)
-  }
+
   const cancelChallenge = (id) => {
     Swal.fire({
       title: '도전 포기!',
@@ -58,25 +55,6 @@ function ChallengeBuza() {
   console.log(data)
   return (
     <Wrapper>
-      {/* {data ? data.data.goalStatus : 'asdasd'}
-      <button
-        type="button"
-        onClick={() => {
-          request({
-            url: `/money/group`,
-            method: 'get',
-            data: {
-              id: data.id,
-            },
-          }).then(
-            (response) => console.log(response),
-            (data.data.goalStatus = ''),
-            navigate('/challengebuza'),
-          )
-        }}
-      >
-        설정변경
-      </button> */}
       <TitleText>도전해부자</TitleText>
       <ChallengeWaitingDiv>
         {data
@@ -150,7 +128,6 @@ function ChallengeBuza() {
                       목표 금액 : {data.data.challengeGoalAmount} 원
                     </GoalAmount>
                     <ProgressBar
-                      // completed={60}
                       completed={
                         homeData ? homeData.data.data.challengePercent : 50
                       }
@@ -224,38 +201,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const Title = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  })}
-  /* margin-top: 19px;
-  margin-bottom: 33px; */
-
-  position: absolute;
-  width: 100%;
-  height: 22px;
-
-  top: 5.972%;
-`
-
-const MoveButton = styled.button`
-  width: 48px;
-  height: 48px;
-`
-
-const Text = styled.span`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 140%;
-`
 
 const GoalAmount = styled.div`
-  /* position: absolute; */
   width: 91.1%;
   height: 24px;
   margin: 0 auto 4px auto;
@@ -280,7 +227,6 @@ const GoalWrapper = styled.div`
   position: absolute;
   width: 91.11%;
   height: 181px;
-  /* top: 13%; */
   margin-bottom: 10px;
   padding-top: 0.01px;
 
@@ -392,14 +338,10 @@ const GroupFriend = styled.div`
   padding: 0px;
 
   margin: 20px 0px 16px 12px;
-  /* position: absolute; */
   width: 200px;
   height: 24px;
-  /* left: 28px;
-  top: 16.5%; */
 `
 const GroupFriendIcon = styled.img`
-  /* position: static; */
   width: 32px;
   height: 32px;
 
@@ -416,8 +358,6 @@ const GroupFriendIcon = styled.img`
 `
 
 const GroupFriendTitle = styled.div`
-  /* position: absolute;
-   */
   margin: 16px 132px 8px 12px;
   width: 300px;
   height: 16px;

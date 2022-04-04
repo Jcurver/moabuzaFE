@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import instance from 'axios'
 import { useForm } from 'react-hook-form'
-import { NavLink, useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import styled from 'styled-components'
 import { request, api } from '../utils/axios'
 import { setFlexStyles } from '../styles/Mixin'
 import { getCookie, setCookie } from '../utils/cookie'
-import { KAKAO_AUTH_URL } from '../utils/OAuth'
-// import { fcmToken } from '../utils/fcm'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
 import { getItem } from '../utils/sessionStorage'
-// import { fcmToken } from '../utils/ec2';
 
 function UserInfo() {
   const navigate = useNavigate()
@@ -24,19 +19,15 @@ function UserInfo() {
     setHero(i)
     setValue('character', i)
   }
-  // let fcmUserToken
-  // console.log('fcmToken:::',fcmUserToken)
+
   const fcmToken = getItem('fcmToken')
   const onValid = async (data) => {
     if (hero === 'hero0') {
       Swal.fire({
         title: '캐릭터를 골라부자!',
-        // text: '이제부터 열심히 모아부자!',
         confirmButtonText: '확인!',
       })
-        .then((result) => {
-          console.log(result)
-        })
+        .then((result) => {})
         .catch((err) => console.log(err))
       return
     }
@@ -44,11 +35,7 @@ function UserInfo() {
       Swal.fire({
         title: '닉네임 중복확인해부자',
         confirmButtonText: '확인!',
-        //  text: '열심히 모아부자!',
-        // icon: 'success',
-      }).then((result) => {
-        console.log(result)
-      })
+      }).then((result) => {})
       return
     }
 
@@ -58,15 +45,12 @@ function UserInfo() {
         text: '이제부터 열심히 모아부자!',
         confirmButtonText: '확인!',
       })
-        .then((result) => {
-          console.log(result)
-        })
+        .then((result) => {})
         .catch((err) => console.log(err)),
     )
     navigate('/onboarding')
   }
   function NicknameDup() {
-    console.log('닉네임::', watch().nickname)
     if (watch().nickname === '') {
       return null
     }
@@ -76,7 +60,6 @@ function UserInfo() {
       data: { nickname: watch().nickname },
     })
       .then((res) => {
-        console.log('중복확인::', res.data.msg)
         if (res.status === 200) {
           if (res.data.msg === '해당 닉네임은 사용이 가능합니다.') {
             setNickNameDup(true)
@@ -84,10 +67,7 @@ function UserInfo() {
               title: '사용가능한 닉네임',
               text: '열심히 모아부자!',
               confirmButtonText: '확인!',
-              // icon: 'success',
-            }).then((result) => {
-              console.log(result)
-            })
+            }).then((result) => {})
           }
           if (res.data.msg === '해당 닉네임은 사용 중 입니다.') {
             setNickNameDup(false)
@@ -95,10 +75,7 @@ function UserInfo() {
               title: '사용중인 닉네임',
               text: '다른거로 골라부자 ㅠㅠ',
               confirmButtonText: '확인!',
-              // icon: 'success',
-            }).then((result) => {
-              console.log(result)
-            })
+            }).then((result) => {})
           }
         }
       })
@@ -107,7 +84,6 @@ function UserInfo() {
           title: '에러 발생',
           text: '개발자 바보 ㅜㅜ',
           confirmButtonText: '확인!',
-          // icon: 'success',
         }).then((result) => {
           console.log(result)
         })
@@ -145,13 +121,6 @@ function UserInfo() {
       console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
     }
     getTokenWithKakao()
-
-    // async function getFCM() {
-    //   const FCM = await Promise.all(fcmToken)
-    //   return FCM
-    // }
-    // fcmUserToken = getFCM()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate])
 
@@ -254,68 +223,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`
-const TopDiv = styled.div`
-  position: absolute;
-  width: 360px;
-  height: 86px;
-  left: 0px;
-  top: 0px;
-`
-
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  top: 33.72%;
-  width: 48px;
-  height: 48px;
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  top: 5.97%;
-  width: 24px;
-  height: 24px;
-  background: #c4c4c4;
-`
-const ButtonSubmit = styled.button`
-  position: absolute;
-  width: 26px;
-  height: 14px;
-  left: 318px;
-  top: 6.67%;
-  /* Heading/Noto Sans KR/H6 */
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-  text-align: center;
-  letter-spacing: -0.04em;
-  color: #000000;
-  background-color: #fff;
-`
-const Title = styled.div`
-  position: absolute;
-  width: 122px;
-  height: 23px;
-  left: 119px;
-  top: 5.97%;
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-  color: #000000;
 `
 const TopLine = styled.div`
   position: absolute;

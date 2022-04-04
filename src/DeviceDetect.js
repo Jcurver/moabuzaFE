@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
@@ -12,32 +12,6 @@ export const setVh = () => {
 }
 
 function DeviceDetect({ children }) {
-  // const setGlobalWebViewWrapper = useSetRecoilState(globalWebViewWrapperState)
-  // const webViewWrapper = useRef(null)
-  // useEffect(() => {
-  //   const preventShrink = function () {
-  //     var viewport = document.querySelector('meta[name=viewport]')
-  //     viewport.setAttribute(
-  //       'content',
-  //       viewport.content + ', height=' + window.innerHeight,
-  //     )
-  //   }
-
-  //   window.addEventListener('load', setVh)
-  //   window.addEventListener('load', preventShrink)
-
-  //   return () => {
-  //     window.RemoveEventListener('load', setVh)
-  //     window.removeEventListener('load', preventShrink)
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   if (!isMobile) {
-  //     setGlobalWebViewWrapper(webViewWrapper)
-  //   }
-  // }, [setGlobalWebViewWrapper])
-
   return isMobile ? (
     <Layout>{children}</Layout>
   ) : (
@@ -83,7 +57,6 @@ const ClayPhone = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* background-color: red; */
 
   @media screen and (min-width: 1120px) {
     right: 17%;

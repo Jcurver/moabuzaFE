@@ -17,24 +17,18 @@ import RightButton from '../components/Header/RightButton'
 function Friends() {
   const inputFriend = useRef('')
   const [updateFriend, setUpdateFriend] = useState('')
-  // console.log("ref",inputFriend)
 
-  console.log('input::', inputFriend)
   const { isLoading, data: friendList, error, isError } = useFriendsData()
 
   if (isLoading) {
     return <Loading />
   }
   if (isError) {
-    console.log('error : ', error)
     return <ErrorLog error={error} />
   }
 
-  console.log('friendList:::', friendList)
-
   const search = () => {
     setUpdateFriend(inputFriend.current.value)
-    console.log(inputFriend.current.value)
   }
 
   return (
@@ -125,89 +119,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const TopDiv = styled.div`
-  position: absolute;
-  width: 360px;
-  height: 82px;
-  left: 0px;
-  top: 0px;
-`
 
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  right: 85.56%;
-  top: 33.72%;
-  bottom: 10.47%;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
-`
-
-const AddFriend = styled.div`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* color/Btn-basic1 */
-
-  background: #e5eaf2;
-  opacity: 0.5;
-`
-const AddFriendText = styled.div`
-  position: absolute;
-  width: 26px;
-  height: 14px;
-  left: 318px;
-  top: 48px;
-
-  /* Heading/Noto Sans KR/H6 */
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #4675f0;
-`
-
-const Title = styled.div`
-  position: absolute;
-  left: 46.11%;
-  right: 45.83%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
-`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;
@@ -288,7 +200,6 @@ const FriendIcon = styled.img`
   width: 38px;
   height: 38px;
   border-radius: 20px;
-  /* background: #f5f5f7; */
   margin-right: 8px;
 `
 const FriendText = styled.div``
@@ -302,7 +213,6 @@ const AddButton = styled.div`
 
   width: 69px;
   height: 26px;
-  /* left: 259px; */
   right: 10%;
   top: 11px;
 

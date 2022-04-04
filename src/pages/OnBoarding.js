@@ -1,11 +1,9 @@
 import React from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Carousel } from 'react-responsive-carousel'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
-import img1 from '../assets/login.png'
-import Button from '../components/Button'
 import { ReactComponent as LeftArr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as RightArr } from '../assets/icons/arrow/right_arrow.svg'
 
@@ -39,21 +37,6 @@ function OnBoarding() {
           </TextDiv>
           <PrevArrow />
           <NextArrow />
-          {/* <JumpButton
-            onClick={() => {
-              navigate('/kakaologin')
-            }}
-            boarderRadius="8px"
-            width="328px"
-            height="52px"
-            background="#4675F0"
-            marginTop="60px"
-          >
-            건너뛰기
-          </JumpButton> */}
-
-          {/* <p className="legend">Legend 1</p> */}
-
           <JumpButton
             type="button"
             onClick={() => {
@@ -63,7 +46,6 @@ function OnBoarding() {
               })
                 .then((result) => {
                   navigate('/')
-                  console.log(result)
                 })
                 .catch((err) => console.log(err))
             }}
@@ -71,7 +53,6 @@ function OnBoarding() {
             width="328px"
             height="52px"
             background="#4675F0"
-            // marginTop="60px"
           >
             건너뛰기!
           </JumpButton>
@@ -100,7 +81,6 @@ function OnBoarding() {
               })
                 .then((result) => {
                   navigate('/')
-                  console.log(result)
                 })
                 .catch((err) => console.log(err))
             }}
@@ -108,25 +88,9 @@ function OnBoarding() {
             width="328px"
             height="52px"
             background="#4675F0"
-            // marginTop="60px"
           >
             건너뛰기!
           </JumpButton>
-
-          {/* <JumpButton
-            onClick={() => {
-              navigate('/kakaologin')
-            }}
-            boarderRadius="8px"
-            width="328px"
-            height="52px"
-            background="#4675F0"
-            marginTop="60px"
-          >
-            건너뛰기
-          </JumpButton> */}
-
-          {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
           <TextDiv>
@@ -152,7 +116,6 @@ function OnBoarding() {
               })
                 .then((result) => {
                   navigate('/')
-                  console.log(result)
                 })
                 .catch((err) => console.log(err))
             }}
@@ -160,25 +123,9 @@ function OnBoarding() {
             width="328px"
             height="52px"
             background="#4675F0"
-            // marginTop="60px"
           >
             건너뛰기!
           </JumpButton>
-
-          {/* <JumpButton
-            onClick={() => {
-              navigate('/kakaologin')
-            }}
-            boarderRadius="8px"
-            width="328px"
-            height="52px"
-            background="#4675F0"
-            marginTop="60px"
-          >
-            건너뛰기
-          </JumpButton> */}
-
-          {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
           <TextDiv>
@@ -204,7 +151,6 @@ function OnBoarding() {
               })
                 .then((result) => {
                   navigate('/')
-                  console.log(result)
                 })
                 .catch((err) => console.log(err))
             }}
@@ -212,25 +158,9 @@ function OnBoarding() {
             width="328px"
             height="52px"
             background="#4675F0"
-            // marginTop="60px"
           >
             건너뛰기!
           </JumpButton>
-
-          {/* <JumpButton
-            onClick={() => {
-              navigate('/kakaologin')
-            }}
-            boarderRadius="8px"
-            width="328px"
-            height="52px"
-            background="#4675F0"
-            marginTop="60px"
-          >
-            건너뛰기
-          </JumpButton> */}
-
-          {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
           <TextDiv>
@@ -255,7 +185,6 @@ function OnBoarding() {
                 text: '이제부터 열심히 모아부자!',
               })
                 .then((result) => {
-                  console.log(result)
                   navigate('/')
                 })
                 .catch((err) => console.log(err))
@@ -264,79 +193,31 @@ function OnBoarding() {
             width="328px"
             height="52px"
             background="#4675F0"
-            // marginTop="60px"
           >
             열심히 모아부자!
           </JumpButton>
-
-          {/* <JumpButton
-            type="button"
-            onClick={() => {
-              navigate('/kakaologin')
-            }}
-            boarderRadius="8px"
-            width="328px"
-            height="52px"
-            background="#4675F0"
-            marginTop="60px"
-          >
-            시작해부자!
-          </JumpButton> */}
-
-          {/* <p className="legend">Legend 1</p> */}
         </div>
       </Carousel>
-
-      {/* <Link to="/">
-        <JumpButton
-          type="button"
-          onClick={() => {
-            navigate('/')
-
-            Swal.fire({
-              title: '환영합니다!',
-              text: '이제부터 열심히 모아부자!',
-            })
-              .then((result) => {
-                console.log(result)
-              })
-              .catch((err) => console.log(err))
-          }}
-          boarderRadius="8px"
-          width="328px"
-          height="52px"
-          background="#4675F0"
-          // marginTop="60px"
-        >
-          건너뛰기!
-        </JumpButton>
-      </Link> */}
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   position: relative;
-  /* height: 720px; */
 `
 
 const TextArea = styled.div`
   height: 58px;
   margin-bottom: 10px;
-  /* margin: ${(props) => props.margin || '64px auto 10px auto'}; */
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: ${(props) => props.fontWeight || 100};
   font-size: 21px;
   line-height: 140%;
-  /* or 29px */
   letter-spacing: -0.04em;
   color: #000000;
 `
 const TextDiv = styled.div`
-  /* position: absolute; */
-  /* top: 30px;
-  left: 74px; */
   margin-top: 10%;
 `
 const JumpButton = styled.button`
@@ -344,19 +225,22 @@ const JumpButton = styled.button`
   width: 91.2%;
   height: 52px;
   left: 16px;
-  /* top: 110%; */
   bottom: -20%;
+
   /* color/Secondary */
   background: #4675f0;
   border-radius: 8px;
+
   /* Button / Noto Sans KR / Btn_Md(m) */
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 100%;
+
   /* identical to box height, or 14px */
   text-align: center;
+
   /* Rectangle 173 */
   color: #ffffff;
   z-index: 2;

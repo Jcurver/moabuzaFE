@@ -8,13 +8,8 @@ import Loading from './Loading'
 import { BunnyFace, TongkiFace, TanniFace } from '../assets/character/index'
 import ErrorLog from './ErrorLog'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
-import {
-  useFriendsData,
-  useSearchFriend,
-  requestFriend,
-} from '../apis/friendsData.js'
+import { useSearchFriend, requestFriend } from '../apis/friendsData.js'
 import TitleText from '../components/Header/TitleText'
-import RightButton from '../components/Header/RightButton'
 
 function AddFriends() {
   const navigate = useNavigate()
@@ -26,20 +21,9 @@ function AddFriends() {
   }
 
   if (findFriend.isError) {
-    console.log('error : ', findFriend.error)
     return <ErrorLog error={findFriend.error} />
   }
-  console.log('findFriend:::', findFriend)
-  console.log('이미 친구에게 요청을 보낸 상태입니다. 추가하기')
-  // function searchFriend(nickname) {
 
-  // }
-  // async function friend() {
-
-  //   const findFriend = await searchFriends(nick)
-  //   console.log(findFriend)
-  //   return findFriend
-  // }
   return (
     <Wrapper>
       <NavLink to="/friends">
@@ -124,68 +108,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`
-const TopDiv = styled.div`
-  position: absolute;
-  width: 360px;
-  height: 82px;
-  left: 0px;
-  top: 0px;
-`
-
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  right: 85.56%;
-  top: 33.72%;
-  bottom: 10.47%;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
-`
-
-const AddFriend = styled.div`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* color/Btn-basic1 */
-
-  background: #e5eaf2;
-  opacity: 0.5;
-`
-
-const Title = styled.div`
-  position: absolute;
-  width: 60px;
-  height: 23px;
-  left: 150px;
-  top: 40px;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
 `
 const TopLine = styled.div`
   position: absolute;
