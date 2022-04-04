@@ -1,3 +1,9 @@
+import { initializeApp } from 'firebase/app'
+import firebase from 'firebase'
+
+
+// firebase.initializeApp({ messagingSenderId: 702007017171 })
+
 // 버전 업데이트
 const VERSION = 'V5'
 const CACHE_NAME = `paper-cache_${VERSION}`
@@ -5,61 +11,54 @@ const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
 // 정적 캐시
 const IMMUTABLE_APPSHELL = [
-  '/public/moa192.png',
-  '/public/moa512.png',
-  '/public/moa64.png',
-  '/src/assets/icons/menu/friend.svg',
-  '/src/assets/icons/menu/Asset28.svg',
-  '/src/assets/icons/menu/challenge.svg',
-  '/src/assets/icons/menu/Vector.svg',
-  '/src/assets/icons/menu/setting.svg',
-  '/src/assets/icons/menu/together.svg',
-
-  '/src/assets/icons/arrow/backarr.svg',
-  '/src/assets/icons/arrow/rightarr.svg',
-
-  '/src/assets/icons/alert/alarm.svg',
-  '/src/assets/icons/alert/alarm-1.svg',
-
-  '/src/assets/icons/settings/edit1.svg',
-  '/src/assets/icons/settings/logout.svg',
-  '/src/assets/icons/settings/review.svg',
-
-  '/src/assets/icons/navbar/challenge.svg',
-  '/src/assets/icons/navbar/dchallenge.svg',
-  '/src/assets/icons/navbar/home.svg',
-  '/src/assets/icons/navbar/dhome.svg',
-  '/src/assets/icons/navbar/pay.svg',
-  '/src/assets/icons/navbar/dpay.svg',
-  '/src/assets/icons/navbar/menu.svg',
-  '/src/assets/icons/navbar/dmenu.svg',
-  '/src/assets/icons/navbar/together.svg',
-  '/src/assets/icons/navbar/dtogether.svg',
-  '/src/assets/icons/coin/ico_coin1.png',
-
-  '/src/assets/fonts/NotoSansKR-Black.woff',
-  '/src/assets/fonts/NotoSansKR-Bold.woff',
-  '/src/assets/fonts/NotoSansKR-DemiLight.woff',
-  '/src/assets/fonts/NotoSansKR-Light.woff',
-  '/src/assets/fonts/NotoSansKR-Medium.woff',
-  '/src/assets/fonts/NotoSansKR-Regular.woff',
-  '/src/assets/fonts/NotoSansKR-Thin.woff',
-  '/src/assets/fonts/Roboto-Black.woff',
-  '/src/assets/fonts/Roboto-BlackItalic.woff',
-  '/src/assets/fonts/Roboto-Bold.woff',
-  '/src/assets/fonts/Roboto-BoldItalic.woff',
-  '/src/assets/fonts/Roboto-Italic.woff',
-  '/src/assets/fonts/Roboto-Light.woff',
-  '/src/assets/fonts/Roboto-LightItalic.woff',
-  '/src/assets/fonts/Roboto-Medium.woff',
-  '/src/assets/fonts/Roboto-MediumItalic.woff',
-  '/src/assets/fonts/Roboto-Regular.woff',
-  '/src/assets/fonts/Roboto-Thin.woff',
-  '/src/assets/fonts/Roboto-ThinItalic.woff',
-
-  '/src/pages/MainPage.js',
-  '/src/pages/OnedayBuza.js',
-
+  // '/public/moa192.png',
+  // '/public/moa512.png',
+  // '/public/moa64.png',
+  // '/src/assets/icons/menu/friend.svg',
+  // '/src/assets/icons/menu/Asset28.svg',
+  // '/src/assets/icons/menu/challenge.svg',
+  // '/src/assets/icons/menu/Vector.svg',
+  // '/src/assets/icons/menu/setting.svg',
+  // '/src/assets/icons/menu/together.svg',
+  // '/src/assets/icons/arrow/backarr.svg',
+  // '/src/assets/icons/arrow/rightarr.svg',
+  // '/src/assets/icons/alert/alarm.svg',
+  // '/src/assets/icons/alert/alarm-1.svg',
+  // '/src/assets/icons/settings/edit1.svg',
+  // '/src/assets/icons/settings/logout.svg',
+  // '/src/assets/icons/settings/review.svg',
+  // '/src/assets/icons/navbar/challenge.svg',
+  // '/src/assets/icons/navbar/dchallenge.svg',
+  // '/src/assets/icons/navbar/home.svg',
+  // '/src/assets/icons/navbar/dhome.svg',
+  // '/src/assets/icons/navbar/pay.svg',
+  // '/src/assets/icons/navbar/dpay.svg',
+  // '/src/assets/icons/navbar/menu.svg',
+  // '/src/assets/icons/navbar/dmenu.svg',
+  // '/src/assets/icons/navbar/together.svg',
+  // '/src/assets/icons/navbar/dtogether.svg',
+  // '/src/assets/icons/coin/ico_coin1.png',
+  // '/src/assets/fonts/NotoSansKR-Black.woff',
+  // '/src/assets/fonts/NotoSansKR-Bold.woff',
+  // '/src/assets/fonts/NotoSansKR-DemiLight.woff',
+  // '/src/assets/fonts/NotoSansKR-Light.woff',
+  // '/src/assets/fonts/NotoSansKR-Medium.woff',
+  // '/src/assets/fonts/NotoSansKR-Regular.woff',
+  // '/src/assets/fonts/NotoSansKR-Thin.woff',
+  // '/src/assets/fonts/Roboto-Black.woff',
+  // '/src/assets/fonts/Roboto-BlackItalic.woff',
+  // '/src/assets/fonts/Roboto-Bold.woff',
+  // '/src/assets/fonts/Roboto-BoldItalic.woff',
+  // '/src/assets/fonts/Roboto-Italic.woff',
+  // '/src/assets/fonts/Roboto-Light.woff',
+  // '/src/assets/fonts/Roboto-LightItalic.woff',
+  // '/src/assets/fonts/Roboto-Medium.woff',
+  // '/src/assets/fonts/Roboto-MediumItalic.woff',
+  // '/src/assets/fonts/Roboto-Regular.woff',
+  // '/src/assets/fonts/Roboto-Thin.woff',
+  // '/src/assets/fonts/Roboto-ThinItalic.woff',
+  // '/src/pages/MainPage.js',
+  // '/src/pages/OnedayBuza.js',
   // '../src/assets/icons/alram-1.svg',
   // '../src/pages/OnedayBuza.js',
   // '/logo192.png',
@@ -68,14 +67,14 @@ const IMMUTABLE_APPSHELL = [
 
 // 동적 캐시
 const MUTABLE_APPSHELL = [
-  '/src/pages/Alerts.js',
+  // '/src/pages/Alerts.js',
   // '/src/pages/FriendsAdd.js',
   // '/src/pages/App.js',
-  '/src/pages/Bedge.js',
-  '/src/pages/CalendarMain.js',
-  '/src/pages/ChallengeBuza.js',
-  '/src/pages/ChallengeBuzaCreate.js',
-  '/src/pages/ChallengeBuzaDetail.js',
+  // '/src/pages/Bedge.js',
+  // '/src/pages/CalendarMain.js',
+  // '/src/pages/ChallengeBuza.js',
+  // '/src/pages/ChallengeBuzaCreate.js',
+  // '/src/pages/ChallengeBuzaDetail.js',
 ]
 
 // 정적 캐시와 동적캐시 하나의 배열로 묶기
