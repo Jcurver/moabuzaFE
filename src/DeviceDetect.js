@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
-import moabuzaBg from './assets/moabuzabg.jpeg'
+import moabuzaBg from './assets/bigbg.png'
 import iphone from './assets/iphone.png'
+import smallbg from './assets/smallbg.jpeg'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01
@@ -85,7 +86,7 @@ const ClayPhone = styled.div`
   /* background-color: red; */
 
   @media screen and (min-width: 1120px) {
-    right: 10%;
+    right: 17%;
     top: 50%;
     transform: translateX(0%);
     transform: translateY(-50%);
@@ -96,7 +97,7 @@ const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: url(${moabuzaBg}) no-repeat fixed;
+  background: url(${smallbg}) no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
