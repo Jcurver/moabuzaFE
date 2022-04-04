@@ -79,8 +79,9 @@ export const api = {
   getUserInfo: (data, hero) =>
     instance
       .put('/member/info', {
-        // fcmToken: getItem('fcmToken'),
-        fcmToken: 'fcmToken',
+        fcmToken: getItem('fcmToken'),
+
+        // fcmToken:'fcmToken',
         nickname: data.nickname,
         hero,
       })
