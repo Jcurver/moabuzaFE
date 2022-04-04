@@ -14,8 +14,6 @@ import {
   BunnyFace,
   TanniFace,
   TongkiFace,
-  TanniStep02,
-  BunnyStep03,
   AllCharacters01,
   AllCharacters02,
   AllCharacters03,
@@ -23,7 +21,6 @@ import {
 import TitleText from '../components/Header/TitleText'
 import RightButton from '../components/Header/RightButton'
 import LeftButton from '../components/Header/LeftButton'
-// import '../styles/SweetAlertButton.css'
 
 const shortid = require('shortid')
 
@@ -38,7 +35,6 @@ function GroupBuzaDetail() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(data.data.id)
       if (result.isConfirmed) {
         request({
           url: `/group/doing`,
@@ -50,7 +46,6 @@ function GroupBuzaDetail() {
     })
   }
 
-  console.log(data)
   const dateDescending = (a, b) => {
     const dateA = new Date(a.groupDate).getTime()
     const dateB = new Date(b.groupDate).getTime()
@@ -63,7 +58,6 @@ function GroupBuzaDetail() {
   }
 
   const groupData = data.data
-  console.log('groupData', groupData)
 
   return (
     <Wrapper>
@@ -137,7 +131,6 @@ function GroupBuzaDetail() {
           </GoalAmount>
           <ProgressBar
             completed={data ? data.data.groupNowPercent : 0}
-            // completed={70}
             animateOnRender
             bgColor="#4675F0"
             baseBgColor="#ffffff"
@@ -202,52 +195,13 @@ const ScrollWrapper = styled.div`
   }
 `
 const ColorWrapper = styled.div`
-  /* background: #f6f9fe; */
   background: #ebf2ff;
   box-sizing: border-box;
   height: 79px;
   border-top-left-radius: ${isMobile ? '0px' : '31.4px'};
   border-top-right-radius: ${isMobile ? '0px' : '31.4px'};
 `
-const Title = styled.div`
-  position: absolute;
-  width: 72px;
-  height: 23px;
-  left: 144px;
-  top: 43px;
-`
-
-const Text = styled.span`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: ${(props) => props.fontWeight || 500};
-  font-size: ${(props) => props.fontSize || '16px'};
-  margin-top: ${(props) => props.marginTop};
-  line-height: 140%;
-`
-
-const CancleMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 4px;
-  top: 31px;
-  background-color: #f6f9fe;
-  cursor: pointer;
-`
-
-const ForgiveMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-  color: #4675f0;
-  background-color: #f6f9fe;
-  cursor: pointer;
-`
 const GoalAmount = styled.div`
-  /* position: absolute; */
   width: 91.1%;
   height: 24px;
   margin: 0 auto;
@@ -402,8 +356,6 @@ const AccountDate = styled.div`
   flex-grow: 0;
   margin: 8px 0px;
 `
-
-const AccountListsWrapper = styled.div``
 
 const AccountList = styled.div`
   position: relative;

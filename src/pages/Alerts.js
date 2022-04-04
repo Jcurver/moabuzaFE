@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
@@ -15,39 +13,10 @@ import {
   alarmFriendRefuse,
   alarmDelete,
 } from '../apis/alertsData'
-import {
-  FriendAccept,
-  FriendAdd,
-  FriendReject,
-  GoalCancel,
-  GoalCreate,
-  GoalSuccess,
-  InviteAccept,
-  Inviting,
-  MoneyDeposit,
-} from '../assets/icons/alarm'
+import { FriendAccept, FriendReject, Inviting } from '../assets/icons/alarm'
 import TitleText from '../components/Header/TitleText'
-import LeftButton from '../components/Header/LeftButton';
 
 function AlertsFriend() {
-  const adata = [
-    {
-      AlarmId: 1,
-      alarmDetailType: 'request',
-      friendNickname: 'bunny',
-    },
-    {
-      AlarmId: 2,
-      alarmDetailType: 'accept',
-      friendNickname: 'bunny2',
-    },
-    {
-      AlarmId: 3,
-      alarmDetailType: 'refuse',
-      friendNickname: 'bunny3',
-    },
-  ]
-
   const navigate = useNavigate()
   const {
     isLoading,
@@ -57,7 +26,6 @@ function AlertsFriend() {
   } = useAlertsFriendData(navigate)
 
   function alarmDeleteAndRender(id) {
-    console.log('알람아이디:', id)
     Swal.fire({
       title: '알람을 삭제하시겠어요?',
       text: '삭제하면 다시 못봐요!',
@@ -77,15 +45,12 @@ function AlertsFriend() {
       }
     })
     alarmDelete(id)
-    // navigate(0)
   }
 
-  console.log('알람데이터친구 : ', isLoading, AlertFriendsList, isError, error)
   if (isLoading) {
     return <Loading />
   }
   if (isError) {
-    console.log('error : ', error)
     return <ErrorLog error={error} />
   }
   return (
@@ -163,7 +128,6 @@ function AlertsFriend() {
                         onClick={() =>
                           Swal.fire({
                             title: '친구초대를 수락하시겠어요?',
-                            // text: '삭제하면 다시 못봐요!',
                             showCancelButton: true,
                             confirmButtonText: '수락',
                             cancelButtonText: '취소',
@@ -245,47 +209,6 @@ function AlertsFriend() {
               </>
             )
           })}
-        {/* <AlertList>
-          <AlertCharacter />
-          <AlertTextDiv>
-            <Flex>
-              <AlertTextTop>룰루랄라쁑</AlertTextTop>
-              <AlertTextTopRight>님이</AlertTextTopRight>
-            </Flex>
-            <AlertTextBottom>친구요청을 보냈어요!</AlertTextBottom>
-          </AlertTextDiv>
-          <AlertAcceptRefuse style={{ left: '232px' }}>수락</AlertAcceptRefuse>
-          <AlertAcceptRefuse style={{ left: '312px' }}>거절</AlertAcceptRefuse>
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>아리랑</AlertTextTop>
-                <AlertTextTopRight>님이</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>친구요청을 거절했습니다.</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>아리랑</AlertTextTop>
-                <AlertTextTopRight>님이</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>친구요청을 수락했습니다.</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr /> */}
       </AlertListDiv>
     </Wrapper>
   )
@@ -304,60 +227,6 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  right: 85.56%;
-  top: 33.72%;
-  bottom: 10.47%;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
-`
-
-const AddFriend = styled.div`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* color/Btn-basic1 */
-
-  background: #e5eaf2;
-  opacity: 0.5;
-`
-
-const Title = styled.div`
-  position: absolute;
-  left: 46.11%;
-  right: 45.83%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
-`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;

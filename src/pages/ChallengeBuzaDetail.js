@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
@@ -28,10 +28,8 @@ function ChallengeBuzaDetail() {
   const navigate = useNavigate()
 
   const { data, isLoading } = useChallengeData(navigate)
-  // console.log("challengeData::",data)
 
   const homeData = useMainPageData(navigate)
-  console.log('homeData::', homeData)
 
   const cancelChallenge = (id) => {
     Swal.fire({
@@ -227,7 +225,6 @@ function ChallengeBuzaDetail() {
                             <AccountListTitle>
                               {acd.challengeMemo}
                             </AccountListTitle>
-                            {/* <AccountListText>{acd.accountText}</AccountListText> */}
                           </AccountListCenter>
                           <AccountNumber>
                             {acd.challengeAmount.toLocaleString('ko-KR')} 원
@@ -255,42 +252,6 @@ const ColorWrapper = styled.div`
   height: 82px;
   border-top-left-radius: ${isMobile ? '0px' : '31.4px'};
   border-top-right-radius: ${isMobile ? '0px' : '31.4px'};
-`
-const Title = styled.div`
-  position: absolute;
-  width: 72px;
-  height: 23px;
-  left: 144px;
-  top: 43px;
-  background-color: #ebf2ff;
-`
-
-const Text = styled.span`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: ${(props) => props.fontWeight || 500};
-  font-size: ${(props) => props.fontSize || '16px'};
-  margin-top: ${(props) => props.marginTop};
-  line-height: 140%;
-`
-
-const CancleMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 4px;
-  top: 31px;
-  background-color: #ebf2ff;
-`
-
-const ForgiveMoveButton = styled.button`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-  background-color: #ebf2ff;
-  color: #4675f0;
 `
 
 const GoalAmount = styled.div`
@@ -324,7 +285,7 @@ const DetailWrapper = styled.div`
 
 const DetailTitle = styled.div`
   width: 100%;
-  /* height: 23px; */
+
   /* Heading / Roboto / H3(B) */
 
   font-family: 'Roboto';
@@ -341,7 +302,6 @@ const DetailTitle = styled.div`
   color: #000000;
 
   text-align: center;
-  /* margin: 21px 0px 8px 0px; */
 `
 
 const DetailTextWrapper = styled.div`
@@ -437,7 +397,6 @@ const ChallengeFriendAmount = styled.span`
   position: absolute;
   right: 12px;
   height: 16px;
-  /* margin-right: 12px; */
 
   font-family: 'Roboto';
   font-style: normal;
@@ -461,9 +420,7 @@ const ChallengeFriendAmount = styled.span`
 // Account Summary
 const AccountSummaryWrapper = styled.div`
   width: 91.1%;
-  /* border: 1px solid black; */
   margin: 0 auto;
-  /* position: absolute; */
   height: 400px;
   top: 483px;
   left: 16px;
@@ -479,7 +436,6 @@ const GroupFriend = styled.div`
   height: 24px;
 `
 const GroupFriendIcon = styled.img`
-  /* position: static; */
   width: 32px;
   height: 32px;
 
@@ -499,12 +455,10 @@ const AccountTitle = styled.div`
   margin: 24px 0px 8px 4.44%;
 `
 const AccountContent = styled.div`
-  /* border: 1px solid black; */
   width: 100%;
 `
 
 const AccountDate = styled.div`
-  /* border: 1px solid black; */
   /* Body / Noto Sans KR / P12 */
 
   font-family: 'Noto Sans KR';
@@ -530,8 +484,6 @@ const AccountDate = styled.div`
 
 const AccountListsWrapper = styled.div`
   /* border: 1px solid black; */
-  /* overflow: scroll; */
-  /* height: 1000px; */
 `
 
 const AccountList = styled.div`
@@ -573,30 +525,10 @@ const AccountListTitle = styled.div`
   color: #000000;
 `
 
-const AccountListText = styled.div`
-  /* Body / Noto Sans KR / P12 */
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  display: flex;
-  align-items: center;
-  letter-spacing: -0.04em;
-
-  /* color / gray / Gray70 */
-
-  color: #555555;
-`
-
 const AccountNumber = styled.div`
-  /* width: 78px; */
   position: absolute;
   right: 12px;
   height: 28px;
-  /* margin: 18px 12px 18px 0px; */
-  /* border: 0.1px solid black; */
   border-radius: 25px;
   display: flex;
   flex-direction: column;

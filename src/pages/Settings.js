@@ -21,7 +21,6 @@ function Settings() {
     }).then((result) => {
       if (result.value) {
         console.log(result)
-        // this.props.submitUser(this.state)
       }
     })
   }
@@ -197,15 +196,7 @@ const TodayLogoDiv = styled.div`
 
   background: rgba(196, 196, 196, 0.3);
 `
-const TodayLogo = styled.div`
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 16px;
-  top: 18px;
 
-  background: #c4c4c4;
-`
 const TodayText = styled.div`
   position: absolute;
   width: 150px;
