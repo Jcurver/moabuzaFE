@@ -85,7 +85,7 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker
-            .register('./firebase-messaging-sw2.js')
+            .register('./firebase-messaging-sw.js')
             .then((res) => {
               console.log('서비스 워커가 등록됨!!:::', res)
             })
@@ -97,7 +97,7 @@
 
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker
-          .register('./firebase-messaging-sw2.js')
+          .register('./firebase-messaging-sw.js')
           .then(function (registration) {
             console.log(
               'Registration successful, scope is:',
