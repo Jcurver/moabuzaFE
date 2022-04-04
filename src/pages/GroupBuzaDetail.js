@@ -132,6 +132,9 @@ function GroupBuzaDetail() {
                 : null
             }
           />
+          <GoalAmount>
+            목표 금액 : {groupData.challengeGoalAmount} 원
+          </GoalAmount>
           <ProgressBar
             completed={data ? data.data.groupNowPercent : 0}
             // completed={70}
@@ -243,6 +246,27 @@ const ForgiveMoveButton = styled.button`
   background-color: #f6f9fe;
   cursor: pointer;
 `
+const GoalAmount = styled.div`
+  /* position: absolute; */
+  width: 91.1%;
+  height: 24px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 170%;
+  /* identical to box height, or 24px */
+
+  letter-spacing: -0.04em;
+
+  /* color/text/Color-text-Gray2 */
+
+  color: #8c939d;
+`
 
 const DetailWrapper = styled.div`
   width: 100%;
@@ -311,7 +335,7 @@ const DetaileText = styled.span`
 const DetailCharacter = styled.img`
   width: 329px;
   height: 185px;
-  margin: 0px auto 28px auto;
+  margin: 0px auto 16px auto;
   /* border: 1px solid black; */
 `
 
