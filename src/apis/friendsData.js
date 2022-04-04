@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { request, instance } from '../utils/axios'
+import { request } from '../utils/axios'
 
 export const useFriendsData = (navigate) => {
   return useQuery(['friend', navigate], () => {

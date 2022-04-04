@@ -75,8 +75,6 @@ export const request = async ({ ...options }) => {
   return instance(options).then(onSuccess).catch(onError)
 }
 
-
-
 export const api = {
   getUserInfo: (data, hero) =>
     instance
