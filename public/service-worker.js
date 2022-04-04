@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 // 캐시 이름
-const CACHE_NAME = 'cache-v1'
+const CACHE_NAME = 'cache-v2'
 
 // 캐싱할 파일
 const FILES_TO_CACHE = ['/']
