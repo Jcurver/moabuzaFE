@@ -1,3 +1,9 @@
+import { initializeApp } from 'firebase/app'
+import firebase from 'firebase'
+
+
+// firebase.initializeApp({ messagingSenderId: 702007017171 })
+
 // 버전 업데이트
 const VERSION = 'V5'
 const CACHE_NAME = `paper-cache_${VERSION}`
@@ -14,17 +20,13 @@ const IMMUTABLE_APPSHELL = [
   // '/src/assets/icons/menu/Vector.svg',
   // '/src/assets/icons/menu/setting.svg',
   // '/src/assets/icons/menu/together.svg',
-
   // '/src/assets/icons/arrow/backarr.svg',
   // '/src/assets/icons/arrow/rightarr.svg',
-
   // '/src/assets/icons/alert/alarm.svg',
   // '/src/assets/icons/alert/alarm-1.svg',
-
   // '/src/assets/icons/settings/edit1.svg',
   // '/src/assets/icons/settings/logout.svg',
   // '/src/assets/icons/settings/review.svg',
-
   // '/src/assets/icons/navbar/challenge.svg',
   // '/src/assets/icons/navbar/dchallenge.svg',
   // '/src/assets/icons/navbar/home.svg',
@@ -36,7 +38,6 @@ const IMMUTABLE_APPSHELL = [
   // '/src/assets/icons/navbar/together.svg',
   // '/src/assets/icons/navbar/dtogether.svg',
   // '/src/assets/icons/coin/ico_coin1.png',
-
   // '/src/assets/fonts/NotoSansKR-Black.woff',
   // '/src/assets/fonts/NotoSansKR-Bold.woff',
   // '/src/assets/fonts/NotoSansKR-DemiLight.woff',
@@ -56,10 +57,8 @@ const IMMUTABLE_APPSHELL = [
   // '/src/assets/fonts/Roboto-Regular.woff',
   // '/src/assets/fonts/Roboto-Thin.woff',
   // '/src/assets/fonts/Roboto-ThinItalic.woff',
-
   // '/src/pages/MainPage.js',
   // '/src/pages/OnedayBuza.js',
-
   // '../src/assets/icons/alram-1.svg',
   // '../src/pages/OnedayBuza.js',
   // '/logo192.png',
