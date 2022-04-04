@@ -4,6 +4,9 @@ import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
+
+
+
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
   authDomain: 'moabuza.firebaseapp.com',
