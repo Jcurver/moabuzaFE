@@ -8,6 +8,7 @@ import ProgressBar from '@ramonak/react-progress-bar'
 import axios from 'axios'
 import { getToken, onMessage } from 'firebase/messaging'
 
+import { isMobile } from 'react-device-detect'
 import { setFlexStyles } from '../styles/Mixin'
 import { getCookie, setCookie } from '../utils/cookie'
 
@@ -352,6 +353,8 @@ const Wrapper = styled.div`
 const ColorWrapper = styled.div`
   height: 66%;
   background-color: #f6f9fe;
+  border-top-left-radius: ${isMobile ? '0px' : '31.4px'};
+  border-top-right-radius: ${isMobile ? '0px' : '31.4px'};
 `
 
 const CharacterWrapper = styled.img`
