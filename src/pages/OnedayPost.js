@@ -171,9 +171,7 @@ function OnedayPost() {
       </NavLink> */}
 
       <form onSubmit={handleSubmit(onValid)}>
-        <RightButton>
-          <RightBtn>저장</RightBtn>
-        </RightButton>
+        <RightButton>저장</RightButton>
         <OptionTitle style={{ top: '125px' }}>항목 선택</OptionTitle>
         <SelectDiv>
           <Select
