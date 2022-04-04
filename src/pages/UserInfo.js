@@ -52,7 +52,7 @@ function UserInfo() {
       return
     }
 
-    await api.getUserInfo(data, hero, fcmToken).then(() =>
+    await api.getUserInfo(data, hero).then(() =>
       Swal.fire({
         title: '환영합니다!',
         text: '이제부터 열심히 모아부자!',
