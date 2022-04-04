@@ -1,10 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { alertSelect } from '../recoil/alertSelect'
 import { setFlexStyles } from '../styles/Mixin'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
 import { ReactComponent as Close } from '../assets/icons/common/closeSmall.svg'
@@ -16,9 +14,6 @@ import {
 } from '../apis/alertsData'
 
 import {
-  FriendAccept,
-  FriendAdd,
-  FriendReject,
   GoalCancel,
   GoalCreate,
   GoalSuccess,
@@ -29,11 +24,9 @@ import {
 import TitleText from '../components/Header/TitleText'
 
 function AlertsChallenge() {
-  const [, updateState] = useState()
   const navigate = useNavigate()
 
   function alarmDeleteAndRender(id) {
-    console.log('알람아이디:', id)
     Swal.fire({
       title: '알람을 삭제하시겠어요?',
       text: '삭제하면 다시 못봐요!',
@@ -53,52 +46,7 @@ function AlertsChallenge() {
       }
     })
     alarmDelete(id)
-    // navigate(0)
   }
-  const cdata = [
-    {
-      AlarmId: 1,
-      alarmDetailType: 'invite',
-      friendNickname: 'bunny11',
-      goalName: '아이패드내놔',
-      goalAmount: 500000,
-    },
-    {
-      AlarmId: 2,
-      alarmDetailType: 'accept',
-      friendNickname: 'bunny22',
-      goalName: '아이패드내놔',
-      goalAmount: 500000,
-    },
-    {
-      AlarmId: 3,
-      alarmDetailType: 'create',
-      friendNickname: 'bunny33',
-      goalName: '수능잘볼래',
-      goalAmount: 50000,
-    },
-    {
-      AlarmId: 4,
-      alarmDetailType: 'record',
-      friendNickname: 'bunny44',
-      goalName: '갤럭시탭내놔',
-      goalAmount: 10000,
-    },
-    {
-      AlarmId: 5,
-      alarmDetailType: 'success',
-      friendNickname: 'bunny55',
-      goalName: '맥북내놔',
-      goalAmount: 3300200,
-    },
-    {
-      AlarmId: 6,
-      alarmDetailType: 'boom',
-      friendNickname: 'bunny66',
-      goalName: '아이패드살래',
-      goalAmount: 440000,
-    },
-  ]
 
   const {
     isLoading,
@@ -106,13 +54,6 @@ function AlertsChallenge() {
     isError,
     error,
   } = useAlertsChallengeData(navigate)
-  console.log(
-    '알람데이터챌린지 : ',
-    isLoading,
-    AlertChallengeList,
-    isError,
-    error,
-  )
 
   return (
     <Wrapper>
@@ -274,7 +215,9 @@ function AlertsChallenge() {
                         <Flex>
                           <AlertTextTop>{d.friendNickname}</AlertTextTop>
                           <AlertTextTopRight>님이 </AlertTextTopRight>
-                          <AlertTextTopRight style={{fontWeight:700}}>{d.goalName}</AlertTextTopRight>
+                          <AlertTextTopRight style={{ fontWeight: 700 }}>
+                            {d.goalName}
+                          </AlertTextTopRight>
                           <AlertTextTopRight> 목표에</AlertTextTopRight>
                         </Flex>
                         <Flex>
@@ -355,92 +298,6 @@ function AlertsChallenge() {
               </>
             )
           })}
-        {/* <AlertList>
-          <AlertCharacter />
-          <AlertTextDiv>
-            <Flex>
-              <AlertTextTop>룰루랄라룰루랄라</AlertTextTop>
-              <AlertTextTopRight>님이</AlertTextTopRight>
-            </Flex>
-            <AlertTextBottom>초대했어요!</AlertTextBottom>
-          </AlertTextDiv>
-          <AlertAcceptRefuse style={{ left: '232px' }}>수락</AlertAcceptRefuse>
-          <AlertAcceptRefuse style={{ left: '312px' }}>거절</AlertAcceptRefuse>
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>아이패드 모으자</AlertTextTop>
-                <AlertTextTopRight>목표가</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>생성되었습니다.</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>훌라훌라</AlertTextTop>
-                <AlertTextTopRight>님이</AlertTextTopRight>
-              </Flex>
-              <Flex>
-                <AlertTextBottom>2,000</AlertTextBottom>
-                <AlertTextBottom>원을 입금했습니다</AlertTextBottom>
-              </Flex>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>아이패드내놔</AlertTextTop>
-                <AlertTextTopRight>님이</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>초대를 수락했습니다.</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>아이패드 모으자</AlertTextTop>
-                <AlertTextTopRight>목표가</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>취소되었습니다.</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr />
-        <AlertList>
-          <Flex>
-            <AlertCharacter style={{ marginRight: '10px' }} />
-            <AlertTextDiv>
-              <Flex>
-                <AlertTextTop>백만원 가즈아</AlertTextTop>
-                <AlertTextTopRight>목표가</AlertTextTopRight>
-              </Flex>
-              <AlertTextBottom>달성되었습니다!</AlertTextBottom>
-            </AlertTextDiv>
-          </Flex>
-          <Close style={{ color: 'red', marginRight: '11px' }} />
-        </AlertList>
-        <AlertHr /> */}
       </AlertListDiv>
     </Wrapper>
   )
@@ -459,60 +316,6 @@ const TopDiv = styled.div`
   top: 0px;
 `
 
-const ButtonDiv = styled.div`
-  position: absolute;
-  left: 1.11%;
-  right: 85.56%;
-  top: 33.72%;
-  bottom: 10.47%;
-
-  background: rgba(196, 196, 196, 0.3);
-`
-
-const Button = styled.div`
-  position: absolute;
-  left: 4.44%;
-  right: 88.89%;
-  top: 47.67%;
-  bottom: 24.42%;
-
-  background: #c4c4c4;
-`
-
-const AddFriend = styled.div`
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  left: 308px;
-  top: 31px;
-
-  /* color/Btn-basic1 */
-
-  background: #e5eaf2;
-  opacity: 0.5;
-`
-
-const Title = styled.div`
-  position: absolute;
-  left: 46.11%;
-  right: 45.83%;
-  top: 50%;
-  bottom: 23.26%;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 23px;
-  ${setFlexStyles({
-    display: 'flex',
-    alignItems: 'center',
-  })}
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  color: #000000;
-`
 const TopLine = styled.div`
   position: absolute;
   left: 0%;

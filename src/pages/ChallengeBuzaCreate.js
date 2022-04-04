@@ -26,22 +26,7 @@ function ChallengeBuzaCreate() {
       setDatalist([...friendsList.data.challengeMembers])
     }
   }, [friendsList])
-  //
-  // console.log('FF', friendsList)
-  // if (friendsList.data !== undefined) {
-  //   setDatalist([...friendsList.data.challengeMembers])
-  // }
-  // const friendData = () => {
-  //   return request({
-  //     url: '/money/challenge/createChallenge',
-  //     method: 'get',
-  //   }).then((res) => {
-  //     console.log(res.data.challengeMembers)
-  //     setDatalist([...res.data.challengeMembers])
-  //   })
-  // }
 
-  console.log('selectFriends', selectFriends)
   let selectFriendNickName = selectFriends.map(
     (data) => data.challengeMemberNickname,
   )
@@ -50,10 +35,7 @@ function ChallengeBuzaCreate() {
     console.log(error)
   }
 
-  // console.log('selectFriends', selectFriends)
   const onValid = (challengeData) => {
-    console.log('challengeData::', challengeData)
-    console.log(' selectFriendNickName', selectFriendNickName)
     if (selectFriendNickName.length === 0) {
       selectFriendNickName = null
     }
@@ -82,13 +64,9 @@ function ChallengeBuzaCreate() {
             navigate('/challengebuza')
           })
         }
-        console.log(result)
       }),
     )
   }
-  // useEffect(() => {
-  //   friendData()
-  // }, [])
 
   const {
     control,
@@ -158,7 +136,6 @@ function ChallengeBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {/* {selectFriends.length === 0 && <FriendEmptyBox>+</FriendEmptyBox>} */}
         <SelectedFriendWrapper>
           {selectFriends.map((da, idx) => {
             return (
@@ -204,9 +181,6 @@ function ChallengeBuzaCreate() {
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
             console.log('datalist::', datalist)
-            // if (da.challengeMemberCanInvite) {
-            //   return null
-            // }
             return (
               <Friends
                 style={{
@@ -220,7 +194,6 @@ function ChallengeBuzaCreate() {
                     return
                   }
                   if (selectFriends.length > 2) {
-                    // eslint-disable-next-line no-alert
                     Swal.fire({
                       title: '인원초과!',
                       text: '3명까지 선택가능해요!',
@@ -228,14 +201,7 @@ function ChallengeBuzaCreate() {
                     })
                     return
                   }
-                  // if (selectFriends.challengeMemberCanInvite) {
-                  //   Swal.fire({
-                  //     icon: 'error',
-                  //     title: '이미 선택!',
-                  //     text: '이미 진행중이에요!',
-                  //   })
-                  //   return
-                  // }
+
                   const targetIndex = datalist.findIndex(
                     (d) =>
                       d.challengeMemberNickname === da.challengeMemberNickname,
@@ -287,21 +253,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
 `
-const Title = styled.div`
-  ${setFlexStyles({
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  })}
-  /* margin-top: 19px;
-  margin-bottom: 33px; */
 
-  position: absolute;
-  width: 100%;
-  height: 22px;
-  top: 5.972%;
-`
 const Input = styled.input`
   width: 100%;
   height: ${(props) => props.height};
@@ -352,61 +304,6 @@ const SmallText = styled.span`
   color: #999999;
 `
 
-const CancleMoveButton = styled.div`
-  position: absolute;
-  ${setFlexStyles({
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  })}
-  width: 48px;
-  height: 48px;
-  left: 1.11%;
-  top: 4.305%;
-  background-color: #fff;
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-`
-
-const CreateMoveButton = styled.div`
-  position: absolute;
-
-  right: 1.111%;
-  top: 4.305%;
-  width: 48px;
-  height: 48px;
-  ${setFlexStyles({
-    display: 'flex',
-    // flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  })}
-
-  /* Heading/Noto Sans KR/H6 */
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 100%;
-  /* identical to box height, or 14px */
-
-  text-align: center;
-  letter-spacing: -0.04em;
-
-  /* color/Secondary */
-
-  color: #4675f0;
-  /* identical to box height, or 14px */
-`
 // Inputbox
 const GoalInputBox = styled.div`
   position: absolute;
@@ -537,13 +434,6 @@ const FriendsText = styled.div`
   letter-spacing: -0.04em;
 
   color: #000000;
-
-  /* Inside auto layout */
-
-  /* flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 0px 8px; */
 `
 const CircleImg = styled.img`
   /* Ellipse 20 */
@@ -568,57 +458,6 @@ const SelectFriendNameDiv = styled.div`
   width: 50px;
   height: 14px;
   margin-right: -5px;
-  /* text-overflow: ellipsis; */
-
-  /* Heading/Noto Sans KR/H6 */
-
-  /* Inside auto layout */
-
-  /* margin: 0px 3px; */
-`
-const CreateButtonWrapper = styled.div`
-  position: absolute;
-  /* text-align: center; */
-  width: 328px;
-  height: 60px;
-  color: #000000;
-  /* background-color: white; */
-  top: 82.5%;
-  left: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  /* z-index: 99; */
-`
-const CreateButton = styled.button`
-  /* 공통 스타일 */
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: 400;
-  cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  width: 328px;
-  height: 36px;
-  margin: 16px 0px;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 6;
-  flex-grow: 0;
-
-  /* 색상 */
-  background: #5f5f77;
-  &:hover {
-    background: #339af0;
-  }
-  &:active {
-    background: #1c7ed6;
-  }
 `
 
 const SelectedFriendWrapper = styled.div`
@@ -647,7 +486,6 @@ const SelectedFriendContent = styled.div`
   display: flex;
 
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   padding-left: 12px;
 
@@ -719,12 +557,5 @@ const Doing = styled.div`
   /* Rectangle 173 */
 
   color: #ffffff;
-
-  /* Inside auto layout */
-
-  /* flex: none;
-  order: 0;
-  flex-grow: 0; */
-  /* margin: 0px 10px; */
 `
 export default ChallengeBuzaCreate

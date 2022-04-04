@@ -15,9 +15,7 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-
 const firebaseApp = initializeApp(config)
-
 
 // const app = initializeApp(config)
 const messaging = getMessaging(firebaseApp)

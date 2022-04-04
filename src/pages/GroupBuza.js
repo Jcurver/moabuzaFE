@@ -1,14 +1,14 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { setFlexStyles } from '../styles/Mixin'
 import Button from '../components/Button'
 import Nav from '../components/Nav'
 import ScrollWrapper from '../components/ScrollWrapper'
-import { api, request } from '../utils/axios'
+import { request } from '../utils/axios'
 import { useGroupData } from '../apis/groupData'
 import { useMainPageData } from '../apis/mainpageData'
 import { BunnyFace, TanniFace, TongkiFace } from '../assets/character'
@@ -22,7 +22,6 @@ function GroupBuza() {
   // 홈데이터 부르는 부분 수정사함 -----------
   const { data, isLoading } = useGroupData(navigate)
   const homeData = useMainPageData(navigate)
-  console.log('groupData:::', data)
 
   const cancelGroup = (id) => {
     Swal.fire({
@@ -32,9 +31,6 @@ function GroupBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(id)
-      console.log(result)
-
       request({
         url: `/group/${id}/waiting`,
         method: 'delete',
@@ -45,8 +41,6 @@ function GroupBuza() {
   }
 
   useEffect(() => {}, [navigate])
-  // console.log(homeData)
-  // console.log(data)
 
   if (homeData.isLoading) {
     return <Loading />
@@ -54,11 +48,7 @@ function GroupBuza() {
   if (isLoading) {
     return <Loading />
   }
-  // if (data) {
-  //   console.log('데이터ㅣㅣ', data)
-  //   console.log('웨이팅골', data.data.waitingGoals)
-  // }
-  // console.log('그룹부자데이터::', data)
+
   return (
     <Wrapper>
       <Title>
@@ -212,23 +202,15 @@ const Wrapper = styled.div`
 const Title = styled.div`
   ${setFlexStyles({
     display: 'flex',
-    // flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   })}
-  /* margin-top: 19px;
-  margin-bottom: 33px; */
 
   position: absolute;
   width: 100%;
   height: 22px;
 
   top: 5.972%;
-`
-
-const MoveButton = styled.button`
-  width: 48px;
-  height: 48px;
 `
 
 const Text = styled.span`
@@ -243,7 +225,6 @@ const GoalWrapper = styled.div`
   position: absolute;
   width: 91.11%;
   height: 181px;
-  /* top: 13%; */
   margin-bottom: 10px;
   padding-top: 0.01px;
 
@@ -253,7 +234,6 @@ const GoalWrapper = styled.div`
   border-radius: 8px;
 `
 const GoalAmount = styled.div`
-  /* position: absolute; */
   width: 91.1%;
   height: 24px;
   margin: 0 auto 4px auto;
@@ -310,7 +290,6 @@ const ConmpletedTitle = styled.span`
   height: 14px;
   left: 4.44%;
   top: 40.2%;
-
   font-size: 14px;
   line-height: 100%;
 `
@@ -321,13 +300,9 @@ const CompletedList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
   padding: 0px;
-
-  /* position: absolute; */
   width: 95%;
   height: 256px;
-
   top: 44%;
 `
 
@@ -376,14 +351,10 @@ const GroupFriend = styled.div`
   padding: 0px;
 
   margin: 20px 0px 16px 12px;
-  /* position: absolute; */
   width: 200px;
   height: 24px;
-  /* left: 28px;
-  top: 16.5%; */
 `
 const GroupFriendIcon = styled.img`
-  /* position: static; */
   width: 32px;
   height: 32px;
 
@@ -400,8 +371,6 @@ const GroupFriendIcon = styled.img`
 `
 
 const GroupFriendTitle = styled.div`
-  /* position: absolute;
-   */
   margin: 16px 132px 8px 12px;
   width: 300px;
   height: 16px;
