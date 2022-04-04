@@ -1,17 +1,10 @@
 import { initializeApp } from 'firebase/app'
 
+// importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
-import { getMessaging, getToken, onMessage } from 'firebase/messaging'
-
-import { useEffect } from 'react'
-import { setItem } from './sessionStorage'
-
-
-importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
-
-importScripts(
-  'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
-)
+// importScripts(
+//   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
+// )
 
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
@@ -23,7 +16,7 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-const firebaseApp = initializeApp(config)
+initializeApp(config)
 
 // const app = initializeApp(config)
 
