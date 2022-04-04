@@ -13,7 +13,7 @@ import Menu from './Menu'
 import Modified from './Modified'
 import KakaoLogin from '../components/KakaoLogin'
 import '../utils/fcm'
-import Nav from '../components/Nav'
+
 
 const MainPage = lazy(() => import('./MainPage'))
 const Alerts = lazy(() => import('./Alerts'))
