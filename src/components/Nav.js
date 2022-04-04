@@ -57,13 +57,17 @@ function NavBar() {
       >
         <Component style={{ marginTop: '2px' }}>
           {location.pathname === '/onedaybuza' ? (
-            <Pay style={{ width: '24px', height: '24px' }} />
+            <>
+              <Pay style={{ width: '24px', height: '24px' }} />
+              <MenuText style={{ color: '#4675F0' }}>하루부자</MenuText>
+            </>
           ) : (
-            <Dpay style={{ width: '24px', height: '24px' }} />
+            <>
+              <Dpay style={{ width: '24px', height: '24px' }} />
+              <MenuText>하루부자</MenuText>
+            </>
           )}
           {/* <Pay style={{ width: '24px', height: '24px' }} /> */}
-
-          <MenuText>하루부자</MenuText>
         </Component>
       </NavLink>
       <NavLink
@@ -76,12 +80,16 @@ function NavBar() {
       >
         <Component>
           {location.pathname === '/' ? (
-            <Home style={{ width: '24px', height: '24px' }} />
+            <>
+              <Home style={{ width: '24px', height: '24px' }} />
+              <MenuText style={{ color: '#4675F0' }}>홈</MenuText>
+            </>
           ) : (
-            <Dhome style={{ width: '24px', height: '24px' }} />
+            <>
+              <Dhome style={{ width: '24px', height: '24px' }} />
+              <MenuText>홈</MenuText>
+            </>
           )}
-
-          <MenuText>홈</MenuText>
         </Component>
       </NavLink>
 
@@ -95,12 +103,16 @@ function NavBar() {
       >
         <Component>
           {location.pathname === '/groupbuza' ? (
-            <Together style={{ width: '24px', height: '24px' }} />
+            <>
+              <Together style={{ width: '24px', height: '24px' }} />
+              <MenuText style={{ color: '#4675F0' }}>같이해부자</MenuText>
+            </>
           ) : (
-            <Dtogether style={{ width: '24px', height: '24px' }} />
+            <>
+              <Dtogether style={{ width: '24px', height: '24px' }} />
+              <MenuText>같이해부자</MenuText>
+            </>
           )}
-
-          <MenuText>같이해부자</MenuText>
         </Component>
       </NavLink>
       <NavLink
@@ -113,12 +125,16 @@ function NavBar() {
       >
         <Component>
           {location.pathname === '/challengebuza' ? (
-            <Challenge style={{ width: '24px', height: '24px' }} />
+            <>
+              <Challenge style={{ width: '24px', height: '24px' }} />
+              <MenuText style={{ color: '#4675F0' }}>도전해부자</MenuText>
+            </>
           ) : (
-            <Dchallenge style={{ width: '24px', height: '24px' }} />
+            <>
+              <Dchallenge style={{ width: '24px', height: '24px' }} />
+              <MenuText>도전해부자</MenuText>
+            </>
           )}
-
-          <MenuText>도전해부자</MenuText>
         </Component>
       </NavLink>
     </NavBars>
@@ -152,6 +168,6 @@ const MenuText = styled.div`
   font-size: 10px;
   line-height: 14px;
   text-align: center;
-  color:#999999;
+  color: #999999;
 `
 export default NavBar
