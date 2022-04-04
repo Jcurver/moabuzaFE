@@ -15,6 +15,7 @@ import { toggleGroupChallenge } from '../recoil/homeToggle'
 import { useMainPageData } from '../apis/mainpageData'
 import { ReactComponent as Alert } from '../assets/icons/alert/alram.svg'
 import { ReactComponent as AlertOn } from '../assets/icons/alert/alram-1.svg'
+import { ReactComponent as Plus } from '../assets/icons/plus/akar-icons_plus.svg'
 import Loading from './Loading'
 import ErrorLog from './ErrorLog'
 import Nav from '../components/Nav'
@@ -85,6 +86,7 @@ function MainPage() {
 
   const nowChallengePercent = data.data.challengePercent
   const nowGroupPercent = data.data.groupPercent
+  const userNickName = data.data.nickname
 
   console.log('nowChallengePercent', nowChallengePercent)
   console.log('nowGroupPercent', nowGroupPercent)
@@ -124,6 +126,10 @@ function MainPage() {
             도전해부자
           </RightBtn>
         </Toggle>
+        <FlexDiv>
+          <UserNickName>{userNickName} 님</UserNickName>
+        </FlexDiv>
+
         {toggle === 'group' && data.data.groupName ? (
           <>
             <ContentGoalName>{data?.data?.groupName}</ContentGoalName>
@@ -314,6 +320,13 @@ function MainPage() {
           ''
         )}
       </ColorWrapper>
+      <QuickToggle
+        onClick={() => {
+          navigate('/onedaypost')
+        }}
+      >
+        <Plus />
+      </QuickToggle>
       <BottomLine style={{ top: '69.58%' }}>
         <MyWallet>나의 지갑은</MyWallet>
         <Won>{data ? data.data.wallet.toLocaleString('en-US') : '0'}원</Won>
@@ -326,6 +339,7 @@ function MainPage() {
         </Won>
         {/* <ChartBtn>분석해부자</ChartBtn> */}
       </BottomLine>
+
       <Nav />
     </Wrapper>
   )
@@ -417,7 +431,28 @@ const RightBtn = styled.button`
   border-radius: 20px;
   border: none;
 `
+const FlexDiv = styled.div`
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+`
+const UserNickName = styled.div`
+  position: absolute;
+  top: 15%;
 
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.04em;
+
+  /* color/text/Color-text-Gray3 */
+
+  color: #60666f;
+`
 const ContentGoalName = styled.div`
   position: absolute;
   display: flex;
@@ -660,6 +695,24 @@ const ChartBtn = styled.button`
   background: #ffb000;
   border-radius: 14px;
   margin-left: 243.5px;
+`
+
+const QuickToggle = styled.div`
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  left: 79.4%;
+  top: 78.1%;
+  border-radius: 50%;
+  ${setFlexStyles({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  })}
+  background-color: #ffb000;
+  z-index: 99;
+  background: #ffb000;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.18);
 `
 
 export default MainPage
