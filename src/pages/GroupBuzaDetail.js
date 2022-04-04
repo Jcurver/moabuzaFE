@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import ProgressBar from '@ramonak/react-progress-bar'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { isMobile } from 'react-device-detect'
 import { useGroupData } from '../apis/groupData'
 import { request } from '../utils/axios'
 import { ReactComponent as Backarr } from '../assets/icons/arrow/backarr.svg'
@@ -202,6 +203,8 @@ const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
   height: 79px;
+  border-top-left-radius: ${isMobile ? '0px' : '31.4px'};
+  border-top-right-radius: ${isMobile ? '0px' : '31.4px'};
 `
 const Title = styled.div`
   position: absolute;
