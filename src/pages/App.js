@@ -20,7 +20,7 @@ const Alerts = lazy(() => import('./Alerts'))
 const AlertsGroup = lazy(() => import('./AlertsGroup'))
 const AlertsChallenge = lazy(() => import('./AlertsChallenge'))
 const Login = lazy(() => import('./Login'))
-const Register = lazy(() => import('./Register'))
+
 
 const OnedayBuza = lazy(() => import('./OnedayBuza'))
 const OnedayPost = lazy(() => import('./OnedayPost'))
@@ -91,7 +91,7 @@ function App() {
             />
             <Route path="/kakaologin" element={<KakaoLogin />} />
             <Route path="/callback" element={<KakaoAuthHandle />} />
-            <Route path="/register" element={<Register />} />
+
 
             <Route path="/calendar" element={<CalendarMain />} />
             <Route path="/settings" element={<Settings />} />
