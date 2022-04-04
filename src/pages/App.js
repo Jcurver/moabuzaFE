@@ -131,7 +131,7 @@ function App() {
 
   onMessage(firebaseMessaging, (payload) => {
     console.log('foregroundMessage')
-    console.log(payload)
+    console.log('여기 되면 대박', payload)
 
     const date = new Date()
     const now = date.getTime()
