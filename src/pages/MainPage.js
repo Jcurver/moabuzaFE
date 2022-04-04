@@ -334,10 +334,13 @@ const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
 `
 const ColorWrapper = styled.div`
   height: 66%;
   background-color: #f6f9fe;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 `
 
 const CharacterWrapper = styled.img`

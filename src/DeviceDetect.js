@@ -5,7 +5,7 @@ import { isMobile } from 'react-device-detect'
 
 import backgroundSrcs from './assets/moabg.png'
 import moabuzaBg from './moabuzaBg.jpeg'
-import phone from './phone.png'
+import iphone from './iphone.png'
 
 export const setVh = () => {
   const vh = window.innerHeight * 0.01
@@ -63,7 +63,6 @@ const Layout = styled.div`
 const WebViewLayout = styled(Layout)`
   max-width: 360px;
 
-  /* border-radius: 18px; */
   max-height: 720px;
 
   position: absolute;
@@ -71,16 +70,19 @@ const WebViewLayout = styled(Layout)`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
+  border-radius: 30px;
 `
 
 const ClayPhone = styled.div`
-  width: 390px;
-  height: 822px;
+position:relative;
+  z-index: 5;
+  width: 400px;
+  height: 760px;
   position: fixed;
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  background: url(${phone}) no-repeat center center;
+  background: url(${iphone}) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
