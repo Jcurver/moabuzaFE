@@ -17,12 +17,12 @@ import RightButton from '../components/Header/RightButton'
 function UserInfo() {
   const navigate = useNavigate()
   const [nickNameDup, setNickNameDup] = useState(false)
-
   const [hero, setHero] = useState('hero0')
   function setHeroValue(i) {
     setHero(i)
     setValue('character', i)
   }
+  console.log('fcmToken:::', fcmToken)
 
   const onValid = async (data) => {
     if (hero === 'hero0') {
@@ -37,7 +37,6 @@ function UserInfo() {
         .catch((err) => console.log(err))
       return
     }
-    console.log('fcmToken:::', fcmToken)
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
@@ -50,7 +49,7 @@ function UserInfo() {
       return
     }
 
-    await api.getUserInfo(data, hero).then(() =>
+    await api.getUserInfo(data, hero, fcmToken).then(() =>
       Swal.fire({
         title: '환영합니다!',
         text: '이제부터 열심히 모아부자!',
@@ -123,6 +122,7 @@ function UserInfo() {
   console.log(watch())
 
   useEffect(() => {
+
     setNickNameDup(false)
     console.log(nickNameDup)
     if (!window.location.search) {

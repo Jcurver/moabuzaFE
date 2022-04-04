@@ -202,6 +202,8 @@ const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
   height: 79px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 `
 const Title = styled.div`
   position: absolute;
