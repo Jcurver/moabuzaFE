@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { isMobile } from 'react-device-detect'
-import moabuzaBg from './assets/webview/moabuzaBg.jpeg'
+import moabuzaBg from './assets/webview/moabuzabg.jpeg'
 import iphone from './assets/webview/iphone.png'
 
 export const setVh = () => {
@@ -67,7 +67,7 @@ const WebViewLayout = styled(Layout)`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  border-radius: 36px;
+  border-radius: 31.4px;
 `
 
 const ClayPhone = styled.div`

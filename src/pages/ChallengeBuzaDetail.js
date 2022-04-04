@@ -249,8 +249,8 @@ const ColorWrapper = styled.div`
   background: #ebf2ff;
   box-sizing: border-box;
   height: 82px;
-  border-top-left-radius: 36px;
-  border-top-right-radius: 36px;
+  border-top-left-radius: 31.4px;
+  border-top-right-radius: 31.4px;
 `
 const Title = styled.div`
   position: absolute;
