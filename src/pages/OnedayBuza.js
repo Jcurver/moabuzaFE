@@ -480,7 +480,7 @@ const TodayListBigDiv = styled.div`
   position: absolute;
 
   width: 100%;
-  height: 51%;
+  height: 40%;
   left: 0px;
   top: 0px;
   top: 49%;
