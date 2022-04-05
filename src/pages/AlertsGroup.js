@@ -390,7 +390,7 @@ const SelectLine = styled.div`
 `
 const AlertListDiv = styled.div`
   position: absolute;
-  top: 120px;
+  top: 132px;
   bottom: 0%;
   width: 100%;
   overflow: scroll;
