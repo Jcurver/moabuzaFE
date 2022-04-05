@@ -22,6 +22,9 @@ import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg
 // import { ReactComponent as Challenge } from '../assets/icons/onedaybuza/challenge.svg'
 import { ReactComponent as Minus } from '../assets/icons/onedaybuza/minus.svg'
 import { ReactComponent as Plus } from '../assets/icons/onedaybuza/plus.svg'
+import { ReactComponent as Group } from '../assets/icons/onedaybuza/together.svg'
+import { ReactComponent as Challenge } from '../assets/icons/onedaybuza/challenge.svg'
+
 // import { ReactComponent as Together } from '../assets/icons/onedaybuza/together.svg'
 
 import { getItem, setItem } from '../utils/sessionStorage'
@@ -151,9 +154,7 @@ function OnedayBuza(state) {
               if (getDayName(createDate(d)) === '일') {
                 return 'sunday'
               }
-              
 
-              
               return 'weekday'
             }}
           />
@@ -257,6 +258,8 @@ function OnedayBuza(state) {
                   <TodayListLineRight>
                     {d.recordType === 'income' ? <Plus /> : ''}
                     {d.recordType === 'expense' ? <Minus /> : ''}
+                    {d.recordType === 'group' ? <Group /> : ''}
+                    {d.recordType === 'challenge' ? <Challenge /> : ''}
                     {d.recordAmount.toLocaleString('en-US')} 원
                   </TodayListLineRight>
                 </TodayListLine>
