@@ -98,12 +98,10 @@ function UserInfo() {
     setValue,
     setError,
   } = useForm()
-  console.log(watch())
 
   useEffect(() => {
     setNickNameDup(false)
 
-    console.log(nickNameDup)
     if (!window.location.search) {
       return
     }
@@ -111,14 +109,11 @@ function UserInfo() {
 
     async function getTokenWithKakao() {
       const { data } = await api.getKakaoLogin(kakaoAuthCode)
-      console.log('data-----------', data)
       setCookie('A-AUTH-TOKEN', data.data.access, 5)
       setCookie('R-AUTH-TOKEN', data.data.refresh, 5)
       if (data.data.nickname) {
         navigate('/')
       }
-      console.log('200받았을때 data : ', data)
-      console.log('겟쿠키 A-AUTH-TOKEN : ', getCookie('A-AUTH-TOKEN'))
     }
     getTokenWithKakao()
     // eslint-disable-next-line react-hooks/exhaustive-deps
