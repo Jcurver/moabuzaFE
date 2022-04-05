@@ -87,13 +87,11 @@ const IMMUTABLE_APPSHELL = [
   '/src/assets/fonts/Roboto-Regular.woff',
   '/src/assets/fonts/Roboto-Thin.woff',
   '/src/assets/fonts/Roboto-ThinItalic.woff',
-  '../src/assets/icons/alram-1.svg',
-  '/logo192.png',
+
 ]
 
 // 동적 캐시
 const MUTABLE_APPSHELL = [
-  '../src/pages/OnedayBuza.js',
   '/src/pages/MainPage.js',
   '/src/pages/OnedayBuza.js',
   '/src/pages/Alerts.js',
