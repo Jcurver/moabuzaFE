@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import firebase from 'firebase/compat/app'
 // import { firebaseApp } from '../utils/firebase'
 // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-moabuza.js'
+import { initializeApp } from '@firebase/app'
 import { setItem } from '../utils/sessionStorage'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
@@ -156,6 +157,7 @@ function App() {
     messagingSenderId: '128639882477',
     appId: '1:128639882477:web:4e0c086f572ce6b9a468e4',
   }
+  initializeApp(firebaseConfig)
 
   // const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
@@ -210,9 +212,9 @@ function App() {
     console.log('Message received. ', payload)
     // ...
   })
-   useEffect(() => {
-     getToken()
-   }, [])
+  useEffect(() => {
+    getToken()
+  }, [])
   return (
     <ErrorBoundary FallbackComponent={KakaoLogin}>
       <Suspense fallback={<Loading />}>
