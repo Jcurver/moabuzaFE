@@ -27,41 +27,42 @@
 // // const app = initializeApp(config)
 // const messaging = getMessaging(firebaseApp)
 
-// 토큰값 얻기
-export const fcmToken = getToken(messaging, {
-  vapidKey: process.env.REACT_APP_VAPID_KEY,
-})
-  .then((currentToken) => {
-    if (currentToken) {
-      // Send the token to your server and update the UI if necessary
-      // ...
-      console.log('FCM User Token 최초 수신:::', currentToken);
-      setItem('fcmToken', currentToken);
-      
-    } else { 
-      // Show permission request UI
-      console.log(
-        'No registration token available. Request permission to generate one.',
-      )
-      // ...
-    }
-    return currentToken
-  })
-  .catch((err) => {
-    console.log('An error occurred while retrieving token. ', err)
-    // ...
-  })
+// // 토큰값 얻기
 
-// Notification.requestPermission().then((permission) => {
-//   if (permission === 'granted') {
-//     console.log('Notification permission granted.')
-//   } else {
-//     console.log('Unable to get permission to notify.')
-//   }
+// export const fcmToken = getToken(messaging, {
+//   vapidKey: process.env.REACT_APP_VAPID_KEY,
 // })
+//   .then((currentToken) => {
+//     if (currentToken) {
+//       // Send the token to your server and update the UI if necessary
+//       // ...
+//       console.log('FCM User Token 최초 수신:::', currentToken);
+//       setItem('fcmToken', currentToken);
+      
+//     } else { 
+//       // Show permission request UI
+//       console.log(
+//         'No registration token available. Request permission to generate one.',
+//       )
+//       // ...
+//     }
+//     return currentToken
+//   })
+//   .catch((err) => {
+//     console.log('An error occurred while retrieving token. ', err)
+//     // ...
+//   })
 
-// 포그라운드 메시지 수신
-onMessage(messaging, (payload) => {
-  console.log('Message received. ', payload)
-  // ...
-})
+// // Notification.requestPermission().then((permission) => {
+// //   if (permission === 'granted') {
+// //     console.log('Notification permission granted.')
+// //   } else {
+// //     console.log('Unable to get permission to notify.')
+// //   }
+// // })
+
+// // 포그라운드 메시지 수신
+// onMessage(messaging, (payload) => {
+//   console.log('Message received. ', payload)
+//   // ...
+// })
