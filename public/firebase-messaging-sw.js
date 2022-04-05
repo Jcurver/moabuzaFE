@@ -28,13 +28,13 @@ const IMMUTABLE_APPSHELL = [
 
 // 동적 캐시
 const MUTABLE_APPSHELL = [
-  '/src/pages/MainPage.js',
-  '/src/pages/OnedayBuza.js',
-  '/src/pages/Alerts.js',
-  '/src/pages/FriendsAdd.js',
-  '/src/pages/ChallengeBuza.js',
-  '/src/pages/ChallengeBuzaCreate.js',
-  '/src/pages/ChallengeBuzaDetail.js'
+  // '/src/pages/MainPage.js',
+  // '/src/pages/OnedayBuza.js',
+  // '/src/pages/Alerts.js',
+  // '/src/pages/FriendsAdd.js',
+  // '/src/pages/ChallengeBuza.js',
+  // '/src/pages/ChallengeBuzaCreate.js',
+  // '/src/pages/ChallengeBuzaDetail.js'
 ]
 
 // 정적 캐시와 동적캐시 하나의 배열로 묶기
