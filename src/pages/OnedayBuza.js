@@ -12,6 +12,7 @@ import {
   SwipeableList,
   SwipeableListItem,
 } from '@sandstreamdev/react-swipeable-list'
+import { useMainPageData } from '../apis/mainpageData'
 import { setFlexStyles } from '../styles/Mixin'
 import { request } from '../utils/axios'
 import Nav from '../components/Nav'
@@ -167,7 +168,10 @@ function OnedayBuza(state) {
       <TotalLine style={{ top: '22.74%' }}>
         <TotalLeft>나의 지갑</TotalLeft>
         <TotalRight>
-          {mainpageData && mainpageData.data.wallet.toLocaleString('en-US')} 원
+          {mainpageData
+            ? mainpageData.data.wallet.toLocaleString('en-US')
+            : '0'}{' '}
+          원
         </TotalRight>
       </TotalLine>
       <CalendarLine style={{ top: '25.14%' }} />
