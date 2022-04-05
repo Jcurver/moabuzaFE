@@ -1,21 +1,18 @@
 /* eslint-disable vars-on-top */
 /* eslint-disable no-var */
 
-
-
-
 // 포그라운드 메시지 수신
 
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V19'
+const VERSION = 'V20'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
 // 정적 캐시
 const IMMUTABLE_APPSHELL = [
-  '/src/assets/icons/alarm/friendAccept.svg',
+  '/src/assets/icons/alarm/friendaccept.svg',
   '/src/assets/icons/alarm/friendadd.svg',
   '/src/assets/icons/arrow/backarr.svg',
   '/src/assets/icons/arrow/rightarr.svg',
@@ -23,13 +20,11 @@ const IMMUTABLE_APPSHELL = [
   '/src/assets/icons/arrow/arrow_s.svg',
   '/src/assets/icons/arrow/arrowleftgray.svg',
   '/src/assets/bigbg.png',
-  '/src/assets/iphone.png'
+  '/src/assets/iphone.png',
 ]
 
 // 동적 캐시
-const MUTABLE_APPSHELL = [
-
-]
+const MUTABLE_APPSHELL = []
 
 // 정적 캐시와 동적캐시 하나의 배열로 묶기
 const CACHE_LIST = IMMUTABLE_APPSHELL.concat(MUTABLE_APPSHELL)
@@ -155,4 +150,3 @@ self.addEventListener('notificationclick', (event) => {
 // importScripts(
 //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
 // )
-
