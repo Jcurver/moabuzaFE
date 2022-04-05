@@ -483,7 +483,6 @@ const SelectedFriendContent = styled.div`
   flex-direction: row;
   align-items: center;
   padding-left: 12px;
-  overflow: scroll;
   position: static;
   width: 160px;
   height: 52px;
