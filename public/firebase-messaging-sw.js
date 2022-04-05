@@ -22,13 +22,13 @@ const config = {
 
 firebase.initializeApp(config)
 
-Notification.requestPermission().then((permission) => {
-  if (permission === 'granted') {
-    console.log('Notification permission granted.')
-  } else {
-    console.log('Unable to get permission to notify.')
-  }
-})
+// Notification.requestPermission().then((permission) => {
+//   if (permission === 'granted') {
+//     console.log('Notification permission granted.')
+//   } else {
+//     console.log('Unable to get permission to notify.')
+//   }
+// })
 
 // 포그라운드 메시지 수신
 
@@ -41,51 +41,57 @@ const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
 // 정적 캐시
 const IMMUTABLE_APPSHELL = [
-
-  '/src/assets/icons/menu/friend.svg',
-  '/src/assets/icons/menu/Asset28.svg',
-  '/src/assets/icons/menu/challenge.svg',
-  '/src/assets/icons/menu/Vector.svg',
-  '/src/assets/icons/menu/setting.svg',
-  '/src/assets/icons/menu/together.svg',
+  '/src/assets/icons/alarm/friendAccept.svg',
+  '/src/assets/icons/alarm/friendadd.svg',
   '/src/assets/icons/arrow/backarr.svg',
   '/src/assets/icons/arrow/rightarr.svg',
-  '/src/assets/icons/alert/alarm.svg',
-  '/src/assets/icons/alert/alarm-1.svg',
-  '/src/assets/icons/settings/edit1.svg',
-  '/src/assets/icons/settings/logout.svg',
-  '/src/assets/icons/settings/review.svg',
-  '/src/assets/icons/navbar/challenge.svg',
-  '/src/assets/icons/navbar/dchallenge.svg',
-  '/src/assets/icons/navbar/home.svg',
-  '/src/assets/icons/navbar/dhome.svg',
-  '/src/assets/icons/navbar/pay.svg',
-  '/src/assets/icons/navbar/dpay.svg',
-  '/src/assets/icons/navbar/menu.svg',
-  '/src/assets/icons/navbar/dmenu.svg',
-  '/src/assets/icons/navbar/together.svg',
-  '/src/assets/icons/navbar/dtogether.svg',
-  '/src/assets/icons/coin/ico_coin1.png',
-  '/src/assets/fonts/NotoSansKR-Black.woff',
-  '/src/assets/fonts/NotoSansKR-Bold.woff',
-  '/src/assets/fonts/NotoSansKR-DemiLight.woff',
-  '/src/assets/fonts/NotoSansKR-Light.woff',
-  '/src/assets/fonts/NotoSansKR-Medium.woff',
-  '/src/assets/fonts/NotoSansKR-Regular.woff',
-  '/src/assets/fonts/NotoSansKR-Thin.woff',
-  '/src/assets/fonts/Roboto-Black.woff',
-  '/src/assets/fonts/Roboto-BlackItalic.woff',
-  '/src/assets/fonts/Roboto-Bold.woff',
-  '/src/assets/fonts/Roboto-BoldItalic.woff',
-  '/src/assets/fonts/Roboto-Italic.woff',
-  '/src/assets/fonts/Roboto-Light.woff',
-  '/src/assets/fonts/Roboto-LightItalic.woff',
-  '/src/assets/fonts/Roboto-Medium.woff',
-  '/src/assets/fonts/Roboto-MediumItalic.woff',
-  '/src/assets/fonts/Roboto-Regular.woff',
-  '/src/assets/fonts/Roboto-Thin.woff',
-  '/src/assets/fonts/Roboto-ThinItalic.woff',
+  '/src/assets/icons/arrow/right_arrow.svg',
+  '/src/assets/icons/arrow/arrow_s.svg',
+  '/src/assets/icons/arrow/arrowleftgray.svg',
 
+  // '/src/assets/icons/menu/friend.svg',
+  // '/src/assets/icons/menu/Asset28.svg',
+  // '/src/assets/icons/menu/challenge.svg',
+  // '/src/assets/icons/menu/Vector.svg',
+  // '/src/assets/icons/menu/setting.svg',
+  // '/src/assets/icons/menu/together.svg',
+  // '/src/assets/icons/arrow/backarr.svg',
+  // '/src/assets/icons/arrow/rightarr.svg',
+  // '/src/assets/icons/alert/alarm.svg',
+  // '/src/assets/icons/alert/alarm-1.svg',
+  // '/src/assets/icons/settings/edit1.svg',
+  // '/src/assets/icons/settings/logout.svg',
+  // '/src/assets/icons/settings/review.svg',
+  // '/src/assets/icons/navbar/challenge.svg',
+  // '/src/assets/icons/navbar/dchallenge.svg',
+  // '/src/assets/icons/navbar/home.svg',
+  // '/src/assets/icons/navbar/dhome.svg',
+  // '/src/assets/icons/navbar/pay.svg',
+  // '/src/assets/icons/navbar/dpay.svg',
+  // '/src/assets/icons/navbar/menu.svg',
+  // '/src/assets/icons/navbar/dmenu.svg',
+  // '/src/assets/icons/navbar/together.svg',
+  // '/src/assets/icons/navbar/dtogether.svg',
+  // '/src/assets/icons/coin/ico_coin1.png',
+  // '/src/assets/fonts/NotoSansKR-Black.woff',
+  // '/src/assets/fonts/NotoSansKR-Bold.woff',
+  // '/src/assets/fonts/NotoSansKR-DemiLight.woff',
+  // '/src/assets/fonts/NotoSansKR-Light.woff',
+  // '/src/assets/fonts/NotoSansKR-Medium.woff',
+  // '/src/assets/fonts/NotoSansKR-Regular.woff',
+  // '/src/assets/fonts/NotoSansKR-Thin.woff',
+  // '/src/assets/fonts/Roboto-Black.woff',
+  // '/src/assets/fonts/Roboto-BlackItalic.woff',
+  // '/src/assets/fonts/Roboto-Bold.woff',
+  // '/src/assets/fonts/Roboto-BoldItalic.woff',
+  // '/src/assets/fonts/Roboto-Italic.woff',
+  // '/src/assets/fonts/Roboto-Light.woff',
+  // '/src/assets/fonts/Roboto-LightItalic.woff',
+  // '/src/assets/fonts/Roboto-Medium.woff',
+  // '/src/assets/fonts/Roboto-MediumItalic.woff',
+  // '/src/assets/fonts/Roboto-Regular.woff',
+  // '/src/assets/fonts/Roboto-Thin.woff',
+  // '/src/assets/fonts/Roboto-ThinItalic.woff',
 ]
 
 // 동적 캐시
