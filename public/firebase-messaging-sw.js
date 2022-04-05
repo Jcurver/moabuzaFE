@@ -6,21 +6,19 @@
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V20'
+const VERSION = 'V21'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
 // 정적 캐시
 const IMMUTABLE_APPSHELL = [
-  '/src/assets/icons/alarm/friendaccept.svg',
-  '/src/assets/icons/alarm/friendadd.svg',
   '/src/assets/icons/arrow/backarr.svg',
   '/src/assets/icons/arrow/rightarr.svg',
   '/src/assets/icons/arrow/right_arrow.svg',
   '/src/assets/icons/arrow/arrow_s.svg',
   '/src/assets/icons/arrow/arrowleftgray.svg',
   '/src/assets/bigbg.png',
-  '/src/assets/iphone.png',
+  '/src/assets/iphone.png'
 ]
 
 // 동적 캐시
@@ -40,7 +38,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('MY_CACHE').then((cache) => {
       console.log('chaching shell')
-      return cache.addAll(CACHE_LIST)
+      return cache.addAll(IMMUTABLE_APPSHELL)
     }),
   )
 })
