@@ -9,7 +9,7 @@
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V13'
+const VERSION = 'V14'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
@@ -21,7 +21,9 @@ const IMMUTABLE_APPSHELL = [
   '/src/assets/icons/arrow/rightarr.svg',
   '/src/assets/icons/arrow/right_arrow.svg',
   '/src/assets/icons/arrow/arrow_s.svg',
-  '/src/assets/icons/arrow/arrowleftgray.svg'
+  '/src/assets/icons/arrow/arrowleftgray.svg',
+  '/src/assets/bigbg.png',
+  '/src/assets/iphone.png'
 ]
 
 // 동적 캐시
