@@ -16,7 +16,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
-import { getDate } from '../hooks/getDate'
+import { getDate,getMonth } from '../hooks/getDate'
 import '../styles/OneDaySlide.css'
 import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
 // import { ReactComponent as Challenge } from '../assets/icons/onedaybuza/challenge.svg'
@@ -128,6 +128,8 @@ function OnedayBuza(state) {
         <div>
           <DatePicker
             dateFormat="yyyy.MM.dd"
+            name="calendar"
+            enabled="true"
             locale="ko"
             selected={startDate}
             onChange={(date) => setDateMutate(date)}
@@ -136,14 +138,23 @@ function OnedayBuza(state) {
             // 모바일 web 환경에서 화면을 벗어나지 않도록 하는 설정
             popperModifiers={{ preventOverflow: { enabled: true } }}
             popperPlacement="auto" // 화면 중앙에 팝업이 뜨도록
-            dayClassName={(date) => {
-              if (getDayName(createDate(date)) === '토') {
+            dayClassName={(d) => {
+              if (
+                d.getDate() === startDate.getDate() &&
+                d.getMonth() === startDate.getMonth()
+              ) {
+                return 'selected-day'
+              }
+              if (getDayName(createDate(d)) === '토') {
                 return 'saturday'
               }
-              if (getDayName(createDate(date)) === '일') {
+              if (getDayName(createDate(d)) === '일') {
                 return 'sunday'
               }
-              return null
+              
+
+              
+              return 'weekday'
             }}
           />
         </div>
