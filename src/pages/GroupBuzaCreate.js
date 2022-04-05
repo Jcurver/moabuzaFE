@@ -139,105 +139,126 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        <SelectedFriendWrapper>
-          {selectFriends.map((da, idx) => {
-            return (
-              <div key={da.id}>
-                <SelectedFriendContent>
-                  <CircleImg
-                    src={
-                      da.hero === 'tanni'
-                        ? TanniFace
-                        : da.hero === 'tongki'
-                        ? TongkiFace
-                        : da.hero === 'bunny'
-                        ? BunnyFace
-                        : null
-                    }
-                  />
-                  <SelectFriendNameDiv>
-                    {selectFriends[idx].groupMemberNickname}
-                  </SelectFriendNameDiv>
-                  <DeleteFriendContent
+        {selectFriends.length === 0 ? (
+          <EmptyFriend>
+            <EmptyFriendTitle>친구를 추가해 주세요.</EmptyFriendTitle>
+            <EmptyFriendDescribe>
+              *메뉴 - 친구 페이지로 이동합니다.
+            </EmptyFriendDescribe>
+            <EmptyFriendAddButton
+              onClick={() => {
+                navigate('/friends/add')
+              }}
+            >
+              <EmptyFriendAddButtonText>친구추가</EmptyFriendAddButtonText>
+            </EmptyFriendAddButton>
+          </EmptyFriend>
+        ) : (
+          <>
+            <SelectedFriendWrapper>
+              {selectFriends.map((da, idx) => {
+                return (
+                  <div key={da.id}>
+                    <SelectedFriendContent>
+                      <CircleImg
+                        src={
+                          da.hero === 'tanni'
+                            ? TanniFace
+                            : da.hero === 'tongki'
+                            ? TongkiFace
+                            : da.hero === 'bunny'
+                            ? BunnyFace
+                            : null
+                        }
+                      />
+                      <SelectFriendNameDiv>
+                        {selectFriends[idx].groupMemberNickname}
+                      </SelectFriendNameDiv>
+                      <DeleteFriendContent
+                        onClick={() => {
+                          const targetIndex = selectFriends.findIndex(
+                            (d) =>
+                              d.groupMemberNickname === da.groupMemberNickname,
+                          )
+                          setDatalist([selectFriends[targetIndex], ...datalist])
+                          setSelectFriends([
+                            ...selectFriends.slice(0, targetIndex),
+                            ...selectFriends.slice(targetIndex + 1),
+                          ])
+                        }}
+                      >
+                        <Close />
+                      </DeleteFriendContent>
+                    </SelectedFriendContent>
+                  </div>
+                )
+              })}
+            </SelectedFriendWrapper>
+            <FriendsList friendslength={selectFriends.length}>
+              {datalist.map((da, idx) => {
+                if (datalist.groupMemberCanInvite) {
+                  return null
+                }
+                return (
+                  <Friends
+                    style={{
+                      backgroundColor: da.groupMemberCanInvite
+                        ? 'white'
+                        : 'F5F5F7',
+                    }}
+                    key={da.id}
                     onClick={() => {
-                      const targetIndex = selectFriends.findIndex(
+                      if (!da.groupMemberCanInvite) {
+                        return
+                      }
+                      if (selectFriends.length > 2) {
+                        // eslint-disable-next-line no-alert
+                        Swal.fire({
+                          title: '인원초과!',
+                          text: '3명까지 선택가능해요!',
+                          confirmButtonText: '확인!',
+                        })
+                        return
+                      }
+
+                      const targetIndex = datalist.findIndex(
                         (d) => d.groupMemberNickname === da.groupMemberNickname,
                       )
-                      setDatalist([selectFriends[targetIndex], ...datalist])
-                      setSelectFriends([
-                        ...selectFriends.slice(0, targetIndex),
-                        ...selectFriends.slice(targetIndex + 1),
+                      setSelectFriends((prevList) => [
+                        datalist[targetIndex],
+                        ...prevList,
+                      ])
+                      setDatalist([
+                        ...datalist.slice(0, targetIndex),
+                        ...datalist.slice(targetIndex + 1),
                       ])
                     }}
                   >
-                    <Close />
-                  </DeleteFriendContent>
-                </SelectedFriendContent>
-              </div>
-            )
-          })}
-        </SelectedFriendWrapper>
-        <FriendsList friendslength={selectFriends.length}>
-          {datalist.map((da, idx) => {
-            if (datalist.groupMemberCanInvite) {
-              return null
-            }
-            return (
-              <Friends
-                style={{
-                  backgroundColor: da.groupMemberCanInvite ? 'white' : 'F5F5F7',
-                }}
-                key={da.id}
-                onClick={() => {
-                  if (!da.groupMemberCanInvite) {
-                    return
-                  }
-                  if (selectFriends.length > 2) {
-                    // eslint-disable-next-line no-alert
-                    Swal.fire({
-                      title: '인원초과!',
-                      text: '3명까지 선택가능해요!',
-                      confirmButtonText: '확인!',
-                    })
-                    return
-                  }
-
-                  const targetIndex = datalist.findIndex(
-                    (d) => d.groupMemberNickname === da.groupMemberNickname,
-                  )
-                  setSelectFriends((prevList) => [
-                    datalist[targetIndex],
-                    ...prevList,
-                  ])
-                  setDatalist([
-                    ...datalist.slice(0, targetIndex),
-                    ...datalist.slice(targetIndex + 1),
-                  ])
-                }}
-              >
-                <CircleImg
-                  src={
-                    da.hero === 'tanni'
-                      ? TanniFace
-                      : da.hero === 'tongki'
-                      ? TongkiFace
-                      : da.hero === 'bunny'
-                      ? BunnyFace
-                      : null
-                  }
-                />
-                <FriendsText
-                  style={{
-                    color: da.groupMemberCanInvite ? 'black' : '#8C939D',
-                  }}
-                >
-                  {da.groupMemberNickname}
-                </FriendsText>
-                {da.groupMemberCanInvite ? null : <Doing>진행중</Doing>}
-              </Friends>
-            )
-          })}
-        </FriendsList>
+                    <CircleImg
+                      src={
+                        da.hero === 'tanni'
+                          ? TanniFace
+                          : da.hero === 'tongki'
+                          ? TongkiFace
+                          : da.hero === 'bunny'
+                          ? BunnyFace
+                          : null
+                      }
+                    />
+                    <FriendsText
+                      style={{
+                        color: da.groupMemberCanInvite ? 'black' : '#8C939D',
+                      }}
+                    >
+                      {da.groupMemberNickname}
+                    </FriendsText>
+                    {da.groupMemberCanInvite ? null : <Doing>진행중</Doing>}
+                  </Friends>
+                )
+              })}
+            </FriendsList>
+          </>
+        )}
       </FriendWrapper>
     </Wrapper>
   )
@@ -528,6 +549,86 @@ const Doing = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 100%;
+  /* Rectangle 173 */
+
+  color: #ffffff;
+`
+
+const EmptyFriend = styled.div`
+  width: 91.1%;
+  height: 96px;
+  margin-top: 16px;
+  border: 1px solid #e5eaf2;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+`
+const EmptyFriendTitle = styled.div`
+  margin-top: 12px;
+  /* Heading/Noto Sans KR/H6 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  /* identical to box height, or 14px */
+
+  text-align: center;
+  letter-spacing: -0.04em;
+
+  /* color / gray / Black */
+
+  color: #000000;
+`
+const EmptyFriendDescribe = styled.div`
+  margin-top: 8px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  /* identical to box height, or 10px */
+
+  letter-spacing: -0.04em;
+
+  /* color/text/Color-text-Gray1 */
+
+  color: #b9bfc8;
+`
+const EmptyFriendAddButton = styled.button`
+  margin: 12px auto 0 auto;
+  width: 69px;
+  height: 28px;
+
+  /* color/Secondary */
+
+  background: #4675f0;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const EmptyFriendAddButtonText = styled.div`
+  position: static;
+  width: 45px;
+  height: 12px;
+
+  /* Heading/Noto Sans KR/H7 */
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  /* identical to box height, or 12px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+
   /* Rectangle 173 */
 
   color: #ffffff;
