@@ -80,12 +80,11 @@
     ></script>
     <script
       type="module"
-      src="https://moabuza.com/firebase-messaging-sw.js"
+      src="firebase-messaging-sw.js"
     ></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker
-          .register('./firebase-messaging-sw.js')
+        navigator.serviceWorker.register('./firebase-messaging-sw.js')
           .then((registration) => {
             console.log('Registration successful', registeration)
           })

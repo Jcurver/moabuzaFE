@@ -210,7 +210,9 @@ function App() {
     console.log('Message received. ', payload)
     // ...
   })
-
+   useEffect(() => {
+     getToken()
+   }, [])
   return (
     <ErrorBoundary FallbackComponent={KakaoLogin}>
       <Suspense fallback={<Loading />}>
