@@ -8,6 +8,7 @@ import firebase from 'firebase/compat/app'
 // import { firebaseApp } from '../utils/firebase'
 // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-moabuza.js'
 import { initializeApp } from '@firebase/app'
+
 import { setItem } from '../utils/sessionStorage'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
@@ -170,7 +171,7 @@ function App() {
   // const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
   // Retrieve firebase messaging
-  const messaging = firebase.messaging()
+  const messaging = getMessaging()
 
   messaging.onBackgroundMessage((payload) => {
     console.log('Received background message ', payload)
