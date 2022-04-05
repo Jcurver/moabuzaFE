@@ -173,16 +173,16 @@ function App() {
   // Retrieve firebase messaging
   const messaging = getMessaging()
 
-  messaging.onBackgroundMessage((payload) => {
-    console.log('Received background message ', payload)
+  // messaging.onBackgroundMessage((payload) => {
+  //   console.log('Received background message ', payload)
 
-    const notificationTitle = payload.notification.title
-    const notificationOptions = {
-      body: payload.notification.body,
-    }
+  //   const notificationTitle = payload.notification.title
+  //   const notificationOptions = {
+  //     body: payload.notification.body,
+  //   }
 
-    self.registration.showNotification(notificationTitle, notificationOptions)
-  })
+  //   self.registration.showNotification(notificationTitle, notificationOptions)
+  // })
 
   // 토큰값 얻기
   getToken(messaging, {
