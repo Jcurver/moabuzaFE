@@ -163,35 +163,41 @@ function OnedayBuza(state) {
           <RightArrow />
         </RightArrowDiv>
       </CalDiv>
-      <CalendarLine />
-
-      <TotalLine style={{ top: '23.89%' }}>
+      <CalendarLine style={{ top: '18.89%' }} />
+      <TotalLine style={{ top: '22.74%' }}>
+        <TotalLeft>나의 지갑</TotalLeft>
+        <TotalRight>
+          {mutation?.data?.data?.dayIncomeAmount.toLocaleString('en-US')} 원
+        </TotalRight>
+      </TotalLine>
+      <CalendarLine style={{ top: '25.14%' }} />
+      <TotalLine style={{ top: '29.14%' }}>
         <TotalLeft>수입</TotalLeft>
         <TotalRight>
           + {mutation?.data?.data?.dayIncomeAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
-      <TotalLine style={{ top: '28.61%' }}>
+      <TotalLine style={{ top: '33.29%' }}>
         <TotalLeft>지출</TotalLeft>
         <TotalRight>
           - {mutation?.data?.data?.dayExpenseAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
-      <MidLine />
-      <TotalLine style={{ top: '36.25%' }}>
+      <CalendarLine style={{ top: '35.83%' }} />
+      <TotalLine style={{ top: '39.9%' }}>
         <TotalLeft>같이해부자</TotalLeft>
         <TotalRight>
           {mutation?.data?.data?.dayGroupAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
-      <TotalLine style={{ top: '40.97%' }}>
+      <TotalLine style={{ top: '43.8%' }}>
         <TotalLeft>도전해부자</TotalLeft>
         <TotalRight>
           {mutation?.data?.data?.dayChallengeAmount.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
+      <CalendarLine style={{ top: '46.53%' }} />
 
-      <BottomLine />
       <TodayListBigDiv />
       <ZigZagDiv>
         <Receipt src={receipt} />
@@ -353,13 +359,22 @@ const CalBtn = styled.button`
 `
 const CalendarLine = styled.hr`
   position: absolute;
-  width: 90.2%;
+  width: 90.4%;
   height: 1px;
-  left: 4.9%;
-  top: 20%;
-  background-color: #cccccc;
-  /* color / gray / Gray50 */
+  left: 4.8%;
+
+
+  /* color/icon */
+
+  border: 1px dashed #d1d5da;
   box-sizing: border-box;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 12px 0px;
 `
 const TotalLine = styled.div`
   ${setFlexStyles({
@@ -374,7 +389,7 @@ const TotalLine = styled.div`
 const TotalLeft = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
 
   line-height: 100%;
@@ -390,7 +405,7 @@ const TotalLeft = styled.div`
 const TotalRight = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   /* identical to box height, or 14px */
@@ -532,7 +547,7 @@ const TodayListLineMemo = styled.div`
 const ZigZagDiv = styled.div`
   position: absolute;
   display: flex;
-  top: calc(49% - 10px);
+  top: calc(51% - 10px);
   height: 20px;
   width: 100%;
 `
