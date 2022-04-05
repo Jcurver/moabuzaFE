@@ -1,9 +1,8 @@
 // import { initializeApp } from 'firebase/app'
-// import { getMessaging, getToken, onMessage } from 'firebase/messaging'
+import { getMessaging, getToken, onMessage } from 'firebase/messaging'
 // import firebase from 'firebase/compat/app'
 // import { useEffect } from 'react'
 // import { setItem } from './sessionStorage'
-
 
 // // eslint-disable-next-line no-undef
 // importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
@@ -35,10 +34,9 @@ export const fcmToken = getToken(messaging, {
     if (currentToken) {
       // Send the token to your server and update the UI if necessary
       // ...
-      console.log('FCM User Token 최초 수신:::', currentToken);
-      setItem('fcmToken', currentToken);
-      
-    } else { 
+      console.log('FCM User Token 최초 수신:::', currentToken)
+      setItem('fcmToken', currentToken)
+    } else {
       // Show permission request UI
       console.log(
         'No registration token available. Request permission to generate one.',
