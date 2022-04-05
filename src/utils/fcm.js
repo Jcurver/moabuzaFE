@@ -4,8 +4,7 @@
 // import { useEffect } from 'react'
 // import { setItem } from './sessionStorage'
 
-
-// // eslint-disable-next-line no-undef
+// eslint-disable-next-line no-undef
 // importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
 // importScripts(
@@ -24,11 +23,10 @@
 
 // const firebaseApp = initializeApp(config)
 
-// // const app = initializeApp(config)
+// const app = initializeApp(config)
 // const messaging = getMessaging(firebaseApp)
 
 // // 토큰값 얻기
-
 // export const fcmToken = getToken(messaging, {
 //   vapidKey: process.env.REACT_APP_VAPID_KEY,
 // })
@@ -36,10 +34,9 @@
 //     if (currentToken) {
 //       // Send the token to your server and update the UI if necessary
 //       // ...
-//       console.log('FCM User Token 최초 수신:::', currentToken);
-//       setItem('fcmToken', currentToken);
-      
-//     } else { 
+//       console.log('FCM User Token 최초 수신:::', currentToken)
+//       setItem('fcmToken', currentToken)
+//     } else {
 //       // Show permission request UI
 //       console.log(
 //         'No registration token available. Request permission to generate one.',
