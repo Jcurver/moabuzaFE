@@ -16,7 +16,7 @@ import { setFlexStyles } from '../styles/Mixin'
 import { request } from '../utils/axios'
 import Nav from '../components/Nav'
 import '@sandstreamdev/react-swipeable-list/dist/styles.css'
-import { getDate,getMonth } from '../hooks/getDate'
+import { getDate, getMonth } from '../hooks/getDate'
 import '../styles/OneDaySlide.css'
 import { ReactComponent as RightArrow } from '../assets/icons/arrow/rightarr.svg'
 // import { ReactComponent as Challenge } from '../assets/icons/onedaybuza/challenge.svg'
@@ -45,7 +45,7 @@ function ExampleCustomInput({ value, onClick }) {
 
 function OnedayBuza(state) {
   const location = useLocation()
-
+  const { data: mainpageData } = useMainPageData(navigate)
   const navigate = useNavigate()
   if (getItem('nowdate') === undefined) {
     setItem('nowdate', new Date())
@@ -167,7 +167,7 @@ function OnedayBuza(state) {
       <TotalLine style={{ top: '22.74%' }}>
         <TotalLeft>나의 지갑</TotalLeft>
         <TotalRight>
-          {mutation?.data?.data?.dayIncomeAmount.toLocaleString('en-US')} 원
+          {mainpageData && mainpageData.data.wallet.toLocaleString('en-US')} 원
         </TotalRight>
       </TotalLine>
       <CalendarLine style={{ top: '25.14%' }} />
@@ -362,7 +362,6 @@ const CalendarLine = styled.hr`
   width: 90.4%;
   height: 1px;
   left: 4.8%;
-
 
   /* color/icon */
 
