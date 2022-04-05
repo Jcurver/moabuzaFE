@@ -131,7 +131,7 @@ function Modified() {
                   color: hero === 'bunny' ? '#4675F0' : '#60666F',
                 }}
               >
-                버니
+                산이
               </CharacterName>
             </CharacterOne>
             <CharacterOne
@@ -169,7 +169,7 @@ function Modified() {
                   color: hero === 'tanni' ? '#4675F0' : '#60666F',
                 }}
               >
-                타니
+                토비
               </CharacterName>
             </CharacterOne>
           </CharacterCenterDiv>
