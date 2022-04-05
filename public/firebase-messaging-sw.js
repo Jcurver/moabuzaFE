@@ -35,7 +35,7 @@
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V10'
+const VERSION = 'V11'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
@@ -47,7 +47,7 @@ const IMMUTABLE_APPSHELL = [
   '/src/assets/icons/arrow/rightarr.svg',
   '/src/assets/icons/arrow/right_arrow.svg',
   '/src/assets/icons/arrow/arrow_s.svg',
-  '/src/assets/icons/arrow/arrowleftgray.svg',
+  '/src/assets/icons/arrow/arrowleftgray.svg'
 ]
 
 // 동적 캐시
@@ -58,7 +58,7 @@ const MUTABLE_APPSHELL = [
   '/src/pages/FriendsAdd.js',
   '/src/pages/ChallengeBuza.js',
   '/src/pages/ChallengeBuzaCreate.js',
-  '/src/pages/ChallengeBuzaDetail.js',
+  '/src/pages/ChallengeBuzaDetail.js'
 ]
 
 // 정적 캐시와 동적캐시 하나의 배열로 묶기
