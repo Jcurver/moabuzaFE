@@ -157,10 +157,10 @@ function App() {
     appId: '1:128639882477:web:4e0c086f572ce6b9a468e4',
   }
 
-  const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+  // const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
   // Retrieve firebase messaging
-  const messaging = fbase.messaging()
+  const messaging = firebase.messaging()
 
   messaging.onBackgroundMessage((payload) => {
     console.log('Received background message ', payload)

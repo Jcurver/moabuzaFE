@@ -9,7 +9,7 @@
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V16'
+const VERSION = 'V18'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
