@@ -151,12 +151,12 @@ function App() {
   // })
   // Initialize the Firebase app in the service worker by passing the generated config
 
-  importScripts(
-    'https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js',
-  )
-  importScripts(
-    'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
-  )
+  // importScripts(
+  //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js',
+  // )
+  // importScripts(
+  //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
+  // )
 
   const firebaseConfig = {
     apiKey: 'AIzaSyD0u9HX41rjh3MnO93isinkSuxzLEH22GI',
