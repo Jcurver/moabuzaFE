@@ -43,12 +43,9 @@ function ExampleCustomInput({ value, onClick }) {
 function OnedayBuza(state) {
   const location = useLocation()
 
-  console.log('OnedayProps:::', location)
-
   const navigate = useNavigate()
   if (getItem('nowdate') === undefined) {
     setItem('nowdate', new Date())
-    console.log('GetITEM', getItem('nowdate'))
   }
   const [startDate, setStartDate] = useState(new Date(getItem('nowdate')))
 
