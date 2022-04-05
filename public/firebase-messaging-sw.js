@@ -35,7 +35,7 @@ Notification.requestPermission().then((permission) => {
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V6'
+const VERSION = 'V8'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
