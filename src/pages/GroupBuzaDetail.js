@@ -117,11 +117,11 @@ function GroupBuzaDetail() {
           </GroupFriend>
           <DetailCharacter
             src={
-              data?.data.groupNowPercent <= 20
+              data?.data.groupNowPercent < 30
                 ? AllCharacters01
-                : data.data.groupNowPercent > 20
+                : data.data.groupNowPercent < 60
                 ? AllCharacters02
-                : data.data.groupNowPercent > 60
+                : data.data.groupNowPercent
                 ? AllCharacters03
                 : null
             }
