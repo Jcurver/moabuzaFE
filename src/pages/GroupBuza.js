@@ -177,7 +177,6 @@ function GroupBuza() {
                       fontSize="14px"
                       background="#4675F0"
                       onClick={() => {
-                        console.log('gStatus:::', gStatus.id)
                         cancelGroup(gStatus.id)
                       }}
                     >

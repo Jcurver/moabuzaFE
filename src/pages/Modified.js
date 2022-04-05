@@ -22,7 +22,6 @@ function Modified() {
     setValue('character', i)
   }
 
-  console.log('hero:', hero)
   const onValid = async (data) => {
     if (hero === 'heor0') {
       Swal.fire({
@@ -34,7 +33,6 @@ function Modified() {
       return
     }
 
-    console.log(hero)
     if (!nickNameDup) {
       Swal.fire({
         title: '닉네임 중복확인해부자',
@@ -101,7 +99,6 @@ function Modified() {
     setValue,
     setError,
   } = useForm()
-  console.log(watch())
   return (
     <Wrapper>
       <NavLink to="/menu">
