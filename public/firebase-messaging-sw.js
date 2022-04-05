@@ -41,9 +41,7 @@ const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
 // 정적 캐시
 const IMMUTABLE_APPSHELL = [
-  '/public/moa192.png',
-  '/public/moa512.png',
-  '/public/moa64.png',
+
   '/src/assets/icons/menu/friend.svg',
   '/src/assets/icons/menu/Asset28.svg',
   '/src/assets/icons/menu/challenge.svg',
@@ -96,9 +94,6 @@ const MUTABLE_APPSHELL = [
   '/src/pages/OnedayBuza.js',
   '/src/pages/Alerts.js',
   '/src/pages/FriendsAdd.js',
-  '/src/pages/App.js',
-  '/src/pages/Bedge.js',
-  '/src/pages/CalendarMain.js',
   '/src/pages/ChallengeBuza.js',
   '/src/pages/ChallengeBuzaCreate.js',
   '/src/pages/ChallengeBuzaDetail.js',
