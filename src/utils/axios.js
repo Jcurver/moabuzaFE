@@ -79,6 +79,7 @@ let token
 
 if (getItem('fcmtoken')) {
   token = getItem('fcmtoken')
+  console.log(getItem('fcmtoken'))
 } else {
   token = 'token'
 }
