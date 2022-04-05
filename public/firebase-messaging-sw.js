@@ -8,19 +8,19 @@
 //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
 // )
 
-const config = {
-  apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
-  authDomain: 'moabuza.firebaseapp.com',
-  projectId: 'moabuza',
-  storageBucket: 'moabuza.appspot.com',
-  messagingSenderId: '702007017171',
-  appId: '1:702007017171:web:3584da8cde95f03eedde26',
-  measurementId: 'G-3PZP7TQ54Y',
-}
+// const config = {
+//   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
+//   authDomain: 'moabuza.firebaseapp.com',
+//   projectId: 'moabuza',
+//   storageBucket: 'moabuza.appspot.com',
+//   messagingSenderId: '702007017171',
+//   appId: '1:702007017171:web:3584da8cde95f03eedde26',
+//   measurementId: 'G-3PZP7TQ54Y',
+// }
 
-// initializeApp(config)
+// // initializeApp(config)
 
-firebase.initializeApp(config)
+// firebase.initializeApp(config)
 
 // Notification.requestPermission().then((permission) => {
 //   if (permission === 'granted') {
@@ -35,7 +35,7 @@ firebase.initializeApp(config)
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V9'
+const VERSION = 'V10'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
@@ -48,50 +48,6 @@ const IMMUTABLE_APPSHELL = [
   '/src/assets/icons/arrow/right_arrow.svg',
   '/src/assets/icons/arrow/arrow_s.svg',
   '/src/assets/icons/arrow/arrowleftgray.svg',
-
-  // '/src/assets/icons/menu/friend.svg',
-  // '/src/assets/icons/menu/Asset28.svg',
-  // '/src/assets/icons/menu/challenge.svg',
-  // '/src/assets/icons/menu/Vector.svg',
-  // '/src/assets/icons/menu/setting.svg',
-  // '/src/assets/icons/menu/together.svg',
-  // '/src/assets/icons/arrow/backarr.svg',
-  // '/src/assets/icons/arrow/rightarr.svg',
-  // '/src/assets/icons/alert/alarm.svg',
-  // '/src/assets/icons/alert/alarm-1.svg',
-  // '/src/assets/icons/settings/edit1.svg',
-  // '/src/assets/icons/settings/logout.svg',
-  // '/src/assets/icons/settings/review.svg',
-  // '/src/assets/icons/navbar/challenge.svg',
-  // '/src/assets/icons/navbar/dchallenge.svg',
-  // '/src/assets/icons/navbar/home.svg',
-  // '/src/assets/icons/navbar/dhome.svg',
-  // '/src/assets/icons/navbar/pay.svg',
-  // '/src/assets/icons/navbar/dpay.svg',
-  // '/src/assets/icons/navbar/menu.svg',
-  // '/src/assets/icons/navbar/dmenu.svg',
-  // '/src/assets/icons/navbar/together.svg',
-  // '/src/assets/icons/navbar/dtogether.svg',
-  // '/src/assets/icons/coin/ico_coin1.png',
-  // '/src/assets/fonts/NotoSansKR-Black.woff',
-  // '/src/assets/fonts/NotoSansKR-Bold.woff',
-  // '/src/assets/fonts/NotoSansKR-DemiLight.woff',
-  // '/src/assets/fonts/NotoSansKR-Light.woff',
-  // '/src/assets/fonts/NotoSansKR-Medium.woff',
-  // '/src/assets/fonts/NotoSansKR-Regular.woff',
-  // '/src/assets/fonts/NotoSansKR-Thin.woff',
-  // '/src/assets/fonts/Roboto-Black.woff',
-  // '/src/assets/fonts/Roboto-BlackItalic.woff',
-  // '/src/assets/fonts/Roboto-Bold.woff',
-  // '/src/assets/fonts/Roboto-BoldItalic.woff',
-  // '/src/assets/fonts/Roboto-Italic.woff',
-  // '/src/assets/fonts/Roboto-Light.woff',
-  // '/src/assets/fonts/Roboto-LightItalic.woff',
-  // '/src/assets/fonts/Roboto-Medium.woff',
-  // '/src/assets/fonts/Roboto-MediumItalic.woff',
-  // '/src/assets/fonts/Roboto-Regular.woff',
-  // '/src/assets/fonts/Roboto-Thin.woff',
-  // '/src/assets/fonts/Roboto-ThinItalic.woff',
 ]
 
 // 동적 캐시
@@ -230,28 +186,3 @@ self.addEventListener('notificationclick', (event) => {
 //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
 // )
 
-// Initialize the Firebase app in the service worker by passing the generated config
-var firebaseConfig = {
-  apiKey: 'AIzaSyD0u9HX41rjh3MnO93isinkSuxzLEH22GI',
-  authDomain: 'boiler-e3497.firebaseapp.com',
-  projectId: 'boiler-e3497',
-  storageBucket: 'boiler-e3497.appspot.com',
-  messagingSenderId: '128639882477',
-  appId: '1:128639882477:web:4e0c086f572ce6b9a468e4',
-}
-
-firebase.initializeApp(firebaseConfig)
-
-// Retrieve firebase messaging
-const messaging = firebase.messaging()
-
-messaging.onBackgroundMessage(function (payload) {
-  console.log('Received background message ', payload)
-
-  const notificationTitle = payload.notification.title
-  const notificationOptions = {
-    body: payload.notification.body,
-  }
-
-  self.registration.showNotification(notificationTitle, notificationOptions)
-})
