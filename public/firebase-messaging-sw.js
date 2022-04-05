@@ -2,33 +2,7 @@
 /* eslint-disable no-var */
 
 
-// importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
-// importScripts(
-//   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
-// )
-
-// const config = {
-//   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
-//   authDomain: 'moabuza.firebaseapp.com',
-//   projectId: 'moabuza',
-//   storageBucket: 'moabuza.appspot.com',
-//   messagingSenderId: '702007017171',
-//   appId: '1:702007017171:web:3584da8cde95f03eedde26',
-//   measurementId: 'G-3PZP7TQ54Y',
-// }
-
-// // initializeApp(config)
-
-// firebase.initializeApp(config)
-
-// Notification.requestPermission().then((permission) => {
-//   if (permission === 'granted') {
-//     console.log('Notification permission granted.')
-//   } else {
-//     console.log('Unable to get permission to notify.')
-//   }
-// })
 
 // 포그라운드 메시지 수신
 
