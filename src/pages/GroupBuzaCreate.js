@@ -80,7 +80,6 @@ function GroupBuzaCreate() {
     setError,
     formState: { errors },
   } = useForm()
-  console.log(watch())
 
   return (
     <Wrapper>
@@ -169,8 +168,6 @@ function GroupBuzaCreate() {
                         ...selectFriends.slice(0, targetIndex),
                         ...selectFriends.slice(targetIndex + 1),
                       ])
-
-                      console.log('datalist', datalist)
                     }}
                   >
                     <Close />
@@ -182,7 +179,6 @@ function GroupBuzaCreate() {
         </SelectedFriendWrapper>
         <FriendsList friendslength={selectFriends.length}>
           {datalist.map((da, idx) => {
-            console.log('datalist::', datalist)
             if (datalist.groupMemberCanInvite) {
               return null
             }

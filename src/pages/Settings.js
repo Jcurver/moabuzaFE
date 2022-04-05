@@ -11,7 +11,6 @@ import { ReactComponent as Review } from '../assets/icons/settings/review.svg'
 
 function Settings() {
   function logout() {
-    console.log('gkgk')
     Swal.fire({
       title: '로그아웃할 거지?',
       text: '꼭 다시 돌아와부자!',
