@@ -113,38 +113,76 @@ function App() {
   //   // ...
   // })
 
-  const firebaseMessaging = getMessaging(firebaseApp)
-  getToken(firebaseMessaging, {
+  // const firebaseMessaging = getMessaging(firebaseApp)
+  // getToken(firebaseMessaging, {
+  //   vapidKey: process.env.REACT_APP_VAPID_KEY,
+  // })
+  //   .then((currentToken) => {
+  //     console.log(currentToken)
+  //     if (currentToken) {
+  //       apis.pushAlarm(currentToken).then((response) => {
+  //         console.log(response)
+  //       })
+  //     } else {
+  //       console.log('not alarm registered')
+  //     }
+  //   })
+  //   .catch((error) => console.log(error))
+
+  // onMessage(firebaseMessaging, (payload) => {
+  //   console.log('foregroundMessage')
+  //   console.log('여기 되면 대박', payload)
+
+  //   const date = new Date()
+  //   const now = date.getTime()
+
+  //   if (payload) {
+  //     dispatch(
+  //       addNotificationList({
+  //         title: payload.notification.title,
+  //         body: payload.notification.body,
+  //         createdAt: now,
+  //       }),
+  //     )
+  //   }
+  // })
+  
+  // 토큰값 얻기
+  getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
     .then((currentToken) => {
-      console.log(currentToken)
       if (currentToken) {
-        apis.pushAlarm(currentToken).then((response) => {
-          console.log(response)
-        })
+        // Send the token to your server and update the UI if necessary
+        // ...
+        console.log('FCM User Token 최초 수신:::', currentToken)
+        setItem('fcmToken', currentToken)
       } else {
-        console.log('not alarm registered')
+        // Show permission request UI
+        console.log(
+          'No registration token available. Request permission to generate one.',
+        )
+        // ...
       }
+      return currentToken
     })
-    .catch((error) => console.log(error))
+    .catch((err) => {
+      console.log('An error occurred while retrieving token. ', err)
+      // ...
+    })
 
-  onMessage(firebaseMessaging, (payload) => {
-    console.log('foregroundMessage')
-    console.log('여기 되면 대박', payload)
+  // Notification.requestPermission().then((permission) => {
+  //   if (permission === 'granted') {
+  //     console.log('Notification permission granted.')
+  //   } else {
+  //     console.log('Unable to get permission to notify.')
+  //   }
+  // })
 
-    const date = new Date()
-    const now = date.getTime()
-
-    if (payload) {
-      dispatch(
-        addNotificationList({
-          title: payload.notification.title,
-          body: payload.notification.body,
-          createdAt: now,
-        }),
-      )
-    }
+  // 포그라운드 메시지 수신
+  onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload)
+    // ...
   })
 
   return (
