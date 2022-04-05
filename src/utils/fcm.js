@@ -4,7 +4,6 @@
 // import { useEffect } from 'react'
 // import { setItem } from './sessionStorage'
 
-
 // // eslint-disable-next-line no-undef
 // importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
@@ -37,8 +36,8 @@
 //       // ...
 //       console.log('FCM User Token 최초 수신:::', currentToken);
 //       setItem('fcmToken', currentToken);
-      
-//     } else { 
+
+//     } else {
 //       // Show permission request UI
 //       console.log(
 //         'No registration token available. Request permission to generate one.',
