@@ -9,6 +9,7 @@ import firebase from 'firebase/compat/app'
 // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-moabuza.js'
 import { initializeApp } from '@firebase/app'
 
+import { setTokenSourceMapRange } from 'typescript'
 import { setItem } from '../utils/sessionStorage'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
@@ -184,7 +185,8 @@ function App() {
   //   self.registration.showNotification(notificationTitle, notificationOptions)
   // })
 
-  // 토큰값 얻기
+  // 토큰값 얻
+
   getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
@@ -192,8 +194,10 @@ function App() {
       if (currentToken) {
         // Send the token to your server and update the UI if necessary
         // ...
-        console.log('FCM User Token 최초 수신:::', currentToken)
+        swRegist = messaging.swRegistration
         setItem('fcmToken', currentToken)
+
+        console.log('FCM User Token 최초 수신:::', currentToken)
       } else {
         // Show permission request UI
         console.log(
@@ -207,6 +211,7 @@ function App() {
       console.log('An error occurred while retrieving token. ', err)
       // ...
     })
+  
 
   // // Notification.requestPermission().then((permission) => {
   // //   if (permission === 'granted') {

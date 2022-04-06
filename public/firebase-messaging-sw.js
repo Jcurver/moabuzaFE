@@ -38,7 +38,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('MY_CACHE').then((cache) => {
       console.log('chaching shell')
-      return cache.addAll(IMMUTABLE_APPSHELL)
+      return cache.addAll(CACHE_LIST)
     }),
   )
 })
