@@ -123,7 +123,7 @@ function GroupBuza() {
                       <span> 원 남았습니다.</span>
                     </GroupFriendGoal>
                     <GoalAmount>
-                      목표 금액 : {data.data.challengeGoalAmount} 원
+                      목표 금액 : {data.data.groupGoalAmount} 원
                     </GoalAmount>
                     <ProgressBar
                       // completed={60}

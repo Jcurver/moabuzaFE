@@ -68,7 +68,6 @@ function OnedayBuza(state) {
 
   useEffect(() => {
     const selectDate = getDate(startDate)
-
     mutation.mutate(selectDate)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate])
@@ -102,7 +101,6 @@ function OnedayBuza(state) {
   }
   function nextday() {
     setItem('nowdate', new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
-
     setStartDate(new Date(startDate - 1 + 24 * 60 * 60 * 1000 + 1))
   }
   return (
