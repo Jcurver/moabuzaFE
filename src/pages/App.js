@@ -194,7 +194,7 @@ function App() {
       if (currentToken) {
         // Send the token to your server and update the UI if necessary
         // ...
-        swRegist = messaging.swRegistration
+
         setItem('fcmToken', currentToken)
 
         console.log('FCM User Token 최초 수신:::', currentToken)
