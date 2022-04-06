@@ -5,11 +5,11 @@ import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
 
-importScripts('https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js')
+// importScripts('https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js')
 
-importScripts(
-  'https://www.gstatic.com/firebasejs/9.6.10/firebase-messaging-compat.js',
-)
+// importScripts(
+//   'https://www.gstatic.com/firebasejs/9.6.10/firebase-messaging-compat.js',
+// )
 
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
