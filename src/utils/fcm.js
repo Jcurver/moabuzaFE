@@ -4,12 +4,12 @@ import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
-// eslint-disable-next-line no-undef
-// importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js')
 
-// importScripts(
-//   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
-// )
+importScripts('https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js')
+
+importScripts(
+  'https://www.gstatic.com/firebasejs/9.6.10/firebase-messaging-compat.js',
+)
 
 const config = {
   apiKey: 'AIzaSyCGo8nqq7bA-zv87IqQNOS1y9xUJ2t4m1I',
@@ -24,6 +24,24 @@ const config = {
 const firebaseApp = initializeApp(config)
 
 const messaging = getMessaging(firebaseApp)
+
+
+// messaging.onBackgroundMessage(messaging, (payload) => {
+//   console.log(
+//     '[firebase-messaging-sw.js] Received background message ',
+//     payload,
+//   )
+
+//   // Customize notification here
+//   const notificationTitle = 'Background Message Title'
+//   const notificationOptions = {
+//     body: payload,
+//     icon: '/firebase-logo.png',
+//   }
+
+//   self.registration.showNotification(notificationTitle, notificationOptions)
+// })
+
 
 // 토큰값 얻기
 export const fcmToken = getToken(messaging, {
