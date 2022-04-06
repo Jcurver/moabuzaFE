@@ -21,7 +21,7 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-const firebaseApp = initializeApp(config)
+
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config)
@@ -29,7 +29,7 @@ if (!firebase.apps.length) {
   firebase.app()
 }
 
-const messaging = getMessaging(firebaseApp)
+const messaging = getMessaging()
 
 
 // 토큰값 얻기
