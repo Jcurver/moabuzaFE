@@ -4,7 +4,6 @@ import firebase from 'firebase/compat/app'
 import { useEffect } from 'react'
 import { setItem } from './sessionStorage'
 
-
 // importScripts('https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js')
 
 // importScripts(
@@ -21,16 +20,9 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(config)
-} else {
-  firebase.app()
-}
+firebase.initializeApp(config)
 
 const messaging = getMessaging()
-
 
 // 토큰값 얻기
 export const fcmToken = getToken(messaging, {
@@ -38,21 +30,17 @@ export const fcmToken = getToken(messaging, {
 })
   .then((currentToken) => {
     if (currentToken) {
-
       console.log('FCM User Token 최초 수신:::', currentToken)
       setItem('fcmToken', currentToken)
     } else {
-
       console.log(
         'No registration token available. Request permission to generate one.',
       )
-
     }
     return currentToken
   })
   .catch((err) => {
     console.log('An error occurred while retrieving token. ', err)
-
   })
 
 // Notification.requestPermission().then((permission) => {
