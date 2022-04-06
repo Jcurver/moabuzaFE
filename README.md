@@ -3,6 +3,9 @@
 
 <img src="https://user-images.githubusercontent.com/66179677/161751055-39b83dd6-2cc0-41f8-9027-9a5a656a87f3.gif" width="100" height="100"/>
 
+### 0. 배포링크
+경제습관 형성 서비스 [모아부자!](https://moabuza.com).
+
 ### 1. About
 모아부자는 ‘모바일 기반 챌린지를 통한 :돈가방:경제습관 형성 서비스’ 입니다.
 1. 하루내역을 추가해 나의 소비를 확인해요.
