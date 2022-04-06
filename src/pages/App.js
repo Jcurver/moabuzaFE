@@ -9,7 +9,6 @@ import firebase from 'firebase/compat/app'
 // import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-moabuza.js'
 import { initializeApp } from '@firebase/app'
 
-import { setTokenSourceMapRange } from 'typescript'
 import { setItem } from '../utils/sessionStorage'
 import ErrorLog from './ErrorLog'
 import Loading from './Loading'
@@ -159,73 +158,73 @@ function App() {
   //   'https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js',
   // )
 
-  const firebaseConfig = {
-    apiKey: 'AIzaSyD0u9HX41rjh3MnO93isinkSuxzLEH22GI',
-    authDomain: 'boiler-e3497.firebaseapp.com',
-    projectId: 'boiler-e3497',
-    storageBucket: 'boiler-e3497.appspot.com',
-    messagingSenderId: '128639882477',
-    appId: '1:128639882477:web:4e0c086f572ce6b9a468e4',
-  }
-  initializeApp(firebaseConfig)
+  // const firebaseConfig = {
+  //   apiKey: 'AIzaSyD0u9HX41rjh3MnO93isinkSuxzLEH22GI',
+  //   authDomain: 'boiler-e3497.firebaseapp.com',
+  //   projectId: 'boiler-e3497',
+  //   storageBucket: 'boiler-e3497.appspot.com',
+  //   messagingSenderId: '128639882477',
+  //   appId: '1:128639882477:web:4e0c086f572ce6b9a468e4',
+  // }
+  // initializeApp(firebaseConfig)
 
-  // const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
+  // // const fbase = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
-  // Retrieve firebase messaging
-  const messaging = getMessaging()
+  // // Retrieve firebase messaging
+  // const messaging = getMessaging()
 
-  // messaging.onBackgroundMessage((payload) => {
-  //   console.log('Received background message ', payload)
+  // // messaging.onBackgroundMessage((payload) => {
+  // //   console.log('Received background message ', payload)
 
-  //   const notificationTitle = payload.notification.title
-  //   const notificationOptions = {
-  //     body: payload.notification.body,
-  //   }
-
-  //   self.registration.showNotification(notificationTitle, notificationOptions)
-  // })
-
-  // 토큰값 얻
-
-  getToken(messaging, {
-    vapidKey: process.env.REACT_APP_VAPID_KEY,
-  })
-    .then((currentToken) => {
-      if (currentToken) {
-        // Send the token to your server and update the UI if necessary
-        // ...
-
-        setItem('fcmToken', currentToken)
-
-        console.log('FCM User Token 최초 수신:::', currentToken)
-      } else {
-        // Show permission request UI
-        console.log(
-          'No registration token available. Request permission to generate one.',
-        )
-        // ...
-      }
-      return currentToken
-    })
-    .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err)
-      // ...
-    })
-  
-
-  // // Notification.requestPermission().then((permission) => {
-  // //   if (permission === 'granted') {
-  // //     console.log('Notification permission granted.')
-  // //   } else {
-  // //     console.log('Unable to get permission to notify.')
+  // //   const notificationTitle = payload.notification.title
+  // //   const notificationOptions = {
+  // //     body: payload.notification.body,
   // //   }
+
+  // //   self.registration.showNotification(notificationTitle, notificationOptions)
   // // })
 
-  // 포그라운드 메시지 수신
-  onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload)
-    // ...
-  })
+  // // 토큰값 얻
+
+  // getToken(messaging, {
+  //   vapidKey: process.env.REACT_APP_VAPID_KEY,
+  // })
+  //   .then((currentToken) => {
+  //     if (currentToken) {
+  //       // Send the token to your server and update the UI if necessary
+  //       // ...
+
+  //       setItem('fcmToken', currentToken)
+
+  //       console.log('FCM User Token 최초 수신:::', currentToken)
+  //     } else {
+  //       // Show permission request UI
+  //       console.log(
+  //         'No registration token available. Request permission to generate one.',
+  //       )
+  //       // ...
+  //     }
+  //     return currentToken
+  //   })
+  //   .catch((err) => {
+  //     console.log('An error occurred while retrieving token. ', err)
+  //     // ...
+  //   })
+  
+
+  // // // Notification.requestPermission().then((permission) => {
+  // // //   if (permission === 'granted') {
+  // // //     console.log('Notification permission granted.')
+  // // //   } else {
+  // // //     console.log('Unable to get permission to notify.')
+  // // //   }
+  // // // })
+
+  // // 포그라운드 메시지 수신
+  // onMessage(messaging, (payload) => {
+  //   console.log('Message received. ', payload)
+  //   // ...
+  // })
 
   return (
     <ErrorBoundary FallbackComponent={KakaoLogin}>
