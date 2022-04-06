@@ -4,7 +4,7 @@
   "discription": "pwa by moabuza",
 
   "scope":".",
-  "start_url": "/",
+  "start_url": "./",
 
   "display": "fullscreen",
   "orientation": "portrait",
@@ -20,7 +20,8 @@
     {
       "src": "moabuza192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "moabuza512.png",

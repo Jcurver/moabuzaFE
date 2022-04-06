@@ -139,7 +139,7 @@ function GroupBuzaCreate() {
         <Text fontSize="14px">
           ✓ 함께 할 친구 설정 <SmallText>2인 - 4인</SmallText>
         </Text>
-        {selectFriends.length === 0 ? (
+        {friendsList && friendsList.data.groupMembers.length === 0 ? (
           <EmptyFriend>
             <EmptyFriendTitle>친구를 추가해 주세요.</EmptyFriendTitle>
             <EmptyFriendDescribe>
@@ -483,7 +483,6 @@ const SelectedFriendContent = styled.div`
   flex-direction: row;
   align-items: center;
   padding-left: 12px;
-  overflow: scroll;
   position: static;
   width: 160px;
   height: 52px;
