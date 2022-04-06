@@ -14,9 +14,9 @@
 ### 2. 기술 스택 소개 
 ![Component 1](https://user-images.githubusercontent.com/66179677/161750377-398d22da-65cd-4f1f-a119-2c832ca8196e.png)
 
-## ✍ 팀원 소개 및 역할 분배
+## ✍ 팀 소개 핵심기능 소개
 
-### 😀 이현규 FRont-End
+### 😀 이현규 Front-End
 
 [github page](https://github.com/Aiden76005588)
 1. **GitHub Actions를 이용한 CI/CD 구축**  
@@ -37,6 +37,7 @@ Global state를 recoil로 관리하고 비동기 데이터는 React-query로 관
 
 ## ✍ 기획
 ### I. 핵심 기능
+
 #### 1-1. 도전해부자 page
 개인의 목표를 설정하고 혼자 또는 여럿이서 같이 목표를 관리해가는 기능입니다. 
 
@@ -46,7 +47,6 @@ Global state를 recoil로 관리하고 비동기 데이터는 React-query로 관
 
 #### 1-2. 같이해부자 page
 공동의 목표를 위해 모두가 같이 목표를 관리해가는 기능입니다.
-
 
 
 ### II. Flow Chart
@@ -82,6 +82,7 @@ https://www.notion.so/fizzehyun/62186ff738a843bd82bc4f005eead01e?v=57212b6f572d4
 ### V. AlarmBuza
 1. 모아부자에서 활동하는 모든 행위들이 알람을 통해서 오게 됩니다. 
 2. 친구를 추가하거나 확인하는 작업등 전부 알람부자를 통해 볼 수 있습니다.
+
 
 ***
 

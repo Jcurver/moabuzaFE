@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ dev ]
+    branches: [devs]
   pull_request:
-    branches: [ dev ]
+    branches: [devs]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@master
 
-      - name: Cache node modules  # node modules 캐싱
+      - name: Cache node modules # node modules 캐싱
         uses: actions/cache@v1
         with:
           path: node_modules
@@ -31,7 +31,7 @@ jobs:
             ${{ runner.OS }}-
 
       - name: Install Dependencies
-        run: npm
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -44,4 +44,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://moabuza
+            build s3://moabuza

@@ -3,24 +3,19 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier', 'no-param-reassign-allow-reduce'],
+  plugins: ['prettier', 'no-param-reassign-allow-reduce'],
   extends: [
     'airbnb',
     'airbnb/hooks',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
   rules: {
     'react/prop-types': 0,
     'no-extra-semi': 'error',
-    'react/jsx-filename-extension': [
-      2,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ], // 확장자로 js와 jsx ts tsx 허용하도록 수정
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx'] }], // 확장자로 js와 jsx ts tsx 허용하도록 수정
     // 'arrow-parens': ['warn', 'as-needed'], // 화살표 함수의 파라미터가 하나일때 괄호 생략
     'no-unused-vars': ['off'], // 사용하지 않는 변수가 있을때 빌드에러가 나던 규칙 해제
     'no-console': ['off'], // 콘솔을 쓰면 에러가 나던 규칙 해제
@@ -30,12 +25,19 @@ module.exports = {
     'linebreak-style': 0,
     'prettier/prettier': 0,
     'import/extensions': 0,
+    'no-undef':0,
     'no-use-before-define': 0,
     'import/no-unresolved': 0,
     'import/no-extraneous-dependencies': 0, // 테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
     'no-shadow': 0,
+    'no-param-reassign': 0,
+    'no-restricted-globals': 0,
+    'no-nested-ternary': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'no-param-reassign-allow-reduce/allow-reduce': 2,
     'no-param-reassign-allow-reduce/no-reduce-identifiers': 2,
+  },
+  parserOptions: {
+    ecmaVersion: 2020,
   },
 }
