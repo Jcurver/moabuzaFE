@@ -422,7 +422,7 @@ const TodayListBigDiv = styled.div`
   height: 40%;
   left: 0px;
   top: 0px;
-  top: 49%;
+  top: 51%;
 
   background-color: #ebf2ff;
 `
