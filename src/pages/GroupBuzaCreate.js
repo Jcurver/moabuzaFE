@@ -17,7 +17,6 @@ function GroupBuzaCreate() {
   const navigate = useNavigate()
   const [datalist, setDatalist] = useState([])
   const { data: friendsList, isLoading } = useFriendData(navigate)
-
   const [selectFriends, setSelectFriends] = useState([])
   useEffect(() => {
     if (friendsList) {
