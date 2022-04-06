@@ -21,7 +21,7 @@ const config = {
   measurementId: 'G-3PZP7TQ54Y',
 }
 
-// const firebaseApp = initializeApp(config)
+const firebaseApp = initializeApp(config)
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config)
@@ -29,7 +29,7 @@ if (!firebase.apps.length) {
   firebase.app()
 }
 
-const messaging = getMessaging()
+const messaging = getMessaging(firebaseApp)
 
 
 // 토큰값 얻기
@@ -38,22 +38,21 @@ export const fcmToken = getToken(messaging, {
 })
   .then((currentToken) => {
     if (currentToken) {
-      // Send the token to your server and update the UI if necessary
-      // ...
+
       console.log('FCM User Token 최초 수신:::', currentToken)
       setItem('fcmToken', currentToken)
     } else {
-      // Show permission request UI
+
       console.log(
         'No registration token available. Request permission to generate one.',
       )
-      // ...
+
     }
     return currentToken
   })
   .catch((err) => {
     console.log('An error occurred while retrieving token. ', err)
-    // ...
+
   })
 
 // Notification.requestPermission().then((permission) => {
