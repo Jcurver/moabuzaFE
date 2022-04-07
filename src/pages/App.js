@@ -42,6 +42,7 @@ const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 
 const UserInfo = lazy(() => import('./UserInfo'))
 const OnBoarding = lazy(() => import('./OnBoarding'))
+const ServiceInfo = lazy(() => import('./ServiceInfo'))
 
 function App() {
   // let swRegist = null
@@ -210,7 +211,6 @@ function App() {
   //     console.log('An error occurred while retrieving token. ', err)
   //     // ...
   //   })
-  
 
   // // // Notification.requestPermission().then((permission) => {
   // // //   if (permission === 'granted') {
@@ -261,6 +261,7 @@ function App() {
             <Route path="/groupbuzadetail" element={<GroupBuzaDetail />} />
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
             <Route path="/onboarding" element={<OnBoarding />} />
+            <Route path="/serviceinfo" element={<ServiceInfo />} />
             <Route path="/loading" element={<Loading />} />
           </Routes>
         </MainDiv>
