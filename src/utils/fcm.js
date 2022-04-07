@@ -24,23 +24,19 @@ firebase.initializeApp(config)
 
 const messaging = getMessaging()
 
-// 토큰값 얻기
 export const fcmToken = getToken(messaging, {
   vapidKey: process.env.REACT_APP_VAPID_KEY,
 })
   .then((currentToken) => {
     if (currentToken) {
-      console.log('FCM User Token 최초 수신:::', currentToken)
       setItem('fcmToken', currentToken)
     } else {
-      console.log(
-        'No registration token available. Request permission to generate one.',
-      )
+      console.log('No registration token available.')
     }
     return currentToken
   })
   .catch((err) => {
-    console.log('An error occurred while retrieving token. ', err)
+    console.log('An error occurred while retrieving token.', err)
   })
 
 // Notification.requestPermission().then((permission) => {
