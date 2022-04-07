@@ -116,7 +116,7 @@ function OnedayBuza(state) {
         <RightButton>입력</RightButton>
       </NavLink>
 
-      <TopLine />
+      {/* <TopLine /> */}
       <CalDiv>
         <LeftArrowDiv onClick={() => yesterday()}>
           <RightArrow
