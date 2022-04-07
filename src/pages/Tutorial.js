@@ -17,9 +17,17 @@ import { TanniFace } from '../assets/character'
 
 function Tutorial() {
   const navigate = useNavigate()
+  const setVh = () => {
+    document.documentElement.style.setProperty(
+      '--vh',
+      `${window.innerHeight}px`,
+    )
+  }
+  window.addEventListener('resize', setVh)
+  setVh()
   return (
     <Wrapper>
-      <Carousel>
+      <Carousel showThumbs={false}>
         <div>
           <TutorialBox>
             <TutorialImg src={Tutorial01} alt="" />
@@ -68,7 +76,7 @@ const TutorialImg = styled.img`
   /* object-fit: cover; */
   /* height: 100% !important; */
   /* min-height: 100vh; */
-  height: ${isMobile ? '100vh !important' : '-webkit-fill-available'};
+  height: ${isMobile ? 'var(--vh)' : '-webkit-fill-available'};
 `
 
 const PrevArrow = styled(LeftArr)`
