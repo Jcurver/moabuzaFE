@@ -66,7 +66,7 @@ const TutorialBox = styled.div`
 const TutorialImg = styled.img`
   border-radius: ${isMobile ? 0 : '31.4px'};
   object-fit: cover;
-  height: ${isMobile ? '700px' : 'auto'};
+  height: 100% !important;
 `
 
 const PrevArrow = styled(LeftArr)`
