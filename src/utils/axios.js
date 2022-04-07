@@ -56,11 +56,11 @@ export const request = async ({ ...options }) => {
 
 let isTokenRefreshing = false
 
+
 let token
 
 if (getItem('fcmtoken')) {
   token = getItem('fcmtoken')
-  console.log(getItem('fcmtoken'))
 } else {
   token = 'token'
 }
@@ -76,7 +76,9 @@ export const api = {
       .then((res) => {})
       .catch((error) => {
         console.log(error)
+        setMoveToLoginPage()
       }),
+  
   getKakaoLogin: (code) =>
     instance
       .get(`/user/kakao/callback?code=${code}`)
@@ -108,13 +110,6 @@ instance.interceptors.response.use(
       config: originalRequest,
       status: statusCode,
     } = error.response
-    console.log(
-      'ERR RESPONSED',
-      responseData,
-      responseData.message,
-      originalRequest,
-      statusCode,
-    )
     if (responseData.msg === 'Move to Login Page') {
       setMoveToLoginPage()
       return Promise.reject(error)
@@ -125,10 +120,8 @@ instance.interceptors.response.use(
         if (process.env.REACT_APP_NODE_ENV === 'development') {
           console.error('엑세스 토큰 만료됨', error)
         }
-
         const oldAccess = `Bearer ${getCookie('A-AUTH-TOKEN')}`
         const oldRefresh = `Bearer ${getCookie('R-AUTH-TOKEN')}`
-
         const { data } = await axios({
           url: `${process.env.REACT_APP_SERVER_URL}/member/reissue`,
           method: 'get',
