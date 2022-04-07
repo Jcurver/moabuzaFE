@@ -10,7 +10,7 @@ function ServiceInfo() {
   return (
     <Wrapper>
       <TopDiv>
-        <NavLink to="/menu">
+        <NavLink to="/">
           <Backarr
             style={{
               position: 'absolute',
