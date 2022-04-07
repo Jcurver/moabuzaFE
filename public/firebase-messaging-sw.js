@@ -6,7 +6,7 @@
 // firebase.initializeApp({ messagingSenderId: 702007017171 })
 
 // 버전 업데이트
-const VERSION = 'V21'
+const VERSION = 'V22'
 const CACHE_NAME = `paper-cache_${VERSION}`
 const TEXT_CACHE_NAME = `paper-text_${VERSION}`
 
@@ -38,7 +38,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('MY_CACHE').then((cache) => {
       console.log('chaching shell')
-      return cache.addAll(IMMUTABLE_APPSHELL)
+      return cache.addAll(CACHE_LIST)
     }),
   )
 })
