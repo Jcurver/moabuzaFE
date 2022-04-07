@@ -68,6 +68,7 @@ const TutorialImg = styled.img`
   /* object-fit: cover; */
   /* height: 100% !important; */
   /* min-height: 100vh; */
+  height: ${isMobile ? '100vh !important' : '-webkit-fill-available'};
 `
 
 const PrevArrow = styled(LeftArr)`
