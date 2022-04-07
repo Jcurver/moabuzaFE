@@ -125,7 +125,8 @@ function ChallengeBuza() {
                       <span> 원 남았습니다.</span>
                     </GroupFriendGoal>
                     <GoalAmount>
-                      목표 금액 : {data.data.challengeGoalAmount} 원
+                      목표 금액 :{' '}
+                      {data.data.challengeGoalAmount.toLocaleString('ko-KR')} 원
                     </GoalAmount>
                     <ProgressBar
                       completed={
