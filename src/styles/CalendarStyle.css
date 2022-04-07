@@ -28,6 +28,7 @@
 }
 .react-datepicker {
   /* background-color: #f6f9fe; */
+  border: none;
   border-radius: 0.6rem;
   box-shadow: 0 0 4px 0 rgb(187, 196, 212);
 }
