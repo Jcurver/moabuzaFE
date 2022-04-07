@@ -81,9 +81,7 @@ function MainPage() {
   const nowChallengePercent = data.data.challengePercent
   const nowGroupPercent = data.data.groupPercent
   const userNickName = data.data.nickname
-  console.log(data.data)
-  console.log('groupPercent', nowGroupPercent)
-  console.log('challengePercent', nowChallengePercent)
+
   return (
     <Wrapper>
       <ColorWrapper>
