@@ -22,7 +22,7 @@ function OnBoarding() {
   const navigate = useNavigate()
   return (
     <Wrapper>
-      <Carousel>
+      <Carousel showThumbs={false}>
         <div>
           <TextDiv>
             <TextArea>
