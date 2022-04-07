@@ -44,7 +44,6 @@ instance.interceptors.request.use((config) => {
 })
 
 export const request = async ({ ...options }) => {
-  
   const onSuccess = (response) => {
     return response
   }
