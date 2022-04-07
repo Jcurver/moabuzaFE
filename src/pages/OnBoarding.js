@@ -40,7 +40,7 @@ function OnBoarding() {
           <JumpButton
             type="button"
             onClick={() => {
-              navigate('/serviceinfo')
+              navigate('/tutorial')
             }}
             boarderRadius="8px"
             width="328px"
