@@ -55,9 +55,18 @@ function Tutorial() {
 const Wrapper = styled.div`
   position: relative;
 `
-const TutorialBox = styled.div``
+const TutorialBox = styled.div`
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  ::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
+`
 const TutorialImg = styled.img`
   border-radius: ${isMobile ? 0 : '31.4px'};
+  object-fit: cover;
+  height: ${isMobile ? '700px' : 'auto'};
 `
 
 const PrevArrow = styled(LeftArr)`
