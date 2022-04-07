@@ -2,7 +2,7 @@
   display: none;
 }
 .slider-wrapper {
-  height: 700px;
+  /* height: 700px; */
 }
 
 .carousel .control-next.control-arrow:before {
