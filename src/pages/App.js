@@ -43,6 +43,7 @@ const GroupBuzaDetail = lazy(() => import('./GroupBuzaDetail'))
 const UserInfo = lazy(() => import('./UserInfo'))
 const OnBoarding = lazy(() => import('./OnBoarding'))
 const ServiceInfo = lazy(() => import('./ServiceInfo'))
+const Tutorial = lazy(() => import('./Tutorial'))
 
 function App() {
   // let swRegist = null
@@ -262,6 +263,7 @@ function App() {
             <Route path="/user/kakao/callback/*" element={<UserInfo />} />
             <Route path="/onboarding" element={<OnBoarding />} />
             <Route path="/serviceinfo" element={<ServiceInfo />} />
+            <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/loading" element={<Loading />} />
           </Routes>
         </MainDiv>
