@@ -1,6 +1,17 @@
 .carousel-status {
   display: none;
 }
+/* .slider-wrapper {
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: fill-available;
+} */
+
+.carousel .slide img {
+  height: 100vh !important;
+  /* height: -webkit-fill-available;
+  height: fill-available !important; */
+}
 
 .carousel .control-next.control-arrow:before {
   border-left: 16px solid #fff;
