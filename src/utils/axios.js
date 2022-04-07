@@ -33,6 +33,14 @@ export const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
+  setCookie(
+    'A-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZDg0ZTM2ZSIsImlhdCI6MTY0OTMxMDY4OCwiZXhwIjoxNjQ5Mzk3MDg4fQ.8OIBsALUjWiINsl4o8GnkGeE_gXjKbUK-XNAi9jTZEQ',
+  )
+  setCookie(
+    'R-AUTH-TOKEN',
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyZDg0ZTM2ZSIsImlhdCI6MTY0OTMxMDY4OCwiZXhwIjoxNjQ5Mzk3MDg4fQ.8OIBsALUjWiINsl4o8GnkGeE_gXjKbUK-XNAi9jTZEQ',
+  )
   const A_AUTH_TOKEN = getCookie('A-AUTH-TOKEN')
   const R_AUTH_TOKEN = getCookie('R-AUTH-TOKEN')
 
