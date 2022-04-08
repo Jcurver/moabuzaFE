@@ -24,7 +24,6 @@ import {
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-  // baseURL: 'https://6b0c50c6-f658-42ea-80c0-f14d34966068.mock.pstmn.io',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json,',
@@ -60,7 +59,6 @@ let token
 
 if (getItem('fcmtoken')) {
   token = getItem('fcmtoken')
-  console.log(getItem('fcmtoken'))
 } else {
   token = 'token'
 }
@@ -108,13 +106,7 @@ instance.interceptors.response.use(
       config: originalRequest,
       status: statusCode,
     } = error.response
-    console.log(
-      'ERR RESPONSED',
-      responseData,
-      responseData.message,
-      originalRequest,
-      statusCode,
-    )
+
     if (responseData.msg === 'Move to Login Page') {
       setMoveToLoginPage()
       return Promise.reject(error)
