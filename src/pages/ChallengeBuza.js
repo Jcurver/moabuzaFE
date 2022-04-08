@@ -31,9 +31,6 @@ function ChallengeBuza() {
       confirmButtonText: '넵 포기!',
       cancelButtonText: '취소!',
     }).then((result) => {
-      console.log(id)
-      console.log(result)
-
       request({
         url: `/challenge/${id}/waiting`,
         method: 'delete',
@@ -51,8 +48,7 @@ function ChallengeBuza() {
   if (isLoading) {
     return <Loading />
   }
-  console.log(homeData)
-  console.log(data)
+
   return (
     <Wrapper>
       <TitleText>도전해부자</TitleText>
@@ -180,7 +176,6 @@ function ChallengeBuza() {
                       fontSize="14px"
                       background="#4675F0"
                       onClick={() => {
-                        console.log('gStatus:::', gStatus.id)
                         cancelChallenge(gStatus.id)
                       }}
                     >

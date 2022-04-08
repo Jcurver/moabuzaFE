@@ -52,7 +52,6 @@ function GroupBuzaCreate() {
         friendNickname: selectFriendNickName,
       },
     }).then(
-      (res) => console.log('groupCreate', res),
       Swal.fire({
         title: '입력 완료!',
         text: '시작이 반!!',
