@@ -30,8 +30,6 @@ export const fcmToken = getToken(messaging, {
   .then((currentToken) => {
     if (currentToken) {
       setItem('fcmToken', currentToken)
-    } else {
-      console.log('No registration token available.')
     }
     return currentToken
   })
@@ -49,6 +47,5 @@ export const fcmToken = getToken(messaging, {
 
 // 포그라운드 메시지 수신
 onMessage(messaging, (payload) => {
-  console.log('Message received. ', payload)
   // ...
 })
