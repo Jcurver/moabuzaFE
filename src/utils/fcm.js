@@ -34,7 +34,7 @@ export const fcmToken = getToken(messaging, {
     return currentToken
   })
   .catch((err) => {
-    console.log('An error occurred while retrieving token.', err)
+    // console.log('An error occurred while retrieving token.', err)
   })
 
 // Notification.requestPermission().then((permission) => {
