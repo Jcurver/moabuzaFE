@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
-import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import App from './pages/App'
 import DeviceDetect from './DeviceDetect'
 
