@@ -32,6 +32,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
         
       - name: Setting .env
         run: |
@@ -43,6 +44,8 @@ jobs:
           echo "REACT_APP_VAPID_KEY=${{ secrets.REACT_APP_VAPID_KEY }}" >> .env
           echo "REACT_APP_NODE_ENV=${{ secrets.REACT_APP_NODE_ENV }}" >> .env
           cat .env
+
+
 
       - name: Build
         run: npm run build

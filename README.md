@@ -22,7 +22,10 @@
 
 ### 😀 박재현 Front-End
 
+
 [github page](https://github.com/ifizzyou)
+
+
 
 1. **GitHub Actions를 이용한 CI/CD 구축**  
 개발리소스 감소, 디자이너와의 즉각적인 소통을 위해 배포 자동화를 구현하였습니다.
