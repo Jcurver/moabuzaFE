@@ -1,3 +1,6 @@
+## 프로젝트 발표영상 
+https://www.youtube.com/watch?v=iVNIgwGbkkg
+
 ## ✍ 프로젝트 소개
 ![](https://img.shields.io/badge/Project-모아부자!-blue?style=for-the-badge)
 
